@@ -100,7 +100,7 @@ describe("tokens/options", () => {
       }
 
       // Trailing slash isn't inherently wrong, but it often causes double slashes
-      // when consumers do '#{$font-path}/file.woff2'. This catches regressions early.
+      // when consumers do '#{$font-path}/file.ttf'. This catches regressions early.
       $last: string.slice($path, -1);
 
       @if $last == "/" {

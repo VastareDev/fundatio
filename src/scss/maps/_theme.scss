@@ -3,21 +3,6 @@
  *
  * Structured theme registry derived from the canonical theme token layer.
  *
- * This map exists to provide a single, iterable surface for consumer-
- * overridable theme primitives (branding, semantic colours, asset paths).
- *
- * IMPORTANT:
- * - Theme values are intended to be overridden by consumers via:
- *   `@use "tokens/theme" with (...)`
- * - This map MUST mirror the theme token layer exactly.
- * - This file must not introduce derived values, transformations, or logic.
- *
- * This file is intentionally data-only:
- * - No selectors
- * - No functions
- * - No mixins
- * - No side effects
- *
  * @module
  * @group  maps.theme
  * @access public
@@ -25,168 +10,61 @@
  * @author Vastare Development Team
  */
 
+@use 'sass:map';
 @use '../tokens/theme' as theme;
 
-/* ----------------------------------------------------------------------------
- - Global feature flags
- --------------------------------------------------------------------------- */
+@function _font-source-map($normal-stem, $italic-stem) {
+  @return (
+    'normal': (
+      '#{theme.$font-package-format}': '#{$normal-stem}.#{theme.$font-package-format}',
+    ),
+    'italic': (
+      '#{theme.$font-package-format}': '#{$italic-stem}.#{theme.$font-package-format}',
+    )
+  );
+}
 
-/**
- * Global feature flags.
- *
- * @type map
- */
 $feature-flags: (
   'theme-dark-mode': theme.$theme-dark-mode,
 );
-
-/* ----------------------------------------------------------------------------
- - Namespace & prefixing
- --------------------------------------------------------------------------- */
-
-/**
- * Namespace & prefixing configuration.
- *
- * @type map
- */
 $namespace: (
   'theme-prefix': theme.$theme-prefix,
 );
-
-/* ----------------------------------------------------------------------------
- - Font families (semantic roles)
- --------------------------------------------------------------------------- */
-
-/**
- * Theme-level font family roles.
- *
- * Note: These are single family names, not full stacks.
- * Stacks are defined in the typography token layer.
- *
- * @type map
- */
 $font-families: (
   'base-font': theme.$base-font,
   'heading-font': theme.$heading-font,
   'code-font': theme.$code-font,
+  'font-package-format': theme.$font-package-format,
 );
-
-/* ----------------------------------------------------------------------------
- - Base colours (structural)
- --------------------------------------------------------------------------- */
-
-/**
- * Structural / foundational colours.
- *
- * @type map
- */
 $base-colours: (
   'body-bg-color': theme.$body-bg-color,
   'base-font-color': theme.$base-font-color,
   'code-font-color': theme.$code-font-color,
   'heading-font-color': theme.$heading-font-color,
 );
-
-/* ----------------------------------------------------------------------------
- - Semantic brand colours
- --------------------------------------------------------------------------- */
-
-/**
- * Semantic brand colour roles.
- *
- * @type map
- */
 $brand-colours: (
   'primary-colour': theme.$primary-colour,
   'secondary-colour': theme.$secondary-colour,
   'tertiary-colour': theme.$tertiary-colour,
 );
-
-/* ----------------------------------------------------------------------------
- - Semantic state colours
- --------------------------------------------------------------------------- */
-
-/**
- * Semantic state colours (UI feedback roles).
- *
- * @type map
- */
 $state-colours: (
   'success-colour': theme.$success-colour,
   'info-colour': theme.$info-colour,
   'warning-colour': theme.$warning-colour,
   'danger-colour': theme.$danger-colour,
 );
-
-/* ----------------------------------------------------------------------------
- - Light / dark aliases
- --------------------------------------------------------------------------- */
-
-/**
- * Light / dark surface aliases.
- *
- * @type map
- */
 $surface-colours: (
   'light-colour': theme.$light-colour,
   'dark-colour': theme.$dark-colour,
 );
-
-/* ----------------------------------------------------------------------------
- - Asset paths
- --------------------------------------------------------------------------- */
-
-/**
- * Asset path configuration.
- *
- * @type map
- */
 $asset-paths: (
   'base-font-path': theme.$base-font-path,
 );
-
-/* ----------------------------------------------------------------------------
- - Font source paths
- --------------------------------------------------------------------------- */
-
-/**
- * Font source paths grouped by semantic role.
- *
- * @type map
- */
 $font-sources: (
-  'base': (
-    'woff2': theme.$base-font-woff2-path,
-    'ttf': theme.$base-font-ttf-path,
-    'italic-woff2': theme.$base-font-italic-woff2-path,
-    'italic-ttf': theme.$base-font-italic-ttf-path,
-  ),
-  'headings': (
-    'woff2': theme.$heading-font-woff2-path,
-    'ttf': theme.$heading-font-ttf-path,
-    'italic-woff2': theme.$heading-font-italic-woff2-path,
-    'italic-ttf': theme.$heading-font-italic-ttf-path,
-  ),
-  'code': (
-    'woff2': theme.$code-font-woff2-path,
-    'ttf': theme.$code-font-ttf-path,
-    'italic-woff2': theme.$code-font-italic-woff2-path,
-    'italic-ttf': theme.$code-font-italic-ttf-path,
-  ),
+  'base': _font-source-map(theme.$base-font-normal-stem, theme.$base-font-italic-stem),
+  'headings': _font-source-map(theme.$heading-font-normal-stem, theme.$heading-font-italic-stem),
+  'code': _font-source-map(theme.$code-font-normal-stem, theme.$code-font-italic-stem),
 );
-
-/* ----------------------------------------------------------------------------
- - Registry
- --------------------------------------------------------------------------- */
-
-/**
- * Top-level theme registry.
- *
- * Grouped maps intended for iteration by generators and utilities.
- * Values are locked directly to the canonical theme token layer.
- *
- * @type map
- */
 $theme: (
   'feature-flags': $feature-flags,
   'namespace': $namespace,

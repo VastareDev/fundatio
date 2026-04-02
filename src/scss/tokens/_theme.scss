@@ -72,7 +72,7 @@ $theme-prefix: 'vs-' !default;
  *
  * @type string
  */
-$base-font: 'Montserrat' !default;
+$base-font: 'Merriweather' !default;
 
 /**
  * Heading font family.
@@ -93,220 +93,74 @@ $heading-font: 'Montserrat' !default;
  */
 $code-font: 'ui-monospace' !default;
 
+/**
+ * Packaged font format to emit and resolve.
+ *
+ * Consumers may override this to select an alternate packaged extension.
+ * The package defaults to TTF because that is the bundled distribution
+ * contract.
+ *
+ * @type string
+ */
+$font-package-format: 'ttf' !default;
+
 /* ----------------------------------------------------------------------------
  - Base colours (structural)
  --------------------------------------------------------------------------- */
 
-/**
- * Application background colour.
- *
- * @type color
- */
 $body-bg-color: colours.$grey-tint-80 !default;
-
-/**
- * Default body text colour.
- *
- * @type color
- */
 $base-font-color: colours.$grey-shade-80 !default;
-
-/**
- * Inline code text colour.
- *
- * @type color
- */
 $code-font-color: colours.$grey-shade-80 !default;
-
-/**
- * Heading text colour.
- *
- * @type color
- */
 $heading-font-color: colours.$grey-shade-80 !default;
 
 /* ----------------------------------------------------------------------------
  - Semantic brand colours
  --------------------------------------------------------------------------- */
 
-/**
- * Primary brand colour.
- *
- * @type color
- */
 $primary-colour: colours.$base-blue !default;
-
-/**
- * Secondary brand colour.
- *
- * @type color
- */
 $secondary-colour: colours.$base-cyan !default;
-
-/**
- * Tertiary brand colour.
- *
- * @type color
- */
 $tertiary-colour: colours.$base-indigo !default;
 
 /* ----------------------------------------------------------------------------
  - Semantic state colours
  --------------------------------------------------------------------------- */
 
-/**
- * Success state colour.
- *
- * @type color
- */
 $success-colour: colours.$base-green !default;
-
-/**
- * Informational state colour.
- *
- * @type color
- */
 $info-colour: colours.$base-cyan !default;
-
-/**
- * Warning state colour.
- *
- * @type color
- */
 $warning-colour: colours.$base-orange !default;
-
-/**
- * Danger / error state colour.
- *
- * @type color
- */
 $danger-colour: colours.$base-red !default;
 
 /* ----------------------------------------------------------------------------
  - Light / dark aliases
  --------------------------------------------------------------------------- */
 
-/**
- * Light surface colour.
- *
- * @type color
- */
 $light-colour: colours.$grey-tint-80 !default;
-
-/**
- * Dark surface colour.
- *
- * @type color
- */
 $dark-colour: colours.$grey-shade-80 !default;
 
 /* ----------------------------------------------------------------------------
  - Asset paths
  --------------------------------------------------------------------------- */
 
-/**
- * Base font asset path.
- *
- * This path is prepended by font-face generators when resolving font URLs.
- * Keeping this value centralised allows fonts to be relocated without
- * touching individual font definitions.
- *
- * @type string
- */
 $base-font-path: '../assets/fonts' !default;
 
 /* ----------------------------------------------------------------------------
- - Base font source paths
+ - Font source stems
  --------------------------------------------------------------------------- */
 
-/**
- * Base font (normal) - WOFF2 source.
- *
- * @type string
- */
-$base-font-woff2-path: 'montserrat/Montserrat-Variable-Font.woff2' !default;
+/** @type string */
+$base-font-normal-stem: 'merriweather/Merriweather-Variable-Font' !default;
 
-/**
- * Base font (normal) - TTF source.
- *
- * @type string
- */
-$base-font-ttf-path: 'montserrat/Montserrat-Variable-Font.ttf' !default;
+/** @type string */
+$base-font-italic-stem: 'merriweather/Merriweather-Variable-Italic-Font' !default;
 
-/**
- * Base font (italic) - WOFF2 source.
- *
- * @type string
- */
-$base-font-italic-woff2-path: 'montserrat/Montserrat-Variable-Italic-Font.woff2' !default;
+/** @type string */
+$heading-font-normal-stem: 'montserrat/Montserrat-Variable-Font' !default;
 
-/**
- * Base font (italic) - TTF source.
- *
- * @type string
- */
-$base-font-italic-ttf-path: 'montserrat/Montserrat-Variable-Italic-Font.ttf' !default;
+/** @type string */
+$heading-font-italic-stem: 'montserrat/Montserrat-Variable-Italic-Font' !default;
 
-/* ----------------------------------------------------------------------------
- - Heading font source paths
- --------------------------------------------------------------------------- */
+/** @type string */
+$code-font-normal-stem: 'montserrat/Montserrat-Variable-Font' !default;
 
-/**
- * Heading font (normal) - WOFF2 source.
- *
- * @type string
- */
-$heading-font-woff2-path: 'montserrat/Montserrat-Variable-Font.woff2' !default;
-
-/**
- * Heading font (normal) - TTF source.
- *
- * @type string
- */
-$heading-font-ttf-path: 'montserrat/Montserrat-Variable-Font.ttf' !default;
-
-/**
- * Heading font (italic) - WOFF2 source.
- *
- * @type string
- */
-$heading-font-italic-woff2-path: 'montserrat/Montserrat-Variable-Italic-Font.woff2' !default;
-
-/**
- * Heading font (italic) - TTF source.
- *
- * @type string
- */
-$heading-font-italic-ttf-path: 'montserrat/Montserrat-Variable-Italic-Font.ttf' !default;
-
-/* ----------------------------------------------------------------------------
- - Code font source paths
- --------------------------------------------------------------------------- */
-
-/**
- * Code font (normal) - WOFF2 source.
- *
- * @type string
- */
-$code-font-woff2-path: 'montserrat/Montserrat-Variable-Font.woff2' !default;
-
-/**
- * Code font (normal) - TTF source.
- *
- * @type string
- */
-$code-font-ttf-path: 'montserrat/Montserrat-Variable-Font.ttf' !default;
-
-/**
- * Code font (italic) - WOFF2 source.
- *
- * @type string
- */
-$code-font-italic-woff2-path: 'montserrat/Montserrat-Variable-Italic-Font.woff2' !default;
-
-/**
- * Code font (italic) - TTF source.
- *
- * @type string
- */
-$code-font-italic-ttf-path: 'montserrat/Montserrat-Variable-Italic-Font.ttf' !default;
+/** @type string */
+$code-font-italic-stem: 'montserrat/Montserrat-Variable-Italic-Font' !default;

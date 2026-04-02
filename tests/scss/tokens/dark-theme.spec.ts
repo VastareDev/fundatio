@@ -68,21 +68,14 @@ describe("tokens/dark-theme", () => {
       // Asset base path & source paths should match base defaults.
       @if theme.$base-font-path != base.$base-font-path { @error "Expected $base-font-path to match tokens/theme default"; }
 
-      @if theme.$base-font-woff2-path != base.$base-font-woff2-path { @error "Expected $base-font-woff2-path to match tokens/theme default"; }
-      @if theme.$base-font-ttf-path != base.$base-font-ttf-path { @error "Expected $base-font-ttf-path to match tokens/theme default"; }
-      @if theme.$base-font-italic-woff2-path != base.$base-font-italic-woff2-path { @error "Expected $base-font-italic-woff2-path to match tokens/theme default"; }
-      @if theme.$base-font-italic-ttf-path != base.$base-font-italic-ttf-path { @error "Expected $base-font-italic-ttf-path to match tokens/theme default"; }
+      @if theme.$base-font-normal-stem != base.$base-font-normal-stem { @error "Expected $base-font-woff2-path to match tokens/theme default"; }
+      @if theme.$base-font-italic-stem != base.$base-font-italic-stem { @error "Expected $base-font-ttf-path to match tokens/theme default"; }
+      @if theme.$heading-font-normal-stem != base.$heading-font-normal-stem { @error "Expected $base-font-italic-woff2-path to match tokens/theme default"; }
+      @if theme.$heading-font-italic-stem != base.$heading-font-italic-stem { @error "Expected $base-font-italic-ttf-path to match tokens/theme default"; }
 
-      @if theme.$heading-font-woff2-path != base.$heading-font-woff2-path { @error "Expected $heading-font-woff2-path to match tokens/theme default"; }
-      @if theme.$heading-font-ttf-path != base.$heading-font-ttf-path { @error "Expected $heading-font-ttf-path to match tokens/theme default"; }
-      @if theme.$heading-font-italic-woff2-path != base.$heading-font-italic-woff2-path { @error "Expected $heading-font-italic-woff2-path to match tokens/theme default"; }
-      @if theme.$heading-font-italic-ttf-path != base.$heading-font-italic-ttf-path { @error "Expected $heading-font-italic-ttf-path to match tokens/theme default"; }
-
-      @if theme.$code-font-woff2-path != base.$code-font-woff2-path { @error "Expected $code-font-woff2-path to match tokens/theme default"; }
-      @if theme.$code-font-ttf-path != base.$code-font-ttf-path { @error "Expected $code-font-ttf-path to match tokens/theme default"; }
-      @if theme.$code-font-italic-woff2-path != base.$code-font-italic-woff2-path { @error "Expected $code-font-italic-woff2-path to match tokens/theme default"; }
-      @if theme.$code-font-italic-ttf-path != base.$code-font-italic-ttf-path { @error "Expected $code-font-italic-ttf-path to match tokens/theme default"; }
-    `);
+      @if theme.$code-font-normal-stem != base.$code-font-normal-stem { @error "Expected $heading-font-woff2-path to match tokens/theme default"; }
+      @if theme.$code-font-italic-stem != base.$code-font-italic-stem { @error "Expected $heading-font-ttf-path to match tokens/theme default"; }
+          `);
   });
 
   it("supports consumer overrides by configuring tokens/theme directly", () => {

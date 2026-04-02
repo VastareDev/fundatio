@@ -89,6 +89,20 @@
 }
 
 /**
+ * Emits a single CSS custom property declaration.
+ *
+ * @access private
+ *
+ * @param  {string} $name
+ * @param  {*}      $value
+ *
+ * @return {void}
+ */
+@mixin _emit-var($name, $value) {
+  #{$name}: #{$value};
+}
+
+/**
  * Extracts a format key from a registry source key.
  *
  * Example:
@@ -119,14 +133,13 @@
  * Serializes a string->string map of font sources into a CSS src list.
  *
  * Example input:
- *   ("woff2": "a.woff2", "ttf": "a.ttf")
+ *   ("ttf": "a.ttf")
  *
  * Output:
- *   url("a.woff2") format("woff2"), url("a.ttf") format("ttf")
+ *   url("a.ttf") format("truetype")
  *
  * Ordering:
- * - Preferred formats are emitted first (default: woff2, ttf)
- * - Any remaining formats are appended in registry order
+ * - Sources are emitted in registry order
  *
  * @access private
  *
@@ -135,67 +148,29 @@
  *
  * @return {list}
  */
-@function _serialize-font-sources($sources, $preferred: ('woff2', 'ttf')) {
+@function _css-font-format($key) {
+  @if $key == 'ttf' or $key == 'truetype' {
+    @return 'truetype';
+  }
+
+  @return $key;
+}
+
+@function _serialize-font-sources($sources) {
   $base-font-path: fn.theme-value('asset-paths', 'base-font-path');
   $out: ();
 
-  @each $k in $preferred {
-    @if map.has-key($sources, $k) {
-      $path: map.get($sources, $k);
-      $fmt: 'ttf';
-
-      @if $k == 'woff2' or $k == 'woff2-italic' {
-        $fmt: 'woff2';
-      }
-
-      @if $path != null and $path != '' {
-        $out: list.append(
-          $out,
-          string.unquote("url('#{$base-font-path}/#{$path}') format('#{$fmt}')"),
-          comma
-        );
-      }
-    }
-  }
-
-  // Fallback: include any remaining sources not covered by $preferred
   @each $k, $path in $sources {
-    @if list.index($preferred, $k) == null {
-      $fmt: 'ttf';
-
-      @if $k == 'woff2' or $k == 'woff2-italic' {
-        $fmt: 'woff2';
-      }
-
-      @if $path != null and $path != '' {
-        $out: list.append(
-          $out,
-          string.unquote("url('#{$base-font-path}/#{$path}') format('#{$fmt}')"),
-          comma
-        );
-      }
+    @if $path != null and $path != '' {
+      $out: list.append(
+        $out,
+        string.unquote("url('#{$base-font-path}/#{$path}') format('#{_css-font-format($k)}')"),
+        comma
+      );
     }
   }
 
   @return $out;
-}
-
-/**
- * Emits a single CSS custom property declaration.
- *
- * @access private
- *
- * @param  {string} $name
- * @param  {*}      $value
- *
- * @return {void}
- */
-@mixin _emit-var($name, $value) {
-  @if meta.type-of($name) != 'string' {
-    @error "Expected $name to be type 'string', got '#{meta.type-of($name)}'";
-  }
-
-  #{$name}: #{$value};
 }
 
 /* ----------------------------------------------------------------------------
@@ -242,25 +217,44 @@
       @continue;
     }
 
-    // Special-case: string->string maps are not valid CSS values.
-    // We currently only support serializing such maps for font sources.
-    @if meta.type-of($val) == 'map' {
-      $all-string-pairs: true;
+    // Special-case theme font sources.
+    // Registry shape:
+    //   font-sources -> base/headings/code -> normal/italic -> format:path
+    @if $group == 'font-sources' and meta.type-of($val) == 'map' {
+      @each $variant, $sources in $val {
+        @if meta.type-of($variant) != 'string' {
+          @error "Expected font source variant key to be a string, got '#{meta.type-of($variant)}'";
+        }
 
-      @each $k, $v in $val {
-        @if meta.type-of($k) != 'string' or meta.type-of($v) != 'string' {
-          $all-string-pairs: false;
+        @if meta.type-of($sources) != 'map' {
+          @error "Expected font source variant '#{$variant}' for '#{$key}' to be a map, got '#{meta.type-of($sources)}'";
+        }
+
+        $name: _css-var-name($group, '#{$key}-#{$variant}', $var-prefix, $namespace);
+        $serialized: _serialize-font-sources($sources);
+
+        @include _emit-var($name, $serialized);
+      }
+    } @else {
+      // Special-case: string->string maps are not valid CSS values.
+      @if meta.type-of($val) == 'map' {
+        $all-string-pairs: true;
+
+        @each $k, $v in $val {
+          @if meta.type-of($k) != 'string' or meta.type-of($v) != 'string' {
+            $all-string-pairs: false;
+          }
+        }
+
+        @if $all-string-pairs == true {
+          $val: _serialize-font-sources($val);
         }
       }
 
-      @if $all-string-pairs == true {
-        $val: _serialize-font-sources($val);
-      }
+      $name: _css-var-name($group, $key, $var-prefix, $namespace);
+
+      @include _emit-var($name, $val);
     }
-
-    $name: _css-var-name($group, $key, $var-prefix, $namespace);
-
-    @include _emit-var($name, $val);
   }
 
   // Fail fast when a subset was requested but nothing matched.

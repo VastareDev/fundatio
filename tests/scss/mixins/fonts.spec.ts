@@ -71,7 +71,7 @@ describe("mixins/fonts", () => {
 
   it("supports filtering formats via string or list", () => {
     expectSassPass(`
-      @include mx.font-face("base", "normal", $formats: "woff2");
+      @include mx.font-face("base", "normal", $formats: "ttf");
       @include mx.font-face("base", "normal", $formats: ("truetype"));
     `);
   });

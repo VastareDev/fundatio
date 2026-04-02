@@ -101,20 +101,45 @@
  * Builds a single `url(...) format(...)` src entry.
  */
 @function _src-entry($path, $format, $base-path) {
+  $p: _join-path($base-path, $path);
+
+  @return string.unquote("url('#{$p}') format('#{_css-format($format)}')");
+}
+
+
+/**
+ * Normalises a requested font format into the canonical registry key.
+ */
+@function _canonical-format($format) {
   @if meta.type-of($format) != 'string' {
     @error "Expected $format to be type 'string', got '#{meta.type-of($format)}'";
   }
 
-  $p: _join-path($base-path, $path);
+  @if $format == 'ttf' or $format == 'truetype' {
+    @return 'ttf';
+  }
 
-  @return string.unquote("url('#{$p}') format('#{$format}')");
+  @return $format;
+}
+
+/**
+ * Maps a canonical registry format to the CSS format() descriptor.
+ */
+@function _css-format($format) {
+  $canonical: _canonical-format($format);
+
+  @if $canonical == 'ttf' {
+    @return 'truetype';
+  }
+
+  @return $canonical;
 }
 
 /* ----------------------------------------------------------------------------
  - Public emitters
  --------------------------------------------------------------------------- */
 
-@mixin font-face($group, $variant, $base-path: theme.$base-font-path, $formats: null) {
+@mixin font-face($group, $variant, $base-path: theme.$base-font-path, $formats: theme.$font-package-format) {
   $v: fn.font-variant($group, $variant);
   $family: fn.font-descriptor($group, $variant, 'family');
   $style: fn.font-descriptor($group, $variant, 'style');
@@ -146,6 +171,16 @@
 
   $use-formats: _as-list($formats);
 
+  @if $use-formats != null {
+    $normalized-formats: ();
+
+    @each $format in $use-formats {
+      $normalized-formats: list.append($normalized-formats, _canonical-format($format), comma);
+    }
+
+    $use-formats: $normalized-formats;
+  }
+
   @if $use-formats != null and meta.type-of($use-formats) != 'list' {
     @error "Expected $formats to be a list, string, or null, got '#{meta.type-of($formats)}'";
   }
@@ -153,7 +188,9 @@
   $src: ();
 
   @each $fmt, $path in $sources {
-    @if $use-formats != null and list.index($use-formats, $fmt) == null {
+    $canonical-format: _canonical-format($fmt);
+
+    @if $use-formats != null and list.index($use-formats, $canonical-format) == null {
       @continue;
     }
 
@@ -165,7 +202,7 @@
       @error "Expected source path for '#{$group}/#{$variant}' format '#{$fmt}' to be a string, got '#{meta.type-of($path)}'";
     }
 
-    $src: list.append($src, _src-entry($path, $fmt, $base-path), comma);
+    $src: list.append($src, _src-entry($path, $canonical-format, $base-path), comma);
   }
 
   @if list.length($src) == 0 {
@@ -184,7 +221,7 @@
 /**
  * Emits @font-face rules for all variants in a group.
  */
-@mixin font-group-faces($group, $variants: null, $base-path: theme.$base-font-path, $formats: null) {
+@mixin font-group-faces($group, $variants: null, $base-path: theme.$base-font-path, $formats: theme.$font-package-format) {
   $use-variants: null;
 
   @if not $variants {
@@ -205,7 +242,7 @@
 /**
  * Emits @font-face rules for all registered font groups.
  */
-@mixin font-faces($groups: null, $base-path: theme.$base-font-path, $formats: null) {
+@mixin font-faces($groups: null, $base-path: theme.$base-font-path, $formats: theme.$font-package-format) {
   $use-groups: null;
 
   @if not $groups {
@@ -227,14 +264,14 @@
  - Convenience wrappers
  --------------------------------------------------------------------------- */
 
-@mixin base-font-faces($base-path: theme.$base-font-path, $formats: null) {
+@mixin base-font-faces($base-path: theme.$base-font-path, $formats: theme.$font-package-format) {
   @include font-group-faces('base', $base-path: $base-path, $formats: $formats);
 }
 
-@mixin heading-font-faces($base-path: theme.$base-font-path, $formats: null) {
+@mixin heading-font-faces($base-path: theme.$base-font-path, $formats: theme.$font-package-format) {
   @include font-group-faces('headings', $base-path: $base-path, $formats: $formats);
 }
 
-@mixin code-font-faces($base-path: theme.$base-font-path, $formats: null) {
+@mixin code-font-faces($base-path: theme.$base-font-path, $formats: theme.$font-package-format) {
   @include font-group-faces('code', $base-path: $base-path, $formats: $formats);
 }

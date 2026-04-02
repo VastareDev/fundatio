@@ -154,15 +154,16 @@ describe("functions/theme", () => {
         @error "Expected theme-value(font-sources, base) to return a map";
       }
 
-      // Expected keys in base font sources group.
-      @if map.has-key($sources, "woff2") == false { @error "Expected base font-sources to include 'woff2'"; }
-      @if map.has-key($sources, "ttf") == false { @error "Expected base font-sources to include 'ttf'"; }
-      @if map.has-key($sources, "italic-woff2") == false { @error "Expected base font-sources to include 'italic-woff2'"; }
-      @if map.has-key($sources, "italic-ttf") == false { @error "Expected base font-sources to include 'italic-ttf'"; }
+      @if map.has-key($sources, "normal") == false { @error "Expected base font-sources to include 'normal'"; }
+      @if map.has-key($sources, "italic") == false { @error "Expected base font-sources to include 'italic'"; }
 
-      // Must align with theme tokens directly.
-      @if map.get($sources, "woff2") != theme-tokens.$base-font-woff2-path {
-        @error "Expected base woff2 font source to match tokens.$base-font-woff2-path";
+      $normal: map.get($sources, "normal");
+      @if meta.type-of($normal) != "map" {
+        @error "Expected base normal font source to be a nested map";
+      }
+
+      @if map.get($normal, theme-tokens.$font-package-format) != "#{theme-tokens.$base-font-normal-stem}.#{theme-tokens.$font-package-format}" {
+        @error "Expected base normal font source to match the active format path";
       }
     `);
   });

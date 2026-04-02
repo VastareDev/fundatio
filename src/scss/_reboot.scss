@@ -94,14 +94,11 @@ body {
   /* Base font stack (temporary, tokenised later) */
   font-family: var(
     --lg-typography-font-families-base-font-family,
-    'Montserrat',
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif
+    'Merriweather',
+    Georgia,
+    'Times New Roman',
+    Times,
+    serif
   );
 
   /* Explicit baseline typography */

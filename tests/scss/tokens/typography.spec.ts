@@ -32,8 +32,8 @@ function expectSassAssertionsPass(snippet: string): void {
 describe("tokens/typography", () => {
   it("matches font family tokens exactly", () => {
     expectSassAssertionsPass(`
-      @if type.$base-font-family != ("Montserrat", Georgia, "Times New Roman", Times, serif) {
-        @error "Expected $base-font-family to be Montserrat serif stack";
+      @if type.$base-font-family != ("Merriweather", Georgia, "Times New Roman", Times, serif) {
+        @error "Expected $base-font-family to be Merriweather serif stack";
       }
 
       @if type.$heading-font-family != ("Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif) {

@@ -140,6 +140,28 @@
   @return $value;
 }
 
+/**
+ * Normalises font format aliases to canonical registry keys.
+ *
+ * Currently supported aliases:
+ * - `truetype` => `ttf`
+ *
+ * @access private
+ *
+ * @param  {string} $format
+ *
+ * @return {string}
+ */
+@function _canonical-format($format) {
+  $_: _assert-non-empty-string($format, '$format');
+
+  @if $format == 'truetype' {
+    @return 'ttf';
+  }
+
+  @return $format;
+}
+
 /* ----------------------------------------------------------------------------
  - Registry introspection
  --------------------------------------------------------------------------- */
@@ -257,7 +279,7 @@
  * Returns the sources map from a group + variant.
  *
  * Example:
- *   $sources: font-sources("base", "normal"); // ("woff2": "...", "ttf": "...")
+ *   $sources: font-sources("base", "normal"); // ("ttf": "...")
  *
  * @param  {string} $group
  * @param  {string} $variant
@@ -274,19 +296,18 @@
  * Returns a specific source path from a group + variant.
  *
  * Example:
- *   $woff2: font-source("base", "normal", "woff2");
- *
+  *
  * @param  {string} $group
  * @param  {string} $variant
- * @param  {string} $format   Typically "woff2" or "ttf"
+ * @param  {string} $format   Typically the active packaged format, such as "ttf"
  *
  * @return {string}
  */
 @function font-source($group, $variant, $format) {
-  $_: _assert-non-empty-string($format, '$format');
+  $canonical-format: _canonical-format($format);
   $sources: font-sources($group, $variant);
-  $_: _assert-has-key($sources, $format, "font sources '#{$group}/#{$variant}'");
-  $path: map.get($sources, $format);
+  $_: _assert-has-key($sources, $canonical-format, "font sources '#{$group}/#{$variant}'");
+  $path: map.get($sources, $canonical-format);
   $_: _assert-type($path, 'string', "font-source('#{$group}', '#{$variant}', '#{$format}')");
 
   @return $path;
@@ -368,7 +389,7 @@
 @function try-font-source($group, $variant, $format, $fallback: null) {
   $_: _assert-non-empty-string($group, '$group');
   $_: _assert-non-empty-string($variant, '$variant');
-  $_: _assert-non-empty-string($format, '$format');
+  $canonical-format: _canonical-format($format);
   $v: try-font-variant($group, $variant);
 
   @if not $v {
@@ -385,11 +406,11 @@
     @return $fallback;
   }
 
-  @if map.has-key($sources, $format) == false {
+  @if map.has-key($sources, $canonical-format) == false {
     @return $fallback;
   }
 
-  $path: map.get($sources, $format);
+  $path: map.get($sources, $canonical-format);
 
   @if not $path or meta.type-of($path) != 'string' {
     @return $fallback;

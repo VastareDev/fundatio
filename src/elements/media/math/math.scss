@@ -1,0 +1,46 @@
+/**
+ * Sol Design Foundation: Math Element
+ *
+ * Mathematical formula (`math`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes layout behavior for MathML
+ * - Preserves intrinsic rendering semantics
+ * - Avoids interfering with MathML display logic
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.math
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(math) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // MathML is inline by default.
+  display: inline;
+
+  // Prevent unexpected spacing artifacts.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  /* --------------------------------------------------------------------------
+   - Layout predictability
+   -------------------------------------------------------------------------- */
+
+  // Ensure inline math does not overflow container.
+  max-width: 100%;
+  overflow-wrap: normal;
+
+  // Maintain consistent alignment within text flow.
+  vertical-align: middle;
+
+  // Predictable sizing model.
+  box-sizing: border-box;
+}

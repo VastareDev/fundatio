@@ -1,0 +1,58 @@
+/**
+ * Sol Design Foundation: Bootstrap v5 Adapter Entry Point
+ *
+ * Provides a single SCSS entry for consuming Bootstrap v5, optionally composed
+ * with a Sol baseline.
+ *
+ * Baseline options:
+ * - none: Bootstrap only
+ * - core: Sol core + Bootstrap
+ * - main: Sol main (includes core) + Bootstrap
+ *
+ * @module
+ * @group  adapters
+ * @access public
+ * @since  1.0.0
+ */
+
+@use 'sass:list';
+@use 'sass:meta';
+
+/* ----------------------------------------------------------------------------
+ - Configuration
+ --------------------------------------------------------------------------- */
+
+$sol-bootstrap-baseline: core !default;
+$_allowed-baselines: (none, core, main);
+
+@if list.index($_allowed-baselines, $sol-bootstrap-baseline) == null {
+  @error 'Invalid $sol-bootstrap-baseline: #{$sol-bootstrap-baseline}. Allowed values: none, core, main.';
+}
+
+/* ----------------------------------------------------------------------------
+ - Bootstrap (with Sol-driven variables)
+ --------------------------------------------------------------------------- */
+
+/**
+ * Bootstrap still relies on legacy global variable configuration via @import.
+ * Dart Sass requires @use to appear before other rules, so these @imports must
+ * come after @use.
+ *
+ * Stylelint rule `no-invalid-position-at-import-rule` incorrectly flags this,
+ * so we disable it locally just for these imports.
+ */
+
+/* stylelint-disable no-invalid-position-at-import-rule */
+@import './variables';
+@import 'bootstrap/scss/bootstrap';
+/* stylelint-enable no-invalid-position-at-import-rule */
+
+/* ----------------------------------------------------------------------------
+ - Optional Sol baseline
+ --------------------------------------------------------------------------- */
+
+@if $sol-bootstrap-baseline == core {
+  @include meta.load-css('../../../core');
+} @else if $sol-bootstrap-baseline == main {
+  @include meta.load-css('../../../main');
+}

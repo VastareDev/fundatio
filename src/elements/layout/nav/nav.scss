@@ -1,0 +1,42 @@
+/**
+ * Sol Design Foundation: Nav Element
+ *
+ * Navigation landmark (`nav`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA spacing (avoid reliance on browser defaults)
+ * - Keeps `<nav>` structural (no layout opinions)
+ * - Applies base typography tokens so it can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.layout.nav
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(nav) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography (standalone-safe)
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  background-color: transparent;
+}

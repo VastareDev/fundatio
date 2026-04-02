@@ -1,0 +1,44 @@
+/**
+ * Sol Design Foundation: SVG Element
+ *
+ * Scalable Vector Graphics container (`svg`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes `<svg>` as a replaced/embedded graphic for predictable layout
+ * - Avoids opinionated presentation (no fill/stroke defaults, no sizing coercion)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.svg
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(svg) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Inline graphics often participate in text flow. Keep inline behavior, but
+  // normalize to a predictable inline formatting context.
+  display: inline-block;
+  vertical-align: middle;
+
+  // Remove incidental UA/legacy presentation.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  /* --------------------------------------------------------------------------
+   - Layout predictability
+   -------------------------------------------------------------------------- */
+
+  // Allow responsive containment without forcing a specific authored size.
+  max-width: 100%;
+  height: auto;
+
+  // Predictable sizing model.
+  box-sizing: border-box;
+}

@@ -1,0 +1,340 @@
+/**
+ * Sol Design Foundation: Colour Functions
+ *
+ * Strict, read-only accessors for canonical colour scale registries.
+ *
+ * This module provides:
+ * - Scale access (`colour-scale`)
+ * - Token access (`colour`, `c`)
+ * - Registry introspection (`colour-scales`, `colour-keys`)
+ * - Safe access for generators (`try-colour`)
+ * - Existence checks (`has-colour-scale`, `has-colour`)
+ *
+ * These functions intentionally:
+ * - Validate argument types and basic correctness
+ * - Fail fast with actionable errors (for strict getters)
+ * - Provide a non-throwing alternative for iteration/generator use-cases
+ * - Return Sass color values (not strings)
+ *
+ * This file is intentionally logic-only:
+ * - No selectors
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  functions.colours
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../maps/colours' as colour-maps;
+
+/* ----------------------------------------------------------------------------
+ - Internal assertions
+ --------------------------------------------------------------------------- */
+
+/**
+ * Trims leading + trailing whitespace from a string.
+ *
+ * Dart Sass does not currently expose a `string.trim()` helper, so we
+ * implement a small, predictable version for argument validation.
+ *
+ * Whitespace handled:
+ * - space
+ * - tab (\t)
+ * - newline (\n)
+ * - carriage return (\r)
+ * - form feed (\f)
+ *
+ * @access private
+ *
+ * @param  {string} $s
+ *
+ * @return {string}
+ */
+@function _trim($s) {
+  @if meta.type-of($s) != 'string' {
+    @return $s;
+  }
+
+  $whitespace: (' ', '\t', '\n', '\r', '\f');
+  $start: 1;
+  $end: string.length($s);
+
+  // Trim left
+  @while $start <= $end and list.index($whitespace, string.slice($s, $start, $start)) != null {
+    $start: $start + 1;
+  }
+
+  // Trim right
+  @while $end >= $start and list.index($whitespace, string.slice($s, $end, $end)) != null {
+    $end: $end - 1;
+  }
+
+  @if $start > $end {
+    @return '';
+  }
+
+  @return string.slice($s, $start, $end);
+}
+
+/**
+ * Asserts the given value is of an expected Sass type.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $expected
+ * @param  {string} $label
+ *
+ * @return {*}
+ */
+@function _assert-type($value, $expected, $label) {
+  @if meta.type-of($value) != $expected {
+    @error "Expected #{$label} to be type '#{$expected}', got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a string is non-empty (after trimming whitespace).
+ *
+ * This prevents confusing "missing key" errors caused by passing
+ * empty strings or whitespace-only strings to public APIs.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {string}
+ */
+@function _assert-non-empty-string($value, $label) {
+  $_: _assert-type($value, 'string', $label);
+  $t: _trim($value);
+
+  @if string.length($t) == 0 {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a map contains a key.
+ *
+ * @access private
+ *
+ * @param  {map}    $m
+ * @param  {*}      $key
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-has-key($m, $key, $label) {
+  @if map.has-key($m, $key) == false {
+    @error "Missing key '#{$key}' in #{$label}";
+  }
+
+  @return $m;
+}
+
+/**
+ * Asserts a value is a Sass color.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {color}
+ */
+@function _assert-color($value, $label) {
+  @if meta.type-of($value) != 'color' {
+    @error "Expected #{$label} to be a Sass color, got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/* ----------------------------------------------------------------------------
+ - Registry introspection
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns the list of available colour scale names.
+ *
+ * Example:
+ *   $scales: colour-scales(); // ("grey", "blue", ...)
+ *
+ * @return {list}
+ */
+@function colour-scales() {
+  @return map.keys(colour-maps.$colour-scales);
+}
+
+/**
+ * Returns the list of token keys available for a given scale.
+ *
+ * Example:
+ *   $keys: colour-keys("grey"); // ("grey-tint-90", ...)
+ *
+ * @param  {string} $scale
+ *
+ * @return {list}
+ */
+@function colour-keys($scale) {
+  $_: _assert-non-empty-string($scale, '$scale');
+  $_: _assert-has-key(colour-maps.$colour-scales, $scale, '$colour-scales');
+
+  @return map.keys(map.get(colour-maps.$colour-scales, $scale));
+}
+
+/* ----------------------------------------------------------------------------
+ - Strict accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns the full map for a named colour scale.
+ *
+ * Example:
+ *   $greys: colour-scale("grey");
+ *
+ * @param  {string} $scale
+ *
+ * @return {map}
+ */
+@function colour-scale($scale) {
+  $_: _assert-non-empty-string($scale, '$scale');
+  $_: _assert-has-key(colour-maps.$colour-scales, $scale, '$colour-scales');
+
+  @return map.get(colour-maps.$colour-scales, $scale);
+}
+
+/**
+ * Returns a colour from a named scale by token key.
+ *
+ * Example:
+ *   $c: colour("grey", "grey-tint-80");
+ *
+ * @param  {string} $scale
+ * @param  {string} $key
+ *
+ * @return {color}
+ */
+@function colour($scale, $key) {
+  $_: _assert-non-empty-string($scale, '$scale');
+  $_: _assert-non-empty-string($key, '$key');
+  $scale-map: colour-scale($scale);
+  $_: _assert-has-key($scale-map, $key, "colour scale '#{$scale}'");
+
+  @return _assert-color(map.get($scale-map, $key), "colour('#{$scale}', '#{$key}')");
+}
+
+/**
+ * Convenience alias for `colour()`.
+ *
+ * Humans love shorter names. Humans also love bugs. Balance is important.
+ *
+ * @param  {string} $scale
+ * @param  {string} $key
+ *
+ * @return {color}
+ */
+@function c($scale, $key) {
+  @return colour($scale, $key);
+}
+
+/* ----------------------------------------------------------------------------
+ - Safe accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Safe colour lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Scale is missing
+ * - Key is missing
+ * - Value is null
+ * - Value is not a colour
+ *
+ * This is intended for iteration / generation workflows where partial
+ * registries or conditional lookups should not abort compilation.
+ *
+ * Example:
+ *   $maybe: try-colour("grey", "does-not-exist", $fallback: #000);
+ *
+ * @param  {string} $scale
+ * @param  {string} $key
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-colour($scale, $key, $fallback: null) {
+  $_: _assert-non-empty-string($scale, '$scale');
+  $_: _assert-non-empty-string($key, '$key');
+
+  @if map.has-key(colour-maps.$colour-scales, $scale) == false {
+    @return $fallback;
+  }
+
+  $scale-map: map.get(colour-maps.$colour-scales, $scale);
+
+  @if map.has-key($scale-map, $key) == false {
+    @return $fallback;
+  }
+
+  $value: map.get($scale-map, $key);
+
+  @if not $value {
+    @return $fallback;
+  }
+
+  @if meta.type-of($value) != 'color' {
+    @return $fallback;
+  }
+
+  @return $value;
+}
+
+/* ----------------------------------------------------------------------------
+ - Existence checks
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns whether a scale exists in the registry.
+ *
+ * @param  {string} $scale
+ *
+ * @return {bool}
+ */
+@function has-colour-scale($scale) {
+  $_: _assert-non-empty-string($scale, '$scale');
+
+  @return map.has-key(colour-maps.$colour-scales, $scale);
+}
+
+/**
+ * Returns whether a token key exists within a scale.
+ *
+ * @param  {string} $scale
+ * @param  {string} $key
+ *
+ * @return {bool}
+ */
+@function has-colour($scale, $key) {
+  $_: _assert-non-empty-string($scale, '$scale');
+  $_: _assert-non-empty-string($key, '$key');
+
+  @if has-colour-scale($scale) == false {
+    @return false;
+  }
+
+  @return map.has-key(colour-scale($scale), $key);
+}

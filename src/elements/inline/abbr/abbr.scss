@@ -1,0 +1,54 @@
+/**
+ * Sol Design Foundation: Abbr Element
+ *
+ * Abbreviation / acronym (`abbr`)
+ *
+ * Baseline reset + normalized, accessible abbreviation affordance.
+ *
+ * This module:
+ * - Normalizes UA variance (dotted underline, small-caps, or no styling)
+ * - Uses `text-decoration` instead of legacy border styles
+ * - Keeps typography inherited (authors decide small-caps, etc.)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.abbr
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(abbr) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Preserve inherited typography; do not force small-caps.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+:where(abbr[title]) {
+  /* --------------------------------------------------------------------------
+   - Consistent abbreviation affordance
+   -------------------------------------------------------------------------- */
+
+  // Avoid legacy underline implementations.
+  border-bottom: 0;
+
+  // Normalize to a predictable dotted underline across engines.
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: currentcolor;
+
+  // Improve underline legibility around descenders where supported.
+  text-decoration-skip-ink: auto;
+}

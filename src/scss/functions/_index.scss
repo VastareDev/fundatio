@@ -1,0 +1,78 @@
+/**
+ * Sol Design Foundation: Functions Index
+ *
+ * Public entrypoint for all function modules.
+ *
+ * This file exists to provide a stable, single import surface for consumers and
+ * internal modules that need access to the system's function APIs.
+ *
+ * Why this exists (because humans love chaos):
+ * - Keeps import paths clean (`@use "functions" as fn;`)
+ * - Centralises the "public API" of the functions layer
+ * - Allows internal refactors without forcing consumers to update paths
+ *
+ * What this file must remain:
+ * - Side-effect free (no selectors emitted)
+ * - Logic-only (just forwards)
+ * - Predictable and additive (don't remove forwards without a major bump)
+ *
+ * Usage:
+ *   @use "functions" as fn;
+ *
+ *   $c: fn.colour("grey", "grey-tint-80");
+ *   $s: fn.spacing(4);
+ *   $p: fn.option("prefix");
+ *   $t: fn.theme-value("namespace", "theme-prefix");
+ *
+ * @module
+ * @group  functions.index
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* ----------------------------------------------------------------------------
+ - Public forwards
+ --------------------------------------------------------------------------- */
+
+/**
+ * Colour functions.
+ *
+ * Provides strict and safe access to canonical colour scales.
+ */
+@forward 'colours';
+
+/**
+ * Font-face registry functions.
+ *
+ * Provides strict and safe access to grouped font-face descriptor maps.
+ */
+@forward 'fonts';
+
+/**
+ * Options registry functions.
+ *
+ * Provides strict and safe access to build/system options.
+ */
+@forward 'options';
+
+/**
+ * Spacing scale functions.
+ *
+ * Provides strict and safe access to the spacing scale and helper utilities.
+ */
+@forward 'spacing';
+
+/**
+ * Theme registry functions.
+ *
+ * Provides strict and safe access to consumer-overridable theme primitives.
+ */
+@forward 'theme';
+
+/**
+ * Typography registry functions.
+ *
+ * Provides strict and safe access to grouped typography primitives.
+ */
+@forward 'typography';

@@ -1,0 +1,36 @@
+/**
+ * Sol Design Foundation: RT Element
+ *
+ * Ruby text (`rt`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - `<rt>` provides the annotation text (pronunciation/translation/etc.) for `<ruby>`.
+ * - Ruby layout is handled by the ruby formatting model; do not override display.
+ *
+ * @module
+ * @group  elements.inline.rt
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(rt) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve intrinsic ruby formatting model behavior.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Inherit typography from surrounding context.
+  // (Do not force font-size here; sizing is often controlled at ruby level.)
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

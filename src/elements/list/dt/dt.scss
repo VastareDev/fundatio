@@ -1,0 +1,51 @@
+/**
+ * Sol Design Foundation: DT Element
+ *
+ * Description term (`dt`)
+ *
+ * Structural baseline + light branding.
+ *
+ * This module:
+ * - Normalizes UA spacing so `<dl>` layouts are consistent across browsers
+ * - Preserves semantic emphasis via explicit, token-driven weight (no UA "bold" assumptions)
+ * - Avoids layout patterns (columns/grids) at baseline
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<dt>` semantics in description lists :contentReference[oaicite:0]{index=0}
+ * - MDN (Learn): default list styling notes for `<dl>/<dt>/<dd>` (Oct 2025) :contentReference[oaicite:1]{index=1}
+ * - Reset guidance (Oct 2025): normalize margins/padding across browsers :contentReference[oaicite:2]{index=2}
+ *
+ * @module
+ * @group  elements.list.dt
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(dt) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // UA defaults commonly rely on margins/weights; normalize spacing explicitly.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Robust text behavior.
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned semantic emphasis
+   -------------------------------------------------------------------------- */
+
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: var(--lg-typography-font-weights-semibold-font-weight);
+  line-height: inherit;
+  color: inherit;
+}

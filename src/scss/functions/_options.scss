@@ -1,0 +1,233 @@
+/**
+ * Sol Design Foundation: Options Functions
+ *
+ * Strict, read-only accessors for the canonical options registry.
+ *
+ * This module provides:
+ * - Registry access (`options`, `option`)
+ * - Registry introspection (`option-keys`)
+ * - Safe access for generators (`try-option`)
+ * - Existence checks (`has-option`)
+ *
+ * These functions intentionally:
+ * - Validate argument types and basic correctness
+ * - Fail fast with actionable errors (for strict getters)
+ * - Provide a non-throwing alternative for iteration/generator use-cases
+ * - Return native Sass values (strings, booleans, etc.) without serialization
+ *
+ * This file is intentionally logic-only:
+ * - No selectors
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  functions.options
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../maps/options' as option-maps;
+
+/* ----------------------------------------------------------------------------
+ - Internal assertions
+ --------------------------------------------------------------------------- */
+
+/**
+ * Asserts the given value is of an expected Sass type.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $expected
+ * @param  {string} $label
+ *
+ * @return {*}
+ */
+@function _assert-type($value, $expected, $label) {
+  @if meta.type-of($value) != $expected {
+    @error "Expected #{$label} to be type '#{$expected}', got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a string is non-empty (after trimming whitespace).
+ *
+ * Dart Sass does not provide `string.trim()`, so this implements a
+ * minimal whitespace trim (spaces only) to guard against confusing lookups.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {string}
+ */
+@function _assert-non-empty-string($value, $label) {
+  $_: _assert-type($value, 'string', $label);
+  $s: $value;
+  $len: string.length($s);
+
+  @if $len == 0 {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  // Trim left (spaces)
+  $start: 1;
+
+  @while $start <= $len and string.slice($s, $start, $start) == ' ' {
+    $start: $start + 1;
+  }
+
+  // Trim right (spaces)
+  $end: $len;
+
+  @while $end >= $start and string.slice($s, $end, $end) == ' ' {
+    $end: $end - 1;
+  }
+
+  @if $end < $start {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a map contains a key.
+ *
+ * @access private
+ *
+ * @param  {map}    $m
+ * @param  {*}      $key
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-has-key($m, $key, $label) {
+  @if map.has-key($m, $key) == false {
+    @error "Missing key '#{$key}' in #{$label}";
+  }
+
+  @return $m;
+}
+
+/* ----------------------------------------------------------------------------
+ - Registry introspection
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns the list of option keys available in the registry.
+ *
+ * Example:
+ *   $keys: option-keys(); // ("prefix", "dark-mode", "font-path")
+ *
+ * @return {list}
+ */
+@function option-keys() {
+  @return map.keys(option-maps.$options);
+}
+
+/* ----------------------------------------------------------------------------
+ - Strict accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns the full options registry map.
+ *
+ * Example:
+ *   $opts: options();
+ *
+ * @return {map}
+ */
+@function options() {
+  @return option-maps.$options;
+}
+
+/**
+ * Returns an option value by key.
+ *
+ * Example:
+ *   $prefix: option("prefix");
+ *
+ * @param  {string} $key
+ *
+ * @return {*}
+ */
+@function option($key) {
+  $_: _assert-non-empty-string($key, '$key');
+  $_: _assert-has-key(option-maps.$options, $key, '$options');
+
+  @return map.get(option-maps.$options, $key);
+}
+
+/**
+ * Convenience alias for `option()`.
+ *
+ * @param  {string} $key
+ *
+ * @return {*}
+ */
+@function o($key) {
+  @return option($key);
+}
+
+/* ----------------------------------------------------------------------------
+ - Safe accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Safe option lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Key is missing
+ * - Value is null
+ *
+ * Intended for iteration / generation workflows where missing values
+ * should not abort compilation.
+ *
+ * Example:
+ *   $maybe: try-option("nope", $fallback: "lg-");
+ *
+ * @param  {string} $key
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-option($key, $fallback: null) {
+  $_: _assert-non-empty-string($key, '$key');
+
+  @if map.has-key(option-maps.$options, $key) == false {
+    @return $fallback;
+  }
+
+  $value: map.get(option-maps.$options, $key);
+
+  @if not $value {
+    @return $fallback;
+  }
+
+  @return $value;
+}
+
+/* ----------------------------------------------------------------------------
+ - Existence checks
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns whether an option key exists in the registry.
+ *
+ * @param  {string} $key
+ *
+ * @return {bool}
+ */
+@function has-option($key) {
+  $_: _assert-non-empty-string($key, '$key');
+
+  @return map.has-key(option-maps.$options, $key);
+}

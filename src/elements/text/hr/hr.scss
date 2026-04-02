@@ -1,0 +1,50 @@
+/**
+ * Sol Design Foundation: HR Element
+ *
+ * Thematic Break (`hr`)
+ *
+ * Baseline reset + subtle, brand-aligned default rule.
+ *
+ * This module:
+ * - Normalizes cross-browser UA differences for `<hr>`
+ * - Preserves semantic separation with a predictable visual rule
+ * - Uses low-specificity selectors (`:where()`)
+ * - Brands using Sol PostCSS variables (spacing + rule colour)
+ *
+ * References (2025+):
+ * - MDN: `<hr>` semantics and usage :contentReference[oaicite:0]{index=0}
+ * - Modern reset guidance and normalization context :contentReference[oaicite:1]{index=1}
+ * - MDN logical properties (flow-relative spacing) :contentReference[oaicite:2]{index=2}
+ */
+
+:where(hr) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // Normalize legacy UA quirks (historically present in normalize-style baselines).
+  // Ensures consistent rendering across engines.
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+
+  // Remove UA borders so we can define a single, predictable rule.
+  border: 0;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned default rule
+   -------------------------------------------------------------------------- */
+
+  // Provide a subtle thematic break line.
+  border-top: 1px solid var(--lg-colour-grey-tint-40);
+
+  /* --------------------------------------------------------------------------
+   - Spacing
+   -------------------------------------------------------------------------- */
+
+  // Default separation, using flow-relative logical properties.
+  margin-block: var(--lg-typography-spacing-base-margin-bottom);
+  margin-inline: 0;
+}

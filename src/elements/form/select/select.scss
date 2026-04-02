@@ -1,0 +1,38 @@
+/**
+ * Sol Design Foundation: Select Element
+ *
+ * Select control (`select`)
+ *
+ * Token-driven, light baseline.
+ *
+ * This module:
+ * - Normalizes typography inheritance (avoid OS/UA font mismatch)
+ * - Normalizes sizing model and incidental spacing
+ * - Avoids destructive resets that break native select rendering
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.form.select
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(select) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Keep native control rendering, but normalize typography to system tokens.
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+
+  // Predictable sizing + remove UA margin quirks.
+  box-sizing: border-box;
+  margin: 0;
+
+  // Do not force appearance/background/borders at baseline.
+  // Selects are heavily UA-controlled; styling belongs in the proper styling layer.
+}

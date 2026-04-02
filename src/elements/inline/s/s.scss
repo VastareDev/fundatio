@@ -1,0 +1,37 @@
+/**
+ * Sol Design Foundation: S Element
+ *
+ * Strikethrough / no longer accurate (`s`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Preserves semantic strikethrough intent explicitly
+ * - Normalizes decoration rendering via currentColor
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.s
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(s) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Preserve semantic strikethrough.
+  text-decoration-line: line-through;
+  text-decoration-color: currentcolor;
+
+  // Preserve inherited typography context.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

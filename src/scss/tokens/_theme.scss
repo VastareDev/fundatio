@@ -1,0 +1,312 @@
+/**
+ * Sol Design Foundation: Theme Tokens
+ *
+ * Consumer-overridable theme primitives.
+ *
+ * This file defines the *customisation surface* of the design system.
+ * All values declared here are intended to be overridden by consumers
+ * at import time using Sass's `@use ... with (...)` mechanism.
+ *
+ * Responsibilities:
+ * - Branding (fonts, colours)
+ * - Global feature flags (e.g. dark mode)
+ * - Asset paths
+ * - Semantic colour roles
+ *
+ * Non-responsibilities:
+ * - No derived values
+ * - No calculations
+ * - No CSS output
+ * - No maps
+ *
+ * Downstream token layers (options, typography, fonts, etc.) must treat
+ * these values as authoritative inputs and MUST NOT re-declare defaults.
+ *
+ * @module
+ * @group  tokens.theme
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use './colours' as colours;
+
+/* ----------------------------------------------------------------------------
+ - Global feature flags
+ --------------------------------------------------------------------------- */
+
+/**
+ * Dark mode enablement flag.
+ *
+ * This flag represents *capability*, not behaviour.
+ * How dark mode is implemented (media queries, classes, attributes)
+ * is left entirely to consuming layers.
+ *
+ * @type boolean
+ */
+$theme-dark-mode: false !default;
+
+/* ----------------------------------------------------------------------------
+ - Namespace & prefixing
+ --------------------------------------------------------------------------- */
+
+/**
+ * Global namespace prefix.
+ *
+ * Used to scope generated CSS variables, utility classes, and any other
+ * emitted identifiers to avoid collisions with host applications.
+ *
+ * @type string
+ */
+$theme-prefix: 'lg-' !default;
+
+/* ----------------------------------------------------------------------------
+ - Font families (semantic roles)
+ --------------------------------------------------------------------------- */
+
+/**
+ * Base (body) font family.
+ *
+ * This should be a human-readable font name, not a font stack.
+ * Fallback stacks belong in the typography token layer.
+ *
+ * @type string
+ */
+$base-font: 'Montserrat' !default;
+
+/**
+ * Heading font family.
+ *
+ * Split from base font intentionally to allow independent branding
+ * without structural changes.
+ *
+ * @type string
+ */
+$heading-font: 'Montserrat' !default;
+
+/**
+ * Code / monospace font family.
+ *
+ * Defaults to a system monospace identifier rather than a bundled font.
+ *
+ * @type string
+ */
+$code-font: 'ui-monospace' !default;
+
+/* ----------------------------------------------------------------------------
+ - Base colours (structural)
+ --------------------------------------------------------------------------- */
+
+/**
+ * Application background colour.
+ *
+ * @type color
+ */
+$body-bg-color: colours.$grey-tint-80 !default;
+
+/**
+ * Default body text colour.
+ *
+ * @type color
+ */
+$base-font-color: colours.$grey-shade-80 !default;
+
+/**
+ * Inline code text colour.
+ *
+ * @type color
+ */
+$code-font-color: colours.$grey-shade-80 !default;
+
+/**
+ * Heading text colour.
+ *
+ * @type color
+ */
+$heading-font-color: colours.$grey-shade-80 !default;
+
+/* ----------------------------------------------------------------------------
+ - Semantic brand colours
+ --------------------------------------------------------------------------- */
+
+/**
+ * Primary brand colour.
+ *
+ * @type color
+ */
+$primary-colour: colours.$base-blue !default;
+
+/**
+ * Secondary brand colour.
+ *
+ * @type color
+ */
+$secondary-colour: colours.$base-indigo !default;
+
+/**
+ * Tertiary brand colour.
+ *
+ * @type color
+ */
+$tertiary-colour: colours.$base-purple !default;
+
+/* ----------------------------------------------------------------------------
+ - Semantic state colours
+ --------------------------------------------------------------------------- */
+
+/**
+ * Success state colour.
+ *
+ * @type color
+ */
+$success-colour: colours.$base-green !default;
+
+/**
+ * Informational state colour.
+ *
+ * @type color
+ */
+$info-colour: colours.$base-cyan !default;
+
+/**
+ * Warning state colour.
+ *
+ * @type color
+ */
+$warning-colour: colours.$base-orange !default;
+
+/**
+ * Danger / error state colour.
+ *
+ * @type color
+ */
+$danger-colour: colours.$base-red !default;
+
+/* ----------------------------------------------------------------------------
+ - Light / dark aliases
+ --------------------------------------------------------------------------- */
+
+/**
+ * Light surface colour.
+ *
+ * @type color
+ */
+$light-colour: colours.$grey-tint-80 !default;
+
+/**
+ * Dark surface colour.
+ *
+ * @type color
+ */
+$dark-colour: colours.$grey-shade-80 !default;
+
+/* ----------------------------------------------------------------------------
+ - Asset paths
+ --------------------------------------------------------------------------- */
+
+/**
+ * Base font asset path.
+ *
+ * This path is prepended by font-face generators when resolving font URLs.
+ * Keeping this value centralised allows fonts to be relocated without
+ * touching individual font definitions.
+ *
+ * @type string
+ */
+$base-font-path: '../assets/fonts' !default;
+
+/* ----------------------------------------------------------------------------
+ - Base font source paths
+ --------------------------------------------------------------------------- */
+
+/**
+ * Base font (normal) - WOFF2 source.
+ *
+ * @type string
+ */
+$base-font-woff2-path: 'montserrat/Montserrat-Variable-Font.woff2' !default;
+
+/**
+ * Base font (normal) - TTF source.
+ *
+ * @type string
+ */
+$base-font-ttf-path: 'montserrat/Montserrat-Variable-Font.ttf' !default;
+
+/**
+ * Base font (italic) - WOFF2 source.
+ *
+ * @type string
+ */
+$base-font-italic-woff2-path: 'montserrat/Montserrat-Variable-Italic-Font.woff2' !default;
+
+/**
+ * Base font (italic) - TTF source.
+ *
+ * @type string
+ */
+$base-font-italic-ttf-path: 'montserrat/Montserrat-Variable-Italic-Font.ttf' !default;
+
+/* ----------------------------------------------------------------------------
+ - Heading font source paths
+ --------------------------------------------------------------------------- */
+
+/**
+ * Heading font (normal) - WOFF2 source.
+ *
+ * @type string
+ */
+$heading-font-woff2-path: 'montserrat/Montserrat-Variable-Font.woff2' !default;
+
+/**
+ * Heading font (normal) - TTF source.
+ *
+ * @type string
+ */
+$heading-font-ttf-path: 'montserrat/Montserrat-Variable-Font.ttf' !default;
+
+/**
+ * Heading font (italic) - WOFF2 source.
+ *
+ * @type string
+ */
+$heading-font-italic-woff2-path: 'montserrat/Montserrat-Variable-Italic-Font.woff2' !default;
+
+/**
+ * Heading font (italic) - TTF source.
+ *
+ * @type string
+ */
+$heading-font-italic-ttf-path: 'montserrat/Montserrat-Variable-Italic-Font.ttf' !default;
+
+/* ----------------------------------------------------------------------------
+ - Code font source paths
+ --------------------------------------------------------------------------- */
+
+/**
+ * Code font (normal) - WOFF2 source.
+ *
+ * @type string
+ */
+$code-font-woff2-path: 'montserrat/Montserrat-Variable-Font.woff2' !default;
+
+/**
+ * Code font (normal) - TTF source.
+ *
+ * @type string
+ */
+$code-font-ttf-path: 'montserrat/Montserrat-Variable-Font.ttf' !default;
+
+/**
+ * Code font (italic) - WOFF2 source.
+ *
+ * @type string
+ */
+$code-font-italic-woff2-path: 'montserrat/Montserrat-Variable-Italic-Font.woff2' !default;
+
+/**
+ * Code font (italic) - TTF source.
+ *
+ * @type string
+ */
+$code-font-italic-ttf-path: 'montserrat/Montserrat-Variable-Italic-Font.ttf' !default;

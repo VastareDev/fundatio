@@ -1,0 +1,42 @@
+/**
+ * Sol Design Foundation: Object Element
+ *
+ * External resource (`object`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes `<object>` as a replaced element for predictable layout
+ * - Removes legacy border presentation (historically affected by deprecated `border`-style attributes)
+ * - Avoids opinionated sizing/aspect-ratio behavior (author-controlled)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.object
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(object) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Replaced element baseline.
+  display: inline-block;
+  vertical-align: middle;
+
+  // Remove legacy/UA presentation quirks.
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  /* --------------------------------------------------------------------------
+   - Layout predictability
+   -------------------------------------------------------------------------- */
+
+  // Predictable sizing model when constrained by layout, without overriding
+  // explicit author sizing.
+  box-sizing: border-box;
+  max-width: 100%;
+}

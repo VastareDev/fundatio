@@ -1,0 +1,127 @@
+/**
+ * Sol Design Foundation: Typography Maps
+ *
+ * Structured map groupings derived from the typography token layer.
+ *
+ * These maps provide consistent, named access to typography primitives and
+ * computed scales (e.g. weights, heading sizes) while keeping all values
+ * locked to the canonical token source.
+ *
+ * This file is intentionally data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  maps.typography
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use '../tokens/typography' as typography;
+
+/* --------------------------------------------------------------------------
+ - Font families
+ ------------------------------------------------------------------------- */
+
+/**
+ * Font family stacks.
+ *
+ * @type map
+ */
+$font-families: (
+  'base-font-family': typography.$base-font-family,
+  'heading-font-family': typography.$heading-font-family,
+  'code-font-family': typography.$code-font-family,
+);
+
+/* --------------------------------------------------------------------------
+ - Font weights
+ ------------------------------------------------------------------------- */
+
+/**
+ * Numeric font weight scale.
+ *
+ * @type map
+ */
+$font-weights: (
+  'thin-font-weight': typography.$thin-font-weight,
+  'lighter-font-weight': typography.$lighter-font-weight,
+  'light-font-weight': typography.$light-font-weight,
+  'normal-font-weight': typography.$normal-font-weight,
+  'medium-font-weight': typography.$medium-font-weight,
+  'semibold-font-weight': typography.$semibold-font-weight,
+  'bold-font-weight': typography.$bold-font-weight,
+  'bolder-font-weight': typography.$bolder-font-weight,
+  'black-font-weight': typography.$black-font-weight,
+);
+
+/* --------------------------------------------------------------------------
+ - Font sizes
+ ------------------------------------------------------------------------- */
+
+/**
+ * Font size scale, including derived heading sizes.
+ *
+ * @type map
+ */
+$font-sizes: (
+  'base-font-size': typography.$base-font-size,
+  'font-size-h1': typography.$font-size-h1,
+  'font-size-h2': typography.$font-size-h2,
+  'font-size-h3': typography.$font-size-h3,
+  'font-size-h4': typography.$font-size-h4,
+  'font-size-h5': typography.$font-size-h5,
+  'font-size-h6': typography.$font-size-h6,
+);
+
+/* --------------------------------------------------------------------------
+ - Formatting
+ ------------------------------------------------------------------------- */
+
+/**
+ * Core typographic formatting rules.
+ *
+ * @type map
+ */
+$formatting: (
+  'base-font-weight': typography.$base-font-weight,
+  'heading-font-weight': typography.$heading-font-weight,
+  'base-line-height': typography.$base-line-height,
+  'heading-line-height': typography.$heading-line-height,
+);
+
+/* --------------------------------------------------------------------------
+ - Spacing
+ ------------------------------------------------------------------------- */
+
+/**
+ * Vertical spacing tokens related to typography.
+ *
+ * @type map
+ */
+$spacing: (
+  'base-margin-bottom': typography.$base-margin-bottom,
+  'heading-margin-bottom': typography.$heading-margin-bottom,
+);
+
+/* --------------------------------------------------------------------------
+ - Registry
+ ------------------------------------------------------------------------- */
+
+/**
+ * Top-level typography registry.
+ *
+ * Grouped maps for consumption by mixins/utilities.
+ *
+ * @type map
+ */
+$typography: (
+  'font-families': $font-families,
+  'font-weights': $font-weights,
+  'font-sizes': $font-sizes,
+  'formatting': $formatting,
+  'spacing': $spacing,
+);

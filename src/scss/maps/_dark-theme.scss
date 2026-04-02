@@ -1,0 +1,47 @@
+/**
+ * Sol Design Foundation: Dark Theme Map
+ *
+ * Structured registry derived from the dark theme token preset.
+ *
+ * @module
+ * @group  maps.theme
+ * @access public
+ * @since  1.0.0
+ */
+
+@use '../tokens/dark-theme' as theme;
+
+/* --------------------------------------------------------------------------
+ - Dark theme registry
+ ------------------------------------------------------------------------- */
+
+/**
+ * Theme registry.
+ *
+ * @type map
+ */
+$theme: (
+  'feature-flags': (
+    'dark-mode': theme.$theme-dark-mode,
+  ),
+
+  'namespace': (
+    'theme-prefix': theme.$theme-prefix,
+  ),
+
+  'colours': (
+    'body-bg-color': theme.$body-bg-color,
+    'base-font-color': theme.$base-font-color,
+    'code-font-color': theme.$code-font-color,
+    'heading-font-color': theme.$heading-font-color,
+
+    'primary-colour': theme.$primary-colour,
+    'secondary-colour': theme.$secondary-colour,
+    'tertiary-colour': theme.$tertiary-colour,
+
+    'success-colour': theme.$success-colour,
+    'info-colour': theme.$info-colour,
+    'warning-colour': theme.$warning-colour,
+    'danger-colour': theme.$danger-colour,
+  ),
+);

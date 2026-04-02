@@ -1,0 +1,45 @@
+/**
+ * Sol Design Foundation: Mark Element
+ *
+ * Highlighted text (`mark`)
+ *
+ * Baseline reset + token-driven highlight.
+ *
+ * Notes:
+ * - `<mark>` represents relevant or highlighted text.
+ * - Replace UA yellow with brand token-based highlight.
+ * - Preserve contrast and readability.
+ *
+ * References (2025+):
+ * - MDN: `<mark>` element reference (Oct 2025)
+ *
+ * @module
+ * @group  elements.inline.mark
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(mark) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned highlight
+   -------------------------------------------------------------------------- */
+
+  background-color: var(--lg-colour-yellow-tint-50);
+  color: var(--lg-theme-base-colours-base-font-color);
+
+  // Preserve inherited typography metrics.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}

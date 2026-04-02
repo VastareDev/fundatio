@@ -1,0 +1,35 @@
+/**
+ * Sol Design Foundation: Font-face Declarations
+ *
+ * Emits @font-face rules for the registered font groups.
+ *
+ * This file intentionally:
+ * - Is composition-only (no variables, functions, or selectors beyond @font-face)
+ * - Delegates all registry access to maps/functions/mixins
+ * - Emits all defined groups explicitly (base, headings, code), even if they
+ *   currently share the same placeholder family (e.g. Montserrat)
+ *
+ * @module
+ * @group  core.font-face
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* ----------------------------------------------------------------------------
+ - Composition
+ --------------------------------------------------------------------------- */
+
+@use './mixins/fonts' as font-mx;
+
+/**
+ * Emit font-face rules for each public group.
+ *
+ * We intentionally *do not* dedupe by family name here because:
+ * - base/headings/code are separate contracts
+ * - placeholder families may be identical pre-1.0.0
+ * - consumers may override groups independently later
+ */
+@include font-mx.font-group-faces('base');
+@include font-mx.font-group-faces('headings');
+@include font-mx.font-group-faces('code');

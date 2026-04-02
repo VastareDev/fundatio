@@ -1,0 +1,44 @@
+/**
+ * Sol Design Foundation: Q Element
+ *
+ * Inline quotation (`q`)
+ *
+ * Baseline reset only.
+ *
+ * This module:
+ * - Preserves UA-generated quotation marks
+ * - Avoids destructive resets (no quote removal)
+ * - Normalizes inline behavior
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.q
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(q) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Preserve browser-managed quotes (do NOT set quotes: none)
+  // This maintains locale-aware punctuation behavior.
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Ensure robust inline wrapping.
+  overflow-wrap: break-word;
+
+  // Preserve inherited typography.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

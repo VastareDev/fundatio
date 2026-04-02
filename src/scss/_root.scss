@@ -1,0 +1,112 @@
+/**
+ * Sol Design Foundation: Root Scope
+ *
+ * Root-scope CSS custom property emission for Sol.
+ *
+ * This file is the selector-layer entrypoint for global variables:
+ * - It creates the `:root {}` selector.
+ * - It wires canonical registries through mixin emitters.
+ * - It remains theme-agnostic (no dark/light scopes yet).
+ *
+ * Responsibilities:
+ * - Emit stable CSS variables for:
+ *   - Theme registry (heterogeneous values)
+ *   - Colour registry (scales + rgb companions)
+ *   - Typography registry (all groups)
+ *   - Spacing vars (only if a spacing vars emitter exists)
+ *
+ * Design notes:
+ * - Keys become variable names as-is.
+ * - Prefix is sourced from the theme registry to respect consumer overrides.
+ *
+ * @module
+ * @group  root
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:meta';
+@use 'sass:string';
+@use './functions/theme' as theme-fn;
+@use './mixins/theme' as theme-mx;
+@use './mixins/colours' as colour-mx;
+@use './mixins/typography' as type-mx;
+@use './mixins/spacing' as space-mx;
+
+/* ----------------------------------------------------------------------------
+ - Internal helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns a valid CSS custom property prefix including the leading `--`.
+ *
+ * Source of truth:
+ * - theme.try-theme-value("namespace", "theme-prefix", "sol-")
+ *
+ * Accepted override shapes:
+ * - "sol-"   → "--sol-"
+ * - "--sol-" → "--sol-"
+ * - ""/null  → "--sol-" (fallback)
+ *
+ * @access private
+ *
+ * @return {string}
+ */
+@function _var-prefix() {
+  $raw: theme-fn.try-theme-value('namespace', 'theme-prefix', 'sol-');
+
+  @if meta.type-of($raw) != 'string' or string.length($raw) == 0 {
+    @return '--sol-';
+  }
+
+  @if string.slice($raw, 1, 2) == '--' {
+    @return $raw;
+  }
+
+  @return '--#{$raw}';
+}
+
+/* ----------------------------------------------------------------------------
+ - Root emission
+ --------------------------------------------------------------------------- */
+
+:root {
+  $var-prefix: _var-prefix();
+
+  // Theme registry variables (heterogeneous values supported).
+  @include theme-mx.theme-root-vars($groups: null, $var-prefix: $var-prefix, $namespace: 'theme');
+
+  // Colour registry variables (scales + rgb companions by default).
+  @include colour-mx.colour-root-vars(
+    $scales: null,
+    $base-map: null,
+    $var-prefix: $var-prefix,
+    $group: 'colour',
+    $with-rgb: true,
+    $rgb-suffix: '-rgb'
+  );
+
+  // Typography registry variables (all groups).
+  @include type-mx.typography-root-vars(
+    $groups: null,
+    $var-prefix: $var-prefix,
+    $namespace: 'typography'
+  );
+
+  /** 
+   * Spacing vars:
+   * Your current spacing mixins file provides property helpers (spacing-x/y/etc),
+   * but does not (yet) provide a vars emitter like spacing-root-vars().
+   *
+   * Make this future-proof: if you add spacing-root-vars later, it will
+   * automatically start emitting spacing vars at :root without changing this file.
+   */
+  @if meta.mixin-exists('spacing-root-vars', $module: space-mx) {
+    @include space-mx.spacing-root-vars(
+      $scales: null,
+      $var-prefix: $var-prefix,
+      $namespace: 'spacing'
+    );
+  }
+}

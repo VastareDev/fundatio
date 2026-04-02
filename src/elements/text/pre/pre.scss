@@ -1,0 +1,59 @@
+/**
+ * Sol Design Foundation: Preformatted Text (`pre`)
+ *
+ * Baseline reset + reliable, brand-aligned formatting defaults.
+ *
+ * Resets considerations:
+ * - Preserve whitespace semantics (the core purpose of `<pre>`).
+ * - Remove unexpected padding/margins that vary by browser.
+ * - Normalize default monospace font stacks while still using brand variables.
+ * - Manage overflow consistently across engines.
+ * - Keep line wrapping predictable.
+ *
+ * Branding considerations:
+ * - Use code font family tokens.
+ * - Respect default user intent for monospace display.
+ *
+ * References (2025+):
+ * - MDN: `<pre>` element semantics inclusion (line breaks & whitespace) (MDN)
+ * - Modern reset guidance recommending preservation of display with normalization
+ *   rather than destruction of semantics (Josh W. Comeau CSS reset articles)
+ * - Logical properties for spacing (MDN / CSS WG specs)
+ */
+
+:where(pre) {
+  /* --------------------------------------------------------------------------
+   - Display & semantics
+   -------------------------------------------------------------------------- */
+
+  display: block; // consistent block rendering
+  white-space: pre; // preserve whitespace, tabs, line breaks
+
+  /* --------------------------------------------------------------------------
+   - Normalization
+   -------------------------------------------------------------------------- */
+
+  margin: 0; // unset UA margin variance
+  padding: 0; // reset padding differences
+  border: 0; // remove default borders if present
+  overflow: auto; // consistent handling of large content
+  box-sizing: border-box; // predictable sizing model
+
+  /* --------------------------------------------------------------------------
+   - Typography (brand-aligned tokens)
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-code-font-family);
+  font-size: var(--lg-typography-font-sizes-base-font-size);
+  font-weight: var(--lg-typography-font-weights-normal-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+
+  /* --------------------------------------------------------------------------
+   - Accessibility & usability
+   -------------------------------------------------------------------------- */
+
+  max-width: 100%; // prevent overflow beyond container      // horizontal scroll for long lines
+  tab-size: 4; // modern default for readability
+  hyphens: none; // no line breaks inside code tokens
+}

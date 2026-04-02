@@ -1,0 +1,44 @@
+/**
+ * Sol Design Foundation: Video Element
+ *
+ * Media player (`video`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes `<video>` layout across browsers
+ * - Removes legacy border/presentation artifacts
+ * - Supports responsive containment without forcing sizing
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.video
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(video) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Replaced element baseline.
+  display: inline-block;
+  vertical-align: middle;
+
+  // Remove incidental UA presentation.
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  /* --------------------------------------------------------------------------
+   - Layout predictability
+   -------------------------------------------------------------------------- */
+
+  // Responsive containment without overriding explicit author dimensions.
+  max-width: 100%;
+  height: auto;
+
+  // Predictable sizing model.
+  box-sizing: border-box;
+}

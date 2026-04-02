@@ -1,0 +1,35 @@
+/**
+ * Sol Design Foundation: Small Element
+ *
+ * Side comments / fine print (`small`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Preserves semantic meaning (fine print, side comments)
+ * - Normalizes font-size explicitly instead of relying on UA relative scaling
+ * - Maintains readability via inherited typography tokens
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.small
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(small) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Normalize relative scaling explicitly (UA commonly uses 80%)
+  font-size: 0.875em;
+
+  // Preserve inherited typography context
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

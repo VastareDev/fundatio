@@ -1,0 +1,48 @@
+/**
+ * Sol Design Foundation: Summary Element
+ *
+ * Disclosure summary (`summary`)
+ *
+ * Baseline reset + light usability normalization.
+ *
+ * This module:
+ * - Preserves the spec default `display: list-item` so the disclosure marker remains
+ * - Normalizes spacing for consistent rendering
+ * - Adds a safe affordance cursor (interactive control)
+ * - Applies base typography tokens so it can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.interactive.summary
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(summary) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Spec default: list-item (enables the disclosure marker).
+  display: list-item;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Keep the marker, but normalize its positioning for predictable spacing.
+  list-style-position: outside;
+
+  // Interactive affordance (without touching focus styles).
+  cursor: pointer;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography (standalone-safe)
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  background-color: transparent;
+}

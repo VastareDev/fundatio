@@ -1,0 +1,59 @@
+/**
+ * Sol Design Foundation: H1 Element
+ *
+ * Section heading (`h1`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA default heading margins (which vary and are actively changing)
+ * - Explicitly defines size/spacing to avoid reliance on browser defaults
+ * - Applies Sol heading typography tokens so it can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: UA `<h1>` defaults are changing; define your own size/margins (Apr 2025)
+ * - MDN: `<h1>-<h6>` are block-level by default
+ * - MDN: `text-wrap` for balanced heading wrapping (Dec 2025)
+ *
+ * @module
+ * @group  elements.heading.h1
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(h1) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // Do not rely on UA defaults (they are changing across browsers).
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Robust heading text behavior.
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned heading typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-heading-font-family);
+  font-size: var(--lg-typography-font-sizes-font-size-h1);
+  font-weight: var(--lg-typography-formatting-heading-font-weight);
+  line-height: var(--lg-typography-formatting-heading-line-height);
+  color: var(--lg-theme-base-colours-heading-font-color);
+
+  // Progressive enhancement for nicer headline wrapping.
+  text-wrap: balance;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned spacing
+   -------------------------------------------------------------------------- */
+
+  margin-block-end: var(--lg-typography-spacing-heading-margin-bottom);
+}

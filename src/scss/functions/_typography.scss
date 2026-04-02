@@ -1,0 +1,403 @@
+/**
+ * Sol Design Foundation: Typography Functions
+ *
+ * Strict, read-only accessors for the canonical typography registry.
+ *
+ * This module provides:
+ * - Registry access (`typography`, `typography-group`, `typography-value`)
+ * - Registry introspection (`typography-groups`, `typography-keys`)
+ * - Common convenience accessors (families/weights/sizes/formatting/spacing)
+ * - Safe access for generators (`try-typography-group`, `try-typography-value`)
+ * - Existence checks (`has-typography-group`, `has-typography-key`)
+ *
+ * Design notes:
+ * - Typography is grouped (families, weights, sizes, formatting, spacing).
+ * - Strict getters fail fast with actionable errors.
+ * - Safe getters return fallbacks instead of throwing (for iteration/generation).
+ * - Values are returned as native Sass values (strings, numbers, lists, etc.).
+ *
+ * This file is intentionally logic-only:
+ * - No selectors
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  functions.typography
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../maps/typography' as typography-maps;
+
+/* -------------------------------------------------------------------------------
+ - Internal assertions
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Asserts the given value is of an expected Sass type.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $expected
+ * @param  {string} $label
+ *
+ * @return {*}
+ */
+@function _assert-type($value, $expected, $label) {
+  @if meta.type-of($value) != $expected {
+    @error "Expected #{$label} to be type '#{$expected}', got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a string is non-empty (after trimming whitespace).
+ *
+ * Dart Sass does not provide `string.trim()`, so implement a minimal
+ * whitespace trim (spaces only) to guard against confusing lookups.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {string}
+ */
+@function _assert-non-empty-string($value, $label) {
+  $_: _assert-type($value, 'string', $label);
+  $s: $value;
+  $len: string.length($s);
+
+  @if $len == 0 {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  // Trim left (spaces)
+  $start: 1;
+
+  @while $start <= $len and string.slice($s, $start, $start) == ' ' {
+    $start: $start + 1;
+  }
+
+  // Trim right (spaces)
+  $end: $len;
+
+  @while $end >= $start and string.slice($s, $end, $end) == ' ' {
+    $end: $end - 1;
+  }
+
+  @if $end < $start {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a map contains a key.
+ *
+ * @access private
+ *
+ * @param  {map}    $m
+ * @param  {*}      $key
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-has-key($m, $key, $label) {
+  @if map.has-key($m, $key) == false {
+    @error "Missing key '#{$key}' in #{$label}";
+  }
+
+  @return $m;
+}
+
+/**
+ * Asserts a value is a map.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-map($value, $label) {
+  @if meta.type-of($value) != 'map' {
+    @error "Expected #{$label} to be a map, got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/* -------------------------------------------------------------------------------
+ - Registry access
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Returns the top-level typography registry map (grouped).
+ *
+ * @return {map}
+ */
+@function typography() {
+  @return typography-maps.$typography;
+}
+
+/**
+ * Returns the list of group keys in the typography registry (in registry order).
+ *
+ * Example:
+ *   $groups: typography-groups(); // ("font-families", "font-weights", ...)
+ *
+ * @return {list}
+ */
+@function typography-groups() {
+  @return map.keys(typography-maps.$typography);
+}
+
+/**
+ * Returns the list of keys available within a given typography group.
+ *
+ * Example:
+ *   $keys: typography-keys("font-sizes"); // ("base-font-size", "font-size-h1", ...)
+ *
+ * @param  {string} $group
+ *
+ * @return {list}
+ */
+@function typography-keys($group) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-has-key(typography-maps.$typography, $group, '$typography');
+  $g: map.get(typography-maps.$typography, $group);
+  $_: _assert-map($g, "typography-group('#{$group}')");
+
+  @return map.keys($g);
+}
+
+/* -------------------------------------------------------------------------------
+ - Strict accessors
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Returns the map for a specific typography group.
+ *
+ * Example:
+ *   $weights: typography-group("font-weights");
+ *
+ * @param  {string} $group
+ *
+ * @return {map}
+ */
+@function typography-group($group) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-has-key(typography-maps.$typography, $group, '$typography');
+  $g: map.get(typography-maps.$typography, $group);
+
+  @return _assert-map($g, "typography-group('#{$group}')");
+}
+
+/**
+ * Returns a specific typography value by group + key.
+ *
+ * Example:
+ *   $h1: typography-value("font-sizes", "font-size-h1");
+ *   $lh: typography-value("formatting", "base-line-height");
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ *
+ * @return {*}
+ */
+@function typography-value($group, $key) {
+  $_: _assert-non-empty-string($key, '$key');
+  $g: typography-group($group);
+  $_: _assert-has-key($g, $key, "typography group '#{$group}'");
+
+  @return map.get($g, $key);
+}
+
+/**
+ * Convenience alias for `typography-value()`.
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ *
+ * @return {*}
+ */
+@function ty($group, $key) {
+  @return typography-value($group, $key);
+}
+
+/* -------------------------------------------------------------------------------
+ - Convenience accessors
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Font family stack lookup.
+ *
+ * @param  {string} $key   e.g. "base-font-family"
+ *
+ * @return {*}
+ */
+@function font-family($key) {
+  @return typography-value('font-families', $key);
+}
+
+/**
+ * Font weight lookup.
+ *
+ * @param  {string} $key   e.g. "semibold-font-weight"
+ *
+ * @return {*}
+ */
+@function font-weight($key) {
+  @return typography-value('font-weights', $key);
+}
+
+/**
+ * Font size lookup.
+ *
+ * @param  {string} $key   e.g. "font-size-h2"
+ *
+ * @return {*}
+ */
+@function font-size($key) {
+  @return typography-value('font-sizes', $key);
+}
+
+/**
+ * Formatting token lookup (line heights, base/heading weights).
+ *
+ * @param  {string} $key   e.g. "base-line-height"
+ *
+ * @return {*}
+ */
+@function typography-format($key) {
+  @return typography-value('formatting', $key);
+}
+
+/**
+ * Typography spacing token lookup.
+ *
+ * @param  {string} $key   e.g. "heading-margin-bottom"
+ *
+ * @return {*}
+ */
+@function typography-spacing($key) {
+  @return typography-value('spacing', $key);
+}
+
+/* -------------------------------------------------------------------------------
+ - Safe accessors
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Safe typography group lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Group is missing
+ * - Group value is null
+ * - Group value is not a map
+ *
+ * Intended for iteration/generation workflows.
+ *
+ * @param  {string} $group
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-typography-group($group, $fallback: null) {
+  $_: _assert-non-empty-string($group, '$group');
+
+  @if map.has-key(typography-maps.$typography, $group) == false {
+    @return $fallback;
+  }
+
+  $g: map.get(typography-maps.$typography, $group);
+
+  @if not $g or meta.type-of($g) != 'map' {
+    @return $fallback;
+  }
+
+  @return $g;
+}
+
+/**
+ * Safe typography value lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Group missing
+ * - Group map missing/invalid
+ * - Key missing
+ * - Value is null
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-typography-value($group, $key, $fallback: null) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($key, '$key');
+  $g: try-typography-group($group);
+
+  @if not $g {
+    @return $fallback;
+  }
+
+  @if map.has-key($g, $key) == false {
+    @return $fallback;
+  }
+
+  $value: map.get($g, $key);
+
+  @if not $value {
+    @return $fallback;
+  }
+
+  @return $value;
+}
+
+/* -------------------------------------------------------------------------------
+ - Existence checks
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Returns whether a typography group exists in the registry.
+ *
+ * @param  {string} $group
+ *
+ * @return {bool}
+ */
+@function has-typography-group($group) {
+  $_: _assert-non-empty-string($group, '$group');
+
+  @return map.has-key(typography-maps.$typography, $group);
+}
+
+/**
+ * Returns whether a key exists within a given typography group.
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ *
+ * @return {bool}
+ */
+@function has-typography-key($group, $key) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($key, '$key');
+
+  @if has-typography-group($group) == false {
+    @return false;
+  }
+
+  @return map.has-key(typography-group($group), $key);
+}

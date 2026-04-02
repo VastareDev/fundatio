@@ -1,0 +1,344 @@
+/**
+ * Sol Design Foundation: Colour Maps
+ *
+ * Structured colour-scale maps derived from the primitive colour tokens.
+ *
+ * These maps provide consistent, named access to each ramp (tints/base/shades)
+ * while keeping the underlying values locked to the canonical token layer.
+ *
+ * This file is intentionally data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  maps.colours
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use '../tokens/colours' as colours;
+
+/* --------------------------------------------------------------------------
+ - Greys
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$greys: (
+  'grey-tint-90': colours.$grey-tint-90,
+  'grey-tint-80': colours.$grey-tint-80,
+  'grey-tint-70': colours.$grey-tint-70,
+  'grey-tint-60': colours.$grey-tint-60,
+  'grey-tint-50': colours.$grey-tint-50,
+  'grey-tint-40': colours.$grey-tint-40,
+  'grey-tint-30': colours.$grey-tint-30,
+  'grey-tint-20': colours.$grey-tint-20,
+  'grey-tint-10': colours.$grey-tint-10,
+  'base-grey': colours.$base-grey,
+  'grey-shade-10': colours.$grey-shade-10,
+  'grey-shade-20': colours.$grey-shade-20,
+  'grey-shade-30': colours.$grey-shade-30,
+  'grey-shade-40': colours.$grey-shade-40,
+  'grey-shade-50': colours.$grey-shade-50,
+  'grey-shade-60': colours.$grey-shade-60,
+  'grey-shade-70': colours.$grey-shade-70,
+  'grey-shade-80': colours.$grey-shade-80,
+  'grey-shade-90': colours.$grey-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Blues
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$blues: (
+  'blue-tint-90': colours.$blue-tint-90,
+  'blue-tint-80': colours.$blue-tint-80,
+  'blue-tint-70': colours.$blue-tint-70,
+  'blue-tint-60': colours.$blue-tint-60,
+  'blue-tint-50': colours.$blue-tint-50,
+  'blue-tint-40': colours.$blue-tint-40,
+  'blue-tint-30': colours.$blue-tint-30,
+  'blue-tint-20': colours.$blue-tint-20,
+  'blue-tint-10': colours.$blue-tint-10,
+  'base-blue': colours.$base-blue,
+  'blue-shade-10': colours.$blue-shade-10,
+  'blue-shade-20': colours.$blue-shade-20,
+  'blue-shade-30': colours.$blue-shade-30,
+  'blue-shade-40': colours.$blue-shade-40,
+  'blue-shade-50': colours.$blue-shade-50,
+  'blue-shade-60': colours.$blue-shade-60,
+  'blue-shade-70': colours.$blue-shade-70,
+  'blue-shade-80': colours.$blue-shade-80,
+  'blue-shade-90': colours.$blue-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Indigos
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$indigos: (
+  'indigo-tint-90': colours.$indigo-tint-90,
+  'indigo-tint-80': colours.$indigo-tint-80,
+  'indigo-tint-70': colours.$indigo-tint-70,
+  'indigo-tint-60': colours.$indigo-tint-60,
+  'indigo-tint-50': colours.$indigo-tint-50,
+  'indigo-tint-40': colours.$indigo-tint-40,
+  'indigo-tint-30': colours.$indigo-tint-30,
+  'indigo-tint-20': colours.$indigo-tint-20,
+  'indigo-tint-10': colours.$indigo-tint-10,
+  'base-indigo': colours.$base-indigo,
+  'indigo-shade-10': colours.$indigo-shade-10,
+  'indigo-shade-20': colours.$indigo-shade-20,
+  'indigo-shade-30': colours.$indigo-shade-30,
+  'indigo-shade-40': colours.$indigo-shade-40,
+  'indigo-shade-50': colours.$indigo-shade-50,
+  'indigo-shade-60': colours.$indigo-shade-60,
+  'indigo-shade-70': colours.$indigo-shade-70,
+  'indigo-shade-80': colours.$indigo-shade-80,
+  'indigo-shade-90': colours.$indigo-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Purples
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$purples: (
+  'purple-tint-90': colours.$purple-tint-90,
+  'purple-tint-80': colours.$purple-tint-80,
+  'purple-tint-70': colours.$purple-tint-70,
+  'purple-tint-60': colours.$purple-tint-60,
+  'purple-tint-50': colours.$purple-tint-50,
+  'purple-tint-40': colours.$purple-tint-40,
+  'purple-tint-30': colours.$purple-tint-30,
+  'purple-tint-20': colours.$purple-tint-20,
+  'purple-tint-10': colours.$purple-tint-10,
+  'base-purple': colours.$base-purple,
+  'purple-shade-10': colours.$purple-shade-10,
+  'purple-shade-20': colours.$purple-shade-20,
+  'purple-shade-30': colours.$purple-shade-30,
+  'purple-shade-40': colours.$purple-shade-40,
+  'purple-shade-50': colours.$purple-shade-50,
+  'purple-shade-60': colours.$purple-shade-60,
+  'purple-shade-70': colours.$purple-shade-70,
+  'purple-shade-80': colours.$purple-shade-80,
+  'purple-shade-90': colours.$purple-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Pinks
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$pinks: (
+  'pink-tint-90': colours.$pink-tint-90,
+  'pink-tint-80': colours.$pink-tint-80,
+  'pink-tint-70': colours.$pink-tint-70,
+  'pink-tint-60': colours.$pink-tint-60,
+  'pink-tint-50': colours.$pink-tint-50,
+  'pink-tint-40': colours.$pink-tint-40,
+  'pink-tint-30': colours.$pink-tint-30,
+  'pink-tint-20': colours.$pink-tint-20,
+  'pink-tint-10': colours.$pink-tint-10,
+  'base-pink': colours.$base-pink,
+  'pink-shade-10': colours.$pink-shade-10,
+  'pink-shade-20': colours.$pink-shade-20,
+  'pink-shade-30': colours.$pink-shade-30,
+  'pink-shade-40': colours.$pink-shade-40,
+  'pink-shade-50': colours.$pink-shade-50,
+  'pink-shade-60': colours.$pink-shade-60,
+  'pink-shade-70': colours.$pink-shade-70,
+  'pink-shade-80': colours.$pink-shade-80,
+  'pink-shade-90': colours.$pink-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Reds
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$reds: (
+  'red-tint-90': colours.$red-tint-90,
+  'red-tint-80': colours.$red-tint-80,
+  'red-tint-70': colours.$red-tint-70,
+  'red-tint-60': colours.$red-tint-60,
+  'red-tint-50': colours.$red-tint-50,
+  'red-tint-40': colours.$red-tint-40,
+  'red-tint-30': colours.$red-tint-30,
+  'red-tint-20': colours.$red-tint-20,
+  'red-tint-10': colours.$red-tint-10,
+  'base-red': colours.$base-red,
+  'red-shade-10': colours.$red-shade-10,
+  'red-shade-20': colours.$red-shade-20,
+  'red-shade-30': colours.$red-shade-30,
+  'red-shade-40': colours.$red-shade-40,
+  'red-shade-50': colours.$red-shade-50,
+  'red-shade-60': colours.$red-shade-60,
+  'red-shade-70': colours.$red-shade-70,
+  'red-shade-80': colours.$red-shade-80,
+  'red-shade-90': colours.$red-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Oranges
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$oranges: (
+  'orange-tint-90': colours.$orange-tint-90,
+  'orange-tint-80': colours.$orange-tint-80,
+  'orange-tint-70': colours.$orange-tint-70,
+  'orange-tint-60': colours.$orange-tint-60,
+  'orange-tint-50': colours.$orange-tint-50,
+  'orange-tint-40': colours.$orange-tint-40,
+  'orange-tint-30': colours.$orange-tint-30,
+  'orange-tint-20': colours.$orange-tint-20,
+  'orange-tint-10': colours.$orange-tint-10,
+  'base-orange': colours.$base-orange,
+  'orange-shade-10': colours.$orange-shade-10,
+  'orange-shade-20': colours.$orange-shade-20,
+  'orange-shade-30': colours.$orange-shade-30,
+  'orange-shade-40': colours.$orange-shade-40,
+  'orange-shade-50': colours.$orange-shade-50,
+  'orange-shade-60': colours.$orange-shade-60,
+  'orange-shade-70': colours.$orange-shade-70,
+  'orange-shade-80': colours.$orange-shade-80,
+  'orange-shade-90': colours.$orange-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Yellows
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$yellows: (
+  'yellow-tint-90': colours.$yellow-tint-90,
+  'yellow-tint-80': colours.$yellow-tint-80,
+  'yellow-tint-70': colours.$yellow-tint-70,
+  'yellow-tint-60': colours.$yellow-tint-60,
+  'yellow-tint-50': colours.$yellow-tint-50,
+  'yellow-tint-40': colours.$yellow-tint-40,
+  'yellow-tint-30': colours.$yellow-tint-30,
+  'yellow-tint-20': colours.$yellow-tint-20,
+  'yellow-tint-10': colours.$yellow-tint-10,
+  'base-yellow': colours.$base-yellow,
+  'yellow-shade-10': colours.$yellow-shade-10,
+  'yellow-shade-20': colours.$yellow-shade-20,
+  'yellow-shade-30': colours.$yellow-shade-30,
+  'yellow-shade-40': colours.$yellow-shade-40,
+  'yellow-shade-50': colours.$yellow-shade-50,
+  'yellow-shade-60': colours.$yellow-shade-60,
+  'yellow-shade-70': colours.$yellow-shade-70,
+  'yellow-shade-80': colours.$yellow-shade-80,
+  'yellow-shade-90': colours.$yellow-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Greens
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$greens: (
+  'green-tint-90': colours.$green-tint-90,
+  'green-tint-80': colours.$green-tint-80,
+  'green-tint-70': colours.$green-tint-70,
+  'green-tint-60': colours.$green-tint-60,
+  'green-tint-50': colours.$green-tint-50,
+  'green-tint-40': colours.$green-tint-40,
+  'green-tint-30': colours.$green-tint-30,
+  'green-tint-20': colours.$green-tint-20,
+  'green-tint-10': colours.$green-tint-10,
+  'base-green': colours.$base-green,
+  'green-shade-10': colours.$green-shade-10,
+  'green-shade-20': colours.$green-shade-20,
+  'green-shade-30': colours.$green-shade-30,
+  'green-shade-40': colours.$green-shade-40,
+  'green-shade-50': colours.$green-shade-50,
+  'green-shade-60': colours.$green-shade-60,
+  'green-shade-70': colours.$green-shade-70,
+  'green-shade-80': colours.$green-shade-80,
+  'green-shade-90': colours.$green-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Teals
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$teals: (
+  'teal-tint-90': colours.$teal-tint-90,
+  'teal-tint-80': colours.$teal-tint-80,
+  'teal-tint-70': colours.$teal-tint-70,
+  'teal-tint-60': colours.$teal-tint-60,
+  'teal-tint-50': colours.$teal-tint-50,
+  'teal-tint-40': colours.$teal-tint-40,
+  'teal-tint-30': colours.$teal-tint-30,
+  'teal-tint-20': colours.$teal-tint-20,
+  'teal-tint-10': colours.$teal-tint-10,
+  'base-teal': colours.$base-teal,
+  'teal-shade-10': colours.$teal-shade-10,
+  'teal-shade-20': colours.$teal-shade-20,
+  'teal-shade-30': colours.$teal-shade-30,
+  'teal-shade-40': colours.$teal-shade-40,
+  'teal-shade-50': colours.$teal-shade-50,
+  'teal-shade-60': colours.$teal-shade-60,
+  'teal-shade-70': colours.$teal-shade-70,
+  'teal-shade-80': colours.$teal-shade-80,
+  'teal-shade-90': colours.$teal-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Cyans
+ ------------------------------------------------------------------------- */
+
+/** @type map */
+$cyans: (
+  'cyan-tint-90': colours.$cyan-tint-90,
+  'cyan-tint-80': colours.$cyan-tint-80,
+  'cyan-tint-70': colours.$cyan-tint-70,
+  'cyan-tint-60': colours.$cyan-tint-60,
+  'cyan-tint-50': colours.$cyan-tint-50,
+  'cyan-tint-40': colours.$cyan-tint-40,
+  'cyan-tint-30': colours.$cyan-tint-30,
+  'cyan-tint-20': colours.$cyan-tint-20,
+  'cyan-tint-10': colours.$cyan-tint-10,
+  'base-cyan': colours.$base-cyan,
+  'cyan-shade-10': colours.$cyan-shade-10,
+  'cyan-shade-20': colours.$cyan-shade-20,
+  'cyan-shade-30': colours.$cyan-shade-30,
+  'cyan-shade-40': colours.$cyan-shade-40,
+  'cyan-shade-50': colours.$cyan-shade-50,
+  'cyan-shade-60': colours.$cyan-shade-60,
+  'cyan-shade-70': colours.$cyan-shade-70,
+  'cyan-shade-80': colours.$cyan-shade-80,
+  'cyan-shade-90': colours.$cyan-shade-90,
+);
+
+/* --------------------------------------------------------------------------
+ - Scale registry
+ ------------------------------------------------------------------------- */
+
+/**
+ * Top-level registry of all colour scales.
+ *
+ * Keys are the canonical scale names used across the design system.
+ *
+ * @type map
+ */
+$colour-scales: (
+  'grey': $greys,
+  'blue': $blues,
+  'indigo': $indigos,
+  'purple': $purples,
+  'pink': $pinks,
+  'red': $reds,
+  'orange': $oranges,
+  'yellow': $yellows,
+  'green': $greens,
+  'teal': $teals,
+  'cyan': $cyans,
+);

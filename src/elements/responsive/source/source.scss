@@ -1,0 +1,28 @@
+/**
+ * Sol Design Foundation: Source Element
+ *
+ * Media source (`source`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Applies defensive zeroing (no-op in most UAs since `<source>` is not rendered)
+ * - Avoids forcing `display` (UA/resource selection behavior is not a styling concern)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.responsive.source
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(source) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

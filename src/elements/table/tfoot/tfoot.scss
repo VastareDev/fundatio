@@ -1,0 +1,30 @@
+/**
+ * Sol Design Foundation: Tfoot Element
+ *
+ * Table footer (`tfoot`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Preserves native table formatting context
+ * - Avoids overriding internal table display roles
+ * - Removes incidental presentation artifacts
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.tfoot
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(tfoot) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Do NOT force display; preserve table formatting context.
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

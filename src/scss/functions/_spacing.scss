@@ -1,0 +1,405 @@
+/**
+ * Sol Design Foundation: Spacing Functions
+ *
+ * Strict, read-only accessors for the canonical spacing scale registry.
+ *
+ * This module provides:
+ * - Registry access (`spacing-map`, `spacing`, `s`)
+ * - Registry introspection (`spacing-keys`, `spacing-min-key`, `spacing-max-key`)
+ * - Safe access for generators (`try-spacing`)
+ * - Existence checks (`has-spacing`)
+ * - Developer ergonomics helpers (`spacing-neg`, `spacing-between`, `spacing-clamp-key`)
+ *
+ * Design notes:
+ * - Keys are expected to be numeric (0..10) to match the scale contract.
+ * - Key `0` resolves to hard zero and is intentionally unitless.
+ * - Non-zero values must be lengths (rem, px, etc.).
+ * - Strict getters fail fast; safe getters never throw for missing keys.
+ *
+ * This file is intentionally logic-only:
+ * - No selectors
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  functions.spacing
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../maps/spacing' as spacing-maps;
+
+/* ----------------------------------------------------------------------------
+ - Internal assertions
+ --------------------------------------------------------------------------- */
+
+/**
+ * Asserts the given value is of an expected Sass type.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $expected
+ * @param  {string} $label
+ *
+ * @return {*}
+ */
+@function _assert-type($value, $expected, $label) {
+  @if meta.type-of($value) != $expected {
+    @error "Expected #{$label} to be type '#{$expected}', got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a key is a number.
+ *
+ * Spacing scale keys are numeric by contract (0..10).
+ *
+ * @access private
+ *
+ * @param  {*}      $key
+ * @param  {string} $label
+ *
+ * @return {number}
+ */
+@function _assert-number-key($key, $label) {
+  $_: _assert-type($key, 'number', $label);
+
+  @return $key;
+}
+
+/**
+ * Asserts a number is an integer.
+ *
+ * This prevents weird usage like `spacing(2.5)` that would never
+ * exist in the registry and is usually a caller mistake.
+ *
+ * @access private
+ *
+ * @param  {number} $n
+ * @param  {string} $label
+ *
+ * @return {number}
+ */
+@function _assert-integer($n, $label) {
+  $_: _assert-type($n, 'number', $label);
+
+  @if math.round($n) != $n {
+    @error "Expected #{$label} to be an integer, got '#{$n}'";
+  }
+
+  @return $n;
+}
+
+/**
+ * Asserts a map contains a key.
+ *
+ * @access private
+ *
+ * @param  {map}    $m
+ * @param  {*}      $key
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-has-key($m, $key, $label) {
+  @if map.has-key($m, $key) == false {
+    @error "Missing key '#{$key}' in #{$label}";
+  }
+
+  @return $m;
+}
+
+/**
+ * Asserts a spacing value is valid.
+ *
+ * Contract:
+ * - Key 0 must be hard zero (0) and may be unitless.
+ * - Non-zero entries must be lengths (number with unit).
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {number} $key
+ * @param  {string} $label
+ *
+ * @return {number}
+ */
+@function _assert-spacing-value($value, $key, $label) {
+  @if meta.type-of($value) != 'number' {
+    @error "Expected #{$label} to be a number, got '#{meta.type-of($value)}'";
+  }
+
+  // Key 0: allow unitless 0 only (hard reset).
+  @if $key == 0 {
+    @if $value != 0 {
+      @error "Expected spacing key 0 to resolve to 0, got '#{$value}'";
+    }
+
+    @return $value;
+  }
+
+  // Non-zero: must be a length (has a unit).
+  @if math.is-unitless($value) {
+    @error "Expected #{$label} to be a length (with unit), got unitless '#{$value}'";
+  }
+
+  @return $value;
+}
+
+/* ----------------------------------------------------------------------------
+ - Registry introspection
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns the spacing registry map.
+ *
+ * @return {map}
+ */
+@function spacing-map() {
+  @return spacing-maps.$spacing;
+}
+
+/**
+ * Returns the list of available spacing keys (in registry order).
+ *
+ * @return {list}
+ */
+@function spacing-keys() {
+  @return map.keys(spacing-maps.$spacing);
+}
+
+/**
+ * Returns the minimum spacing key present in the registry.
+ *
+ * @return {number}
+ */
+@function spacing-min-key() {
+  $keys: spacing-keys();
+
+  @return list.nth($keys, 1);
+}
+
+/**
+ * Returns the maximum spacing key present in the registry.
+ *
+ * @return {number}
+ */
+@function spacing-max-key() {
+  $keys: spacing-keys();
+
+  @return list.nth($keys, list.length($keys));
+}
+
+/* ----------------------------------------------------------------------------
+ - Strict accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns a spacing value by scale key.
+ *
+ * Examples:
+ *   padding: spacing(4);
+ *   margin-top: spacing(0);
+ *
+ * @param  {number} $key
+ *
+ * @return {number}
+ */
+@function spacing($key) {
+  $_: _assert-number-key($key, '$key');
+  $_: _assert-integer($key, '$key');
+  $_: _assert-has-key(spacing-maps.$spacing, $key, '$spacing');
+  $value: map.get(spacing-maps.$spacing, $key);
+
+  @return _assert-spacing-value($value, $key, 'spacing(#{$key})');
+}
+
+/**
+ * Convenience alias for `spacing()`.
+ *
+ * @param  {number} $key
+ *
+ * @return {number}
+ */
+@function s($key) {
+  @return spacing($key);
+}
+
+/**
+ * Returns the negative spacing value for a given key.
+ *
+ * Notes:
+ * - Key 0 returns 0.
+ * - Non-zero keys return the negated length.
+ *
+ * Useful for offset utilities, transforms, negative margins, etc.
+ *
+ * @param  {number} $key
+ *
+ * @return {number}
+ */
+@function spacing-neg($key) {
+  $v: spacing($key);
+
+  @return $v * -1;
+}
+
+/* ----------------------------------------------------------------------------
+ - Safe accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Safe spacing lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Key is missing
+ * - Value is null
+ * - Value is invalid for the scale contract
+ *
+ * Intended for iteration / generation workflows.
+ *
+ * @param  {number} $key
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-spacing($key, $fallback: null) {
+  // Keep behaviour consistent with strict APIs:
+  // - Wrong types should still error (caller bug).
+  $_: _assert-number-key($key, '$key');
+  $_: _assert-integer($key, '$key');
+
+  @if map.has-key(spacing-maps.$spacing, $key) == false {
+    @return $fallback;
+  }
+
+  $value: map.get(spacing-maps.$spacing, $key);
+
+  @if not $value {
+    @return $fallback;
+  }
+
+  // Validate value contract without throwing: if invalid, fallback.
+  @if meta.type-of($value) != 'number' {
+    @return $fallback;
+  }
+
+  @if $key == 0 {
+    @if $value != 0 {
+      @return $fallback;
+    }
+
+    @return $value;
+  }
+
+  @if math.is-unitless($value) {
+    @return $fallback;
+  }
+
+  @return $value;
+}
+
+/* ----------------------------------------------------------------------------
+ - Existence checks
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns whether a spacing key exists in the registry.
+ *
+ * @param  {number} $key
+ *
+ * @return {bool}
+ */
+@function has-spacing($key) {
+  $_: _assert-number-key($key, '$key');
+  $_: _assert-integer($key, '$key');
+
+  @return map.has-key(spacing-maps.$spacing, $key);
+}
+
+/* ----------------------------------------------------------------------------
+ - Ergonomics helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Clamps a spacing key to the registry bounds.
+ *
+ * This is a key-level clamp (not a value clamp). It helps when you need
+ * to compute nearby steps programmatically without risking out-of-range
+ * errors.
+ *
+ * Example:
+ *   $k: spacing-clamp-key($maybe-key);
+ *   margin: spacing($k);
+ *
+ * @param  {number} $key
+ *
+ * @return {number}
+ */
+@function spacing-clamp-key($key) {
+  $_: _assert-number-key($key, '$key');
+  $_: _assert-integer($key, '$key');
+  $min: spacing-min-key();
+  $max: spacing-max-key();
+
+  @if $key < $min {
+    @return $min;
+  }
+
+  @if $key > $max {
+    @return $max;
+  }
+
+  @return $key;
+}
+
+/**
+ * Returns a list of spacing values between two keys (inclusive).
+ *
+ * Example:
+ *   $values: spacing-between(2, 5); // (s(2), s(3), s(4), s(5))
+ *
+ * This is intentionally key-driven to preserve the scale's discrete steps.
+ *
+ * @param  {number} $from
+ * @param  {number} $to
+ *
+ * @return {list}
+ */
+@function spacing-between($from, $to) {
+  $_: _assert-number-key($from, '$from');
+  $_: _assert-number-key($to, '$to');
+  $_: _assert-integer($from, '$from');
+  $_: _assert-integer($to, '$to');
+  $from: spacing-clamp-key($from);
+  $to: spacing-clamp-key($to);
+  $step: 1;
+
+  @if $from > $to {
+    $step: -1;
+  }
+
+  $out: ();
+  $k: $from;
+
+  @while true {
+    $out: list.append($out, spacing($k));
+
+    @if $k == $to {
+      @return $out;
+    }
+
+    $k: $k + $step;
+  }
+
+  @return $out;
+}

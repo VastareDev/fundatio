@@ -1,0 +1,53 @@
+/**
+ * Sol Design Foundation: Figcaption Element
+ *
+ * Figure caption (`figcaption`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA spacing and typography variance
+ * - Provides a subtle, token-driven caption treatment without heavy styling
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<figcaption>` element reference ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/figcaption?utm_source=chatgpt.com))
+ * - Reset guidance (Oct 2025): normalize margins/padding ([useaxentix.com](https://useaxentix.com/blog/css/css-reset-complete-guide/?utm_source=chatgpt.com))
+ *
+ * @module
+ * @group  elements.figure.figcaption
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(figcaption) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family);
+  font-size: 0.875em;
+  font-weight: var(--lg-typography-formatting-base-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+
+  // Keep caption visually subordinate without imposing italics.
+  opacity: 0.85;
+
+  /* --------------------------------------------------------------------------
+   - Spacing
+   -------------------------------------------------------------------------- */
+
+  margin-block-start: var(--lg-typography-spacing-heading-margin-bottom);
+}

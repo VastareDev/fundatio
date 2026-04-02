@@ -1,0 +1,38 @@
+/**
+ * Sol Design Foundation: I Element
+ *
+ * Idiomatic text (`i`)
+ *
+ * Baseline reset + normalized italic rendering.
+ *
+ * Notes:
+ * - `<i>` represents text in an alternate voice or mood (idiomatic).
+ * - UA styles commonly render `<i>` as italic, but not uniformly.
+ * - Normalize explicitly while preserving inherited typography otherwise.
+ *
+ * References (2025+):
+ * - MDN: `<i>` element reference (Aug 2025)
+ *
+ * @module
+ * @group  elements.inline.i
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(i) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Normalize idiomatic emphasis to italic (common UA behavior).
+  font-style: italic;
+
+  // Preserve inherited typography context otherwise.
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

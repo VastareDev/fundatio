@@ -1,0 +1,39 @@
+/**
+ * Sol Design Foundation: Ruby Element
+ *
+ * Ruby annotation container (`ruby`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - `<ruby>` establishes a ruby formatting context.
+ * - Do NOT override display; preserve intrinsic ruby behavior.
+ * - Avoid interfering with annotation layout.
+ *
+ * References (2025+):
+ * - MDN: `<ruby>` element reference (Sep 2025)
+ *
+ * @module
+ * @group  elements.inline.ruby
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(ruby) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve intrinsic ruby layout behavior.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Maintain inherited typography context.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

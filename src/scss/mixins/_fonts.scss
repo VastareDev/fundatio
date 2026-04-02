@@ -1,0 +1,240 @@
+/**
+ * Sol Design Foundation: Font Face Mixins
+ *
+ * CSS emitters for @font-face rules driven by the canonical font registries.
+ *
+ * This layer exists to bridge:
+ *   tokens -> maps -> functions -> mixins -> selectors / at-rules
+ *
+ * Responsibilities:
+ * - Emit `@font-face` rules from the canonical registry (group/variant maps)
+ * - Provide targeted emitters (single variant / group / all groups)
+ * - Offer developer ergonomics (string-or-list inputs, sane defaults)
+ * - Keep output deterministic and predictable (no magic path rewriting)
+ *
+ * Design notes:
+ * - This file DOES generate CSS (via @font-face at-rules).
+ * - We do not encode assumptions about format priority (woff2/ttf/etc).
+ * - We validate inputs and fail fast with actionable errors.
+ * - We error only when *no usable sources remain after filtering*.
+ *
+ * @module
+ * @group  mixins.fonts
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../functions/fonts' as fn;
+@use '../tokens/theme' as theme;
+
+/* ----------------------------------------------------------------------------
+ - Internal helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Normalises a value into a list.
+ *
+ * - null   => null
+ * - string => (string,)
+ * - list   => list (unchanged)
+ */
+@function _as-list($value) {
+  @if $value == null {
+    @return null;
+  }
+
+  @if meta.type-of($value) == 'string' {
+    @return ($value,); // 👈 THE COMMA MATTERS
+  }
+
+  @return $value;
+}
+
+/**
+ * Joins a base path and a relative path safely.
+ */
+@function _join-path($base, $path) {
+  @if meta.type-of($path) != 'string' {
+    @error "Expected $path to be type 'string', got '#{meta.type-of($path)}'";
+  }
+
+  @if string.index($path, '://') {
+    @return $path;
+  }
+
+  @if string.slice($path, 1, 1) == '/' {
+    @return $path;
+  }
+
+  @if not $base {
+    @return $path;
+  }
+
+  @if meta.type-of($base) != 'string' {
+    @error "Expected $base to be type 'string' (or null), got '#{meta.type-of($base)}'";
+  }
+
+  @if string.length($base) == 0 {
+    @return $path;
+  }
+
+  $base-ends-slash: string.slice($base, string.length($base), string.length($base)) == '/';
+  $path-starts-slash: string.slice($path, 1, 1) == '/';
+
+  @if $base-ends-slash and $path-starts-slash {
+    @return '#{$base}#{string.slice($path, 2)}';
+  }
+
+  @if not $base-ends-slash and not $path-starts-slash {
+    @return '#{$base}/#{$path}';
+  }
+
+  @return '#{$base}#{$path}';
+}
+
+/**
+ * Builds a single `url(...) format(...)` src entry.
+ */
+@function _src-entry($path, $format, $base-path) {
+  @if meta.type-of($format) != 'string' {
+    @error "Expected $format to be type 'string', got '#{meta.type-of($format)}'";
+  }
+
+  $p: _join-path($base-path, $path);
+
+  @return string.unquote("url('#{$p}') format('#{$format}')");
+}
+
+/* ----------------------------------------------------------------------------
+ - Public emitters
+ --------------------------------------------------------------------------- */
+
+@mixin font-face($group, $variant, $base-path: theme.$base-font-path, $formats: null) {
+  $v: fn.font-variant($group, $variant);
+  $family: fn.font-descriptor($group, $variant, 'family');
+  $style: fn.font-descriptor($group, $variant, 'style');
+  $weight: fn.font-descriptor($group, $variant, 'weight');
+  $display: fn.font-descriptor($group, $variant, 'display');
+  $sources: fn.font-sources($group, $variant);
+
+  @if meta.type-of($family) != 'string' {
+    @error "Expected font family for '#{$group}/#{$variant}' to be a string, got '#{meta.type-of($family)}'";
+  }
+
+  @if meta.type-of($style) != 'string' {
+    @error "Expected font style for '#{$group}/#{$variant}' to be a string, got '#{meta.type-of($style)}'";
+  }
+
+  $type: meta.type-of($weight);
+
+  @if $type != 'number' and $type != 'string' and $type != 'list' {
+    @error "Expected font weight for '#{$group}/#{$variant}' to be a number, string, or list, got '#{$type}'";
+  }
+
+  @if meta.type-of($display) != 'string' {
+    @error "Expected font display for '#{$group}/#{$variant}' to be a string, got '#{meta.type-of($display)}'";
+  }
+
+  @if meta.type-of($sources) != 'map' {
+    @error "Expected font sources for '#{$group}/#{$variant}' to be a map, got '#{meta.type-of($sources)}'";
+  }
+
+  $use-formats: _as-list($formats);
+
+  @if $use-formats != null and meta.type-of($use-formats) != 'list' {
+    @error "Expected $formats to be a list, string, or null, got '#{meta.type-of($formats)}'";
+  }
+
+  $src: ();
+
+  @each $fmt, $path in $sources {
+    @if $use-formats != null and list.index($use-formats, $fmt) == null {
+      @continue;
+    }
+
+    @if meta.type-of($fmt) != 'string' {
+      @error "Expected source format key to be a string, got '#{meta.type-of($fmt)}'";
+    }
+
+    @if meta.type-of($path) != 'string' {
+      @error "Expected source path for '#{$group}/#{$variant}' format '#{$fmt}' to be a string, got '#{meta.type-of($path)}'";
+    }
+
+    $src: list.append($src, _src-entry($path, $fmt, $base-path), comma);
+  }
+
+  @if list.length($src) == 0 {
+    @error "No usable font sources for '#{$group}/#{$variant}'. Check registry sources and/or $formats filter.";
+  }
+
+  @font-face {
+    font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
+    font-display: $display;
+    src: $src;
+  }
+}
+
+/**
+ * Emits @font-face rules for all variants in a group.
+ */
+@mixin font-group-faces($group, $variants: null, $base-path: theme.$base-font-path, $formats: null) {
+  $use-variants: null;
+
+  @if not $variants {
+    $use-variants: fn.font-variants($group);
+  } @else {
+    $use-variants: _as-list($variants);
+  }
+
+  @if meta.type-of($use-variants) != 'list' {
+    @error "Expected $variants to be a list, string, or null, got '#{meta.type-of($variants)}'";
+  }
+
+  @each $variant in $use-variants {
+    @include font-face($group, $variant, $base-path: $base-path, $formats: $formats);
+  }
+}
+
+/**
+ * Emits @font-face rules for all registered font groups.
+ */
+@mixin font-faces($groups: null, $base-path: theme.$base-font-path, $formats: null) {
+  $use-groups: null;
+
+  @if not $groups {
+    $use-groups: fn.font-groups();
+  } @else {
+    $use-groups: _as-list($groups);
+  }
+
+  @if meta.type-of($use-groups) != 'list' {
+    @error "Expected $groups to be a list, string, or null, got '#{meta.type-of($groups)}'";
+  }
+
+  @each $group in $use-groups {
+    @include font-group-faces($group, $variants: null, $base-path: $base-path, $formats: $formats);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ - Convenience wrappers
+ --------------------------------------------------------------------------- */
+
+@mixin base-font-faces($base-path: theme.$base-font-path, $formats: null) {
+  @include font-group-faces('base', $base-path: $base-path, $formats: $formats);
+}
+
+@mixin heading-font-faces($base-path: theme.$base-font-path, $formats: null) {
+  @include font-group-faces('headings', $base-path: $base-path, $formats: $formats);
+}
+
+@mixin code-font-faces($base-path: theme.$base-font-path, $formats: null) {
+  @include font-group-faces('code', $base-path: $base-path, $formats: $formats);
+}

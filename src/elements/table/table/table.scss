@@ -1,0 +1,56 @@
+/**
+ * Sol Design Foundation: Table Element
+ *
+ * Table (`table`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Normalizes default UA table model differences (spacing + collapsing)
+ * - Keeps layout predictable without imposing a "designed" table style
+ * - Applies Sol base typography tokens so the element can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.table
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(table) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: table;
+
+  // UA defaults commonly use `border-collapse: separate` and non-zero spacing.
+  // Normalize to a consistent baseline, and avoid "mystery gaps" between cells.
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  // Normalize legacy/UA text indentation behavior for tables.
+  text-indent: 0;
+
+  // Remove incidental presentation.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Predictable sizing model.
+  box-sizing: border-box;
+  max-width: 100%;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family);
+  font-size: var(--lg-typography-font-sizes-base-font-size);
+  font-weight: var(--lg-typography-formatting-base-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+
+  // Keep the table neutral unless styled at the cell layer.
+  background-color: transparent;
+}

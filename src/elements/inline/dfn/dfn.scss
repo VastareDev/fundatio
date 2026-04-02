@@ -1,0 +1,36 @@
+/**
+ * Sol Design Foundation: DFN Element
+ *
+ * Defining instance (`dfn`)
+ *
+ * Baseline reset + light normalization.
+ *
+ * This module:
+ * - Preserves semantic "definition" emphasis
+ * - Normalizes italic styling explicitly
+ * - Avoids introducing additional presentation
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.dfn
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(dfn) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Normalize to explicit italic for consistent emphasis.
+  font-style: italic;
+
+  // Preserve inherited typography context.
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

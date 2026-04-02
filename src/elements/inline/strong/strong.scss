@@ -1,0 +1,35 @@
+/**
+ * Sol Design Foundation: Strong Element
+ *
+ * Strong importance (`strong`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Preserves semantic strong importance
+ * - Normalizes font-weight using Sol typography tokens
+ * - Avoids reliance on UA "bolder" calculations
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.strong
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(strong) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Normalize to explicit token rather than UA relative "bolder"
+  font-weight: var(--lg-typography-font-weights-bold-font-weight);
+
+  // Preserve inherited typography otherwise
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}

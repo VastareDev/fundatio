@@ -1,0 +1,43 @@
+/**
+ * Sol Design Foundation: Main Element
+ *
+ * Main content landmark (`main`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA spacing (avoid relying on browser defaults)
+ * - Keeps `<main>` as a structural container (no layout opinions)
+ * - Applies base typography tokens so it can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.layout.main
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(main) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // `<main>` behaves like a block-level sectioning container.
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography (standalone-safe)
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  background-color: transparent;
+}

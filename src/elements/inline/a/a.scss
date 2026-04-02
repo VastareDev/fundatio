@@ -1,0 +1,55 @@
+/**
+ * Sol Design Foundation: Anchor Element
+ *
+ * Hyperlink (`a`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Keeps links recognizable as links (underline by default)
+ * - Normalizes link styling to be token-driven (color via brand vars)
+ * - Avoids removing focus indicators (accessibility)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.a
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(a) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Anchors are inline by default; keep in-flow link behavior.
+  display: inline;
+
+  // Remove incidental spacing artifacts.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Ensure decoration uses the current text color consistently.
+  text-decoration-color: currentcolor;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned defaults
+   -------------------------------------------------------------------------- */
+
+  // Provide a branded default without breaking inheritance-based composition.
+  color: var(--lg-theme-brand-colours-primary-colour, inherit);
+
+  // Keep links identifiable without relying on UA color choices.
+  text-decoration-line: underline;
+}
+
+:where(a:visited) {
+  // Visited link styling is privacy-restricted; color is allowed.
+  color: var(--lg-theme-brand-colours-secondary-colour, inherit);
+}
+
+:where(a:hover) {
+  // Subtle affordance without changing semantics or accessibility.
+  color: var(--lg-theme-brand-colours-tertiary-colour, inherit);
+}

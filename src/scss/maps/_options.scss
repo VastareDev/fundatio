@@ -1,0 +1,53 @@
+/**
+ * Sol Design Foundation: Options Maps
+ *
+ * Structured option registry derived from the canonical options token layer.
+ *
+ * This map exists to provide a single, iterable surface for system-wide
+ * configuration values that influence *how* the design system is consumed,
+ * rather than how it is styled.
+ *
+ * Typical consumers include:
+ * - CSS variable generation
+ * - Utility class namespaces
+ * - Feature toggles (e.g. dark mode)
+ * - Asset path resolution (fonts, icons, etc.)
+ *
+ * This layer intentionally:
+ * - Mirrors the options token layer exactly
+ * - Adds no transformation or logic
+ * - Exists purely for structured access and iteration
+ *
+ * This file is intentionally data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  maps.options
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use '../tokens/options' as options;
+
+/* ----------------------------------------------------------------------------
+ - Registry
+ --------------------------------------------------------------------------- */
+
+/**
+ * Top-level options registry.
+ *
+ * Keys are stable, semantic identifiers intended for consumption by
+ * generators and utilities. Values are locked directly to the
+ * canonical options token layer.
+ *
+ * @type map
+ */
+$options: (
+  'prefix': options.$sol-prefix,
+  'dark-mode': options.$dark-mode,
+  'font-path': options.$font-path,
+);

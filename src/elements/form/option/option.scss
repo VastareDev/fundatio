@@ -1,0 +1,38 @@
+/**
+ * Sol Design Foundation: Option Element
+ *
+ * Select option (`option`)
+ *
+ * Token-driven, light baseline.
+ *
+ * Notes:
+ * - `<option>` is rendered inside UA form controls; styling support varies widely.
+ * - Avoid destructive resets; normalize typography to system tokens where allowed.
+ *
+ * References (2025+):
+ * - MDN: `<option>` element reference (2025)
+ *
+ * @module
+ * @group  elements.form.option
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(option) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve UA control rendering; normalize typography where possible.
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+
+  // Defensive normalization (often ignored by UA, but harmless).
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

@@ -1,0 +1,151 @@
+/**
+ * Sol Design Foundation: Wbr element helpers.
+ *
+ * @remarks
+ * The wbr element (`<wbr>`) represents a word break opportunity.
+ *
+ * Best-practice guidance:
+ * - Use `<wbr>` to suggest optional break points within long words or URLs.
+ * - It does not force a line break; the browser decides if a break is needed.
+ * - Do not use `<wbr>` for layout or spacing. Use CSS instead.
+ * - `<wbr>` is a void element and must not contain text content.
+ *
+ * This module provides a small, framework-agnostic helper so consumers can:
+ * - create word break opportunities safely in vanilla JS/TS
+ * - apply consistent global attributes via Sol's hardened DOM helpers
+ * - rely on a stable enhancement hook for future evolution
+ *
+ * This module has no side effects and does not mutate the DOM unless you call
+ * its functions.
+ *
+ * @module
+ * @category Elements
+ */
+
+import { createVoidElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
+
+/**
+ * Structured ARIA input supported by Sol element factories.
+ *
+ * @remarks
+ * This is intentionally a small, typed subset that covers common cases and
+ * prevents typo-based ARIA bugs.
+ *
+ * It is mapped into {@link GlobalAttrs.aria} for application by `dom.ts`.
+ *
+ * @category Attributes
+ */
+export type StructuredAria = {
+  /**
+   * Accessible label, mapped to `aria-label`.
+   */
+  label?: string;
+
+  /**
+   * ID reference to labelling element(s), mapped to `aria-labelledby`.
+   */
+  labelledby?: string;
+
+  /**
+   * Decorative/hidden hint, mapped to `aria-hidden`.
+   */
+  hidden?: boolean;
+};
+
+/**
+ * The semantic tag name for word break opportunity elements.
+ *
+ * @category Constants
+ */
+export const WBR_TAG = 'wbr' as const;
+
+/**
+ * A CSS selector targeting wbr elements.
+ *
+ * @category Constants
+ */
+export const WBR_SELECTOR = 'wbr';
+
+/**
+ * Attribute bag for wbr creation/enhancement.
+ *
+ * @remarks
+ * `<wbr>` accepts only global HTML attributes.
+ * It does not accept text content and has no element-specific attributes.
+ *
+ * @category Attributes
+ */
+export type WbrAttrs = Omit<GlobalAttrs, 'aria'> & {
+  /**
+   * Structured ARIA fields mapped into `aria-*` attributes.
+   */
+  aria?: StructuredAria;
+};
+
+/**
+ * Normalize {@link WbrAttrs} into {@link GlobalAttrs} for `dom.ts`.
+ *
+ * @param attrs - The wbr attributes.
+ * @returns A {@link GlobalAttrs} object, or `undefined` if no attrs were provided.
+ *
+ * @category Internal
+ */
+function toGlobalAttrs(attrs?: WbrAttrs): GlobalAttrs | undefined {
+  if (!attrs) return undefined;
+
+  const { aria, ...rest } = attrs;
+
+  if (!aria) return rest;
+
+  const mappedAria: NonNullable<GlobalAttrs['aria']> = {};
+
+  if (typeof aria.label === 'string') mappedAria.label = aria.label;
+  if (typeof aria.labelledby === 'string') mappedAria.labelledby = aria.labelledby;
+  if (typeof aria.hidden === 'boolean') mappedAria.hidden = aria.hidden;
+
+  const hasMapped = Object.keys(mappedAria).length > 0;
+
+  return hasMapped ? { ...rest, aria: mappedAria } : rest;
+}
+
+/**
+ * Create a wbr element with optional global attributes.
+ *
+ * @remarks
+ * - `<wbr>` is a void element and does not accept text content.
+ * - Global attributes are applied via Sol's shared DOM helper,
+ *   including security guards that block inline event handler attributes
+ *   (e.g. `onclick`) and raw `style` attribute strings.
+ *
+ * @param attrs - Optional attributes to apply.
+ * @returns The created `<wbr>` element.
+ *
+ * @example
+ * ```ts
+ * import { createWbr } from "@lnpg/sol/elements/break/wbr";
+ *
+ * paragraph.appendChild(createWbr());
+ * ```
+ *
+ * @category DOM
+ */
+export function createWbr(attrs?: WbrAttrs): ElementOf<typeof WBR_TAG> {
+  return createVoidElement(WBR_TAG, toGlobalAttrs(attrs));
+}
+
+/**
+ * Enhance wbr elements within a given root.
+ *
+ * @remarks
+ * This is intentionally a no-op in `1.0.0`.
+ *
+ * It exists to establish a stable enhancement pattern across all elements.
+ *
+ * @param root - The node to search within. Defaults to `document`.
+ *
+ * @category Enhancement
+ */
+export function enhanceWbrs(root: ParentNode = document): void {
+  // v1.0.0: no runtime behavior for wbr.
+  void root;
+}

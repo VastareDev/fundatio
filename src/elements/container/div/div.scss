@@ -1,0 +1,27 @@
+/**
+ * Sol Design Foundation: Div Element
+ *
+ * Generic container (`div`)
+ *
+ * Baseline hygiene only.
+ *
+ * Notes:
+ * - `<div>` has no meaningful UA styling beyond its default `display` behavior.
+ * - Modern reset guidance (2025+) favors *not* force-resetting elements that
+ *   already render consistently across engines, to avoid accidental layout bugs.
+ *
+ * @module
+ * @group  elements.container.div
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(div) {
+  /* --------------------------------------------------------------------------
+   - Baseline
+   -------------------------------------------------------------------------- */
+
+  // `<div>` is block-level by default in UA rendering. We declare it explicitly
+  // for clarity and predictability when this element stylesheet is consumed alone.
+  display: block;
+}

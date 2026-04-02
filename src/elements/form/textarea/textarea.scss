@@ -1,0 +1,39 @@
+/**
+ * Sol Design Foundation: Textarea Element
+ *
+ * Multi-line text input (`textarea`)
+ *
+ * Token-driven, light baseline.
+ *
+ * This module:
+ * - Normalizes typography inheritance (most noticeable in textarea)
+ * - Normalizes sizing model and spacing
+ * - Avoids destructive resets that interfere with native editing behavior
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.form.textarea
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(textarea) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Ensure textarea matches surrounding typography.
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  box-sizing: border-box;
+  margin: 0;
+
+  // Maintain predictable alignment in inline/flow contexts.
+  vertical-align: top;
+
+  // Avoid forcing resize behavior at baseline.
+  background-color: transparent;
+}

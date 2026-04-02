@@ -1,0 +1,50 @@
+/**
+ * Sol Design Foundation: Blockquote Element
+ *
+ * Block quotation (`blockquote`)
+ *
+ * Baseline reset + light, brand-aligned spacing defaults.
+ *
+ * This module:
+ * - Normalizes UA indentation/margins for consistent layout across browsers
+ * - Preserves blockquote semantics (no decorative quote injection)
+ * - Uses low-specificity selectors (`:where()`)
+ * - Applies Sol spacing tokens so the element can be shipped standalone
+ *
+ * @module
+ * @group  elements.text.blockquote
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(blockquote) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // UA styles commonly apply indentation via margins. Normalize to a clean baseline.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Keep typography predictable and inheritable.
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  // Robust text behavior for long strings/URLs in quoted content.
+  overflow-wrap: break-word;
+  max-width: 100%;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned defaults
+   -------------------------------------------------------------------------- */
+
+  // Provide consistent separation from surrounding content.
+  margin-block: var(--lg-typography-spacing-base-margin-bottom);
+  margin-inline: 0;
+}

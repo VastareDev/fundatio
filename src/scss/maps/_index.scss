@@ -1,0 +1,96 @@
+/**
+ * Sol Design Foundation: Maps Index
+ *
+ * Public API surface for all structured map registries.
+ *
+ * This file intentionally:
+ * - Re-exports map modules using `@forward`
+ * - Defines the *only* supported import path for maps
+ * - Avoids loading modules eagerly or creating side effects
+ *
+ * IMPORTANT:
+ * - This file MUST NOT use `@use`
+ * - This file MUST NOT reference tokens directly
+ * - This file MUST NOT perform logic, validation, or transformation
+ *
+ * Consumers should import maps via:
+ *
+ *   @use "maps" as maps;
+ *
+ * Never import individual map files directly unless you are inside
+ * the design system itself.
+ *
+ * @module
+ * @group  maps
+ * @access public
+ * @since  1.0.0
+ */
+
+/* ----------------------------------------------------------------------------
+ - Core design primitives
+ --------------------------------------------------------------------------- */
+
+/**
+ * Colour scale maps.
+ *
+ * Provides structured access to colour ramps and semantic groupings
+ * derived from the canonical colour token layer.
+ */
+@forward 'colours';
+
+/**
+ * Spacing scale map.
+ *
+ * Numeric spacing scale (0..10) derived from the base spacing token.
+ */
+@forward 'spacing';
+
+/**
+ * Typography maps.
+ *
+ * Font families, weights, sizes, formatting, and spacing groupings
+ * derived from typography tokens.
+ */
+@forward 'typography';
+
+/* ----------------------------------------------------------------------------
+ - Font & asset configuration
+ --------------------------------------------------------------------------- */
+
+/**
+ * Font-face descriptor maps.
+ *
+ * Declarative font metadata used by font-face generators.
+ */
+@forward 'fonts';
+
+/* ----------------------------------------------------------------------------
+ - System configuration
+ --------------------------------------------------------------------------- */
+
+/**
+ * Global options registry.
+ *
+ * Structured access to cross-cutting configuration such as
+ * namespace prefixes, feature flags, and asset paths.
+ */
+@forward 'options';
+
+/**
+ * Theme registry.
+ *
+ * Structured access to consumer-overridable theme primitives
+ * including branding, colours, and font sources.
+ */
+@forward 'theme';
+
+/**
+ * Dark theme registry.
+ *
+ * Structured access to Sol's dark theme preset. Mirrors the default
+ * theme registry but sources values from the dark-theme token layer.
+ *
+ * Intended for framework adapters or consumers who want dark defaults
+ * without redefining the canonical theme contract.
+ */
+@forward 'dark-theme';

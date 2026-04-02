@@ -1,0 +1,47 @@
+/**
+ * Sol Design Foundation: Image Element
+ *
+ * Embedded image (`img`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes `<img>` rendering across browsers
+ * - Removes legacy border behavior
+ * - Ensures predictable responsive scaling
+ * - Preserves intrinsic aspect ratio
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.img
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(img) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Replaced element baseline.
+  display: inline-block;
+  vertical-align: middle;
+
+  // Remove legacy border when image is inside anchor.
+  border: 0;
+
+  // Remove incidental spacing artifacts.
+  margin: 0;
+  padding: 0;
+
+  /* --------------------------------------------------------------------------
+   - Layout predictability
+   -------------------------------------------------------------------------- */
+
+  // Responsive containment without breaking intrinsic ratio.
+  max-width: 100%;
+  height: auto;
+
+  // Ensure sizing behaves predictably in constrained layouts.
+  box-sizing: border-box;
+}

@@ -1,0 +1,45 @@
+/**
+ * Sol Design Foundation: Code Element
+ *
+ * Inline code (`code`)
+ *
+ * Baseline reset + light branding.
+ *
+ * Notes:
+ * - `<code>` is intended to render in a monospace face by default.
+ * - Normalize to token-driven code typography so the element can ship standalone.
+ *
+ * References (2025+):
+ * - MDN: `<code>` element default monospace intent (Oct 2025)
+ *
+ * @module
+ * @group  elements.inline.code
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(code) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Preserve surrounding flow and line metrics.
+  line-height: inherit;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned code typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-code-font-family);
+  font-size: inherit;
+  font-weight: inherit;
+  color: var(--lg-theme-base-colours-code-font-color);
+
+  // Keep neutral by default; no background/pill styling in baseline.
+  background-color: transparent;
+}

@@ -1,0 +1,63 @@
+/**
+ * Sol Design Foundation: Spacing Maps
+ *
+ * Structured spacing scale derived from the canonical spacing token layer.
+ *
+ * This map exists to provide a predictable, named scale (0..10) for
+ * margin/padding utilities and component rhythm, while keeping the underlying
+ * values locked to the token source.
+ *
+ * This file is intentionally data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  maps.spacing
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use '../tokens/spacing' as spacing;
+
+/* --------------------------------------------------------------------------
+ - Spacing scale
+ ------------------------------------------------------------------------- */
+
+/**
+ * Spacing scale.
+ *
+ * Keys:
+ * - 0 is hard zero (unitless by design).
+ * - 1..10 are rem-based lengths derived from $base-spacing.
+ *
+ * Multipliers:
+ * 0:  0
+ * 1:  0.25x
+ * 2:  0.5x
+ * 3:  0.75x
+ * 4:  1x
+ * 5:  1.25x
+ * 6:  1.5x
+ * 7:  1.75x
+ * 8:  2x
+ * 9:  3x
+ * 10: 4x
+ *
+ * @type map
+ */
+$spacing: (
+  0: 0,
+  1: spacing.$base-spacing * 0.25,
+  2: spacing.$base-spacing * 0.5,
+  3: spacing.$base-spacing * 0.75,
+  4: spacing.$base-spacing,
+  5: spacing.$base-spacing * 1.25,
+  6: spacing.$base-spacing * 1.5,
+  7: spacing.$base-spacing * 1.75,
+  8: spacing.$base-spacing * 2,
+  9: spacing.$base-spacing * 3,
+  10: spacing.$base-spacing * 4,
+);

@@ -1,0 +1,43 @@
+/**
+ * Sol Design Foundation: Samp Element
+ *
+ * Sample output (`samp`)
+ *
+ * Baseline reset + light branding.
+ *
+ * Notes:
+ * - `<samp>` represents sample output from a program or system.
+ * - UA presentation is typically monospace.
+ * - Normalize to token-driven code typography so it ships standalone.
+ *
+ * References (2025+):
+ * - MDN: `<samp>` element reference (Oct 2025)
+ *
+ * @module
+ * @group  elements.inline.samp
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(samp) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: inherit;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned code typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-code-font-family);
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: var(--lg-theme-base-colours-code-font-color);
+  background-color: transparent;
+}

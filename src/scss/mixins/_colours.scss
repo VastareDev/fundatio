@@ -1,0 +1,304 @@
+/**
+ * Sol Design Foundation: Colour Mixins
+ *
+ * CSS custom property (variable) emitters for the canonical colour registries.
+ *
+ * This layer exists to bridge:
+ *   tokens -> maps -> functions -> mixins -> selectors (e.g. :root)
+ *
+ * Responsibilities:
+ * - Emit stable `:root` (or theme-scope) CSS variables for colour scales
+ * - Optionally emit companion `*-rgb` variables for opacity-friendly usage
+ * - Provide targeted emitters (single scale / subset) for consumers & generators
+ *
+ * Design notes:
+ * - We keep naming explicit and predictable.
+ * - We avoid "smart" transformations: keys become variable names, as-is.
+ * - Defaults are opinionated, but everything is parameterised for consumers.
+ * - This file does not assume where it is included (core vs. consumer build).
+ *
+ * References / alignment:
+ * - Bootstrap's approach of emitting both hex vars and `*-rgb` vars is widely
+ *   used because it enables `rgba(var(--x-rgb), <alpha>)` patterns.
+ *
+ * @module
+ * @group  mixins.colours
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:color';
+@use '../functions/colours' as fn;
+
+/* ----------------------------------------------------------------------------
+ - Internal helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Builds a CSS custom property name.
+ *
+ * Example output (default):
+ *   --sol-colour-grey-tint-80
+ *
+ * @access private
+ *
+ * @param  {string} $key
+ * @param  {string} $var-prefix   Must include the leading `--` (default: --sol-)
+ * @param  {string} $group        Group namespace appended after prefix
+ *
+ * @return {string}
+ */
+@function _css-var-name($key, $var-prefix, $group) {
+  @if meta.type-of($key) != 'string' {
+    @error "Expected $key to be type 'string', got '#{meta.type-of($key)}'";
+  }
+
+  @if meta.type-of($var-prefix) != 'string' {
+    @error "Expected $var-prefix to be type 'string', got '#{meta.type-of($var-prefix)}'";
+  }
+
+  @if meta.type-of($group) != 'string' {
+    @error "Expected $group to be type 'string', got '#{meta.type-of($group)}'";
+  }
+
+  @return '#{$var-prefix}#{$group}-#{$key}';
+}
+
+/**
+ * Returns the `r, g, b` triple for a Sass colour.
+ *
+ * @access private
+ *
+ * @param  {color} $c
+ *
+ * @return {string}  e.g. "13, 110, 253"
+ */
+@function _rgb-triplet($c) {
+  @if meta.type-of($c) != 'color' {
+    @error "Expected $c to be a Sass color, got '#{meta.type-of($c)}'";
+  }
+
+  @return '#{color.channel($c, 'red', $space: rgb)}, #{color.channel($c, 'green', $space: rgb)}, #{color.channel($c, 'blue', $space: rgb)}';
+}
+
+/**
+ * Emits a single CSS custom property declaration.
+ *
+ * @access private
+ *
+ * @param  {string} $name   Full var name including `--`
+ * @param  {*}      $value
+ *
+ * @return {void}
+ */
+@mixin _emit-var($name, $value) {
+  @if meta.type-of($name) != 'string' {
+    @error "Expected $name to be type 'string', got '#{meta.type-of($name)}'";
+  }
+
+  #{$name}: #{$value};
+}
+
+/* ----------------------------------------------------------------------------
+ - Public emitters
+ --------------------------------------------------------------------------- */
+
+/**
+ * Emits CSS variables for a single colour scale.
+ *
+ * By default, emits:
+ * - `--sol-colour-<token-key>` for each entry in the scale map
+ * - Optional: `--sol-colour-<token-key>-rgb` companions (r,g,b triplets)
+ *
+ * Typical usage:
+ *   :root { @include colour-scale-vars("grey"); }
+ *   [data-theme="dark"] { @include colour-scale-vars("grey"); }
+ *
+ * @param  {string} $scale
+ * @param  {string} $var-prefix   Leading custom prop prefix (default: --sol-)
+ * @param  {string} $group        Namespace segment (default: colour)
+ * @param  {bool}   $with-rgb     Emit `*-rgb` vars (default: true)
+ * @param  {string} $rgb-suffix   Suffix for rgb vars (default: -rgb)
+ *
+ * @return {void}
+ */
+@mixin colour-scale-vars(
+  $scale,
+  $var-prefix: '--sol-',
+  $group: 'colour',
+  $with-rgb: true,
+  $rgb-suffix: '-rgb'
+) {
+  // Strict scale access with actionable errors.
+  $m: fn.colour-scale($scale);
+
+  @each $key, $val in $m {
+    // Keys are strings in your maps by design.
+    $name: _css-var-name($key, $var-prefix, $group);
+
+    @include _emit-var($name, $val);
+
+    @if $with-rgb == true {
+      @if meta.type-of($val) != 'color' {
+        @error "Expected scale '#{$scale}' key '#{$key}' to be a Sass color, got '#{meta.type-of($val)}'";
+      }
+
+      @include _emit-var('#{$name}#{$rgb-suffix}', _rgb-triplet($val));
+    }
+  }
+}
+
+/**
+ * Emits CSS variables for *all* registered colour scales.
+ *
+ * @param  {list|null} $scales     Optional subset (e.g. ("grey","blue"))
+ * @param  {string}    $var-prefix Leading custom prop prefix (default: --sol-)
+ * @param  {string}    $group      Namespace segment (default: colour)
+ * @param  {bool}      $with-rgb   Emit `*-rgb` vars (default: true)
+ * @param  {string}    $rgb-suffix Suffix for rgb vars (default: -rgb)
+ *
+ * @return {void}
+ */
+@mixin colour-scales-vars(
+  $scales: null,
+  $var-prefix: '--sol-',
+  $group: 'colour',
+  $with-rgb: true,
+  $rgb-suffix: '-rgb'
+) {
+  $use-scales: $scales;
+
+  @if $use-scales == null {
+    $use-scales: fn.colour-scales();
+  } @else if meta.type-of($use-scales) == 'string' {
+    // Developer ergonomics: allow a single scale passed as a string.
+    $use-scales: ($use-scales);
+  }
+
+  @if meta.type-of($use-scales) != 'list' {
+    @error "Expected $scales to be a list (or null), got '#{meta.type-of($use-scales)}'";
+  }
+
+  @each $scale in $use-scales {
+    @include colour-scale-vars(
+      $scale,
+      $var-prefix: $var-prefix,
+      $group: $group,
+      $with-rgb: $with-rgb,
+      $rgb-suffix: $rgb-suffix
+    );
+  }
+}
+
+/**
+ * Emits a *curated* set of "base" colour variables that developers typically
+ * expect to exist at root scope.
+ *
+ * Why this exists:
+ * - Scales are great for systems and utilities.
+ * - Apps still want a handful of stable "primitives" they can reach for.
+ *
+ * Important:
+ * - Your current colour registry is scale-based and does not define semantic
+ *   roles like `primary` (those live in theme).
+ * - So this mixin is intentionally parameterised: you pass a map of
+ *   `{ "name": <color> }` values you consider "base".
+ *
+ * Example:
+ *   @include base-colour-vars((
+ *     "black": #000,
+ *     "white": #fff
+ *   ));
+ *
+ * @param  {map}    $base-map
+ * @param  {string} $var-prefix
+ * @param  {string} $group
+ * @param  {bool}   $with-rgb
+ * @param  {string} $rgb-suffix
+ *
+ * @return {void}
+ */
+@mixin base-colour-vars(
+  $base-map,
+  $var-prefix: '--sol-',
+  $group: 'colour',
+  $with-rgb: true,
+  $rgb-suffix: '-rgb'
+) {
+  @if meta.type-of($base-map) != 'map' {
+    @error "Expected $base-map to be a map, got '#{meta.type-of($base-map)}'";
+  }
+
+  @each $key, $val in $base-map {
+    @if meta.type-of($key) != 'string' {
+      @error "Expected base colour key to be a string, got '#{meta.type-of($key)}'";
+    }
+
+    @if meta.type-of($val) != 'color' {
+      @error "Expected base colour '#{$key}' to be a Sass color, got '#{meta.type-of($val)}'";
+    }
+
+    $name: _css-var-name($key, $var-prefix, $group);
+
+    @include _emit-var($name, $val);
+
+    @if $with-rgb == true {
+      @include _emit-var('#{$name}#{$rgb-suffix}', _rgb-triplet($val));
+    }
+  }
+}
+
+/**
+ * Top-level convenience mixin to emit everything colour-related for `:root`
+ * (or any selector you wrap it in).
+ *
+ * This intentionally does NOT create selectors.
+ * You decide the scope, e.g.:
+ *
+ *   :root {
+ *     @include colour-root-vars();
+ *   }
+ *
+ *   [data-theme="dark"] {
+ *     @include colour-root-vars($with-rgb: false);
+ *   }
+ *
+ * @param  {list|null} $scales
+ * @param  {map|null}  $base-map
+ * @param  {string}    $var-prefix
+ * @param  {string}    $group
+ * @param  {bool}      $with-rgb
+ * @param  {string}    $rgb-suffix
+ *
+ * @return {void}
+ */
+@mixin colour-root-vars(
+  $scales: null,
+  $base-map: null,
+  $var-prefix: '--sol-',
+  $group: 'colour',
+  $with-rgb: true,
+  $rgb-suffix: '-rgb'
+) {
+  @if $base-map {
+    @include base-colour-vars(
+      $base-map,
+      $var-prefix: $var-prefix,
+      $group: $group,
+      $with-rgb: $with-rgb,
+      $rgb-suffix: $rgb-suffix
+    );
+  }
+
+  @include colour-scales-vars(
+    $scales: $scales,
+    $var-prefix: $var-prefix,
+    $group: $group,
+    $with-rgb: $with-rgb,
+    $rgb-suffix: $rgb-suffix
+  );
+}

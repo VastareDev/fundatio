@@ -1,0 +1,29 @@
+/**
+ * Sol Design Foundation: Area Element
+ *
+ * Image map area (`area`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Applies defensive zeroing (typically a no-op because `<area>` is not rendered)
+ * - Avoids forcing display or presentational styling
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.responsive.area
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(area) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // `<area>` is a non-rendered interactive region definition; most CSS has no effect.
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

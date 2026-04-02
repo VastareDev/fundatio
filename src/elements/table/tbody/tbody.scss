@@ -1,0 +1,32 @@
+/**
+ * Sol Design Foundation: Tbody Element
+ *
+ * Table body (`tbody`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Normalizes `<tbody>` to its internal table display role
+ * - Avoids presentational styling (body styling belongs at row/cell layer)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.tbody
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(tbody) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Internal table element role per the CSS table model.
+  display: table-row-group;
+
+  // Defensive baseline: avoid incidental spacing/presentation.
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

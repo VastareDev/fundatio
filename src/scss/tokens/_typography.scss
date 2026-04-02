@@ -1,0 +1,218 @@
+/**
+ * Sol Design Foundation: Typography Tokens
+ *
+ * Canonical typography primitives for the Sol design foundation.
+ *
+ * These tokens define:
+ * - Font families
+ * - Font weights
+ * - Font sizes (derived from a single base size)
+ * - Line heights
+ * - Spacing defaults used by typography components
+ *
+ * This file is intentionally data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  tokens.typography
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use './spacing' as spacing;
+@use './theme' as theme;
+
+/* --------------------------------------------------------------------------
+ - Font families
+ ------------------------------------------------------------------------- */
+
+/**
+ * Default body font family.
+ *
+ * Merriweather with sensible serif fallbacks.
+ *
+ * @type string
+ */
+$base-font-family: theme.$base-font, Georgia, 'Times New Roman', Times, serif;
+
+/**
+ * Default heading font family.
+ *
+ * Montserrat with modern sans-serif fallbacks.
+ *
+ * @type string
+ */
+$heading-font-family:
+  theme.$heading-font,
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
+
+/**
+ * Default monospace/code font family.
+ *
+ * @type string
+ */
+$code-font-family:
+  theme.$code-font, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+  monospace;
+
+/* --------------------------------------------------------------------------
+ - Font weights
+ ------------------------------------------------------------------------- */
+
+/**
+ * Font weight: thin.
+ *
+ * @type number
+ */
+$thin-font-weight: 100;
+
+/**
+ * Font weight: lighter.
+ *
+ * @type number
+ */
+$lighter-font-weight: 200;
+
+/**
+ * Font weight: light.
+ *
+ * @type number
+ */
+$light-font-weight: 300;
+
+/**
+ * Font weight: normal.
+ *
+ * @type number
+ */
+$normal-font-weight: 400;
+
+/**
+ * Font weight: medium.
+ *
+ * @type number
+ */
+$medium-font-weight: 500;
+
+/**
+ * Font weight: semibold.
+ *
+ * @type number
+ */
+$semibold-font-weight: 600;
+
+/**
+ * Font weight: bold.
+ *
+ * @type number
+ */
+$bold-font-weight: 700;
+
+/**
+ * Font weight: bolder.
+ *
+ * @type number
+ */
+$bolder-font-weight: 800;
+
+/**
+ * Font weight: black.
+ *
+ * @type number
+ */
+$black-font-weight: 900;
+
+/* --------------------------------------------------------------------------
+ - Font sizes
+ ------------------------------------------------------------------------- */
+
+/**
+ * Base font size for the system.
+ *
+ * All heading sizes are derived from this token to ensure consistent scaling.
+ *
+ * @type number
+ */
+$base-font-size: 1rem;
+
+/**
+ * Heading font sizes (relative to $base-font-size).
+ *
+ * @type number
+ */
+$font-size-h1: $base-font-size * 2.5;
+
+/** @type number */
+$font-size-h2: $base-font-size * 2;
+
+/** @type number */
+$font-size-h3: $base-font-size * 1.75;
+
+/** @type number */
+$font-size-h4: $base-font-size * 1.5;
+
+/** @type number */
+$font-size-h5: $base-font-size * 1.25;
+
+/** @type number */
+$font-size-h6: $base-font-size;
+
+/* --------------------------------------------------------------------------
+ - Typography Formating
+ ------------------------------------------------------------------------- */
+
+/**
+ * Default body font weight.
+ *
+ * @type number
+ */
+$base-font-weight: $normal-font-weight;
+
+/**
+ * Default heading font weight.
+ *
+ * @type number
+ */
+$heading-font-weight: $bold-font-weight;
+
+/**
+ * Default body line height.
+ *
+ * @type number
+ */
+$base-line-height: 1.5;
+
+/**
+ * Default heading line height.
+ *
+ * @type number
+ */
+$heading-line-height: 1.2;
+
+/* --------------------------------------------------------------------------
+ - Spacing defaults
+ ------------------------------------------------------------------------- */
+
+/**
+ * Default bottom margin used for typographic blocks (e.g. paragraphs).
+ *
+ * @type number
+ */
+$base-margin-bottom: 1rem;
+
+/**
+ * Default bottom margin used for headings.
+ *
+ * @type number
+ */
+$heading-margin-bottom: spacing.$base-spacing * 0.5;

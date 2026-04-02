@@ -1,0 +1,54 @@
+/**
+ * Sol Design Foundation: Caption Element
+ *
+ * Table caption (`caption`)
+ *
+ * Structural baseline + light branding.
+ *
+ * This module:
+ * - Normalizes UA caption alignment/spacing for predictable rendering
+ * - Preserves caption semantics and table formatting context
+ * - Applies Sol base typography tokens so the element can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.caption
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(caption) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // `caption` participates in the table formatting context; do not override display.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Normalize default alignment (UA styles commonly center captions).
+  text-align: start;
+
+  // Keep the default caption position predictable (authors may override).
+  caption-side: top;
+  background-color: transparent;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family);
+  font-size: var(--lg-typography-font-sizes-base-font-size);
+  font-weight: var(--lg-typography-formatting-base-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+
+  /* --------------------------------------------------------------------------
+   - Spacing
+   -------------------------------------------------------------------------- */
+
+  // Provide consistent separation from surrounding content without imposing
+  // "designed" padding inside the caption.
+  margin-block-end: var(--lg-typography-spacing-heading-margin-bottom);
+}

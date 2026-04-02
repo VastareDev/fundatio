@@ -1,0 +1,44 @@
+/**
+ * Sol Design Foundation: KBD Element
+ *
+ * Keyboard input (`kbd`)
+ *
+ * Baseline reset + light branding.
+ *
+ * Notes:
+ * - `<kbd>` represents user keyboard input.
+ * - UA styling varies (monospace + sometimes bordered/pill styles).
+ * - Normalize to token-driven code typography.
+ * - Do NOT impose decorative key styling at baseline.
+ *
+ * References (2025+):
+ * - MDN: `<kbd>` element reference (Oct 2025)
+ *
+ * @module
+ * @group  elements.inline.kbd
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(kbd) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: inherit;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned code typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-code-font-family);
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: var(--lg-theme-base-colours-code-font-color);
+  background-color: transparent;
+}

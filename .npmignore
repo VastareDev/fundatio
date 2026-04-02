@@ -1,0 +1,93 @@
+# The repisitory's ignored file and folder patterns for NPM publishing.
+#
+# @link       https://docs.npmjs.com/using-npm/developer#keeping-files-out-of-your-package
+# @version    1.0.0 (file)
+# @since      1.0.0 (release)
+
+#--
+# SOURCE / DEVELOPMENT FILES
+#
+tests/
+coverage/
+
+#--
+# TYPESCRIPT / BUILD CONFIG
+#
+tsconfig*.json
+vitest.config.*
+vite.config.*
+*.ts
+*.map
+
+#--
+# NODE / PACKAGE MANAGERS
+#
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+#--
+# ENV / LOCAL CONFIG
+#
+.env
+.env.*
+.npmrc
+!.npmrc.example
+
+#--
+# IDES / EDITORS
+#
+.vscode/
+.idea/
+*.sw?
+.DS_Store
+Thumbs.db
+ 
+#--
+# TESTING / VITEST
+#
+coverage/
+.vitest/
+
+#--
+# DOCS / VITEPRESS / TYPEDOC / SASSCRIBE
+#
+docs/
+sassdoc/
+sasscribe-temp/
+typedoc-temp/
+ 
+#--
+# LOGS / MISC
+#
+*.log
+*.tgz
+*.pid
+*.seed
+*.pid.lock
+
+#--
+# CI / VCS METADATA
+#
+.git/
+.gitignore
+.gitattributes
+.github/
+
+#--
+# LOCAL TOOLS / CACHES
+#
+.cache/
+.tmp/
+.temp/
+.eslintcache
+vite.config.timestamp-*.mjs
+ 
+#--
+# OS / SYSTEM JUNK
+#
+ehthumbs.db
+Icon?
+Desktop.ini

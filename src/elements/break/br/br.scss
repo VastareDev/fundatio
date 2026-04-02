@@ -1,0 +1,26 @@
+/**
+ * Sol Design Foundation: BR Element
+ *
+ * Line break (`br`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Ensures consistent structural behavior for `<br>` across modern browsers
+ * - Applies no visual styling (line breaks are structural, not presentational)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.breaks.br
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(br) {
+  /* --------------------------------------------------------------------------
+   - Structural baseline
+   -------------------------------------------------------------------------- */
+
+  display: inline; // default behaviour
+  content: ''; // explicit structural content
+}

@@ -1,0 +1,93 @@
+/**
+ * Sol Design Foundation: Mixins Index
+ *
+ * Public API surface for all mixin modules.
+ *
+ * This file intentionally:
+ * - Re-exports mixin modules using `@forward`
+ * - Defines the *only* supported import path for mixins
+ * - Avoids loading modules eagerly or creating side effects
+ *
+ * IMPORTANT:
+ * - This file MUST NOT use `@use`
+ * - This file MUST NOT reference tokens, maps, or functions directly
+ * - This file MUST NOT perform logic, validation, or transformation
+ *
+ * Consumers should import mixins via:
+ *
+ *   @use "mixins" as mx;
+ *
+ * Never import individual mixin files directly unless you are inside
+ * the design system itself.
+ *
+ * @module
+ * @group  mixins
+ * @access public
+ * @since  1.0.0
+ */
+
+/* ----------------------------------------------------------------------------
+ - Core variable emitters
+ --------------------------------------------------------------------------- */
+
+/**
+ * Theme variable emitters.
+ *
+ * Emits CSS custom properties for the canonical theme registry.
+ */
+@forward 'theme';
+
+/**
+ * Colour variable emitters.
+ *
+ * Emits CSS custom properties for colour scales and base colours,
+ * including optional RGB companions.
+ */
+@forward 'colours';
+
+/**
+ * Typography variable emitters.
+ *
+ * Emits CSS custom properties for typography groups such as
+ * font families, sizes, weights, formatting, and spacing.
+ */
+@forward 'typography';
+
+/* ----------------------------------------------------------------------------
+ - Layout & spacing utilities
+ --------------------------------------------------------------------------- */
+
+/**
+ * Spacing utility mixins.
+ *
+ * Provides spacing helpers (x/y/all/list/negative variants)
+ * for applying margin and padding consistently.
+ *
+ * NOTE:
+ * This module currently provides *property helpers* only.
+ * A spacing vars emitter may be added in the future.
+ */
+@forward 'spacing';
+
+/* ----------------------------------------------------------------------------
+ - Fonts & assets
+ --------------------------------------------------------------------------- */
+
+/**
+ * Font-face generators.
+ *
+ * Emits @font-face rules from the canonical font registry.
+ */
+@forward 'fonts';
+
+/* ----------------------------------------------------------------------------
+ - System & configuration helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Global options helpers.
+ *
+ * Provides mixins for consuming option-level configuration
+ * (e.g. feature flags, namespace helpers).
+ */
+@forward 'options';

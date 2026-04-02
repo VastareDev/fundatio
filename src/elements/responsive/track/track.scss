@@ -1,0 +1,28 @@
+/**
+ * Sol Design Foundation: Track Element
+ *
+ * Timed text track (`track`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Applies defensive zeroing (typically a no-op because `<track>` is not rendered)
+ * - Avoids forcing display or attempting styling (track cues are handled by UA/media APIs)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.responsive.track
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(track) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

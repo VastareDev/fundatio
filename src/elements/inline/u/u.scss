@@ -1,0 +1,42 @@
+/**
+ * Sol Design Foundation: U Element
+ *
+ * Unarticulated annotation (`u`)
+ *
+ * Baseline reset + normalized underline.
+ *
+ * Notes:
+ * - `<u>` is an annotation, not "make it underlined".
+ * - UA underlining varies in thickness/ink skipping.
+ * - Normalize underline via `text-decoration` while preserving inherited typography.
+ *
+ * References (2025+):
+ * - MDN: `<u>` element reference (Aug 2025)
+ * - MDN: `text-decoration` properties (2025)
+ *
+ * @module
+ * @group  elements.inline.u
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(u) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Normalize underline rendering.
+  text-decoration-line: underline;
+  text-decoration-color: currentcolor;
+  text-decoration-skip-ink: auto;
+
+  // Preserve inherited typography context.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("../../chunks/index38.cjs"),n=require("../../chunks/index39.cjs"),i=require("../../chunks/index40.cjs"),h=require("../../chunks/index41.cjs"),t=require("../../chunks/index42.cjs"),r=require("../../chunks/index43.cjs");exports.h1=e.index;exports.h2=n.index;exports.h3=i.index;exports.h4=h.index;exports.h5=t.index;exports.h6=r.index;
+//# sourceMappingURL=heading.cjs.map

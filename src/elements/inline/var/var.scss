@@ -1,0 +1,44 @@
+/**
+ * Sol Design Foundation: Var Element
+ *
+ * Variable (`var`)
+ *
+ * Baseline reset + light branding.
+ *
+ * Notes:
+ * - `<var>` represents a variable name in a mathematical expression or programming context.
+ * - UA presentation is often italic and/or monospace depending on browser.
+ * - For consistency in a token-driven system, we normalize to the code font family
+ *   (variable names are typically part of code-like content).
+ *
+ * References (2025+):
+ * - MDN: `<var>` element reference (Sep 2025)
+ *
+ * @module
+ * @group  elements.inline.var
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(var) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: inherit;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-code-font-family);
+  font-size: inherit;
+  font-style: italic; // preserve common var emphasis across UAs
+  font-weight: inherit;
+  color: var(--lg-theme-base-colours-code-font-color);
+  background-color: transparent;
+}

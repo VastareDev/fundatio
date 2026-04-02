@@ -1,0 +1,147 @@
+/**
+ * Sol Design Foundation: ruby element helpers.
+ *
+ * @remarks
+ * The ruby element (`<ruby>`) represents ruby annotations: small annotation text
+ * rendered above, below, or next to base text (commonly used for pronunciation,
+ * transliteration, or translation in East Asian typography).
+ *
+ * Best-practice guidance:
+ * - Prefer correct ruby structure: base text followed by `<rt>` for annotation text.
+ * - Use `<rp>` to provide fallback parentheses for user agents that do not support
+ *   ruby rendering. Modern browsers generally ignore `<rp>` when ruby is supported,
+ *   but it improves graceful degradation.
+ * - For complex ruby (multiple base segments / multiple annotations), consider
+ *   using `<rb>` to delimit base segments and `<rtc>` for semantic annotation groupings.
+ * - Avoid using `innerHTML` for untrusted content. Sol assigns text via `textContent`.
+ *
+ * Attributes:
+ * - `<ruby>` has no element-specific attributes in HTML. It accepts global
+ *   attributes only.
+ *
+ * This module provides small, framework-agnostic helpers so consumers can:
+ * - create `<ruby>` elements in vanilla JS/TS without templates
+ * - apply consistent global attributes safely
+ * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ *
+ * This module has no side effects and does not mutate the DOM unless you call
+ * its functions.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ruby
+ * @see https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element
+ * @see https://www.w3.org/TR/ruby-use-cases/
+ *
+ * @module
+ * @category Elements
+ */
+import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
+/**
+ * Structured ARIA input supported by Sol element factories.
+ *
+ * @remarks
+ * This is intentionally a small, typed subset that covers common cases and
+ * prevents typo-based ARIA bugs.
+ *
+ * It is mapped into {@link GlobalAttrs.aria} for application by `dom.ts`.
+ *
+ * @category Attributes
+ */
+export type StructuredAria = {
+    /**
+     * Accessible label, mapped to `aria-label`.
+     */
+    label?: string;
+    /**
+     * ID reference to the labelling element(s), mapped to `aria-labelledby`.
+     */
+    labelledby?: string;
+    /**
+     * Decorative/hidden hint, mapped to `aria-hidden`.
+     */
+    hidden?: boolean;
+};
+/**
+ * The semantic tag name for ruby annotation containers.
+ *
+ * @category Constants
+ */
+export declare const RUBY_TAG: "ruby";
+/**
+ * A CSS selector targeting ruby elements.
+ *
+ * @category Constants
+ */
+export declare const RUBY_SELECTOR = "ruby";
+/**
+ * Attribute bag for ruby creation/enhancement.
+ *
+ * @remarks
+ * `<ruby>` accepts standard HTML global attributes.
+ *
+ * Sol also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ *
+ * Security note:
+ * - Inline event handler attributes (e.g. `onclick`) are blocked by `dom.ts`.
+ * - The raw `style` attribute is blocked; use {@link GlobalAttrs.style}.
+ *
+ * @category Attributes
+ */
+export type RubyAttrs = Omit<GlobalAttrs, 'aria'> & {
+    /**
+     * Structured ARIA fields mapped into `aria-*` attributes.
+     */
+    aria?: StructuredAria;
+};
+/**
+ * Create a ruby element with optional text content and attributes.
+ *
+ * @remarks
+ * - Text content is assigned via `textContent` (never `innerHTML`).
+ * - Global attributes are applied via Sol's shared DOM helper,
+ *   including security guards that block inline event handler attributes
+ *   (e.g. `onclick`) and raw `style` attribute strings.
+ *
+ * Note:
+ * - `<ruby>` typically contains mixed children (`<rt>`, `<rp>`, `<rb>`, etc.).
+ *   The `text` argument is a convenience for simple cases; consumers can append
+ *   richer child nodes afterwards.
+ *
+ * @param text - Optional text content for the ruby element.
+ * @param attrs - Optional attributes to apply.
+ * @returns The created `<ruby>` element.
+ *
+ * @example
+ * ```ts
+ * import { createRuby } from "@lnpg/sol/elements/inline/ruby";
+ *
+ * const ruby = createRuby();
+ * ruby.append(
+ *   document.createTextNode("漢"),
+ *   document.createElement("rt")
+ * );
+ * ```
+ *
+ * @category DOM
+ */
+export declare function createRuby(text?: string, attrs?: RubyAttrs): ElementOf<typeof RUBY_TAG>;
+/**
+ * Enhance ruby elements within a given root.
+ *
+ * @remarks
+ * This is intentionally a no-op in `1.0.0`.
+ *
+ * Why does it exist?
+ * - It establishes a stable integration pattern for frameworks (Vue/React/etc.)
+ * - It allows future progressive enhancements without changing consumer code
+ *
+ * What it will never do:
+ * - It will not inject styles (CSS remains the source of truth)
+ * - It will not introduce framework-specific behavior
+ *
+ * @param root - The node to search within. Defaults to `document`.
+ *
+ * @category Enhancement
+ */
+export declare function enhanceRubies(root?: ParentNode): void;
+//# sourceMappingURL=index.d.ts.map

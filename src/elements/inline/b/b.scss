@@ -1,0 +1,38 @@
+/**
+ * Sol Design Foundation: B Element
+ *
+ * Bring attention to (`b`)
+ *
+ * Baseline reset + normalized emphasis.
+ *
+ * Notes:
+ * - `<b>` is stylistic emphasis (bring attention) without semantic importance.
+ * - UA uses bold, but typically via relative "bolder".
+ * - Normalize to an explicit token-driven weight to avoid UA variance.
+ *
+ * References (2025+):
+ * - MDN: `<b>` element reference (Aug 2025)
+ *
+ * @module
+ * @group  elements.inline.b
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(b) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Explicit weight to avoid UA-relative "bolder" differences.
+  font-weight: var(--lg-typography-font-weights-bold-font-weight);
+
+  // Preserve inherited typography context otherwise.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  line-height: inherit;
+  color: inherit;
+}

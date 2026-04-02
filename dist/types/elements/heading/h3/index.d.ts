@@ -1,0 +1,126 @@
+/**
+ * Sol Design Foundation: H3 element helpers.
+ *
+ * @remarks
+ * The h3 element (`<h3>`) represents a third-rank section heading.
+ *
+ * Best-practice guidance:
+ * - Use headings to convey document structure, not for visual styling.
+ * - Keep heading levels ordered (don't jump from `<h2>` to `<h4>` because you
+ *   like the font size). Use CSS for presentation.
+ * - Ensure headings describe the section content that follows.
+ *
+ * This module provides small, framework-agnostic helpers so consumers can:
+ * - create `<h3>` elements in vanilla JS/TS without templates
+ * - apply consistent global attributes safely
+ * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ *
+ * This module has no side effects and does not mutate the DOM unless you call
+ * its functions.
+ *
+ * References:
+ * - MDN: Heading elements: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements
+ * - W3C WAI: Headings: https://www.w3.org/WAI/tutorials/page-structure/headings/
+ * - WHATWG HTML: Sections / heading content: https://html.spec.whatwg.org/multipage/sections.html
+ *
+ * @module
+ * @category Elements
+ */
+import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
+/**
+ * Structured ARIA input supported by Sol element factories.
+ *
+ * @remarks
+ * This is intentionally a small, typed subset that covers common cases and
+ * prevents typo-based ARIA bugs (e.g. `lable`).
+ *
+ * It is mapped into {@link GlobalAttrs.aria} for application by `dom.ts`.
+ *
+ * @category Attributes
+ */
+export type StructuredAria = {
+    /**
+     * Accessible label, mapped to `aria-label`.
+     */
+    label?: string;
+    /**
+     * ID reference to the labelling element(s), mapped to `aria-labelledby`.
+     */
+    labelledby?: string;
+    /**
+     * Decorative/hidden hint, mapped to `aria-hidden`.
+     */
+    hidden?: boolean;
+};
+/**
+ * The semantic tag name for third-level headings.
+ *
+ * @category Constants
+ */
+export declare const H3_TAG: "h3";
+/**
+ * A CSS selector targeting h3 elements.
+ *
+ * @category Constants
+ */
+export declare const H3_SELECTOR = "h3";
+/**
+ * Attribute bag for h3 creation/enhancement.
+ *
+ * @remarks
+ * H3 elements accept standard HTML global attributes.
+ *
+ * Sol also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ *
+ * @category Attributes
+ */
+export type H3Attrs = Omit<GlobalAttrs, 'aria'> & {
+    /**
+     * Structured ARIA fields mapped into `aria-*` attributes.
+     */
+    aria?: StructuredAria;
+};
+/**
+ * Create an h3 element with optional text content and global attributes.
+ *
+ * @remarks
+ * - Text content is assigned via `textContent` (never `innerHTML`).
+ * - Global attributes are applied via Sol's shared DOM helper,
+ *   including security guards that block inline event handler attributes
+ *   (e.g. `onclick`) and raw `style` attribute strings.
+ *
+ * @param text - Optional text content for the heading.
+ * @param attrs - Optional attributes to apply.
+ * @returns The created `<h3>` element.
+ *
+ * @example
+ * ```ts
+ * import { createH3 } from "@lnpg/sol/elements/heading/h3";
+ *
+ * const h = createH3("Section heading", { id: "section" });
+ * ```
+ *
+ * @category DOM
+ */
+export declare function createH3(text?: string, attrs?: H3Attrs): ElementOf<typeof H3_TAG>;
+/**
+ * Enhance h3 elements within a given root.
+ *
+ * @remarks
+ * This is intentionally a no-op in `1.0.0`.
+ *
+ * Why does it exist?
+ * - It establishes a stable integration pattern for frameworks (Vue/React/etc.)
+ * - It allows future progressive enhancements without changing consumer code
+ *
+ * What it will never do:
+ * - It will not inject styles (CSS remains the source of truth)
+ * - It will not introduce framework-specific behavior
+ *
+ * @param root - The node to search within. Defaults to `document`.
+ *
+ * @category Enhancement
+ */
+export declare function enhanceH3s(root?: ParentNode): void;
+//# sourceMappingURL=index.d.ts.map

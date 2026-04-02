@@ -1,0 +1,49 @@
+/**
+ * Sol Design Foundation: Paragraph Element
+ *
+ * Paragraph (`p`)
+ *
+ * Baseline + light element-layer styling.
+ *
+ * This module:
+ * - Ensures consistent cross-browser baseline for paragraphs
+ * - Applies modern reset principles (2025+)
+ * - Adds sensible defaults and brand-aligned typography tokens
+ * - Respects UA defaults where still useful
+ *
+ * @module
+ * @group  elements.text.p
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(p) {
+  // Display: ensure block-level consistency
+  display: block;
+
+  // Typography: robustness & branding
+  font-family: var(--lg-typography-font-families-base-font-family);
+  font-size: var(--lg-typography-font-sizes-base-font-size);
+  font-weight: var(--lg-typography-formatting-base-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+
+  // Browser reset / normalization
+  margin: 0; // remove UA default margins for tighter control
+  padding: 0; // ensure no unexpected paddings
+  overflow-wrap: break-word; // avoid overflow inconsistencies across rendering engines :contentReference[oaicite:1]{index=1}
+  text-wrap: pretty; // modern text wrapping where supported :contentReference[oaicite:2]{index=2}
+
+  // Inherit spelling and linebreak behavior
+  text-indent: inherit;
+  white-space: normal;
+
+  // Sizing: consistent for responsive typography
+  max-width: 100%;
+
+  // Reset browser list-style fallbacks
+  list-style-type: none;
+
+  // Accessibility improvement: ensure baseline readability
+  hyphens: auto;
+}

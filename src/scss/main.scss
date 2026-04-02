@@ -1,0 +1,47 @@
+/**
+ * Sol Design Foundation: Main Entry Point
+ *
+ * Primary SCSS entry point for the Sol design foundation.
+ *
+ * This file composes the foundational layers that make up the
+ * complete baseline output of the system:
+ *
+ * 1) Core (fonts, root scope, reboot)
+ * 2) Elements (baseline semantic element styling)
+ *
+ * IMPORTANT:
+ * - This file is intentionally composition-only.
+ * - It must not define selectors, variables, mixins, or functions.
+ * - Import order matters and is part of the public contract of the build.
+ *
+ * Current state:
+ * - Core provides structural reset and base system scaffolding.
+ * - Elements provide low-specificity semantic element baselines.
+ * - No theme variants or component layers are included here.
+ *
+ * @module
+ * @group  foundation
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* ----------------------------------------------------------------------------
+ - Composition
+ --------------------------------------------------------------------------- */
+
+/**
+ * Core layer.
+ *
+ * Must load first.
+ * Provides font-face declarations, root scope, and reboot baseline.
+ */
+@use './core';
+
+/**
+ * Elements layer.
+ *
+ * Loads baseline element resets and token-driven defaults.
+ * Must load after core so typography and reboot scaffolding are available.
+ */
+@use './elements';

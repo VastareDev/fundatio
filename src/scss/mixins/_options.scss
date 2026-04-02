@@ -1,0 +1,297 @@
+/**
+ * Sol Design Foundation: Options Mixins
+ *
+ * CSS emitters for option registry values (typically as CSS custom properties).
+ *
+ * This layer exists to bridge:
+ *   tokens -> maps -> functions -> mixins -> selectors / properties
+ *
+ * Responsibilities:
+ * - Emit CSS custom properties from the canonical options registry
+ * - Provide targeted emitters (single option / subset / all options)
+ * - Offer developer ergonomics (string-or-list inputs, sane defaults)
+ * - Keep output deterministic and predictable (no magic key rewriting)
+ *
+ * Design notes:
+ * - This file DOES generate CSS (via custom properties).
+ * - We do not mutate registries (options stay canonical).
+ * - We validate inputs and fail fast with actionable errors.
+ *
+ * @module
+ * @group  mixins.options
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../functions/options' as fn;
+
+/* ----------------------------------------------------------------------------
+ - Internal helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Normalises a value into a list.
+ *
+ * Developer ergonomics:
+ * - null => null
+ * - string => (string,)
+ * - list => list (unchanged)
+ *
+ * @access private
+ *
+ * @param  {*} $value
+ *
+ * @return {*}
+ */
+@function _as-list($value) {
+  @if $value == null {
+    @return null;
+  }
+
+  @if meta.type-of($value) == 'string' {
+    @return list.append((), $value, comma);
+  }
+
+  @return $value;
+}
+
+/**
+ * Casts a Sass value into a string representation (without caring what it was).
+ *
+ * Used for safe comparisons when user passes unquoted identifiers etc.
+ *
+ * @access private
+ *
+ * @param  {*} $value
+ *
+ * @return {string}
+ */
+@function _stringify($value) {
+  @if meta.type-of($value) == 'string' {
+    @return $value;
+  }
+
+  @return '#{$value}';
+}
+
+/**
+ * Normalises a key filter into a list of strings (or null).
+ *
+ * @access private
+ *
+ * @param  {list|string|null} $keys
+ *
+ * @return {list|null}
+ */
+@function _normalise-keys($keys) {
+  $use: _as-list($keys);
+
+  @if $use == null {
+    @return null;
+  }
+
+  @if meta.type-of($use) != 'list' {
+    @error "Expected $keys to be a list, string, or null, got '#{meta.type-of($keys)}'";
+  }
+
+  $out: ();
+
+  @each $k in $use {
+    $out: list.append($out, _stringify($k), comma);
+  }
+
+  @return $out;
+}
+
+/**
+ * Converts bool to a CSS-friendly numeric value.
+ *
+ * @access private
+ *
+ * @param  {bool} $value
+ *
+ * @return {number}
+ */
+@function _bool-to-int($value) {
+  @if meta.type-of($value) != 'bool' {
+    @error "Expected $value to be type 'bool', got '#{meta.type-of($value)}'";
+  }
+
+  @if $value {
+    @return 1;
+  }
+
+  @return 0;
+}
+
+/**
+ * Normalises option values for CSS emission.
+ *
+ * - string: emitted unquoted
+ * - bool: emitted as 0/1
+ * - everything else: emitted as-is (numbers, colors, lists, etc.)
+ *
+ * @access private
+ *
+ * @param  {*} $value
+ *
+ * @return {*}
+ */
+@function _css-value($value) {
+  @if $value == null {
+    @error "Expected option value to be non-null";
+  }
+
+  $t: meta.type-of($value);
+
+  @if $t == 'string' {
+    @return string.unquote($value);
+  }
+
+  @if $t == 'bool' {
+    @return _bool-to-int($value);
+  }
+
+  @return $value;
+}
+
+/**
+ * Builds a CSS custom property name.
+ *
+ * If $prefix is provided:
+ *   --<prefix>-<key>
+ * else:
+ *   --<key>
+ *
+ * @access private
+ *
+ * @param  {string|null} $prefix
+ * @param  {string}      $key
+ *
+ * @return {string}
+ */
+@function _var-name($prefix, $key) {
+  @if meta.type-of($key) != 'string' {
+    @error "Expected $key to be type 'string', got '#{meta.type-of($key)}'";
+  }
+
+  @if $prefix == null {
+    @return '--#{$key}';
+  }
+
+  @if meta.type-of($prefix) != 'string' {
+    @error "Expected $prefix to be type 'string' (or null), got '#{meta.type-of($prefix)}'";
+  }
+
+  @if string.length($prefix) == 0 {
+    @return '--#{$key}';
+  }
+
+  @return '--#{$prefix}-#{$key}';
+}
+
+/* ----------------------------------------------------------------------------
+ - Public emitters
+ --------------------------------------------------------------------------- */
+
+/**
+ * Emits a single CSS custom property from the options registry.
+ *
+ * Example:
+ *   :root { @include option-var("prefix"); }
+ *
+ * @param  {string}      $key
+ * @param  {string|null} $prefix  Optional override prefix for emitted var names
+ *
+ * @return {void}
+ */
+@mixin option-var($key, $prefix: null) {
+  @if meta.type-of($key) != 'string' {
+    @error "Expected $key to be type 'string', got '#{meta.type-of($key)}'";
+  }
+
+  $value: fn.option($key);
+
+  #{_var-name($prefix, $key)}: _css-value($value);
+}
+
+/**
+ * Emits CSS custom properties for the options registry (optionally filtered).
+ *
+ * Default behavior:
+ * - If $prefix is null, attempts to use registry option("prefix") as var prefix.
+ *   If that option does not exist, falls back to no prefix.
+ *
+ * Filtering:
+ * - $keys can be null (all), a string, or a list of strings.
+ *
+ * Example:
+ *   :root { @include options-vars(); }
+ *   :root { @include options-vars($keys: ("prefix","dark-mode")); }
+ *
+ * @param  {list|string|null} $keys
+ * @param  {string|null}      $prefix
+ *
+ * @return {void}
+ */
+@mixin options-vars($keys: null, $prefix: null) {
+  $opts: fn.options();
+
+  @if meta.type-of($opts) != 'map' {
+    @error "Expected options registry to be a map, got '#{meta.type-of($opts)}'";
+  }
+
+  $use-keys: _normalise-keys($keys);
+
+  // Prefix resolution:
+  // - explicit $prefix wins
+  // - else try registry "prefix"
+  // - else null (no prefix)
+  $use-prefix: $prefix;
+
+  @if $use-prefix == null and fn.has-option('prefix') == true {
+    $p: fn.option('prefix');
+
+    @if $p != null and meta.type-of($p) == 'string' and string.length($p) > 0 {
+      $use-prefix: $p;
+    }
+  }
+
+  @each $k, $v in $opts {
+    @if $v == null {
+      @continue;
+    }
+
+    @if meta.type-of($k) != 'string' {
+      @error "Expected option key to be a string, got '#{meta.type-of($k)}'";
+    }
+
+    @if $use-keys != null and list.index($use-keys, $k) == null {
+      @continue;
+    }
+
+    #{_var-name($use-prefix, $k)}: _css-value($v);
+  }
+}
+
+/**
+ * Convenience emitter for a `:root` block.
+ *
+ * Example:
+ *   @include options-root();
+ *
+ * @param  {list|string|null} $keys
+ * @param  {string|null}      $prefix
+ *
+ * @return {void}
+ */
+@mixin options-root($keys: null, $prefix: null) {
+  :root {
+    @include options-vars($keys: $keys, $prefix: $prefix);
+  }
+}

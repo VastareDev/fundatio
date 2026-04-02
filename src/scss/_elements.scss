@@ -1,0 +1,178 @@
+/**
+ * Sol Design Foundation: Elements Loader
+ *
+ * Primary element composition layer for the Sol design foundation.
+ *
+ * This file composes all baseline element modules that collectively
+ * form the element-layer output of the system.
+ *
+ * IMPORTANT:
+ * - This file is intentionally composition-only.
+ * - It must not define selectors, variables, mixins, or functions.
+ * - Import order matters and is part of the public contract of the build.
+ * - This file MUST use `@use` (not `@forward`).
+ *
+ * Current state:
+ * - Element modules emit baseline resets using low-specificity `:where()`.
+ * - Token references are resolved inside each element module.
+ * - No logic or configuration is performed here.
+ *
+ * @module
+ * @group  elements
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* ----------------------------------------------------------------------------
+ - Composition
+ --------------------------------------------------------------------------- */
+
+/**
+ * Text content elements.
+ */
+@use '../elements/text/paragraph/paragraph';
+@use '../elements/text/hr/hr';
+@use '../elements/text/pre/pre';
+@use '../elements/text/blockquote/blockquote';
+@use '../elements/text/address/address';
+
+/**
+ * Container elements.
+ */
+@use '../elements/container/div/div';
+@use '../elements/container/span/span';
+
+/**
+ * Line break elements.
+ */
+@use '../elements/break/br/br';
+@use '../elements/break/wbr/wbr';
+
+/**
+ * Media elements.
+ */
+@use '../elements/media/canvas/canvas';
+@use '../elements/media/embed/embed';
+@use '../elements/media/iframe/iframe';
+@use '../elements/media/img/img';
+@use '../elements/media/math/math';
+@use '../elements/media/object/object';
+@use '../elements/media/svg/svg';
+@use '../elements/media/video/video';
+@use '../elements/media/audio/audio';
+
+/**
+ * Table elements.
+ */
+@use '../elements/table/table/table';
+@use '../elements/table/colgroup/colgroup';
+@use '../elements/table/col/col';
+@use '../elements/table/thead/thead';
+@use '../elements/table/tbody/tbody';
+@use '../elements/table/tfoot/tfoot';
+@use '../elements/table/tr/tr';
+@use '../elements/table/th/th';
+@use '../elements/table/td/td';
+@use '../elements/table/caption/caption';
+
+/**
+ * Heading elements.
+ */
+@use '../elements/heading/h1/h1';
+@use '../elements/heading/h2/h2';
+@use '../elements/heading/h3/h3';
+@use '../elements/heading/h4/h4';
+@use '../elements/heading/h5/h5';
+@use '../elements/heading/h6/h6';
+
+/**
+ * Inline semantic elements.
+ */
+@use '../elements/inline/a/a';
+@use '../elements/inline/em/em';
+@use '../elements/inline/strong/strong';
+@use '../elements/inline/small/small';
+@use '../elements/inline/s/s';
+@use '../elements/inline/cite/cite';
+@use '../elements/inline/q/q';
+@use '../elements/inline/dfn/dfn';
+@use '../elements/inline/abbr/abbr';
+@use '../elements/inline/data/data';
+@use '../elements/inline/time/time';
+@use '../elements/inline/code/code';
+@use '../elements/inline/var/var';
+@use '../elements/inline/samp/samp';
+@use '../elements/inline/kbd/kbd';
+@use '../elements/inline/sub/sub';
+@use '../elements/inline/sup/sup';
+@use '../elements/inline/i/i';
+@use '../elements/inline/b/b';
+@use '../elements/inline/u/u';
+@use '../elements/inline/mark/mark';
+@use '../elements/inline/ruby/ruby';
+@use '../elements/inline/rb/rb';
+@use '../elements/inline/rt/rt';
+@use '../elements/inline/rtc/rtc';
+@use '../elements/inline/rp/rp';
+
+/**
+ * List elements.
+ */
+@use '../elements/list/ol/ol';
+@use '../elements/list/ul/ul';
+@use '../elements/list/li/li';
+@use '../elements/list/dl/dl';
+@use '../elements/list/dt/dt';
+@use '../elements/list/dd/dd';
+
+/**
+ * Figure elements.
+ */
+@use '../elements/figure/figure/figure';
+@use '../elements/figure/figcaption/figcaption';
+
+/**
+ * Form elements.
+ */
+@use '../elements/form/form/form';
+@use '../elements/form/label/label';
+@use '../elements/form/input/input';
+@use '../elements/form/textarea/textarea';
+@use '../elements/form/select/select';
+@use '../elements/form/button/button';
+@use '../elements/form/fieldset/fieldset';
+@use '../elements/form/legend/legend';
+@use '../elements/form/datalist/datalist';
+@use '../elements/form/optgroup/optgroup';
+@use '../elements/form/option/option';
+@use '../elements/form/output/output';
+@use '../elements/form/progress/progress';
+@use '../elements/form/meter/meter';
+
+/**
+ * Interactive elements.
+ */
+@use '../elements/interactive/details/details';
+@use '../elements/interactive/summary/summary';
+@use '../elements/interactive/dialog/dialog';
+
+/**
+ * Responsive media semantics.
+ */
+@use '../elements/responsive/picture/picture';
+@use '../elements/responsive/source/source';
+@use '../elements/responsive/track/track';
+@use '../elements/responsive/map/map';
+@use '../elements/responsive/area/area';
+
+/**
+ * Layout and sectioning elements.
+ */
+@use '../elements/layout/main/main';
+@use '../elements/layout/section/section';
+@use '../elements/layout/article/article';
+@use '../elements/layout/aside/aside';
+@use '../elements/layout/nav/nav';
+@use '../elements/layout/header/header';
+@use '../elements/layout/footer/footer';

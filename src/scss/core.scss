@@ -1,0 +1,53 @@
+/**
+ * Sol Design Foundation: Core Entry Point
+ *
+ * Primary SCSS entry point for the Sol design foundation.
+ *
+ * This file composes the baseline layers that make up the "core" output:
+ * 1) Font faces (asset declarations)
+ * 2) Root scope (future CSS variables)
+ * 3) Reboot (global baseline/reset)
+ *
+ * IMPORTANT:
+ * - This file is intentionally composition-only.
+ * - It must not define selectors, variables, mixins, or functions.
+ * - Import order matters and is part of the public contract of the build.
+ *
+ * Current state:
+ * - Values are hard-coded in downstream layers temporarily.
+ * - Tokens/CSS variables will be wired in later without changing structure.
+ *
+ * @module
+ * @group  core
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* ----------------------------------------------------------------------------
+ - Composition
+ --------------------------------------------------------------------------- */
+
+/**
+ * Font-face declarations.
+ *
+ * Must be loaded first so any font-family usage in later layers can resolve
+ * to declared faces once we wire generation to maps/tokens.
+ */
+@use './font-face';
+
+/**
+ * Root scope.
+ *
+ * Placeholder for CSS variable emission. Kept separate to preserve ordering
+ * and allow future expansion without touching reboot rules.
+ */
+@use './root';
+
+/**
+ * Reboot / baseline.
+ *
+ * Global reset and baseline defaults. Must load after root so variables can
+ * be referenced here later (once tokenised).
+ */
+@use './reboot';

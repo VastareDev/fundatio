@@ -1,0 +1,454 @@
+/**
+ * Sol Design Foundation: Font Face Functions
+ *
+ * Strict, read-only accessors for canonical font-face registries.
+ *
+ * This module provides:
+ * - Group access (`font-group`)
+ * - Variant access (`font-variant`)
+ * - Descriptor access (`font-descriptor`)
+ * - Source access (`font-source`, `font-sources`)
+ * - Registry introspection (`font-groups`, `font-variants`, `font-descriptors`)
+ * - Safe access for generators (`try-font-variant`, `try-font-source`)
+ * - Existence checks (`has-font-group`, `has-font-variant`, `has-font-descriptor`)
+ *
+ * These functions intentionally:
+ * - Validate argument types and basic correctness
+ * - Fail fast with actionable errors (for strict getters)
+ * - Provide a non-throwing alternative for iteration/generator use-cases
+ * - Return native Sass values (maps, strings, lists) without serialization
+ *
+ * This file is intentionally logic-only:
+ * - No selectors
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  functions.fonts
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../maps/fonts' as font-maps;
+
+/* ----------------------------------------------------------------------------
+ - Internal assertions
+ --------------------------------------------------------------------------- */
+
+/**
+ * Asserts the given value is of an expected Sass type.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $expected
+ * @param  {string} $label
+ *
+ * @return {*}
+ */
+@function _assert-type($value, $expected, $label) {
+  @if meta.type-of($value) != $expected {
+    @error "Expected #{$label} to be type '#{$expected}', got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a string is non-empty (after trimming whitespace).
+ *
+ * Prevents confusing "missing key" errors caused by passing
+ * empty strings or whitespace-only strings to public APIs.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {string}
+ */
+@function _assert-non-empty-string($value, $label) {
+  $_: _assert-type($value, 'string', $label);
+
+  // Dart Sass doesn't ship string.trim(); implement via slice.
+  $s: $value;
+  $len: string.length($s);
+
+  @if $len == 0 {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  // Trim left
+  $start: 1;
+
+  @while $start <= $len and string.slice($s, $start, $start) == ' ' {
+    $start: $start + 1;
+  }
+
+  // Trim right
+  $end: $len;
+
+  @while $end >= $start and string.slice($s, $end, $end) == ' ' {
+    $end: $end - 1;
+  }
+
+  @if $end < $start {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a map contains a key.
+ *
+ * @access private
+ *
+ * @param  {map}    $m
+ * @param  {*}      $key
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-has-key($m, $key, $label) {
+  @if map.has-key($m, $key) == false {
+    @error "Missing key '#{$key}' in #{$label}";
+  }
+
+  @return $m;
+}
+
+/**
+ * Asserts a value is a map.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-map($value, $label) {
+  @if meta.type-of($value) != 'map' {
+    @error "Expected #{$label} to be a map, got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/* ----------------------------------------------------------------------------
+ - Registry introspection
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns the list of available font group names.
+ *
+ * Example:
+ *   $groups: font-groups(); // ("base", "headings", "code")
+ *
+ * @return {list}
+ */
+@function font-groups() {
+  @return map.keys(font-maps.$fonts);
+}
+
+/**
+ * Returns the list of variants for a font group (typically "normal", "italic").
+ *
+ * @param  {string} $group
+ *
+ * @return {list}
+ */
+@function font-variants($group) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-has-key(font-maps.$fonts, $group, '$fonts');
+
+  @return map.keys(map.get(font-maps.$fonts, $group));
+}
+
+/**
+ * Returns the list of descriptor keys for a given group + variant.
+ *
+ * Descriptor keys are expected to include:
+ * - "family"
+ * - "display"
+ * - "style"
+ * - "weight"
+ * - "sources"
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ *
+ * @return {list}
+ */
+@function font-descriptors($group, $variant) {
+  $v: font-variant($group, $variant);
+
+  @return map.keys($v);
+}
+
+/* ----------------------------------------------------------------------------
+ - Strict accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns the full map for a named font group.
+ *
+ * Example:
+ *   $base: font-group("base");
+ *
+ * @param  {string} $group
+ *
+ * @return {map}
+ */
+@function font-group($group) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-has-key(font-maps.$fonts, $group, '$fonts');
+
+  @return map.get(font-maps.$fonts, $group);
+}
+
+/**
+ * Returns the full descriptor map for a group + variant.
+ *
+ * Example:
+ *   $italic: font-variant("base", "italic");
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ *
+ * @return {map}
+ */
+@function font-variant($group, $variant) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($variant, '$variant');
+  $g: font-group($group);
+  $_: _assert-has-key($g, $variant, "font group '#{$group}'");
+  $v: map.get($g, $variant);
+
+  @return _assert-map($v, "font-variant('#{$group}', '#{$variant}')");
+}
+
+/**
+ * Returns a single descriptor value from a group + variant.
+ *
+ * Example:
+ *   $family: font-descriptor("base", "normal", "family");
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ * @param  {string} $descriptor
+ *
+ * @return {*}
+ */
+@function font-descriptor($group, $variant, $descriptor) {
+  $_: _assert-non-empty-string($descriptor, '$descriptor');
+  $v: font-variant($group, $variant);
+  $_: _assert-has-key($v, $descriptor, "font variant '#{$group}/#{$variant}'");
+
+  @return map.get($v, $descriptor);
+}
+
+/**
+ * Returns the sources map from a group + variant.
+ *
+ * Example:
+ *   $sources: font-sources("base", "normal"); // ("woff2": "...", "ttf": "...")
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ *
+ * @return {map}
+ */
+@function font-sources($group, $variant) {
+  $sources: font-descriptor($group, $variant, 'sources');
+
+  @return _assert-map($sources, "font-sources('#{$group}', '#{$variant}')");
+}
+
+/**
+ * Returns a specific source path from a group + variant.
+ *
+ * Example:
+ *   $woff2: font-source("base", "normal", "woff2");
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ * @param  {string} $format   Typically "woff2" or "ttf"
+ *
+ * @return {string}
+ */
+@function font-source($group, $variant, $format) {
+  $_: _assert-non-empty-string($format, '$format');
+  $sources: font-sources($group, $variant);
+  $_: _assert-has-key($sources, $format, "font sources '#{$group}/#{$variant}'");
+  $path: map.get($sources, $format);
+  $_: _assert-type($path, 'string', "font-source('#{$group}', '#{$variant}', '#{$format}')");
+
+  @return $path;
+}
+
+/**
+ * Convenience alias for `font-source()`.
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ * @param  {string} $format
+ *
+ * @return {string}
+ */
+@function fs($group, $variant, $format) {
+  @return font-source($group, $variant, $format);
+}
+
+/* ----------------------------------------------------------------------------
+ - Safe accessors
+ --------------------------------------------------------------------------- */
+
+/**
+ * Safe font variant lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Group is missing
+ * - Variant is missing
+ * - Value is null
+ * - Value is not a map
+ *
+ * Intended for iteration/generator workflows.
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-font-variant($group, $variant, $fallback: null) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($variant, '$variant');
+
+  @if map.has-key(font-maps.$fonts, $group) == false {
+    @return $fallback;
+  }
+
+  $g: map.get(font-maps.$fonts, $group);
+
+  @if map.has-key($g, $variant) == false {
+    @return $fallback;
+  }
+
+  $v: map.get($g, $variant);
+
+  @if not $v or meta.type-of($v) != 'map' {
+    @return $fallback;
+  }
+
+  @return $v;
+}
+
+/**
+ * Safe font source lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Group/variant missing
+ * - Sources map missing
+ * - Format missing
+ * - Path is null or not a string
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ * @param  {string} $format
+ * @param  {*}      $fallback
+ *
+ * @return {*}not
+ */
+@function try-font-source($group, $variant, $format, $fallback: null) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($variant, '$variant');
+  $_: _assert-non-empty-string($format, '$format');
+  $v: try-font-variant($group, $variant);
+
+  @if not $v {
+    @return $fallback;
+  }
+
+  @if map.has-key($v, 'sources') == false {
+    @return $fallback;
+  }
+
+  $sources: map.get($v, 'sources');
+
+  @if not $sources or meta.type-of($sources) != 'map' {
+    @return $fallback;
+  }
+
+  @if map.has-key($sources, $format) == false {
+    @return $fallback;
+  }
+
+  $path: map.get($sources, $format);
+
+  @if not $path or meta.type-of($path) != 'string' {
+    @return $fallback;
+  }
+
+  @return $path;
+}
+
+/* ----------------------------------------------------------------------------
+ - Existence checks
+ --------------------------------------------------------------------------- */
+
+/**
+ * Returns whether a font group exists in the registry.
+ *
+ * @param  {string} $group
+ *
+ * @return {bool}
+ */
+@function has-font-group($group) {
+  $_: _assert-non-empty-string($group, '$group');
+
+  @return map.has-key(font-maps.$fonts, $group);
+}
+
+/**
+ * Returns whether a variant exists within a group.
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ *
+ * @return {bool}
+ */
+@function has-font-variant($group, $variant) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($variant, '$variant');
+
+  @if has-font-group($group) == false {
+    @return false;
+  }
+
+  @return map.has-key(font-group($group), $variant);
+}
+
+/**
+ * Returns whether a descriptor exists within a group + variant.
+ *
+ * @param  {string} $group
+ * @param  {string} $variant
+ * @param  {string} $descriptor
+ *
+ * @return {bool}
+ */
+@function has-font-descriptor($group, $variant, $descriptor) {
+  $_: _assert-non-empty-string($descriptor, '$descriptor');
+
+  @if has-font-variant($group, $variant) == false {
+    @return false;
+  }
+
+  @return map.has-key(font-variant($group, $variant), $descriptor);
+}

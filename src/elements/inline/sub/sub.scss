@@ -1,0 +1,44 @@
+/**
+ * Sol Design Foundation: Sub Element
+ *
+ * Subscript (`sub`)
+ *
+ * Baseline reset + normalized subscript behavior.
+ *
+ * Notes:
+ * - `<sub>` lowers text relative to baseline.
+ * - Normalize font-size and vertical positioning explicitly.
+ * - Preserve readability and inline flow.
+ *
+ * References (2025+):
+ * - MDN: `<sub>` element reference (Sep 2025)
+ * - CSS Inline Layout Module guidance
+ *
+ * @module
+ * @group  elements.inline.sub
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(sub) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Explicit scaling instead of relying on UA "smaller"
+  font-size: 0.75em;
+
+  // Maintain inline readability
+  line-height: 0;
+
+  // Normalize vertical shift
+  vertical-align: sub;
+
+  // Preserve inherited typography context
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+}

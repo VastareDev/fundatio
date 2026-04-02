@@ -1,0 +1,42 @@
+/**
+ * Sol Design Foundation: Form Element
+ *
+ * Form (`form`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA spacing to a consistent baseline
+ * - Keeps form as a structural container (no layout patterns imposed)
+ * - Applies base typography tokens so the element can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.form.form
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(form) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography (standalone-safe)
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  background-color: transparent;
+}

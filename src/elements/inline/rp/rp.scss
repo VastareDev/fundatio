@@ -1,0 +1,41 @@
+/**
+ * Sol Design Foundation: RP Element
+ *
+ * Ruby fallback parentheses (`rp`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - `<rp>` provides fallback parentheses for user agents that don't support ruby rendering.
+ * - In supporting browsers, `<rp>` is typically not rendered; in fallback contexts,
+ *   it should behave like neutral inline text.
+ * - Do not override display; preserve intrinsic ruby/fallback behavior.
+ *
+ * References (2025+):
+ * - MDN: `<rp>` element reference (updated Feb 2026)
+ * - MDN: CSS ruby layout guide (updated Nov 2025)
+ *
+ * @module
+ * @group  elements.inline.rp
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(rp) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve intrinsic ruby formatting model behavior.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Inherit typography from surrounding context.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

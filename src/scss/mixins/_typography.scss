@@ -1,0 +1,272 @@
+/**
+ * Sol Design Foundation: Typography Mixins
+ *
+ * CSS custom property (variable) emitters for the canonical typography registry.
+ *
+ * This layer exists to bridge:
+ *   tokens -> maps -> functions -> mixins -> selectors (e.g. :root)
+ *
+ * Responsibilities:
+ * - Emit stable `:root` (or theme-scope) CSS variables for typography groups
+ * - Provide targeted emitters (single group / subset) for consumers & generators
+ * - Keep naming deterministic: registry keys become variable names, as-is
+ *
+ * Design notes:
+ * - Typography is grouped (families, weights, sizes, formatting, spacing).
+ * - This file does not assume where it is included (core vs. consumer build).
+ * - This file does not create selectors. You decide the scope.
+ *
+ * @module
+ * @group  mixins.typography
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../functions/typography' as fn;
+
+/* ----------------------------------------------------------------------------
+ - Internal helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Normalises a value into a list.
+ *
+ * - null   => null
+ * - string => (string,)
+ * - list   => list (unchanged)
+ */
+@function _as-list($value) {
+  @if $value == null {
+    @return null;
+  }
+
+  @if meta.type-of($value) == 'string' {
+    @return list.append((), $value, comma);
+  }
+
+  @return $value;
+}
+
+/**
+ * Builds a CSS custom property name for a typography token.
+ *
+ * Example output (default):
+ *   --sol-typography-font-sizes-font-size-h1
+ *
+ * @access private
+ *
+ * @param  {string} $group-key     Typography group key (e.g. "font-sizes")
+ * @param  {string} $token-key     Token key within the group (e.g. "font-size-h1")
+ * @param  {string} $var-prefix    Must include the leading `--` (default: --sol-)
+ * @param  {string} $namespace     Namespace segment after prefix (default: typography)
+ *
+ * @return {string}
+ */
+@function _css-var-name($group-key, $token-key, $var-prefix, $namespace) {
+  @if meta.type-of($group-key) != 'string' {
+    @error "Expected $group-key to be type 'string', got '#{meta.type-of($group-key)}'";
+  }
+
+  @if meta.type-of($token-key) != 'string' {
+    @error "Expected $token-key to be type 'string', got '#{meta.type-of($token-key)}'";
+  }
+
+  @if meta.type-of($var-prefix) != 'string' {
+    @error "Expected $var-prefix to be type 'string', got '#{meta.type-of($var-prefix)}'";
+  }
+
+  @if meta.type-of($namespace) != 'string' {
+    @error "Expected $namespace to be type 'string', got '#{meta.type-of($namespace)}'";
+  }
+
+  @return '#{$var-prefix}#{$namespace}-#{$group-key}-#{$token-key}';
+}
+
+/**
+ * Emits a single CSS custom property declaration.
+ *
+ * @access private
+ *
+ * @param  {string} $name   Full var name including `--`
+ * @param  {*}      $value
+ *
+ * @return {void}
+ */
+@mixin _emit-var($name, $value) {
+  @if meta.type-of($name) != 'string' {
+    @error "Expected $name to be type 'string', got '#{meta.type-of($name)}'";
+  }
+
+  #{$name}: #{$value};
+}
+
+/* ----------------------------------------------------------------------------
+ - Public emitters
+ --------------------------------------------------------------------------- */
+
+/**
+ * Emits CSS variables for a single typography group.
+ *
+ * Typical usage:
+ *   :root { @include typography-group-vars("font-sizes"); }
+ *   [data-theme="compact"] { @include typography-group-vars("spacing"); }
+ *
+ * Output naming (default):
+ *   --sol-typography-<group>-<key>: <value>;
+ *
+ * @param  {string} $group
+ * @param  {list|null} $keys        Optional subset (e.g. ("base-font-size","font-size-h1"))
+ * @param  {string} $var-prefix     Leading custom prop prefix (default: --sol-)
+ * @param  {string} $namespace      Namespace segment (default: typography)
+ *
+ * @return {void}
+ */
+@mixin typography-group-vars($group, $keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  // Strict group access with actionable errors.
+  $m: fn.typography-group($group);
+
+  @if meta.type-of($m) != 'map' {
+    @error "Expected typography group '#{$group}' to be a map, got '#{meta.type-of($m)}'";
+  }
+
+  $use-keys: _as-list($keys);
+
+  @if $use-keys != null and meta.type-of($use-keys) != 'list' {
+    @error "Expected $keys to be a list, string, or null, got '#{meta.type-of($keys)}'";
+  }
+
+  @each $key, $val in $m {
+    @if meta.type-of($key) != 'string' {
+      @error "Expected typography key in group '#{$group}' to be a string, got '#{meta.type-of($key)}'";
+    }
+
+    @if $use-keys != null and list.index($use-keys, $key) == null {
+      @continue;
+    }
+
+    $name: _css-var-name($group, $key, $var-prefix, $namespace);
+
+    @include _emit-var($name, $val);
+  }
+
+  // If a subset was requested, fail fast when none matched.
+  @if $use-keys != null and list.length($use-keys) > 0 {
+    $emitted: false;
+
+    @each $k in $use-keys {
+      @if map.has-key($m, $k) {
+        $emitted: true;
+      }
+    }
+
+    @if $emitted == false {
+      @error "No matching keys emitted for typography group '#{$group}'. Check $keys against fn.typography-keys('#{$group}').";
+    }
+  }
+}
+
+/**
+ * Emits CSS variables for *all* registered typography groups.
+ *
+ * @param  {list|null} $groups      Optional subset (e.g. ("font-sizes","formatting"))
+ * @param  {string}    $var-prefix  Leading custom prop prefix (default: --sol-)
+ * @param  {string}    $namespace   Namespace segment (default: typography)
+ *
+ * @return {void}
+ */
+@mixin typography-vars($groups: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  $use-groups: null;
+
+  @if $groups == null {
+    $use-groups: fn.typography-groups();
+  } @else {
+    $use-groups: _as-list($groups);
+  }
+
+  @if meta.type-of($use-groups) != 'list' {
+    @error "Expected $groups to be a list, string, or null, got '#{meta.type-of($use-groups)}'";
+  }
+
+  @each $group in $use-groups {
+    @include typography-group-vars(
+      $group,
+      $keys: null,
+      $var-prefix: $var-prefix,
+      $namespace: $namespace
+    );
+  }
+}
+
+/**
+ * Top-level convenience mixin to emit everything typography-related for `:root`
+ * (or any selector you wrap it in).
+ *
+ * This intentionally does NOT create selectors.
+ * You decide the scope, e.g.:
+ *
+ *   :root { @include typography-root-vars(); }
+ *   [data-theme="dense"] { @include typography-root-vars($groups: ("spacing")); }
+ *
+ * @param  {list|null} $groups
+ * @param  {string}    $var-prefix
+ * @param  {string}    $namespace
+ *
+ * @return {void}
+ */
+@mixin typography-root-vars($groups: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  @include typography-vars($groups: $groups, $var-prefix: $var-prefix, $namespace: $namespace);
+}
+
+/* ----------------------------------------------------------------------------
+ - Convenience wrappers
+ --------------------------------------------------------------------------- */
+
+@mixin font-family-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  @include typography-group-vars(
+    'font-families',
+    $keys: $keys,
+    $var-prefix: $var-prefix,
+    $namespace: $namespace
+  );
+}
+
+@mixin font-weight-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  @include typography-group-vars(
+    'font-weights',
+    $keys: $keys,
+    $var-prefix: $var-prefix,
+    $namespace: $namespace
+  );
+}
+
+@mixin font-size-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  @include typography-group-vars(
+    'font-sizes',
+    $keys: $keys,
+    $var-prefix: $var-prefix,
+    $namespace: $namespace
+  );
+}
+
+@mixin typography-format-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  @include typography-group-vars(
+    'formatting',
+    $keys: $keys,
+    $var-prefix: $var-prefix,
+    $namespace: $namespace
+  );
+}
+
+@mixin typography-spacing-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+  @include typography-group-vars(
+    'spacing',
+    $keys: $keys,
+    $var-prefix: $var-prefix,
+    $namespace: $namespace
+  );
+}

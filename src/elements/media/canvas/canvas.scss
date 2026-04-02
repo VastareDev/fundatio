@@ -1,0 +1,46 @@
+/**
+ * Sol Design Foundation: Canvas Element
+ *
+ * Graphic canvas (`canvas`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes display and rendering baseline
+ * - Preserves inline-block behavior
+ * - Ensures predictable sizing and overflow handling
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<canvas>` element (intrinsic sizing + script-driven content)
+ * - Modern reset guidance: avoid overriding replaced element intrinsic semantics
+ * - CSS WG logical property expectations
+ *
+ * @module
+ * @group  elements.media.canvas
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(canvas) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Display and structural behavior
+  display: inline-block; // UA default, best for replaced elements
+
+  // Remove any unexpected margins/padding
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  /* --------------------------------------------------------------------------
+   - Layout predictability
+   -------------------------------------------------------------------------- */
+
+  // Ensure canvas does not overflow out of flow unexpectedly
+  max-width: 100%;
+  height: auto; // preserve aspect ratio
+  box-sizing: border-box; // predictable sizing
+}

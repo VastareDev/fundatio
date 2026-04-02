@@ -1,0 +1,39 @@
+/**
+ * Sol Design Foundation: LI Element
+ *
+ * List item (`li`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Normalizes UA spacing without removing markers
+ * - Preserves list semantics (markers are owned by `ol`/`ul`)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<li>` semantics and allowed parents ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/li?utm_source=chatgpt.com))
+ * - MDN Learn: list styling notes (Oct 2025) ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Styling_lists?utm_source=chatgpt.com))
+ * - Reset guidance (Oct 2025): normalize margins/padding ([useaxentix.com](https://useaxentix.com/blog/css/css-reset-complete-guide/?utm_source=chatgpt.com))
+ *
+ * @module
+ * @group  elements.list.li
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(li) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: list-item;
+
+  // Normalize UA spacing differences.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Robust inline content handling.
+  overflow-wrap: break-word;
+  max-width: 100%;
+}

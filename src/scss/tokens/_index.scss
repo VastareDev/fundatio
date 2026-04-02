@@ -1,0 +1,100 @@
+/**
+ * Sol Design Foundation: Tokens Index
+ *
+ * Public API surface for all canonical design tokens.
+ *
+ * This file defines the *authoritative import boundary* for the token layer.
+ * All consumers (internal or external) must import tokens through this file
+ * rather than individual token modules.
+ *
+ * This file intentionally:
+ * - Re-exports token modules using `@forward`
+ * - Defines a stable, versionable public API
+ * - Avoids eager loading, logic, or side effects
+ *
+ * IMPORTANT:
+ * - This file MUST NOT use `@use`
+ * - This file MUST NOT define variables
+ * - This file MUST NOT perform calculations or validation
+ *
+ * Consumers should import tokens via:
+ *
+ *   @use "tokens" as tokens;
+ *
+ * Internal layers (maps, core, utilities) may also rely on this
+ * index to ensure consistent load order and override behaviour.
+ *
+ * @module
+ * @group  tokens
+ * @access public
+ * @since  1.0.0
+ */
+
+/* ----------------------------------------------------------------------------
+ - Core theme primitives
+ --------------------------------------------------------------------------- */
+
+/**
+ * Theme tokens.
+ *
+ * Consumer-overridable primitives defining branding, colours,
+ * fonts, feature flags, and asset paths.
+ *
+ * This is the root of the override surface.
+ */
+@forward 'theme';
+
+/* ----------------------------------------------------------------------------
+ - Configuration & options
+ --------------------------------------------------------------------------- */
+
+/**
+ * Option tokens.
+ *
+ * Canonical configuration values derived from the theme layer
+ * that influence system consumption (prefixing, dark mode, paths).
+ */
+@forward 'options';
+
+/* ----------------------------------------------------------------------------
+ - Design primitives
+ --------------------------------------------------------------------------- */
+
+/**
+ * Colour tokens.
+ *
+ * Canonical colour primitives and ramps.
+ */
+@forward 'colours';
+
+/**
+ * Spacing tokens.
+ *
+ * Base spacing primitive used to derive spacing scales.
+ */
+@forward 'spacing';
+
+/**
+ * Typography tokens.
+ *
+ * Font families, weights, sizes, line-heights, and spacing primitives.
+ */
+@forward 'typography';
+
+/**
+ * Font-face tokens.
+ *
+ * Canonical font metadata used to construct @font-face declarations.
+ */
+@forward 'fonts';
+
+/**
+ * Dark theme tokens.
+ *
+ * Preset configuration of the canonical theme token contract that
+ * applies Sol's dark defaults while preserving consumer overrides.
+ *
+ * Intended for framework integrations or applications that want
+ * a ready-to-use dark palette without redefining theme primitives.
+ */
+@forward 'dark-theme';

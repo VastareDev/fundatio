@@ -1,0 +1,49 @@
+/**
+ * Sol Design Foundation: Font Tokens
+ *
+ * Canonical font-face primitives for generating @font-face rules.
+ *
+ * This token layer defines:
+ * - Shared font-face metadata (display/style/weight range)
+ * - Canonical source paths per font group (base/headings/code)
+ *
+ * This file is intentionally data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  tokens.fonts
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* --------------------------------------------------------------------------
+ - Shared font-face primitives
+ ------------------------------------------------------------------------- */
+
+/**
+ * Font loading strategy.
+ *
+ * @type string
+ */
+$font-display: swap;
+
+/**
+ * Canonical font styles.
+ *
+ * @type string
+ */
+$font-style-normal: normal;
+$font-style-italic: italic;
+
+/**
+ * Variable font weight range used by Montserrat variable files.
+ *
+ * Represented as a Sass list to mirror CSS syntax: `font-weight: 100 900;`
+ *
+ * @type list
+ */
+$font-weight-range: 100 900;

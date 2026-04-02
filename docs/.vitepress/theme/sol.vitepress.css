@@ -1,0 +1,71 @@
+/**
+ * VitePress theme variable bridge.
+ * Maps VitePress CSS vars to Sol design tokens (CSS variables).
+ *
+ * This keeps docs “Sol-styled”, while letting VitePress components
+ * (nav, buttons, links, code blocks, etc.) use Sol colours.
+ */
+
+:root {
+  /* Brand */
+  --vp-c-brand-1: rgb(var(--sol-colour-blue-base-rgb));
+  --vp-c-brand-2: rgb(var(--sol-colour-blue-tint-20-rgb));
+  --vp-c-brand-3: rgb(var(--sol-colour-blue-tint-40-rgb));
+  --vp-c-brand-soft: rgba(var(--sol-colour-blue-base-rgb), 0.14);
+
+  /* Text */
+  --vp-c-text-1: rgb(var(--sol-colour-grey-shade-40-rgb));
+  --vp-c-text-2: rgb(var(--sol-colour-grey-shade-30-rgb));
+  --vp-c-text-3: rgb(var(--sol-colour-grey-shade-20-rgb));
+
+  /* Backgrounds */
+  --vp-c-bg: rgb(var(--sol-colour-grey-tint-95-rgb));
+  --vp-c-bg-alt: rgb(var(--sol-colour-grey-tint-90-rgb));
+  --vp-c-bg-soft: rgb(var(--sol-colour-grey-tint-90-rgb));
+  --vp-c-bg-mute: rgb(var(--sol-colour-grey-tint-80-rgb));
+
+  /* Borders */
+  --vp-c-border: rgb(var(--sol-colour-grey-tint-70-rgb));
+  --vp-c-divider: rgb(var(--sol-colour-grey-tint-70-rgb));
+  --vp-c-gutter: rgb(var(--sol-colour-grey-tint-80-rgb));
+
+  /* Code */
+  --vp-code-bg: rgb(var(--sol-colour-grey-tint-90-rgb));
+  --vp-code-color: rgb(var(--sol-colour-grey-shade-40-rgb));
+
+  /* Status */
+  --vp-c-danger-1: rgb(var(--sol-colour-red-base-rgb));
+  --vp-c-danger-2: rgb(var(--sol-colour-red-tint-20-rgb));
+  --vp-c-danger-3: rgb(var(--sol-colour-red-tint-40-rgb));
+
+  /* Optional: make link colour match brand */
+  --vp-c-link: var(--vp-c-brand-1);
+}
+
+/* Dark theme */
+.dark {
+  --vp-c-brand-1: rgb(var(--sol-colour-blue-tint-40-rgb));
+  --vp-c-brand-2: rgb(var(--sol-colour-blue-tint-20-rgb));
+  --vp-c-brand-3: rgb(var(--sol-colour-blue-base-rgb));
+  --vp-c-brand-soft: rgba(var(--sol-colour-blue-tint-40-rgb), 0.16);
+
+  --vp-c-text-1: rgb(var(--sol-colour-grey-tint-95-rgb));
+  --vp-c-text-2: rgb(var(--sol-colour-grey-tint-80-rgb));
+  --vp-c-text-3: rgb(var(--sol-colour-grey-tint-70-rgb));
+
+  --vp-c-bg: rgb(var(--sol-colour-grey-shade-60-rgb));
+  --vp-c-bg-alt: rgb(var(--sol-colour-grey-shade-50-rgb));
+  --vp-c-bg-soft: rgb(var(--sol-colour-grey-shade-50-rgb));
+  --vp-c-bg-mute: rgb(var(--sol-colour-grey-shade-40-rgb));
+
+  --vp-c-border: rgb(var(--sol-colour-grey-shade-30-rgb));
+  --vp-c-divider: rgb(var(--sol-colour-grey-shade-30-rgb));
+  --vp-c-gutter: rgb(var(--sol-colour-grey-shade-40-rgb));
+
+  --vp-code-bg: rgb(var(--sol-colour-grey-shade-50-rgb));
+  --vp-code-color: rgb(var(--sol-colour-grey-tint-95-rgb));
+
+  --vp-c-danger-1: rgb(var(--sol-colour-red-tint-40-rgb));
+  --vp-c-danger-2: rgb(var(--sol-colour-red-tint-20-rgb));
+  --vp-c-danger-3: rgb(var(--sol-colour-red-base-rgb));
+}

@@ -1,0 +1,27 @@
+/**
+ * Sol Design Foundation: WBR Element
+ *
+ * Word Break Opportunity (`wbr`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Preserves structural inline behavior
+ * - Applies no visual styling
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.breaks.wbr
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(wbr) {
+  /* --------------------------------------------------------------------------
+   - Structural baseline
+   -------------------------------------------------------------------------- */
+
+  // `<wbr>` is inline by default and introduces an optional line break.
+  // No visual styling should be applied.
+  display: inline;
+}

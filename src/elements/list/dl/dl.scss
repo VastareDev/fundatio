@@ -1,0 +1,39 @@
+/**
+ * Sol Design Foundation: DL Element
+ *
+ * Description list (`dl`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Normalizes UA spacing for consistent cross-browser rendering
+ * - Preserves semantics (no forced layout patterns)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<dl>` semantics and usage ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl?utm_source=chatgpt.com))
+ * - MDN Learn: default list styling notes (Oct 2025) ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Styling_lists?utm_source=chatgpt.com))
+ * - Reset guidance (Oct 2025): normalize margins/padding ([useaxentix.com](https://useaxentix.com/blog/css/css-reset-complete-guide/?utm_source=chatgpt.com))
+ *
+ * @module
+ * @group  elements.list.dl
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(dl) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // Normalize UA spacing to a predictable baseline.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Ensure predictable sizing.
+  box-sizing: border-box;
+  max-width: 100%;
+}

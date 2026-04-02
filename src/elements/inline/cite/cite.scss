@@ -1,0 +1,36 @@
+/**
+ * Sol Design Foundation: Cite Element
+ *
+ * Citation (`cite`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Preserves citation semantics
+ * - Normalizes to a consistent italic style (common UA behavior)
+ * - Avoids deeper typography decisions; inheritance remains primary
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.cite
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(cite) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // UA commonly renders citations as italic; define explicitly for consistency.
+  font-style: italic;
+
+  // Preserve inherited typography context otherwise.
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

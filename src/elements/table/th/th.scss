@@ -1,0 +1,48 @@
+/**
+ * Sol Design Foundation: TH Element
+ *
+ * Table header cell (`th`)
+ *
+ * Structural baseline + light branding.
+ *
+ * This module:
+ * - Normalizes UA defaults (notably alignment + weight variance)
+ * - Keeps table semantics intact (no borders/padding assumptions beyond baseline)
+ * - Applies Sol typography tokens so the element can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.th
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(th) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // `th` participates in the table formatting context; do not override display.
+  margin: 0;
+  border: 0;
+
+  // Neutralize UA padding variance; spacing is owned by the table styling layer.
+  padding: 0;
+
+  // Normalize header alignment differences between engines.
+  text-align: start;
+
+  // Normalize vertical alignment for multi-line headers.
+  vertical-align: top;
+  background-color: transparent;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family);
+  font-size: var(--lg-typography-font-sizes-base-font-size);
+  font-weight: var(--lg-typography-formatting-heading-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+}

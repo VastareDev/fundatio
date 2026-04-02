@@ -1,0 +1,38 @@
+/**
+ * Sol Design Foundation: Time Element
+ *
+ * Date / time (`time`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - `<time>` is a semantic wrapper (human-readable content + machine-readable `datetime`).
+ * - It carries no meaningful UA presentation; keep it neutral and inherited.
+ *
+ * References (2025+):
+ * - MDN: `<time>` element reference (Aug 2025)
+ *
+ * @module
+ * @group  elements.inline.time
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(time) {
+  /* --------------------------------------------------------------------------
+   - Baseline
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Preserve inherited typography.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

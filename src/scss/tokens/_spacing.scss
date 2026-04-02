@@ -1,0 +1,43 @@
+/**
+ * Sol Design Foundation: Spacing Tokens
+ *
+ * Canonical spacing primitives used across the design system.
+ *
+ * Spacing tokens define the base rhythm for layout, components,
+ * and vertical flow. All derived spacing values (margins, paddings,
+ * gaps, stack spacing, etc.) should be computed from these primitives
+ * rather than introducing arbitrary values downstream.
+ *
+ * This file is intentionally minimal and data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  tokens.spacing
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* -------------------------------------------------------------------------- 
+ - Base spacing
+ ------------------------------------------------------------------------- */
+
+/**
+ * Base spacing unit.
+ *
+ * Represents the fundamental spacing increment for the system.
+ * Commonly used as the reference for:
+ * - Vertical rhythm
+ * - Component padding
+ * - Stack spacing
+ * - Grid gutters (directly or indirectly)
+ *
+ * All spacing scales should be derived as multiples or fractions
+ * of this value to preserve visual consistency.
+ *
+ * @type number (length)
+ */
+$base-spacing: 1rem;

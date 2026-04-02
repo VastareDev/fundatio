@@ -1,0 +1,49 @@
+/**
+ * Sol Design Foundation: DD Element
+ *
+ * Description details (`dd`)
+ *
+ * Structural baseline only (light normalization).
+ *
+ * This module:
+ * - Normalizes UA indentation (commonly a left margin) to avoid inconsistent layouts
+ * - Keeps typography inherited (the content is prose/structure, not a styled component)
+ * - Avoids imposing spacing patterns; `dl`/layout layer owns presentation
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<dd>` semantics in description lists :contentReference[oaicite:3]{index=3}
+ * - MDN (Learn): default `<dd>` margin-left/indentation note (Oct 2025) :contentReference[oaicite:4]{index=4}
+ * - Reset guidance (Oct 2025): normalize margins/padding across browsers :contentReference[oaicite:5]{index=5}
+ *
+ * @module
+ * @group  elements.list.dd
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(dd) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // Normalize UA indentation (often ~2.5em / 40px margin-left) to a clean baseline.
+  margin: 0;
+  margin-inline-start: 0;
+  padding: 0;
+  border: 0;
+
+  // Robust text behavior.
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  // Preserve inherited typography.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

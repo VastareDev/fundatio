@@ -1,0 +1,355 @@
+/**
+ * Sol Design Foundation: Theme Functions
+ *
+ * Strict, read-only accessors for the canonical theme registry.
+ *
+ * Theme is special:
+ * - Values are intended to be overridden by consumers via:
+ *   `@use "tokens/theme" with (...)`
+ * - These functions must remain compatible regardless of overrides.
+ * - This API should never "cache" or "freeze" values. It must always
+ *   read from the current registry (maps/theme), which itself reads
+ *   from tokens/theme.
+ *
+ * This module provides:
+ * - Registry access (`theme`, `theme-group`, `theme-value`)
+ * - Registry introspection (`theme-groups`, `theme-keys`)
+ * - Safe access for generators (`try-theme-group`, `try-theme-value`)
+ * - Existence checks (`has-theme-group`, `has-theme-key`)
+ *
+ * Design notes:
+ * - The top-level registry is grouped (feature flags, namespace, colours, etc.).
+ * - This API validates argument types and basic correctness.
+ * - Strict getters fail fast with actionable errors.
+ * - Safe getters return fallbacks instead of throwing (for iteration/generation).
+ *
+ * This file is intentionally logic-only:
+ * - No selectors
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  functions.theme
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../maps/theme' as theme-maps;
+
+/* -------------------------------------------------------------------------------
+ - Internal assertions
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Asserts the given value is of an expected Sass type.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $expected
+ * @param  {string} $label
+ *
+ * @return {*}
+ */
+@function _assert-type($value, $expected, $label) {
+  @if meta.type-of($value) != $expected {
+    @error "Expected #{$label} to be type '#{$expected}', got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a string is non-empty (after trimming whitespace).
+ *
+ * Dart Sass does not provide `string.trim()`, so implement a minimal
+ * whitespace trim (spaces only) to guard against confusing lookups.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {string}
+ */
+@function _assert-non-empty-string($value, $label) {
+  $_: _assert-type($value, 'string', $label);
+  $s: $value;
+  $len: string.length($s);
+
+  @if $len == 0 {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  // Trim left (spaces)
+  $start: 1;
+
+  @while $start <= $len and string.slice($s, $start, $start) == ' ' {
+    $start: $start + 1;
+  }
+
+  // Trim right (spaces)
+  $end: $len;
+
+  @while $end >= $start and string.slice($s, $end, $end) == ' ' {
+    $end: $end - 1;
+  }
+
+  @if $end < $start {
+    @error "Expected #{$label} to be a non-empty string";
+  }
+
+  @return $value;
+}
+
+/**
+ * Asserts a map contains a key.
+ *
+ * @access private
+ *
+ * @param  {map}    $m
+ * @param  {*}      $key
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-has-key($m, $key, $label) {
+  @if map.has-key($m, $key) == false {
+    @error "Missing key '#{$key}' in #{$label}";
+  }
+
+  @return $m;
+}
+
+/**
+ * Asserts a value is a map.
+ *
+ * @access private
+ *
+ * @param  {*}      $value
+ * @param  {string} $label
+ *
+ * @return {map}
+ */
+@function _assert-map($value, $label) {
+  @if meta.type-of($value) != 'map' {
+    @error "Expected #{$label} to be a map, got '#{meta.type-of($value)}'";
+  }
+
+  @return $value;
+}
+
+/* -------------------------------------------------------------------------------
+ - Registry introspection
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Returns the top-level theme registry map (grouped).
+ *
+ * @return {map}
+ */
+@function theme() {
+  @return theme-maps.$theme;
+}
+
+/**
+ * Returns the list of group keys in the theme registry (in registry order).
+ *
+ * Example:
+ *   $groups: theme-groups(); // ("feature-flags", "namespace", ...)
+ *
+ * @return {list}
+ */
+@function theme-groups() {
+  @return map.keys(theme-maps.$theme);
+}
+
+/**
+ * Returns the list of keys available within a given theme group.
+ *
+ * Example:
+ *   $keys: theme-keys("namespace"); // ("theme-prefix")
+ *
+ * @param  {string} $group
+ *
+ * @return {list}
+ */
+@function theme-keys($group) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-has-key(theme-maps.$theme, $group, '$theme');
+  $g: map.get(theme-maps.$theme, $group);
+  $_: _assert-map($g, "theme-group('#{$group}')");
+
+  @return map.keys($g);
+}
+
+/* -------------------------------------------------------------------------------
+ - Strict accessors
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Returns the map for a specific theme group.
+ *
+ * Example:
+ *   $ns: theme-group("namespace");
+ *
+ * @param  {string} $group
+ *
+ * @return {map}
+ */
+@function theme-group($group) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-has-key(theme-maps.$theme, $group, '$theme');
+  $g: map.get(theme-maps.$theme, $group);
+
+  @return _assert-map($g, "theme-group('#{$group}')");
+}
+
+/**
+ * Returns a specific theme value by group + key.
+ *
+ * Example:
+ *   $prefix: theme-value("namespace", "theme-prefix");
+ *   $dark: theme-value("feature-flags", "theme-dark-mode");
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ *
+ * @return {*}
+ */
+@function theme-value($group, $key) {
+  $_: _assert-non-empty-string($key, '$key');
+  $g: theme-group($group);
+  $_: _assert-has-key($g, $key, "theme group '#{$group}'");
+
+  @return map.get($g, $key);
+}
+
+/**
+ * Convenience alias for `theme-value()`.
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ *
+ * @return {*}
+ */
+@function t($group, $key) {
+  @return theme-value($group, $key);
+}
+
+/* -------------------------------------------------------------------------------
+ - Safe accessors
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Safe theme group lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Group is missing
+ * - Group value is null
+ * - Group value is not a map
+ *
+ * Intended for iteration/generation workflows.
+ *
+ * @param  {string} $group
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-theme-group($group, $fallback: null) {
+  $_: _assert-non-empty-string($group, '$group');
+
+  @if map.has-key(theme-maps.$theme, $group) == false {
+    @return $fallback;
+  }
+
+  $g: map.get(theme-maps.$theme, $group);
+
+  @if not $g or meta.type-of($g) != 'map' {
+    @return $fallback;
+  }
+
+  @return $g;
+}
+
+/**
+ * Safe theme value lookup.
+ *
+ * Returns `$fallback` instead of throwing if:
+ * - Group missing
+ * - Group map missing/invalid
+ * - Key missing
+ * - Value is null
+ *
+ * Note:
+ * This does not enforce value types because theme values are intentionally
+ * heterogeneous (bools, strings, colours, maps).
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ * @param  {*}      $fallback
+ *
+ * @return {*}
+ */
+@function try-theme-value($group, $key, $fallback: null) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($key, '$key');
+  $g: try-theme-group($group);
+
+  @if not $g {
+    @return $fallback;
+  }
+
+  @if map.has-key($g, $key) == false {
+    @return $fallback;
+  }
+
+  $value: map.get($g, $key);
+
+  @if not $value {
+    @return $fallback;
+  }
+
+  @return $value;
+}
+
+/* -------------------------------------------------------------------------------
+ - Existence checks
+ ------------------------------------------------------------------------------ */
+
+/**
+ * Returns whether a theme group exists in the registry.
+ *
+ * @param  {string} $group
+ *
+ * @return {bool}
+ */
+@function has-theme-group($group) {
+  $_: _assert-non-empty-string($group, '$group');
+
+  @return map.has-key(theme-maps.$theme, $group);
+}
+
+/**
+ * Returns whether a key exists within a given theme group.
+ *
+ * @param  {string} $group
+ * @param  {string} $key
+ *
+ * @return {bool}
+ */
+@function has-theme-key($group, $key) {
+  $_: _assert-non-empty-string($group, '$group');
+  $_: _assert-non-empty-string($key, '$key');
+
+  @if has-theme-group($group) == false {
+    @return false;
+  }
+
+  @return map.has-key(theme-group($group), $key);
+}

@@ -1,0 +1,43 @@
+/**
+ * Sol Design Foundation: Audio Element
+ *
+ * Media player (`audio`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes `<audio>` layout behavior across browsers
+ * - Removes legacy presentation artifacts
+ * - Preserves intrinsic control rendering
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.audio
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(audio) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Replaced element baseline.
+  display: inline-block;
+  vertical-align: middle;
+
+  // Remove incidental UA presentation.
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  /* --------------------------------------------------------------------------
+   - Layout predictability
+   -------------------------------------------------------------------------- */
+
+  // Allow responsive containment without overriding explicit author sizing.
+  max-width: 100%;
+
+  // Predictable sizing model.
+  box-sizing: border-box;
+}

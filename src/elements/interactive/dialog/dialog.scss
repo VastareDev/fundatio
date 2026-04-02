@@ -1,0 +1,55 @@
+/**
+ * Sol Design Foundation: Dialog Element
+ *
+ * Dialog (`dialog`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA spacing/border quirks
+ * - Preserves native dialog behavior (show/showModal, top-layer, focus handling)
+ * - Applies base typography tokens so it can ship standalone
+ * - Provides a token-driven, non-opinionated backdrop
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.interactive.dialog
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(dialog) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve intrinsic dialog behavior (do not override display or positioning).
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Predictable sizing.
+  box-sizing: border-box;
+  max-width: 100%;
+
+  // Allow content to scroll if the dialog is taller than its viewport constraints.
+  overflow: auto;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography (standalone-safe)
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
+  line-height: var(--lg-typography-formatting-base-line-height, inherit);
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+
+  // Provide a sensible default surface without forcing "designed" styling.
+  background-color: var(--lg-theme-surface-colours-light-colour, transparent);
+}
+
+/* Backdrop for modal dialogs opened via showModal() */
+:where(dialog)::backdrop {
+  background-color: rgb(var(--lg-colour-grey-shade-80-rgb), 0.6);
+}

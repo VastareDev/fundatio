@@ -1,0 +1,34 @@
+/**
+ * Sol Design Foundation: Colgroup Element
+ *
+ * Table column group (`colgroup`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Normalizes `<colgroup>` to its internal table display role
+ * - Avoids adding presentational styling (column groups are structural)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.colgroup
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(colgroup) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Internal table element role per the CSS table model.
+  display: table-column-group;
+
+  // Defensive baseline: avoid incidental spacing/presentation.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Keep neutral; styling is typically applied via width/background on columns.
+  background-color: transparent;
+}

@@ -1,0 +1,61 @@
+/**
+ * Sol Design Foundation: Address Element
+ *
+ * Contact information (`address`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA defaults (notably the common italic default)
+ * - Keeps semantics intact while avoiding opinionated presentation
+ * - Applies Sol typography tokens so the element can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<address>` element (updated Jul 2025)
+ * - WHATWG HTML rendering guidance (UA expectations)
+ * - Modern reset guidance: normalize inconsistencies, avoid destructive resets (2025)
+ *
+ * @module
+ * @group  elements.text.address
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(address) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // UA styles commonly apply `font-style: italic` to `<address>`.
+  // Normalize to a clean baseline so presentation is controlled by the system.
+  font-style: normal;
+
+  // Remove default UA spacing so layout is predictable across engines.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Robust content handling.
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family);
+  font-size: var(--lg-typography-font-sizes-base-font-size);
+  font-weight: var(--lg-typography-formatting-base-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned spacing
+   -------------------------------------------------------------------------- */
+
+  margin-block: var(--lg-typography-spacing-base-margin-bottom);
+  margin-inline: 0;
+}

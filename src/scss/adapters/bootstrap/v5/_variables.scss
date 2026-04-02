@@ -1,0 +1,220 @@
+/**
+ * Sol → Bootstrap Variable Bridge
+ *
+ * Purpose
+ * -------
+ * This module maps Sol's canonical theme tokens onto Bootstrap's
+ * variable interface. The adapter exists purely as a translation
+ * layer between the Sol design system and Bootstrap's configuration
+ * surface.
+ *
+ * Design principles
+ * -----------------
+ * • Only override variables that Sol has authoritative tokens for
+ * • Never introduce new design decisions inside adapters
+ * • Preserve Bootstrap defaults wherever Sol has no equivalent
+ * • Maintain compatibility across Bootstrap v5 releases
+ *
+ * This file is configuration-only:
+ * - No selectors
+ * - No mixins
+ * - No functions
+ * - No CSS output
+ *
+ * @module adapters.bootstrap.v5.variables
+ * @group  adapters.bootstrap
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use '../../../tokens/theme' as theme;
+
+/* --------------------------------------------------------------------------
+   Feature flags
+--------------------------------------------------------------------------- */
+
+/**
+ * Enable Bootstrap's dark mode support when Sol exposes it.
+ *
+ * Sol expresses dark mode as a capability flag rather than an
+ * implementation decision. Bootstrap uses this flag to decide
+ * whether colour-mode features are enabled.
+ *
+ * @type bool
+ */
+$enable-dark-mode: theme.$theme-dark-mode !default;
+
+/**
+ * Configure Bootstrap's colour mode mechanism.
+ *
+ * Bootstrap supports:
+ * - `data` attributes
+ * - `media-query`
+ *
+ * We default to `data` so frameworks can control colour mode
+ * explicitly without relying on system preferences.
+ *
+ * @type string
+ */
+$color-mode-type: data !default;
+
+/* --------------------------------------------------------------------------
+   Core colour system
+--------------------------------------------------------------------------- */
+
+/**
+ * Primary interface colour.
+ *
+ * @type color
+ */
+$primary: theme.$primary-colour !default;
+
+/**
+ * Secondary interface colour.
+ *
+ * @type color
+ */
+$secondary: theme.$secondary-colour !default;
+
+/**
+ * Success state colour.
+ *
+ * @type color
+ */
+$success: theme.$success-colour !default;
+
+/**
+ * Informational state colour.
+ *
+ * @type color
+ */
+$info: theme.$info-colour !default;
+
+/**
+ * Warning state colour.
+ *
+ * @type color
+ */
+$warning: theme.$warning-colour !default;
+
+/**
+ * Danger / error state colour.
+ *
+ * @type color
+ */
+$danger: theme.$danger-colour !default;
+
+/**
+ * Global body background.
+ *
+ * @type color
+ */
+$body-bg: theme.$body-bg-color !default;
+
+/**
+ * Default body text colour.
+ *
+ * @type color
+ */
+$body-color: theme.$base-font-color !default;
+
+/**
+ * Secondary text colour used by Bootstrap utilities.
+ *
+ * Sol does not expose a dedicated secondary colour token,
+ * so we safely fall back to the base text colour.
+ *
+ * @type color
+ */
+$body-secondary-color: theme.$base-font-color !default;
+
+/**
+ * Secondary background colour.
+ *
+ * @type color
+ */
+$body-secondary-bg: theme.$body-bg-color !default;
+
+/* --------------------------------------------------------------------------
+   Typography
+--------------------------------------------------------------------------- */
+
+/**
+ * Base font family.
+ *
+ * @type string
+ */
+$font-family-base: theme.$base-font !default;
+
+/**
+ * Heading font family.
+ *
+ * @type string
+ */
+$headings-font-family: theme.$heading-font !default;
+
+/**
+ * Inline code text colour.
+ *
+ * @type color
+ */
+$code-color: theme.$code-font-color !default;
+
+/* --------------------------------------------------------------------------
+   Links
+--------------------------------------------------------------------------- */
+
+/**
+ * Default link colour.
+ *
+ * @type color
+ */
+$link-color: theme.$primary-colour !default;
+
+/* --------------------------------------------------------------------------
+   Tables
+--------------------------------------------------------------------------- */
+
+/**
+ * Table text colour.
+ *
+ * @type color
+ */
+$table-color: theme.$base-font-color !default;
+
+/**
+ * Table background colour.
+ *
+ * @type color
+ */
+$table-bg: theme.$body-bg-color !default;
+
+/* --------------------------------------------------------------------------
+   Forms
+--------------------------------------------------------------------------- */
+
+/**
+ * Form control text colour.
+ *
+ * @type color
+ */
+$input-color: theme.$base-font-color !default;
+
+/**
+ * Form control background.
+ *
+ * @type color
+ */
+$input-bg: theme.$body-bg-color !default;
+
+/* --------------------------------------------------------------------------
+   Buttons
+--------------------------------------------------------------------------- */
+
+/**
+ * Button text colour.
+ *
+ * @type color
+ */
+$btn-color: theme.$base-font-color !default;

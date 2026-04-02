@@ -1,0 +1,42 @@
+/**
+ * Sol Design Foundation: UL Element
+ *
+ * Unordered list (`ul`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - Preserve list markers (accessibility + semantics).
+ * - Normalize UA margin/padding variance.
+ * - Avoid decorative styling at baseline.
+ *
+ * References (2025+):
+ * - MDN: `<ul>` element reference (Sep 2025)
+ * - Modern CSS reset guidance (Oct 2025)
+ *
+ * @module
+ * @group  elements.list.ul
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(ul) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // Normalize UA vertical spacing.
+  margin: 0;
+
+  // Normalize indentation consistently across engines.
+  padding-inline-start: 1.5em;
+
+  // Preserve default marker style.
+  list-style-position: outside;
+  list-style-type: disc;
+
+  // Ensure predictable sizing.
+  box-sizing: border-box;
+}

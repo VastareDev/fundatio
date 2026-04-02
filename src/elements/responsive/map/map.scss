@@ -1,0 +1,38 @@
+/**
+ * Sol Design Foundation: Map Element
+ *
+ * Image map container (`map`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Keeps `<map>` neutral (it is not typically visually rendered)
+ * - Normalizes spacing defensively
+ * - Preserves inherited typography context (harmless even if not displayed)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.responsive.map
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(map) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // `<map>` is a container for `<area>` definitions; not typically rendered.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Inherit typography context (defensive).
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+}

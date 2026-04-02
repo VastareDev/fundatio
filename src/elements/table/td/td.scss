@@ -1,0 +1,48 @@
+/**
+ * Sol Design Foundation: TD Element
+ *
+ * Table data cell (`td`)
+ *
+ * Structural baseline + light branding.
+ *
+ * This module:
+ * - Normalizes UA defaults (notably alignment variance and incidental padding)
+ * - Preserves the table formatting context (no forced display)
+ * - Applies Sol typography tokens so the element can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.td
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(td) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // `td` participates in the table formatting context; do not override display.
+  margin: 0;
+  border: 0;
+
+  // Neutralize UA padding variance; spacing is owned by the table styling layer.
+  padding: 0;
+
+  // Direction-aware default alignment.
+  text-align: start;
+
+  // Normalize vertical alignment for multi-line cells.
+  vertical-align: top;
+  background-color: transparent;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned baseline typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-base-font-family);
+  font-size: var(--lg-typography-font-sizes-base-font-size);
+  font-weight: var(--lg-typography-formatting-base-font-weight);
+  line-height: var(--lg-typography-formatting-base-line-height);
+  color: var(--lg-theme-base-colours-base-font-color);
+}

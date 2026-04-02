@@ -1,0 +1,40 @@
+/**
+ * Sol Design Foundation: RTC Element
+ *
+ * Ruby text container (`rtc`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - `<rtc>` groups semantic annotations for `<rb>` base text within `<ruby>`.
+ * - Ruby layout is governed by the ruby formatting model; do not override display.
+ * - Avoid presentational styling here. Any styling belongs at the ruby system level.
+ *
+ * References (2025+):
+ * - MDN: `<rtc>` element reference (updated Feb 2026)
+ * - MDN: CSS ruby layout guide (updated Nov 2025)
+ *
+ * @module
+ * @group  elements.inline.rtc
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(rtc) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve intrinsic ruby formatting model behavior.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Inherit typography from surrounding context.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

@@ -1,0 +1,40 @@
+/**
+ * Sol Design Foundation: Legend Element
+ *
+ * Fieldset caption (`legend`)
+ *
+ * Token-driven, light baseline.
+ *
+ * This module:
+ * - Normalizes UA spacing quirks without breaking legend/fieldset behavior
+ * - Preserves semantics (caption for the group)
+ * - Applies a subtle heading-like weight via tokens (but no decorative styling)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.form.legend
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(legend) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve intrinsic legend behavior (do not force display).
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  // Typography: keep consistent with system and slightly emphasized.
+  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: var(--lg-typography-font-weights-semibold-font-weight, inherit);
+  line-height: inherit;
+  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  background-color: transparent;
+}

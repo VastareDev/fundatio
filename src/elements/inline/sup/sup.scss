@@ -1,0 +1,43 @@
+/**
+ * Sol Design Foundation: Sup Element
+ *
+ * Superscript (`sup`)
+ *
+ * Baseline reset + normalized superscript behavior.
+ *
+ * Notes:
+ * - `<sup>` raises text relative to baseline.
+ * - UA styles typically reduce font-size and adjust vertical alignment.
+ * - Normalize explicitly for consistent rendering across engines.
+ *
+ * References (2025+):
+ * - MDN: `<sup>` element reference (Sep 2025)
+ *
+ * @module
+ * @group  elements.inline.sup
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(sup) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Explicit scaling rather than UA relative sizing.
+  font-size: 0.75em;
+
+  // Prevent superscripts from inflating line boxes unpredictably.
+  line-height: 0;
+
+  // Normalize vertical shift.
+  vertical-align: super;
+
+  // Preserve inherited typography context.
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+}

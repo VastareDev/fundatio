@@ -1,0 +1,32 @@
+/**
+ * Sol Design Foundation: Thead Element
+ *
+ * Table head (`thead`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Normalizes `<thead>` to its internal table display role
+ * - Avoids presentational styling (headers are styled at `th` / cell layer)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.thead
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(thead) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Internal table element role per the CSS table model.
+  display: table-header-group;
+
+  // Defensive baseline: avoid incidental spacing/presentation.
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

@@ -1,0 +1,30 @@
+/**
+ * Sol Design Foundation: Table Row Element
+ *
+ * Table row (`tr`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Preserves native table row behavior
+ * - Avoids forcing display values
+ * - Removes incidental presentation artifacts
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.tr
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(tr) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Do NOT override display: table-row.
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

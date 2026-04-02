@@ -1,0 +1,36 @@
+/**
+ * Sol Design Foundation: Data Element
+ *
+ * Machine-readable data (`data`)
+ *
+ * Baseline reset only.
+ *
+ * This module:
+ * - Preserves semantics (content + machine-readable value)
+ * - Avoids presentation (should behave like a neutral inline element)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.data
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(data) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Preserve inherited typography and color.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

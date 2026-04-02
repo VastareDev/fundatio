@@ -1,0 +1,37 @@
+/**
+ * Sol Design Foundation: Embed Element
+ *
+ * Embedded external content (`embed`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes `<embed>` as a replaced element for predictable layout
+ * - Avoids opinionated presentation (content is provided externally)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.embed
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(embed) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Replaced element baseline
+  display: inline-block;
+  vertical-align: middle;
+
+  // Remove incidental UA presentation
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Predictable sizing when constrained by layout
+  box-sizing: border-box;
+  max-width: 100%;
+  height: auto;
+}

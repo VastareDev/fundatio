@@ -1,0 +1,50 @@
+/**
+ * Sol Design Foundation: Dark Theme Tokens
+ *
+ * Canonical dark theme configuration for Sol's theme token contract.
+ *
+ * This module configures the default values defined in `tokens/theme`
+ * using `@forward ... with (...)`. The underlying variables remain
+ * configurable by consumers.
+ *
+ * Purpose:
+ * - Provide a ready-to-use dark preset
+ * - Preserve the single canonical theme contract
+ * - Allow framework entrypoints to opt into dark defaults
+ *
+ * This file is intentionally configuration-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  tokens.theme
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use './colours' as colours;
+
+/* --------------------------------------------------------------------------
+   Dark theme overrides
+--------------------------------------------------------------------------- */
+
+/**
+ * Configure the canonical theme token module with dark defaults.
+ */
+@forward './theme' with (
+  $theme-dark-mode: true,
+  $body-bg-color: colours.$grey-shade-80,
+  $base-font-color: colours.$grey-tint-80,
+  $code-font-color: colours.$grey-tint-80,
+  $heading-font-color: colours.$grey-tint-80,
+  $primary-colour: colours.$base-blue,
+  $secondary-colour: colours.$base-indigo,
+  $tertiary-colour: colours.$base-purple,
+  $success-colour: colours.$base-green,
+  $info-colour: colours.$base-cyan,
+  $warning-colour: colours.$base-orange,
+  $danger-colour: colours.$base-red
+);

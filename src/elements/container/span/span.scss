@@ -1,0 +1,28 @@
+/**
+ * Sol Design Foundation: Span Element
+ *
+ * Generic inline container (`span`)
+ *
+ * Baseline hygiene only.
+ *
+ * Notes:
+ * - `<span>` is an inline, non-semantic container.
+ * - It carries no meaningful UA styling beyond `display: inline`.
+ * - Modern reset guidance (2025+) recommends avoiding unnecessary resets
+ *   on elements that already render consistently across engines.
+ * - Keep inheritance intact; do not interfere with typography or layout.
+ *
+ * @module
+ * @group  elements.container.span
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(span) {
+  /* --------------------------------------------------------------------------
+   - Baseline
+   -------------------------------------------------------------------------- */
+
+  // Explicitly declare default inline behavior for clarity when shipped standalone.
+  display: inline;
+}

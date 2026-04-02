@@ -1,0 +1,120 @@
+/**
+ * Sol Design Foundation: Reboot (Global Baseline)
+ *
+ * Minimal, opinionated reset establishing a predictable baseline
+ * for all downstream styles.
+ *
+ * This file intentionally:
+ * - Normalises box model behaviour
+ * - Establishes global document and body defaults
+ * - Avoids component- or utility-specific rules
+ * - Uses explicit values (tokens will be wired later)
+ *
+ * This is not a full Normalize.css replacement.
+ * It is a controlled baseline aligned to modern browser behaviour.
+ *
+ * @module
+ * @group  core.reboot
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+/* ----------------------------------------------------------------------------
+ - Global box model
+ --------------------------------------------------------------------------- */
+
+/**
+ * Apply `border-box` sizing universally.
+ *
+ * This ensures element dimensions are predictable and prevents
+ * padding and borders from affecting declared widths and heights.
+ *
+ * Applied to pseudo-elements to maintain consistency for generated
+ * content (icons, overlays, overlays, pseudo-layouts, etc.). */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------------------------------------
+ - Document root
+ --------------------------------------------------------------------------- */
+
+/**
+ * Root document element.
+ *
+ * Responsibilities:
+ * - Establish full-height document context
+ * - Disable browser text-size inflation (notably on iOS)
+ * - Normalise baseline line-height inheritance
+ *
+ * Notes:
+ * - `text-size-adjust` is included for forward compatibility
+ * - `-webkit-text-size-adjust` remains the most reliable implementation */
+html {
+  /* Remove default UA spacing */
+  margin: 0;
+  padding: 0;
+
+  /* Establish full-height document context */
+  height: 100%;
+
+  /* Baseline line-height for typographic inheritance */
+  line-height: var(--lg-typography-formatting-base-line-height, 1.5);
+
+  /* Prevent automatic font scaling */
+  text-size-adjust: 100%;
+}
+
+/* ----------------------------------------------------------------------------
+ - Body baseline
+ --------------------------------------------------------------------------- */
+
+/**
+ * Global body defaults.
+ *
+ * Responsibilities:
+ * - Remove default browser spacing
+ * - Establish minimum viewport height
+ * - Define baseline typography and colours
+ * - Normalise interaction affordances
+ *
+ * Values are intentionally hard-coded for now.
+ * These will later be sourced from tokens / CSS variables. */
+body {
+  /* Remove default UA spacing */
+  margin: 0;
+  padding: 0;
+
+  /* Ensure body spans at least the viewport height */
+  min-height: 100vh;
+
+  /* Base font stack (temporary, tokenised later) */
+  font-family: var(
+    --lg-typography-font-families-base-font-family,
+    'Montserrat',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif
+  );
+
+  /* Explicit baseline typography */
+  font-weight: var(--lg-typography-formatting-base-font-weight, normal);
+  font-size: var(--lg-typography-font-sizes-base-font-size, 1rem);
+
+  /* Base text and background colours */
+  color: var(--lg-theme-base-colours-base-font-color, #212529);
+  background-color: var(--lg-theme-base-colours-body-bg-color, #f8f9fa);
+
+  /* Logical text alignment (RTL-safe) */
+  text-align: start;
+
+  /* Remove iOS tap highlight flash */
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+}

@@ -1,0 +1,53 @@
+/**
+ * Sol Design Foundation: H2 Element
+ *
+ * Section heading (`h2`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Normalizes UA default heading margins for consistent layout
+ * - Explicitly defines size/spacing to avoid UA variability
+ * - Applies Sol heading typography tokens so it can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<h1>-<h6>` semantics and default block layout
+ * - Modern reset guidance: normalize heading margins and sizes (Oct 2025)
+ * - MDN: `text-wrap` balanced heading wrapping (Dec 2025)
+ *
+ * @module
+ * @group  elements.heading.h2
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(h2) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned heading typography
+   -------------------------------------------------------------------------- */
+
+  font-family: var(--lg-typography-font-families-heading-font-family);
+  font-size: var(--lg-typography-font-sizes-font-size-h2);
+  font-weight: var(--lg-typography-formatting-heading-font-weight);
+  line-height: var(--lg-typography-formatting-heading-line-height);
+  color: var(--lg-theme-base-colours-heading-font-color);
+  text-wrap: balance;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned spacing
+   -------------------------------------------------------------------------- */
+
+  margin-block-end: var(--lg-typography-spacing-heading-margin-bottom);
+}

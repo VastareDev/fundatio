@@ -1,0 +1,176 @@
+/**
+ * Sol Design Foundation: Spacing Mixins
+ *
+ * CSS emitters built on top of the canonical spacing scale.
+ *
+ * This layer exists to bridge:
+ *   maps -> functions -> mixins -> selectors / declarations
+ *
+ * Responsibilities:
+ * - Emit spacing values into CSS declarations
+ * - Provide ergonomic helpers for common spacing patterns
+ * - Delegate all validation and scale logic to functions.spacing
+ *
+ * Design notes:
+ * - This file DOES generate CSS.
+ * - We never re-implement spacing logic here.
+ * - Invalid keys fail fast via strict functions.
+ * - Mixins are intentionally dumb: they wire values, not rules.
+ *
+ * @module
+ * @group  mixins.spacing
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use 'sass:list';
+@use 'sass:meta';
+@use '../functions/spacing' as fn;
+
+/* ----------------------------------------------------------------------------
+ - Internal helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Normalises a value into a list.
+ *
+ * - null   => null
+ * - number => (number,)
+ * - list   => list (unchanged)
+ *
+ * @access private
+ */
+@function _as-list($value) {
+  @if $value == null {
+    @return null;
+  }
+
+  @if meta.type-of($value) == 'number' {
+    @return list.append((), $value, comma);
+  }
+
+  @return $value;
+}
+
+/* ----------------------------------------------------------------------------
+ - Primitive emitters
+ --------------------------------------------------------------------------- */
+
+/**
+ * Emits a spacing value for a CSS property.
+ *
+ * Example:
+ *   @include spacing-prop(margin-top, 4);
+ *
+ * @param {string} $property
+ * @param {number} $key
+ */
+@mixin spacing-prop($property, $key) {
+  @if meta.type-of($property) != 'string' {
+    @error "Expected $property to be a string, got '#{meta.type-of($property)}'";
+  }
+
+  #{$property}: fn.spacing($key);
+}
+
+/**
+ * Emits a negative spacing value for a CSS property.
+ *
+ * Example:
+ *   @include spacing-prop-neg(margin-top, 2);
+ *
+ * @param {string} $property
+ * @param {number} $key
+ */
+@mixin spacing-prop-neg($property, $key) {
+  @if meta.type-of($property) != 'string' {
+    @error "Expected $property to be a string, got '#{meta.type-of($property)}'";
+  }
+
+  #{$property}: fn.spacing-neg($key);
+}
+
+/* ----------------------------------------------------------------------------
+ - Axis helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Emits vertical spacing (top + bottom).
+ *
+ * Example:
+ *   @include spacing-y(padding, 3);
+ *
+ * @param {string} $property
+ * @param {number} $key
+ */
+@mixin spacing-y($property, $key) {
+  @include spacing-prop('#{$property}-top', $key);
+  @include spacing-prop('#{$property}-bottom', $key);
+}
+
+/**
+ * Emits horizontal spacing (left + right).
+ *
+ * Example:
+ *   @include spacing-x(margin, 2);
+ *
+ * @param {string} $property
+ * @param {number} $key
+ */
+@mixin spacing-x($property, $key) {
+  @include spacing-prop('#{$property}-left', $key);
+  @include spacing-prop('#{$property}-right', $key);
+}
+
+/* ----------------------------------------------------------------------------
+ - Shorthand helpers
+ --------------------------------------------------------------------------- */
+
+/**
+ * Emits spacing for all four sides.
+ *
+ * Example:
+ *   @include spacing-all(margin, 4);
+ *
+ * @param {string} $property
+ * @param {number} $key
+ */
+@mixin spacing-all($property, $key) {
+  @if meta.type-of($property) != 'string' {
+    @error "Expected $property to be a string, got '#{meta.type-of($property)}'";
+  }
+
+  #{$property}: fn.spacing($key);
+}
+
+/**
+ * Emits spacing for multiple keys in registry order.
+ *
+ * Useful for generators.
+ *
+ * Example:
+ *   @include spacing-list(padding, (1, 2, 3));
+ *
+ * @param {string} $property
+ * @param {list}   $keys
+ */
+@mixin spacing-list($property, $keys) {
+  @if meta.type-of($property) != 'string' {
+    @error "Expected $property to be a string, got '#{meta.type-of($property)}'";
+  }
+
+  $use-keys: _as-list($keys);
+
+  @if meta.type-of($use-keys) != 'list' {
+    @error "Expected $keys to be a list or number, got '#{meta.type-of($keys)}'";
+  }
+
+  $values: ();
+
+  @each $k in $use-keys {
+    $values: list.append($values, fn.spacing($k), space);
+  }
+
+  #{$property}: $values;
+}

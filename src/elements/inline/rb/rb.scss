@@ -1,0 +1,35 @@
+/**
+ * Sol Design Foundation: RB Element
+ *
+ * Ruby base (`rb`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - `<rb>` delimits the base text being annotated inside `<ruby>`.
+ * - Ruby layout is handled by the ruby formatting model; do not override display.
+ *
+ * @module
+ * @group  elements.inline.rb
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(rb) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Preserve intrinsic ruby formatting model behavior.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Inherit typography from surrounding context.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

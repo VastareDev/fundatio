@@ -1,0 +1,77 @@
+/**
+ * Sol Design Foundation: Option Tokens
+ *
+ * Canonical configuration primitives derived from the theme layer.
+ *
+ * These tokens expose high-level, cross-cutting options that influence
+ * how the design system is *consumed*, not how it is *styled*.
+ *
+ * Typical consumers include:
+ * - CSS variable generation
+ * - Utility class namespaces
+ * - Feature toggles (e.g. dark mode)
+ * - Asset path resolution (fonts, icons, etc.)
+ *
+ * This file intentionally:
+ * - Re-exports selected theme values under stable option semantics
+ * - Avoids redefining or transforming theme data
+ * - Acts as the single source of truth for system-wide configuration
+ *
+ * This file is intentionally data-only:
+ * - No selectors
+ * - No functions
+ * - No mixins
+ * - No side effects
+ *
+ * @module
+ * @group  tokens.options
+ * @access public
+ * @since  1.0.0
+ * @author LNPG Development Team
+ */
+
+@use './theme' as theme;
+
+/* ---------------------------------------------------------------------------
+ - Namespace & prefixing
+ -------------------------------------------------------------------------- */
+
+/**
+ * Global CSS namespace prefix.
+ *
+ * Used to scope generated CSS variables, utility classes, and
+ * any other emitted identifiers that must remain collision-safe.
+ *
+ * @type string
+ */
+$sol-prefix: theme.$theme-prefix;
+
+/* ---------------------------------------------------------------------------
+ - Feature flags
+ -------------------------------------------------------------------------- */
+
+/**
+ * Dark mode enablement flag.
+ *
+ * This token represents *capability*, not implementation.
+ * Consumers are responsible for deciding how dark mode is applied
+ * (media queries, data attributes, class toggles, etc.).
+ *
+ * @type boolean
+ */
+$dark-mode: theme.$theme-dark-mode;
+
+/* ---------------------------------------------------------------------------
+ - Asset paths
+ -------------------------------------------------------------------------- */
+
+/**
+ * Base font asset path.
+ *
+ * Used as the root for resolving font-face source URLs.
+ * This is intentionally centralised to ensure all font assets
+ * remain relocatable without touching individual font definitions.
+ *
+ * @type string
+ */
+$font-path: theme.$base-font-path;

@@ -1,0 +1,40 @@
+/**
+ * Sol Design Foundation: Datalist Element
+ *
+ * Datalist (`datalist`)
+ *
+ * Baseline hygiene only.
+ *
+ * Notes:
+ * - `<datalist>` provides predefined options for an `<input list="...">`.
+ * - Rendering is UA-defined; avoid attempting presentation resets.
+ * - Keep structural defaults and inheritance safe when shipped standalone.
+ *
+ * References (2025+):
+ * - MDN: `<datalist>` element reference (2025)
+ *
+ * @module
+ * @group  elements.form.datalist
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(datalist) {
+  /* --------------------------------------------------------------------------
+   - Baseline
+   -------------------------------------------------------------------------- */
+
+  // Do not force display; UA controls how datalist participates in rendering.
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Defensive inheritance (harmless even if element isn't visually rendered).
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+}

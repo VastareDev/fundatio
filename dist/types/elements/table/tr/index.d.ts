@@ -1,0 +1,134 @@
+/**
+ * Sol Design Foundation: Tr element helpers.
+ *
+ * @remarks
+ * The tr element (`<tr>`) represents a row of cells within a table section.
+ * A row typically contains `<td>` and/or `<th>` elements.
+ *
+ * Best-practice guidance:
+ * - Use tables for data, not layout.
+ * - Group rows with `<thead>`, `<tbody>`, and `<tfoot>` for clearer structure.
+ * - Use `<th>` for header cells (and `scope`/`headers` where appropriate) for
+ *   accessible tables.
+ * - Avoid obsolete presentational attributes on table elements (e.g. `align`,
+ *   `bgcolor`, `valign`). Use CSS instead.
+ *
+ * This module provides small, framework-agnostic helpers so consumers can:
+ * - create `<tr>` elements in vanilla JS/TS without templates
+ * - apply consistent global attributes safely
+ * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ *
+ * This module has no side effects and does not mutate the DOM unless you call
+ * its functions.
+ *
+ * References:
+ * - MDN: `<tr>`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/tr
+ * - WHATWG HTML: Tables: https://html.spec.whatwg.org/multipage/tables.html
+ *
+ * @module
+ * @category Elements
+ */
+import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
+/**
+ * Structured ARIA input supported by Sol element factories.
+ *
+ * @remarks
+ * This is intentionally a small, typed subset that covers common cases and
+ * prevents typo-based ARIA bugs (e.g. `lable`).
+ *
+ * It is mapped into {@link GlobalAttrs.aria} for application by `dom.ts`.
+ *
+ * @category Attributes
+ */
+export type StructuredAria = {
+    /**
+     * Accessible label, mapped to `aria-label`.
+     */
+    label?: string;
+    /**
+     * ID reference to the labelling element(s), mapped to `aria-labelledby`.
+     */
+    labelledby?: string;
+    /**
+     * Decorative/hidden hint, mapped to `aria-hidden`.
+     */
+    hidden?: boolean;
+};
+/**
+ * The semantic tag name for table rows.
+ *
+ * @category Constants
+ */
+export declare const TR_TAG: "tr";
+/**
+ * A CSS selector targeting tr elements.
+ *
+ * @category Constants
+ */
+export declare const TR_SELECTOR = "tr";
+/**
+ * Attribute bag for tr creation/enhancement.
+ *
+ * @remarks
+ * `<tr>` accepts standard HTML global attributes.
+ *
+ * Sol also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ *
+ * Note: legacy presentational attributes historically existed for table rows,
+ * but are obsolete. Consumers can still use {@link GlobalAttrs.attrs} as an
+ * escape hatch where necessary, subject to Sol's security rules in `dom.ts`
+ * (blocks inline event handlers and raw `style` attribute strings).
+ *
+ * @category Attributes
+ */
+export type TrAttrs = Omit<GlobalAttrs, 'aria'> & {
+    /**
+     * Structured ARIA fields mapped into `aria-*` attributes.
+     */
+    aria?: StructuredAria;
+};
+/**
+ * Create a tr element with optional text content and global attributes.
+ *
+ * @remarks
+ * - In real usage, `<tr>` should contain `<td>` and/or `<th>` cells (not text).
+ * - Optional text content is assigned via `textContent` (never `innerHTML`).
+ * - Global attributes are applied via Sol's shared DOM helper,
+ *   including security guards that block inline event handler attributes
+ *   (e.g. `onclick`) and raw `style` attribute strings.
+ *
+ * @param text - Optional text content for the row (generally discouraged).
+ * @param attrs - Optional attributes to apply.
+ * @returns The created `<tr>` element.
+ *
+ * @example
+ * ```ts
+ * import { createTr } from "@lnpg/sol/elements/table/tr";
+ *
+ * const row = createTr(undefined, { className: "row" });
+ * ```
+ *
+ * @category DOM
+ */
+export declare function createTr(text?: string, attrs?: TrAttrs): ElementOf<typeof TR_TAG>;
+/**
+ * Enhance tr elements within a given root.
+ *
+ * @remarks
+ * This is intentionally a no-op in `1.0.0`.
+ *
+ * Why does it exist?
+ * - It establishes a stable integration pattern for frameworks (Vue/React/etc.)
+ * - It allows future progressive enhancements without changing consumer code
+ *
+ * What it will never do:
+ * - It will not inject styles (CSS remains the source of truth)
+ * - It will not introduce framework-specific behavior
+ *
+ * @param root - The node to search within. Defaults to `document`.
+ *
+ * @category Enhancement
+ */
+export declare function enhanceTrs(root?: ParentNode): void;
+//# sourceMappingURL=index.d.ts.map

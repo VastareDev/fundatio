@@ -1,0 +1,35 @@
+/**
+ * Sol Design Foundation: Emphasis Element
+ *
+ * Stress emphasis (`em`)
+ *
+ * Baseline reset + light branding.
+ *
+ * This module:
+ * - Preserves semantic emphasis with consistent italic rendering
+ * - Avoids introducing typography decisions beyond the element's purpose
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.inline.em
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(em) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+
+  // Preserve semantic emphasis explicitly (UA styles typically use italic).
+  font-style: italic;
+
+  // Keep typography otherwise inherited.
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

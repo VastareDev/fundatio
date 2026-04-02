@@ -1,0 +1,39 @@
+/**
+ * Sol Design Foundation: OL Element
+ *
+ * Ordered list (`ol`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - Preserve numbering semantics.
+ * - Normalize UA margin/padding variance.
+ * - Avoid decorative styling at baseline.
+ *
+ * References (2025+):
+ * - MDN: `<ol>` element reference (Sep 2025)
+ *
+ * @module
+ * @group  elements.list.ol
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(ol) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // Normalize UA vertical spacing.
+  margin: 0;
+
+  // Normalize indentation consistently.
+  padding-inline-start: 1.5em;
+
+  // Preserve numbering behavior.
+  list-style-position: outside;
+  list-style-type: decimal;
+  box-sizing: border-box;
+}

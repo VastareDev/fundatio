@@ -1,0 +1,32 @@
+/**
+ * Sol Design Foundation: Col Element
+ *
+ * Table column (`col`)
+ *
+ * Structural baseline only.
+ *
+ * This module:
+ * - Normalizes `<col>` to its internal table display role
+ * - Avoids presentational styling (columns are structural)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.table.col
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(col) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Internal table element role per the CSS table model.
+  display: table-column;
+
+  // Defensive baseline: avoid incidental spacing/presentation.
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}

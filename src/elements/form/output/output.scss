@@ -1,0 +1,42 @@
+/**
+ * Sol Design Foundation: Output Element
+ *
+ * Calculation result (`output`)
+ *
+ * Baseline reset only.
+ *
+ * Notes:
+ * - `<output>` represents the result of a calculation or user action.
+ * - It behaves like a semantic inline element in most contexts.
+ * - Keep neutral and inherited; styling belongs to the form styling layer.
+ *
+ * References (2025+):
+ * - MDN: `<output>` element reference (2025)
+ *
+ * @module
+ * @group  elements.form.output
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(output) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  // Preserve inherited typography.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+}

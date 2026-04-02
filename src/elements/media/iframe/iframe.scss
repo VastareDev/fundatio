@@ -1,0 +1,39 @@
+/**
+ * Sol Design Foundation: Iframe Element
+ *
+ * Inline frame (`iframe`)
+ *
+ * Baseline hygiene only.
+ *
+ * This module:
+ * - Normalizes common UA/legacy presentation quirks (notably borders)
+ * - Treats `<iframe>` as a replaced element for predictable layout
+ * - Avoids opinionated "responsive iframe" patterns (no forced aspect-ratio rules)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.media.iframe
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(iframe) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  // Replaced element baseline.
+  display: inline-block;
+  vertical-align: middle;
+
+  // Legacy/UA: borders may appear via attributes or UA rules. Control via CSS.
+  border: 0;
+
+  // Defensive baseline: avoid unexpected spacing artifacts in embedded contexts.
+  margin: 0;
+  padding: 0;
+
+  // Predictable sizing when constrained by layout (without overriding author sizing).
+  box-sizing: border-box;
+  max-width: 100%;
+}

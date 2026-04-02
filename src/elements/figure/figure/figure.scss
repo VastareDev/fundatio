@@ -1,0 +1,53 @@
+/**
+ * Sol Design Foundation: Figure Element
+ *
+ * Self-contained content (`figure`)
+ *
+ * Baseline reset + light branding (spacing + typography inheritance).
+ *
+ * This module:
+ * - Normalizes UA margins for consistent cross-browser layout
+ * - Preserves semantics (no forced alignment/centering)
+ * - Applies Sol spacing token so the element can ship standalone
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * References (2025+):
+ * - MDN: `<figure>` element reference ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/figure?utm_source=chatgpt.com))
+ * - Reset guidance (Oct 2025): normalize margins across browsers ([useaxentix.com](https://useaxentix.com/blog/css/css-reset-complete-guide/?utm_source=chatgpt.com))
+ *
+ * @module
+ * @group  elements.figure.figure
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(figure) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: block;
+
+  // Normalize UA margins (browsers often apply block margins to figure).
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Predictable sizing.
+  box-sizing: border-box;
+  max-width: 100%;
+
+  // Preserve inherited typography context.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  /* --------------------------------------------------------------------------
+   - Brand-aligned spacing
+   -------------------------------------------------------------------------- */
+
+  margin-block-end: var(--lg-typography-spacing-base-margin-bottom);
+}

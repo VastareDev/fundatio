@@ -1,0 +1,41 @@
+/**
+ * Sol Design Foundation: Label Element
+ *
+ * Label (`label`)
+ *
+ * Baseline reset + light usability normalization.
+ *
+ * This module:
+ * - Keeps label inline by default (matches typical UA behavior)
+ * - Normalizes spacing
+ * - Uses pointer cursor to reflect interactive association with form controls
+ * - Preserves inherited typography (labels should match surrounding content)
+ * - Uses low-specificity selectors (`:where()`)
+ *
+ * @module
+ * @group  elements.form.label
+ * @access public
+ * @since  1.0.0
+ */
+
+:where(label) {
+  /* --------------------------------------------------------------------------
+   - Reset / normalization
+   -------------------------------------------------------------------------- */
+
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Labels are interactive when associated with a control.
+  cursor: pointer;
+
+  // Preserve inherited typography.
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}

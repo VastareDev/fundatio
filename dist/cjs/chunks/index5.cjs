@@ -1,0 +1,2 @@
+"use strict";const e=require("./index28.cjs"),t=require("./index29.cjs"),n=require("./index30.cjs"),l=require("./index31.cjs"),o=require("./index32.cjs"),r=require("./index33.cjs"),i=require("./index34.cjs"),_=require("./index35.cjs"),s=require("./index36.cjs"),c=require("./index37.cjs"),d=Object.freeze(Object.defineProperty({__proto__:null,caption:c.index,col:n.index,colgroup:t.index,table:e.index,tbody:o.index,td:s.index,tfoot:r.index,th:_.index,thead:l.index,tr:i.index},Symbol.toStringTag,{value:"Module"}));exports.index=d;
+//# sourceMappingURL=index5.cjs.map

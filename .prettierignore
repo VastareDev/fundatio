@@ -1,0 +1,44 @@
+##
+# The repisitory's ignored file and folder patterns.
+#
+# @link       https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+# @version    1.0.0 (file)
+# @since      0.2.0 (release)
+ 
+##
+# NODE / NPM
+#
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+ 
+##
+# Distribution and Build Output
+#
+dist
+.vite
+coverage
+ 
+##
+# Documentation Output
+#
+docs/.vitepress/dist
+public
+ 
+##
+# IDE and Editor Folders
+#
+.idea
+.vscode
+ 
+##
+# Temporary or Generated Files
+#
+*.tmp
+*.log
+
+##
+# Temporary Shiv
+#
+src/scss/mixins/_fonts.scss

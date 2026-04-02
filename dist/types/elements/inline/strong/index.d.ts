@@ -1,0 +1,126 @@
+/**
+ * Sol Design Foundation: Strong element helpers.
+ *
+ * @remarks
+ * The strong element (`<strong>`) indicates that its contents have strong
+ * importance, seriousness, or urgency. Browsers typically render it as bold,
+ * but the semantic meaning is what matters. :contentReference[oaicite:3]{index=3}
+ *
+ * Best-practice guidance:
+ * - Use `<strong>` for genuinely important text (e.g. warnings, urgent notes).
+ * - Do not use `<strong>` purely for visual styling; use CSS for presentation.
+ * - Do not confuse `<strong>` with `<b>`:
+ *   - `<strong>` conveys importance/seriousness/urgency.
+ *   - `<b>` draws attention without adding semantic importance. :contentReference[oaicite:4]{index=4}
+ *
+ * This module provides small, framework-agnostic helpers so consumers can:
+ * - create strong text nodes in vanilla JS/TS without templates
+ * - apply consistent global attributes safely
+ * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ *
+ * This module has no side effects and does not mutate the DOM unless you call
+ * its functions.
+ *
+ * @module
+ * @category Elements
+ */
+import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
+/**
+ * Structured ARIA input supported by Sol element factories.
+ *
+ * @remarks
+ * This is intentionally a small, typed subset that covers common cases and
+ * prevents typo-based ARIA bugs (e.g. `lable`).
+ *
+ * It is mapped into {@link GlobalAttrs.aria} for application by `dom.ts`.
+ *
+ * @category Attributes
+ */
+export type StructuredAria = {
+    /**
+     * Accessible label, mapped to `aria-label`.
+     */
+    label?: string;
+    /**
+     * ID reference to the labelling element(s), mapped to `aria-labelledby`.
+     */
+    labelledby?: string;
+    /**
+     * Decorative/hidden hint, mapped to `aria-hidden`.
+     */
+    hidden?: boolean;
+};
+/**
+ * The semantic tag name for strong importance.
+ *
+ * @category Constants
+ */
+export declare const STRONG_TAG: "strong";
+/**
+ * A CSS selector targeting strong elements.
+ *
+ * @category Constants
+ */
+export declare const STRONG_SELECTOR = "strong";
+/**
+ * Attribute bag for strong creation/enhancement.
+ *
+ * @remarks
+ * The `<strong>` element uses standard HTML global attributes.
+ *
+ * Sol also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ *
+ * @category Attributes
+ */
+export type StrongAttrs = Omit<GlobalAttrs, 'aria'> & {
+    /**
+     * Structured ARIA fields mapped into `aria-*` attributes.
+     */
+    aria?: StructuredAria;
+};
+/**
+ * Create a strong element with optional text content and global attributes.
+ *
+ * @remarks
+ * - Text content is assigned via `textContent` (never `innerHTML`).
+ * - Global attributes are applied via Sol's shared DOM helper,
+ *   including security guards that block inline event handler attributes
+ *   (e.g. `onclick`) and raw `style` attribute strings.
+ *
+ * @param text - Optional text content for the strong element.
+ * @param attrs - Optional attributes to apply.
+ * @returns The created `<strong>` element.
+ *
+ * @example
+ * Emphasize a warning:
+ * ```ts
+ * import { createStrong } from "@lnpg/sol/elements/inline/strong";
+ *
+ * const warning = createStrong("Warning:", { className: "warning-label" });
+ * document.body.appendChild(warning);
+ * ```
+ *
+ * @category DOM
+ */
+export declare function createStrong(text?: string, attrs?: StrongAttrs): ElementOf<typeof STRONG_TAG>;
+/**
+ * Enhance strong elements within a given root.
+ *
+ * @remarks
+ * This is intentionally a no-op in `1.0.0`.
+ *
+ * Why does it exist?
+ * - It establishes a stable integration pattern for frameworks (Vue/React/etc.)
+ * - It allows future progressive enhancements without changing consumer code
+ *
+ * What it will never do:
+ * - It will not inject styles (CSS remains the source of truth)
+ * - It will not introduce framework-specific behavior
+ *
+ * @param root - The node to search within. Defaults to `document`.
+ *
+ * @category Enhancement
+ */
+export declare function enhanceStrongs(root?: ParentNode): void;
+//# sourceMappingURL=index.d.ts.map

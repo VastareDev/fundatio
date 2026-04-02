@@ -1,0 +1,705 @@
+{
+  "name": "@lnpg/sol",
+  "version": "1.0.1",
+  "description": "Framework agnostic design foundation for UI kits and applications.",
+  "homepage": "https://github.com/lnpgdev/sol#readme",
+  "bugs": {
+    "url": "https://github.com/lnpgdev/sol/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lnpgdev/sol.git"
+  },
+  "license": "ISC",
+  "author": "LNPG Development Team",
+  "type": "module",
+  "style": "./dist/css/main.css",
+  "files": [
+    "dist",
+    "src/scss",
+    "src/ts",
+    "src/elements"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "pre:build": "npm exec --no -- unicode-scrub --fix \"./**/*\"",
+    "lint": "npm run lint:scss && npm run lint:ts",
+    "lint:fix": "npm run lint:scss:fix && npm run lint:ts:fix",
+    "lint:ts": "eslint 'src/**/*.{ts,tsx}' --max-warnings=0",
+    "lint:ts:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+    "lint:scss": "stylelint \"src/**/*.scss\" --config stylelint.config.cjs",
+    "lint:scss:fix": "stylelint \"src/**/*.scss\" --fix --config stylelint.config.cjs",
+    "prettier": "npm run prettier:scss && npm run prettier:ts",
+    "prettier:fix": "npm run prettier:scss:fix && npm run prettier:ts:fix && npm run prettier:misc:fix",
+    "prettier:ts": "prettier \"src/**/*.{ts,tsx}\"",
+    "prettier:ts:fix": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "prettier:scss": "prettier \"**/*.{scss,css,md,json,yml,yaml}\"",
+    "prettier:scss:fix": "prettier --ignore-path .prettierignore --no-error-on-unmatched-pattern --write \"src/**/*.{scss,css}\"",
+    "prettier:misc": "prettier \"**/*.{md,json,yml,yaml}\"",
+    "prettier:misc:fix": "prettier --write \"**/*.{md,json,yml,yaml}\"",
+    "tsc": "tsc -p tsconfig.types.json --noEmit",
+    "build:types": "tsc -p tsconfig.types.json",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "clean": "rimraf dist .tsbuildinfo.types",
+    "check": "npm run lint:fix && npm run prettier:fix && npm run tsc",
+    "test": "vitest run",
+    "build": "npm run pre:build && npm run clean && npm run check && npm run test && npm run build:all",
+    "build:all": "npm run build:css && npm run build:js && npm run build:types",
+    "docs": "npm run docs:copy:assets && npm run docs:scss && npm run docs:ts && npm run docs:build",
+    "docs:scss": "echo \"Placeholder (tbc)\"",
+    "docs:ts": "typedoc --options typedoc.config.cjs",
+    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:preview": "vitepress preview public",
+    "docs:copy:assets": "rimraf docs/public/assets/fonts && mkdir -p docs/public/assets/fonts && cp -R src/assets/fonts/* docs/public/assets/fonts",
+    "build:css": "npm run build:css:main && npm run build:css:core && npm run build:css:elements",
+    "build:js": "vite build --mode esm && vite build --mode cjs",
+    "build:css:core": "sass --style=compressed src/scss/core.scss dist/css/core.css",
+    "build:css:main": "sass --style=compressed src/scss/main.scss dist/css/main.css",
+    "build:css:elements": "sass --style=compressed src/elements:dist/css/elements",
+    "copy:assets": "npm run copy:assets:fonts",
+    "copy:assets:fonts": "rimraf dist/assets/fonts && mkdir -p dist/assets/fonts && cp -R src/assets/fonts/* dist/assets/fonts",
+    "prepublishOnly": "npm run pre:build && npm run clean && npm run check && npm run test:coverage && npm run build:all && npm run copy:assets && npm run docs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "sass": "^1.97.2",
+    "sass-embedded": "^1.97.2",
+    "eslint": "^9.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "stylelint": "^17.2.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-scss": "^7.0.0",
+    "stylelint-order": "^7.0.1",
+    "vitest": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.17",
+    "vitepress": "^1.6.4",
+    "typedoc": "^0.28.16",
+    "typedoc-plugin-markdown": "^4.10.0",
+    "@lnpg/unicode-scrub": "^1.0.0",
+    "rimraf": "^6.1.2",
+    "postcss-scss": "^4.0.9",
+    "globals": "^17.3.0"
+  },
+  "overrides": {
+    "esbuild": "^0.25.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs"
+    },
+    "./tailwind": {
+      "types": "./dist/types/ts/adapters/tailwind/index.d.ts",
+      "import": "./dist/esm/ts/adapters/tailwind/index.js",
+      "require": "./dist/cjs/ts/adapters/tailwind/index.cjs"
+    },
+    "./package.json": "./package.json",
+    "./scss/adapters/bootstrap/v5": "./src/scss/adapters/bootstrap/v5/index.scss",
+    "./css": {
+      "default": "./dist/css/main.css"
+    },
+    "./css/core": {
+      "default": "./dist/css/core.css"
+    },
+    "./css/main": {
+      "default": "./dist/css/main.css"
+    },
+    "./scss/tokens/theme": "./src/scss/tokens/_theme.scss",
+    "./css/elements/*": "./dist/css/elements/*",
+    "./css/elements/*.css": "./dist/css/elements/*.css",
+    "./elements": {
+      "types": "./dist/types/elements/index.d.ts",
+      "import": "./dist/esm/elements.js",
+      "require": "./dist/cjs/elements.cjs"
+    },
+    "./elements/container": {
+      "types": "./dist/types/elements/container/index.d.ts",
+      "import": "./dist/esm/elements/container/container.js",
+      "require": "./dist/cjs/elements/container/container.cjs"
+    },
+    "./elements/container/div": {
+      "types": "./dist/types/elements/container/div/index.d.ts",
+      "import": "./dist/esm/elements/container/div/div.js",
+      "require": "./dist/cjs/elements/container/div/div.cjs"
+    },
+    "./elements/container/span": {
+      "types": "./dist/types/elements/container/span/index.d.ts",
+      "import": "./dist/esm/elements/container/span/span.js",
+      "require": "./dist/cjs/elements/container/span/span.cjs"
+    },
+    "./elements/break": {
+      "types": "./dist/types/elements/break/index.d.ts",
+      "import": "./dist/esm/elements/break/break.js",
+      "require": "./dist/cjs/elements/break/break.cjs"
+    },
+    "./elements/break/br": {
+      "types": "./dist/types/elements/break/br/index.d.ts",
+      "import": "./dist/esm/elements/break/br/br.js",
+      "require": "./dist/cjs/elements/break/br/br.cjs"
+    },
+    "./elements/break/wbr": {
+      "types": "./dist/types/elements/break/wbr/index.d.ts",
+      "import": "./dist/esm/elements/break/wbr/wbr.js",
+      "require": "./dist/cjs/elements/break/wbr/wbr.cjs"
+    },
+    "./elements/media": {
+      "types": "./dist/types/elements/media/index.d.ts",
+      "import": "./dist/esm/elements/media/media.js",
+      "require": "./dist/cjs/elements/media/media.cjs"
+    },
+    "./elements/media/img": {
+      "types": "./dist/types/elements/media/img/index.d.ts",
+      "import": "./dist/esm/elements/media/img/img.js",
+      "require": "./dist/cjs/elements/media/img/img.cjs"
+    },
+    "./elements/media/svg": {
+      "types": "./dist/types/elements/media/svg/index.d.ts",
+      "import": "./dist/esm/elements/media/svg/svg.js",
+      "require": "./dist/cjs/elements/media/svg/svg.cjs"
+    },
+    "./elements/media/math": {
+      "types": "./dist/types/elements/media/math/index.d.ts",
+      "import": "./dist/esm/elements/media/math/math.js",
+      "require": "./dist/cjs/elements/media/math/math.cjs"
+    },
+    "./elements/media/canvas": {
+      "types": "./dist/types/elements/media/canvas/index.d.ts",
+      "import": "./dist/esm/elements/media/canvas/canvas.js",
+      "require": "./dist/cjs/elements/media/canvas/canvas.cjs"
+    },
+    "./elements/media/iframe": {
+      "types": "./dist/types/elements/media/iframe/index.d.ts",
+      "import": "./dist/esm/elements/media/iframe/iframe.js",
+      "require": "./dist/cjs/elements/media/iframe/iframe.cjs"
+    },
+    "./elements/media/embed": {
+      "types": "./dist/types/elements/media/embed/index.d.ts",
+      "import": "./dist/esm/elements/media/embed/embed.js",
+      "require": "./dist/cjs/elements/media/embed/embed.cjs"
+    },
+    "./elements/media/object": {
+      "types": "./dist/types/elements/media/object/index.d.ts",
+      "import": "./dist/esm/elements/media/object/object.js",
+      "require": "./dist/cjs/elements/media/object/object.cjs"
+    },
+    "./elements/media/video": {
+      "types": "./dist/types/elements/media/video/index.d.ts",
+      "import": "./dist/esm/elements/media/video/video.js",
+      "require": "./dist/cjs/elements/media/video/video.cjs"
+    },
+    "./elements/media/audio": {
+      "types": "./dist/types/elements/media/audio/index.d.ts",
+      "import": "./dist/esm/elements/media/audio/audio.js",
+      "require": "./dist/cjs/elements/media/audio/audio.cjs"
+    },
+    "./elements/table": {
+      "types": "./dist/types/elements/table/index.d.ts",
+      "import": "./dist/esm/elements/table/table.js",
+      "require": "./dist/cjs/elements/table/table.cjs"
+    },
+    "./elements/table/table": {
+      "types": "./dist/types/elements/table/table/index.d.ts",
+      "import": "./dist/esm/elements/table/table/table.js",
+      "require": "./dist/cjs/elements/table/table/table.cjs"
+    },
+    "./elements/table/colgroup": {
+      "types": "./dist/types/elements/table/colgroup/index.d.ts",
+      "import": "./dist/esm/elements/table/colgroup/colgroup.js",
+      "require": "./dist/cjs/elements/table/colgroup/colgroup.cjs"
+    },
+    "./elements/table/col": {
+      "types": "./dist/types/elements/table/col/index.d.ts",
+      "import": "./dist/esm/elements/table/col/col.js",
+      "require": "./dist/cjs/elements/table/col/col.cjs"
+    },
+    "./elements/table/thead": {
+      "types": "./dist/types/elements/table/thead/index.d.ts",
+      "import": "./dist/esm/elements/table/thead/thead.js",
+      "require": "./dist/cjs/elements/table/thead/thead.cjs"
+    },
+    "./elements/table/tbody": {
+      "types": "./dist/types/elements/table/tbody/index.d.ts",
+      "import": "./dist/esm/elements/table/tbody/tbody.js",
+      "require": "./dist/cjs/elements/table/tbody/tbody.cjs"
+    },
+    "./elements/table/tfoot": {
+      "types": "./dist/types/elements/table/tfoot/index.d.ts",
+      "import": "./dist/esm/elements/table/tfoot/tfoot.js",
+      "require": "./dist/cjs/elements/table/tfoot/tfoot.cjs"
+    },
+    "./elements/table/tr": {
+      "types": "./dist/types/elements/table/tr/index.d.ts",
+      "import": "./dist/esm/elements/table/tr/tr.js",
+      "require": "./dist/cjs/elements/table/tr/tr.cjs"
+    },
+    "./elements/table/th": {
+      "types": "./dist/types/elements/table/th/index.d.ts",
+      "import": "./dist/esm/elements/table/th/th.js",
+      "require": "./dist/cjs/elements/table/th/th.cjs"
+    },
+    "./elements/table/td": {
+      "types": "./dist/types/elements/table/td/index.d.ts",
+      "import": "./dist/esm/elements/table/td/td.js",
+      "require": "./dist/cjs/elements/table/td/td.cjs"
+    },
+    "./elements/table/caption": {
+      "types": "./dist/types/elements/table/caption/index.d.ts",
+      "import": "./dist/esm/elements/table/caption/caption.js",
+      "require": "./dist/cjs/elements/table/caption/caption.cjs"
+    },
+    "./elements/heading": {
+      "types": "./dist/types/elements/heading/index.d.ts",
+      "import": "./dist/esm/elements/heading/heading.js",
+      "require": "./dist/cjs/elements/heading/heading.cjs"
+    },
+    "./elements/heading/h1": {
+      "types": "./dist/types/elements/heading/h1/index.d.ts",
+      "import": "./dist/esm/elements/heading/h1/h1.js",
+      "require": "./dist/cjs/elements/heading/h1/h1.cjs"
+    },
+    "./elements/heading/h2": {
+      "types": "./dist/types/elements/heading/h2/index.d.ts",
+      "import": "./dist/esm/elements/heading/h2/h2.js",
+      "require": "./dist/cjs/elements/heading/h2/h2.cjs"
+    },
+    "./elements/heading/h3": {
+      "types": "./dist/types/elements/heading/h3/index.d.ts",
+      "import": "./dist/esm/elements/heading/h3/h3.js",
+      "require": "./dist/cjs/elements/heading/h3/h3.cjs"
+    },
+    "./elements/heading/h4": {
+      "types": "./dist/types/elements/heading/h4/index.d.ts",
+      "import": "./dist/esm/elements/heading/h4/h4.js",
+      "require": "./dist/cjs/elements/heading/h4/h4.cjs"
+    },
+    "./elements/heading/h5": {
+      "types": "./dist/types/elements/heading/h5/index.d.ts",
+      "import": "./dist/esm/elements/heading/h5/h5.js",
+      "require": "./dist/cjs/elements/heading/h5/h5.cjs"
+    },
+    "./elements/heading/h6": {
+      "types": "./dist/types/elements/heading/h6/index.d.ts",
+      "import": "./dist/esm/elements/heading/h6/h6.js",
+      "require": "./dist/cjs/elements/heading/h6/h6.cjs"
+    },
+    "./elements/text": {
+      "types": "./dist/types/elements/text/index.d.ts",
+      "import": "./dist/esm/elements/text/text.js",
+      "require": "./dist/cjs/elements/text/text.cjs"
+    },
+    "./elements/text/paragraph": {
+      "types": "./dist/types/elements/text/paragraph/index.d.ts",
+      "import": "./dist/esm/elements/text/paragraph/paragraph.js",
+      "require": "./dist/cjs/elements/text/paragraph/paragraph.cjs"
+    },
+    "./elements/text/hr": {
+      "types": "./dist/types/elements/text/hr/index.d.ts",
+      "import": "./dist/esm/elements/text/hr/hr.js",
+      "require": "./dist/cjs/elements/text/hr/hr.cjs"
+    },
+    "./elements/text/pre": {
+      "types": "./dist/types/elements/text/pre/index.d.ts",
+      "import": "./dist/esm/elements/text/pre/pre.js",
+      "require": "./dist/cjs/elements/text/pre/pre.cjs"
+    },
+    "./elements/text/blockquote": {
+      "types": "./dist/types/elements/text/blockquote/index.d.ts",
+      "import": "./dist/esm/elements/text/blockquote/blockquote.js",
+      "require": "./dist/cjs/elements/text/blockquote/blockquote.cjs"
+    },
+    "./elements/text/address": {
+      "types": "./dist/types/elements/text/address/index.d.ts",
+      "import": "./dist/esm/elements/text/address/address.js",
+      "require": "./dist/cjs/elements/text/address/address.cjs"
+    },
+    "./elements/inline": {
+      "types": "./dist/types/elements/inline/index.d.ts",
+      "import": "./dist/esm/elements/inline/inline.js",
+      "require": "./dist/cjs/elements/inline/inline.cjs"
+    },
+    "./elements/inline/a": {
+      "types": "./dist/types/elements/inline/a/index.d.ts",
+      "import": "./dist/esm/elements/inline/a/a.js",
+      "require": "./dist/cjs/elements/inline/a/a.cjs"
+    },
+    "./elements/inline/abbr": {
+      "types": "./dist/types/elements/inline/abbr/index.d.ts",
+      "import": "./dist/esm/elements/inline/abbr/abbr.js",
+      "require": "./dist/cjs/elements/inline/abbr/abbr.cjs"
+    },
+    "./elements/inline/b": {
+      "types": "./dist/types/elements/inline/b/index.d.ts",
+      "import": "./dist/esm/elements/inline/b/b.js",
+      "require": "./dist/cjs/elements/inline/b/b.cjs"
+    },
+    "./elements/inline/cite": {
+      "types": "./dist/types/elements/inline/cite/index.d.ts",
+      "import": "./dist/esm/elements/inline/cite/cite.js",
+      "require": "./dist/cjs/elements/inline/cite/cite.cjs"
+    },
+    "./elements/inline/code": {
+      "types": "./dist/types/elements/inline/code/index.d.ts",
+      "import": "./dist/esm/elements/inline/code/code.js",
+      "require": "./dist/cjs/elements/inline/code/code.cjs"
+    },
+    "./elements/inline/data": {
+      "types": "./dist/types/elements/inline/data/index.d.ts",
+      "import": "./dist/esm/elements/inline/data/data.js",
+      "require": "./dist/cjs/elements/inline/data/data.cjs"
+    },
+    "./elements/inline/dfn": {
+      "types": "./dist/types/elements/inline/dfn/index.d.ts",
+      "import": "./dist/esm/elements/inline/dfn/dfn.js",
+      "require": "./dist/cjs/elements/inline/dfn/dfn.cjs"
+    },
+    "./elements/inline/em": {
+      "types": "./dist/types/elements/inline/em/index.d.ts",
+      "import": "./dist/esm/elements/inline/em/em.js",
+      "require": "./dist/cjs/elements/inline/em/em.cjs"
+    },
+    "./elements/inline/i": {
+      "types": "./dist/types/elements/inline/i/index.d.ts",
+      "import": "./dist/esm/elements/inline/i/i.js",
+      "require": "./dist/cjs/elements/inline/i/i.cjs"
+    },
+    "./elements/inline/kbd": {
+      "types": "./dist/types/elements/inline/kbd/index.d.ts",
+      "import": "./dist/esm/elements/inline/kbd/kbd.js",
+      "require": "./dist/cjs/elements/inline/kbd/kbd.cjs"
+    },
+    "./elements/inline/mark": {
+      "types": "./dist/types/elements/inline/mark/index.d.ts",
+      "import": "./dist/esm/elements/inline/mark/mark.js",
+      "require": "./dist/cjs/elements/inline/mark/mark.cjs"
+    },
+    "./elements/inline/q": {
+      "types": "./dist/types/elements/inline/q/index.d.ts",
+      "import": "./dist/esm/elements/inline/q/q.js",
+      "require": "./dist/cjs/elements/inline/q/q.cjs"
+    },
+    "./elements/inline/rb": {
+      "types": "./dist/types/elements/inline/rb/index.d.ts",
+      "import": "./dist/esm/elements/inline/rb/rb.js",
+      "require": "./dist/cjs/elements/inline/rb/rb.cjs"
+    },
+    "./elements/inline/rt": {
+      "types": "./dist/types/elements/inline/rt/index.d.ts",
+      "import": "./dist/esm/elements/inline/rt/rt.js",
+      "require": "./dist/cjs/elements/inline/rt/rt.cjs"
+    },
+    "./elements/inline/rtc": {
+      "types": "./dist/types/elements/inline/rtc/index.d.ts",
+      "import": "./dist/esm/elements/inline/rtc/rtc.js",
+      "require": "./dist/cjs/elements/inline/rtc/rtc.cjs"
+    },
+    "./elements/inline/ruby": {
+      "types": "./dist/types/elements/inline/ruby/index.d.ts",
+      "import": "./dist/esm/elements/inline/ruby/ruby.js",
+      "require": "./dist/cjs/elements/inline/ruby/ruby.cjs"
+    },
+    "./elements/inline/s": {
+      "types": "./dist/types/elements/inline/s/index.d.ts",
+      "import": "./dist/esm/elements/inline/s/s.js",
+      "require": "./dist/cjs/elements/inline/s/s.cjs"
+    },
+    "./elements/inline/samp": {
+      "types": "./dist/types/elements/inline/samp/index.d.ts",
+      "import": "./dist/esm/elements/inline/samp/samp.js",
+      "require": "./dist/cjs/elements/inline/samp/samp.cjs"
+    },
+    "./elements/inline/small": {
+      "types": "./dist/types/elements/inline/small/index.d.ts",
+      "import": "./dist/esm/elements/inline/small/small.js",
+      "require": "./dist/cjs/elements/inline/small/small.cjs"
+    },
+    "./elements/inline/strong": {
+      "types": "./dist/types/elements/inline/strong/index.d.ts",
+      "import": "./dist/esm/elements/inline/strong/strong.js",
+      "require": "./dist/cjs/elements/inline/strong/strong.cjs"
+    },
+    "./elements/inline/sub": {
+      "types": "./dist/types/elements/inline/sub/index.d.ts",
+      "import": "./dist/esm/elements/inline/sub/sub.js",
+      "require": "./dist/cjs/elements/inline/sub/sub.cjs"
+    },
+    "./elements/inline/sup": {
+      "types": "./dist/types/elements/inline/sup/index.d.ts",
+      "import": "./dist/esm/elements/inline/sup/sup.js",
+      "require": "./dist/cjs/elements/inline/sup/sup.cjs"
+    },
+    "./elements/inline/time": {
+      "types": "./dist/types/elements/inline/time/index.d.ts",
+      "import": "./dist/esm/elements/inline/time/time.js",
+      "require": "./dist/cjs/elements/inline/time/time.cjs"
+    },
+    "./elements/inline/u": {
+      "types": "./dist/types/elements/inline/u/index.d.ts",
+      "import": "./dist/esm/elements/inline/u/u.js",
+      "require": "./dist/cjs/elements/inline/u/u.cjs"
+    },
+    "./elements/inline/var": {
+      "types": "./dist/types/elements/inline/var/index.d.ts",
+      "import": "./dist/esm/elements/inline/var/var.js",
+      "require": "./dist/cjs/elements/inline/var/var.cjs"
+    },
+    "./elements/list": {
+      "types": "./dist/types/elements/list/index.d.ts",
+      "import": "./dist/esm/elements/list/list.js",
+      "require": "./dist/cjs/elements/list/list.cjs"
+    },
+    "./elements/list/dd": {
+      "types": "./dist/types/elements/list/dd/index.d.ts",
+      "import": "./dist/esm/elements/list/dd/dd.js",
+      "require": "./dist/cjs/elements/list/dd/dd.cjs"
+    },
+    "./elements/list/dl": {
+      "types": "./dist/types/elements/list/dl/index.d.ts",
+      "import": "./dist/esm/elements/list/dl/dl.js",
+      "require": "./dist/cjs/elements/list/dl/dl.cjs"
+    },
+    "./elements/list/dt": {
+      "types": "./dist/types/elements/list/dt/index.d.ts",
+      "import": "./dist/esm/elements/list/dt/dt.js",
+      "require": "./dist/cjs/elements/list/dt/dt.cjs"
+    },
+    "./elements/list/li": {
+      "types": "./dist/types/elements/list/li/index.d.ts",
+      "import": "./dist/esm/elements/list/li/li.js",
+      "require": "./dist/cjs/elements/list/li/li.cjs"
+    },
+    "./elements/list/ol": {
+      "types": "./dist/types/elements/list/ol/index.d.ts",
+      "import": "./dist/esm/elements/list/ol/ol.js",
+      "require": "./dist/cjs/elements/list/ol/ol.cjs"
+    },
+    "./elements/list/ul": {
+      "types": "./dist/types/elements/list/ul/index.d.ts",
+      "import": "./dist/esm/elements/list/ul/ul.js",
+      "require": "./dist/cjs/elements/list/ul/ul.cjs"
+    },
+    "./elements/figure": {
+      "types": "./dist/types/elements/figure/index.d.ts",
+      "import": "./dist/esm/elements/figure/figure.js",
+      "require": "./dist/cjs/elements/figure/figure.cjs"
+    },
+    "./elements/figure/figcaption": {
+      "types": "./dist/types/elements/figure/figcaption/index.d.ts",
+      "import": "./dist/esm/elements/figure/figcaption/figcaption.js",
+      "require": "./dist/cjs/elements/figure/figcaption/figcaption.cjs"
+    },
+    "./elements/figure/figure": {
+      "types": "./dist/types/elements/figure/figure/index.d.ts",
+      "import": "./dist/esm/elements/figure/figure/figure.js",
+      "require": "./dist/cjs/elements/figure/figure/figure.cjs"
+    },
+    "./elements/form": {
+      "types": "./dist/types/elements/form/index.d.ts",
+      "import": "./dist/esm/elements/form/form.js",
+      "require": "./dist/cjs/elements/form/form.cjs"
+    },
+    "./elements/form/button": {
+      "types": "./dist/types/elements/form/button/index.d.ts",
+      "import": "./dist/esm/elements/form/button/button.js",
+      "require": "./dist/cjs/elements/form/button/button.cjs"
+    },
+    "./elements/form/datalist": {
+      "types": "./dist/types/elements/form/datalist/index.d.ts",
+      "import": "./dist/esm/elements/form/datalist/datalist.js",
+      "require": "./dist/cjs/elements/form/datalist/datalist.cjs"
+    },
+    "./elements/form/fieldset": {
+      "types": "./dist/types/elements/form/fieldset/index.d.ts",
+      "import": "./dist/esm/elements/form/fieldset/fieldset.js",
+      "require": "./dist/cjs/elements/form/fieldset/fieldset.cjs"
+    },
+    "./elements/form/form": {
+      "types": "./dist/types/elements/form/form/index.d.ts",
+      "import": "./dist/esm/elements/form/form/form.js",
+      "require": "./dist/cjs/elements/form/form/form.cjs"
+    },
+    "./elements/form/input": {
+      "types": "./dist/types/elements/form/input/index.d.ts",
+      "import": "./dist/esm/elements/form/input/input.js",
+      "require": "./dist/cjs/elements/form/input/input.cjs"
+    },
+    "./elements/form/label": {
+      "types": "./dist/types/elements/form/label/index.d.ts",
+      "import": "./dist/esm/elements/form/label/label.js",
+      "require": "./dist/cjs/elements/form/label/label.cjs"
+    },
+    "./elements/form/legend": {
+      "types": "./dist/types/elements/form/legend/index.d.ts",
+      "import": "./dist/esm/elements/form/legend/legend.js",
+      "require": "./dist/cjs/elements/form/legend/legend.cjs"
+    },
+    "./elements/form/meter": {
+      "types": "./dist/types/elements/form/meter/index.d.ts",
+      "import": "./dist/esm/elements/form/meter/meter.js",
+      "require": "./dist/cjs/elements/form/meter/meter.cjs"
+    },
+    "./elements/form/optgroup": {
+      "types": "./dist/types/elements/form/optgroup/index.d.ts",
+      "import": "./dist/esm/elements/form/optgroup/optgroup.js",
+      "require": "./dist/cjs/elements/form/optgroup/optgroup.cjs"
+    },
+    "./elements/form/option": {
+      "types": "./dist/types/elements/form/option/index.d.ts",
+      "import": "./dist/esm/elements/form/option/option.js",
+      "require": "./dist/cjs/elements/form/option/option.cjs"
+    },
+    "./elements/form/output": {
+      "types": "./dist/types/elements/form/output/index.d.ts",
+      "import": "./dist/esm/elements/form/output/output.js",
+      "require": "./dist/cjs/elements/form/output/output.cjs"
+    },
+    "./elements/form/progress": {
+      "types": "./dist/types/elements/form/progress/index.d.ts",
+      "import": "./dist/esm/elements/form/progress/progress.js",
+      "require": "./dist/cjs/elements/form/progress/progress.cjs"
+    },
+    "./elements/form/select": {
+      "types": "./dist/types/elements/form/select/index.d.ts",
+      "import": "./dist/esm/elements/form/select/select.js",
+      "require": "./dist/cjs/elements/form/select/select.cjs"
+    },
+    "./elements/form/textarea": {
+      "types": "./dist/types/elements/form/textarea/index.d.ts",
+      "import": "./dist/esm/elements/form/textarea/textarea.js",
+      "require": "./dist/cjs/elements/form/textarea/textarea.cjs"
+    },
+    "./elements/interactive": {
+      "types": "./dist/types/elements/interactive/index.d.ts",
+      "import": "./dist/esm/elements/interactive/interactive.js",
+      "require": "./dist/cjs/elements/interactive/interactive.cjs"
+    },
+    "./elements/interactive/details": {
+      "types": "./dist/types/elements/interactive/details/index.d.ts",
+      "import": "./dist/esm/elements/interactive/details/details.js",
+      "require": "./dist/cjs/elements/interactive/details/details.cjs"
+    },
+    "./elements/interactive/dialog": {
+      "types": "./dist/types/elements/interactive/dialog/index.d.ts",
+      "import": "./dist/esm/elements/interactive/dialog/dialog.js",
+      "require": "./dist/cjs/elements/interactive/dialog/dialog.cjs"
+    },
+    "./elements/interactive/summary": {
+      "types": "./dist/types/elements/interactive/summary/index.d.ts",
+      "import": "./dist/esm/elements/interactive/summary/summary.js",
+      "require": "./dist/cjs/elements/interactive/summary/summary.cjs"
+    },
+    "./elements/responsive": {
+      "types": "./dist/types/elements/responsive/index.d.ts",
+      "import": "./dist/esm/elements/responsive/responsive.js",
+      "require": "./dist/cjs/elements/responsive/responsive.cjs"
+    },
+    "./elements/responsive/picture": {
+      "types": "./dist/types/elements/responsive/picture/index.d.ts",
+      "import": "./dist/esm/elements/responsive/picture/picture.js",
+      "require": "./dist/cjs/elements/responsive/picture/picture.cjs"
+    },
+    "./elements/responsive/source": {
+      "types": "./dist/types/elements/responsive/source/index.d.ts",
+      "import": "./dist/esm/elements/responsive/source/source.js",
+      "require": "./dist/cjs/elements/responsive/source/source.cjs"
+    },
+    "./elements/responsive/track": {
+      "types": "./dist/types/elements/responsive/track/index.d.ts",
+      "import": "./dist/esm/elements/responsive/track/track.js",
+      "require": "./dist/cjs/elements/responsive/track/track.cjs"
+    },
+    "./elements/responsive/map": {
+      "types": "./dist/types/elements/responsive/map/index.d.ts",
+      "import": "./dist/esm/elements/responsive/map/map.js",
+      "require": "./dist/cjs/elements/responsive/map/map.cjs"
+    },
+    "./elements/responsive/area": {
+      "types": "./dist/types/elements/responsive/area/index.d.ts",
+      "import": "./dist/esm/elements/responsive/area/area.js",
+      "require": "./dist/cjs/elements/responsive/area/area.cjs"
+    },
+    "./elements/layout": {
+      "types": "./dist/types/elements/layout/index.d.ts",
+      "import": "./dist/esm/elements/layout/layout.js",
+      "require": "./dist/cjs/elements/layout/layout.cjs"
+    },
+    "./elements/layout/article": {
+      "types": "./dist/types/elements/layout/article/index.d.ts",
+      "import": "./dist/esm/elements/layout/article/article.js",
+      "require": "./dist/cjs/elements/layout/article/article.cjs"
+    },
+    "./elements/layout/aside": {
+      "types": "./dist/types/elements/layout/aside/index.d.ts",
+      "import": "./dist/esm/elements/layout/aside/aside.js",
+      "require": "./dist/cjs/elements/layout/aside/aside.cjs"
+    },
+    "./elements/layout/footer": {
+      "types": "./dist/types/elements/layout/footer/index.d.ts",
+      "import": "./dist/esm/elements/layout/footer/footer.js",
+      "require": "./dist/cjs/elements/layout/footer/footer.cjs"
+    },
+    "./elements/layout/header": {
+      "types": "./dist/types/elements/layout/header/index.d.ts",
+      "import": "./dist/esm/elements/layout/header/header.js",
+      "require": "./dist/cjs/elements/layout/header/header.cjs"
+    },
+    "./elements/layout/main": {
+      "types": "./dist/types/elements/layout/main/index.d.ts",
+      "import": "./dist/esm/elements/layout/main/main.js",
+      "require": "./dist/cjs/elements/layout/main/main.cjs"
+    },
+    "./elements/layout/nav": {
+      "types": "./dist/types/elements/layout/nav/index.d.ts",
+      "import": "./dist/esm/elements/layout/nav/nav.js",
+      "require": "./dist/cjs/elements/layout/nav/nav.cjs"
+    },
+    "./elements/layout/section": {
+      "types": "./dist/types/elements/layout/section/index.d.ts",
+      "import": "./dist/esm/elements/layout/section/section.js",
+      "require": "./dist/cjs/elements/layout/section/section.cjs"
+    },
+    "./scss": "./src/scss/main.scss",
+    "./scss/main": "./src/scss/main.scss",
+    "./scss/core": "./src/scss/core.scss",
+    "./scss/elements": "./src/scss/_elements.scss",
+    "./scss/functions": "./src/scss/functions/_index.scss",
+    "./scss/mixins": "./src/scss/mixins/_index.scss",
+    "./scss/tokens": "./src/scss/tokens/_index.scss",
+    "./scss/maps": "./src/scss/maps/_index.scss",
+    "./scss/functions/*": "./src/scss/functions/*",
+    "./scss/mixins/*": "./src/scss/mixins/*",
+    "./scss/tokens/*": "./src/scss/tokens/*",
+    "./scss/maps/*": "./src/scss/maps/*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5",
+    "tailwindcss": "^3"
+  },
+  "peerDependenciesMeta": {
+    "bootstrap": {
+      "optional": true
+    },
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}

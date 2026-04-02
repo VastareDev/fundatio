@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Unordered list (ul) element helpers.
+ * Fundatio Design Foundation: Unordered list (ul) element helpers.
  *
  * @remarks
  * The unordered list element (`<ul>`) represents a list of items where the
@@ -24,7 +24,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -76,10 +76,10 @@ export type UlLegacyType = 'disc' | 'circle' | 'square';
  * @remarks
  * `<ul>` primarily accepts standard HTML global attributes.
  *
- * Sol also supports:
+ * Fundatio also supports:
  * - structured ARIA input mapped into `aria-*`
  * - optional legacy `type` mapping to the `type` attribute (obsolete)
- * - an `attrs` escape hatch, still guarded by Sol's attribute safety rules
+ * - an `attrs` escape hatch, still guarded by Fundatio's attribute safety rules
  *
  * @category Attributes
  */
@@ -99,7 +99,7 @@ export type UlAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
      * Additional attributes not modeled above.
      *
      * @remarks
-     * This exists as an escape hatch while still allowing Sol to apply its
+     * This exists as an escape hatch while still allowing Fundatio to apply its
      * attribute safety rules via `dom.ts`.
      */
     attrs?: GlobalAttrs['attrs'];
@@ -110,9 +110,9 @@ export type UlAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
  * - In real documents, `<ul>` should contain `<li>` children, not raw text.
- *   The optional `text` parameter exists for consistency with Sol factories and
+ *   The optional `text` parameter exists for consistency with Fundatio factories and
  *   testing convenience.
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -122,7 +122,7 @@ export type UlAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
  *
  * @example
  * ```ts
- * import { createUl } from "@lnpg/sol/elements/list/ul";
+ * import { createUl } from "@Vastare/Fundatio/elements/list/ul";
  *
  * const ul = createUl(undefined, { id: "features" });
  * document.body.appendChild(ul);

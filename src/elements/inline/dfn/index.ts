@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Dfn element helpers.
+ * Fundatio Design Foundation: Dfn element helpers.
  *
  * @remarks
  * The dfn element (`<dfn>`) indicates the defining instance of a term.
@@ -15,7 +15,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create definition-term markers in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dfn
  *
@@ -26,7 +26,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -73,8 +73,8 @@ export const DFN_SELECTOR = 'dfn';
  * @remarks
  * Dfn elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -117,7 +117,7 @@ function toGlobalAttrs(attrs?: DfnAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -127,7 +127,7 @@ function toGlobalAttrs(attrs?: DfnAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createDfn } from "@lnpg/sol/elements/inline/dfn";
+ * import { createDfn } from "@Vastare/Fundatio/elements/inline/dfn";
  *
  * document.body.appendChild(
  *   createDfn("validator", { id: "term-validator" })

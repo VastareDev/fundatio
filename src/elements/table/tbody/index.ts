@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Tbody element helpers.
+ * Fundatio Design Foundation: Tbody element helpers.
  *
  * @remarks
  * The tbody element (`<tbody>`) represents a block of rows that make up the main
@@ -16,7 +16,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<tbody>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -32,7 +32,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -79,12 +79,12 @@ export const TBODY_SELECTOR = 'tbody';
  * @remarks
  * `<tbody>` accepts standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Note: some legacy presentational attributes existed historically for table
  * sections, but are obsolete. Consumers can still use {@link GlobalAttrs.attrs}
- * as an escape hatch where necessary, subject to Sol's security rules in
+ * as an escape hatch where necessary, subject to Fundatio's security rules in
  * `dom.ts` (blocks inline event handlers and raw `style` attribute strings).
  *
  * @category Attributes
@@ -129,7 +129,7 @@ function toGlobalAttrs(attrs?: TbodyAttrs): GlobalAttrs | undefined {
  * @remarks
  * - In real usage, `<tbody>` should contain `<tr>` rows (not text).
  * - Optional text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -139,7 +139,7 @@ function toGlobalAttrs(attrs?: TbodyAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createTbody } from "@lnpg/sol/elements/table/tbody";
+ * import { createTbody } from "@Vastare/Fundatio/elements/table/tbody";
  *
  * const tbody = createTbody(undefined, { className: "data-body" });
  * ```

@@ -5,7 +5,7 @@
  * elements (`<h1>` through `<h6>`).
  *
  * These factories:
- * - Create semantic heading elements using Sol's hardened DOM helpers.
+ * - Create semantic heading elements using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Preserve correct document outline semantics.

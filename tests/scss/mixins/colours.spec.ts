@@ -68,8 +68,8 @@ describe("mixins/colours", () => {
         @include mx.colour-scale-vars("grey");
       }
 
-      // Name contract (default): --sol-colour-<key>
-      @if meta.type-of(var(--sol-colour-grey-tint-80)) != "string" {
+      // Name contract (default): --Fundatio-colour-<key>
+      @if meta.type-of(var(--Fundatio-colour-grey-tint-80)) != "string" {
         // This line is mostly a sanity check that var() exists syntactically.
         // Sass doesn't evaluate CSS var(), so we test via output structure below.
       }
@@ -79,8 +79,8 @@ describe("mixins/colours", () => {
       //
       // Strategy: emit a known var into a temporary property and compare.
       .t {
-        a: var(--sol-colour-grey-tint-80);
-        b: var(--sol-colour-grey-tint-80-rgb);
+        a: var(--Fundatio-colour-grey-tint-80);
+        b: var(--Fundatio-colour-grey-tint-80-rgb);
       }
 
       // Ensure the canonical token exists and is a color.

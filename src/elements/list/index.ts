@@ -5,7 +5,7 @@
  * elements used to express collections of items and term/description pairs.
  *
  * These factories:
- * - Create list elements using Sol's hardened DOM helpers.
+ * - Create list elements using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Encourage accessible, standards-aligned markup.

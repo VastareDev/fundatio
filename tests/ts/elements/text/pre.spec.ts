@@ -2,11 +2,11 @@ import { describe, expect, it } from 'vitest';
 import { createPre, enhancePres, PRE_TAG } from '../../../../src/elements/text/pre';
 
 /**
- * Minimal fake element used for Sol DOM helper tests.
+ * Minimal fake element used for Fundatio DOM helper tests.
  *
  * @remarks
- * Sol test suites run in a Node environment without jsdom/happy-dom. This fake
- * element implements only what Sol needs: attribute setting, a few reflected
+ * Fundatio test suites run in a Node environment without jsdom/happy-dom. This fake
+ * element implements only what Fundatio needs: attribute setting, a few reflected
  * properties, and `style`/`dataset`.
  */
 class FakeElement {

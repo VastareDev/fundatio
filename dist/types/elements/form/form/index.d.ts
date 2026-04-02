@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Form element helpers.
+ * Fundatio Design Foundation: Form element helpers.
  *
  * @remarks
  * The form element (`<form>`) groups interactive controls for submitting data.
@@ -11,9 +11,9 @@
  * - Provide explicit labels for controls and ensure accessible naming.
  * - Consider `rel="noopener"` when using `target="_blank"` to avoid `window.opener` exposure.
  *
- * Sol notes:
+ * Fundatio notes:
  * - This module is framework-agnostic and has no side effects.
- * - Global attributes are applied via Sol's shared DOM helper, which blocks:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which blocks:
  *   - inline event handler attributes (e.g. `onclick`)
  *   - raw `style` attribute injection (use the `style` object instead)
  * - Text passed to factories is assigned via `textContent` (never `innerHTML`).
@@ -28,7 +28,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -92,8 +92,8 @@ export type FormAutocomplete = 'on' | 'off';
  * `<form>` supports standard HTML global attributes plus submission-related
  * attributes (action, method, enctype, target, etc.).
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -165,7 +165,7 @@ export type FormAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Fallback text is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -175,7 +175,7 @@ export type FormAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createForm } from "@lnpg/sol/elements/form/form";
+ * import { createForm } from "@Vastare/Fundatio/elements/form/form";
  *
  * const form = createForm(undefined, {
  *   action: "/submit",

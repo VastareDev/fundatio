@@ -31,7 +31,7 @@ describe("adapters/bootstrap/v5/variables", () => {
     `);
   });
 
-  it("maps Sol theme colours correctly", () => {
+  it("maps Fundatio theme colours correctly", () => {
     expectSassAssertionsPass(`
       @if bs.$primary != theme.$primary-colour { @error "primary mismatch"; }
       @if bs.$secondary != theme.$secondary-colour { @error "secondary mismatch"; }

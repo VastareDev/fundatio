@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Video element helpers.
+ * Fundatio Design Foundation: Video element helpers.
  *
  * @remarks
  * The video element (`<video>`) embeds media playback.
@@ -14,7 +14,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create video elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -24,7 +24,7 @@
  */
 import { type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -91,8 +91,8 @@ export declare const VIDEO_SELECTOR = "video";
  * Video elements accept standard HTML global attributes, plus media-specific
  * attributes and properties.
  *
- * Sol supports a structured ARIA input for common ARIA fields, mapped into
- * {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio supports a structured ARIA input for common ARIA fields, mapped into
+ * {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -177,10 +177,10 @@ export type VideoAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Fallback text is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
- * - If `autoplay` is enabled and `muted` is not explicitly provided, Sol will
+ * - If `autoplay` is enabled and `muted` is not explicitly provided, Fundatio will
  *   default `muted` to `true` to align with common browser autoplay policies.
  *
  * @param text - Optional fallback text shown if video is unsupported.
@@ -189,7 +189,7 @@ export type VideoAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createVideo } from "@lnpg/sol/elements/media/video";
+ * import { createVideo } from "@Vastare/Fundatio/elements/media/video";
  *
  * document.body.appendChild(
  *   createVideo("Your browser does not support video.", {

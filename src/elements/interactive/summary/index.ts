@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Summary element helpers.
+ * Fundatio Design Foundation: Summary element helpers.
  *
  * @remarks
  * The summary element (`<summary>`) provides the visible label for a parent
@@ -12,9 +12,9 @@
  * - Prefer semantic content inside `<summary>`; avoid overly complex interactive
  *   children inside the summary label.
  *
- * Sol notes:
+ * Fundatio notes:
  * - This module is framework-agnostic and has no side effects.
- * - Global attributes are applied via Sol's shared DOM helper, which blocks:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which blocks:
  *   - inline event handler attributes (e.g. `onclick`)
  *   - raw `style` attribute injection (use the `style` object instead)
  * - Text passed to factories is assigned via `textContent` (never `innerHTML`).
@@ -30,7 +30,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -77,8 +77,8 @@ export const SUMMARY_SELECTOR = 'summary';
  * @remarks
  * `<summary>` supports standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -120,7 +120,7 @@ function toGlobalAttrs(attrs?: SummaryAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -130,7 +130,7 @@ function toGlobalAttrs(attrs?: SummaryAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createSummary } from "@lnpg/sol/elements/interactive/summary";
+ * import { createSummary } from "@Vastare/Fundatio/elements/interactive/summary";
  *
  * const s = createSummary("More details");
  * ```

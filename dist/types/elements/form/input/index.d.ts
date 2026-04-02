@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Input element helpers.
+ * Fundatio Design Foundation: Input element helpers.
  *
  * @remarks
  * The input element (`<input>`) represents a typed data field whose behavior is
@@ -15,10 +15,10 @@
  * - For `<input type="image">`, include meaningful `alt` text; while it may be
  *   technically optional, it should be provided for usability/accessibility. :contentReference[oaicite:7]{index=7}
  *
- * Sol-specific conventions:
+ * Fundatio-specific conventions:
  * - Defaults `type` to `"text"` unless explicitly overridden (typed field or raw
  *   attrs escape hatch), matching HTML's default behavior. :contentReference[oaicite:8]{index=8}
- * - Applies global attributes via Sol's hardened DOM helpers (`dom.ts`),
+ * - Applies global attributes via Fundatio's hardened DOM helpers (`dom.ts`),
  *   which block inline event handler attributes (e.g. `onclick`) and the raw
  *   `style` attribute string.
  * - Supports a small structured ARIA input to reduce typo-based ARIA bugs.
@@ -31,7 +31,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset mapped into {@link GlobalAttrs.aria}.
@@ -59,7 +59,7 @@ export type StructuredAria = {
  * The `type` attribute controls which control is rendered and how values are
  * processed. :contentReference[oaicite:9]{index=9}
  *
- * Sol models the widely used types while still allowing the raw `attrs` escape
+ * Fundatio models the widely used types while still allowing the raw `attrs` escape
  * hatch for unusual/experimental values.
  *
  * @category Attributes
@@ -109,11 +109,11 @@ export declare const INPUT_SELECTOR = "input";
  *
  * @remarks
  * `<input>` supports a large surface area of attributes, many of which are
- * type-dependent. Sol models common attributes explicitly and provides
+ * type-dependent. Fundatio models common attributes explicitly and provides
  * {@link GlobalAttrs.attrs} as an escape hatch (validated by `dom.ts`).
  *
  * Notes:
- * - Sol defaults `type` to `"text"` unless explicitly overridden. :contentReference[oaicite:12]{index=12}
+ * - Fundatio defaults `type` to `"text"` unless explicitly overridden. :contentReference[oaicite:12]{index=12}
  * - Boolean attributes are applied by presence (empty string) when `true`.
  * - For `type="image"`, `alt` should be provided for accessibility. :contentReference[oaicite:13]{index=13}
  *
@@ -125,7 +125,7 @@ export type InputAttrs = Omit<GlobalAttrs, 'aria'> & {
      */
     aria?: StructuredAria;
     /**
-     * The input type. Defaults to `"text"` in Sol.
+     * The input type. Defaults to `"text"` in Fundatio.
      */
     type?: InputType;
     /**
@@ -276,8 +276,8 @@ export type InputAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - `<input>` is a void element; it never receives text content. :contentReference[oaicite:15]{index=15}
- * - Sol defaults `type` to `"text"` unless overridden. :contentReference[oaicite:16]{index=16}
- * - Global attributes are applied via Sol's shared DOM helper, including security
+ * - Fundatio defaults `type` to `"text"` unless overridden. :contentReference[oaicite:16]{index=16}
+ * - Global attributes are applied via Fundatio's shared DOM helper, including security
  *   guards that block inline event handler attributes (e.g. `onclick`) and raw
  *   `style` attribute strings.
  *
@@ -286,7 +286,7 @@ export type InputAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createInput } from "@lnpg/sol/elements/form/input";
+ * import { createInput } from "@Vastare/Fundatio/elements/form/input";
  *
  * const email = createInput({
  *   type: "email",

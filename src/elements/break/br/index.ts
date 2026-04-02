@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Br element helpers.
+ * Fundatio Design Foundation: Br element helpers.
  *
  * @remarks
  * The br element (`<br>`) represents a line break within phrasing content.
@@ -11,7 +11,7 @@
  *
  * This module provides a small, framework-agnostic helper so consumers can:
  * - create line breaks safely in vanilla JS/TS
- * - apply consistent global attributes via Sol's hardened DOM helpers
+ * - apply consistent global attributes via Fundatio's hardened DOM helpers
  * - rely on a stable enhancement hook for future evolution
  *
  * This module has no side effects and does not mutate the DOM unless you call
@@ -24,7 +24,7 @@
 import { createVoidElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -112,7 +112,7 @@ function toGlobalAttrs(attrs?: BrAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - `<br>` is a void element and does not accept text content.
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -121,7 +121,7 @@ function toGlobalAttrs(attrs?: BrAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createBr } from "@lnpg/sol/elements/break/br";
+ * import { createBr } from "@Vastare/Fundatio/elements/break/br";
  *
  * paragraph.appendChild(createBr());
  * ```

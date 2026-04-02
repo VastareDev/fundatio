@@ -1,7 +1,7 @@
 /**
- * Sol Design Foundation: Root Scope
+ * Fundatio Design Foundation: Root Scope
  *
- * Root-scope CSS custom property emission for Sol.
+ * Root-scope CSS custom property emission for Fundatio.
  *
  * This file is the selector-layer entrypoint for global variables:
  * - It creates the `:root {}` selector.
@@ -23,7 +23,7 @@
  * @group  root
  * @access public
  * @since  1.0.0
- * @author LNPG Development Team
+ * @author Vastare Development Team
  */
 
 @use 'sass:meta';
@@ -42,22 +42,22 @@
  * Returns a valid CSS custom property prefix including the leading `--`.
  *
  * Source of truth:
- * - theme.try-theme-value("namespace", "theme-prefix", "sol-")
+ * - theme.try-theme-value("namespace", "theme-prefix", "Fundatio-")
  *
  * Accepted override shapes:
- * - "sol-"   → "--sol-"
- * - "--sol-" → "--sol-"
- * - ""/null  → "--sol-" (fallback)
+ * - "Fundatio-"   → "--Fundatio-"
+ * - "--Fundatio-" → "--Fundatio-"
+ * - ""/null  → "--Fundatio-" (fallback)
  *
  * @access private
  *
  * @return {string}
  */
 @function _var-prefix() {
-  $raw: theme-fn.try-theme-value('namespace', 'theme-prefix', 'sol-');
+  $raw: theme-fn.try-theme-value('namespace', 'theme-prefix', 'Fundatio-');
 
   @if meta.type-of($raw) != 'string' or string.length($raw) == 0 {
-    @return '--sol-';
+    @return '--Fundatio-';
   }
 
   @if string.slice($raw, 1, 2) == '--' {

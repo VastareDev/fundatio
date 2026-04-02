@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Li element helpers.
+ * Fundatio Design Foundation: Li element helpers.
  *
  * @remarks
  * The list item element (`<li>`) represents an item in a list.
@@ -24,7 +24,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -108,7 +108,7 @@ export type LiAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
      * Additional attributes not modeled above.
      *
      * @remarks
-     * This exists as an escape hatch while still allowing Sol to apply its
+     * This exists as an escape hatch while still allowing Fundatio to apply its
      * attribute safety rules via `dom.ts`.
      */
     attrs?: GlobalAttrs['attrs'];
@@ -118,7 +118,7 @@ export type LiAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  * - The `value` field is applied via the `HTMLLIElement.value` property for correct behavior.
@@ -129,7 +129,7 @@ export type LiAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
  *
  * @example
  * ```ts
- * import { createLi } from "@lnpg/sol/elements/list/li";
+ * import { createLi } from "@Vastare/Fundatio/elements/list/li";
  *
  * const li = createLi("Item 3", { value: 3 });
  * ```

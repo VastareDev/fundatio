@@ -89,7 +89,7 @@ describe("mixins/theme", () => {
       .__probe__ {
         group: $g;
         key: $k;
-        expected: "--sol-theme-#{$g}-#{$k}";
+        expected: "--Fundatio-theme-#{$g}-#{$k}";
       }
     `);
 
@@ -98,7 +98,7 @@ describe("mixins/theme", () => {
     const expected = unquote(readProp(css, "expected"));
 
     expect(css).toContain(`${expected}:`);
-    expect(expected).toBe(`--sol-theme-${g}-${k}`);
+    expect(expected).toBe(`--Fundatio-theme-${g}-${k}`);
   });
 
   it("theme-vars emits variables for all registered theme groups without throwing", () => {
@@ -146,13 +146,13 @@ describe("mixins/theme", () => {
 
     const g1 = unquote(readProp(css, "g1"));
     const g1k = unquote(readProp(css, "g1k"));
-    const expectedG1 = `--sol-theme-${g1}-${g1k}`;
+    const expectedG1 = `--Fundatio-theme-${g1}-${g1k}`;
     expect(css).toContain(`${expectedG1}:`);
 
     const g2 = unquote(readProp(css, "g2"));
     const g2k = unquote(readProp(css, "g2k"));
     if (g2 !== "" && g2k !== "") {
-      const expectedG2 = `--sol-theme-${g2}-${g2k}`;
+      const expectedG2 = `--Fundatio-theme-${g2}-${g2k}`;
       expect(css).not.toContain(`${expectedG2}:`);
     }
 
@@ -235,7 +235,7 @@ describe("mixins/theme", () => {
       }
 
       .__probe__ {
-        expected: "--sol-theme-#{$found-group}-#{$found-key}";
+        expected: "--Fundatio-theme-#{$found-group}-#{$found-key}";
       }
     `);
 
@@ -326,7 +326,7 @@ describe("mixins/theme", () => {
       `
     );
 
-    expect(css).toContain("--sol-theme-namespace-theme-prefix:");
+    expect(css).toContain("--Fundatio-theme-namespace-theme-prefix:");
     expect(css).toContain("__OVERRIDE__");
   });
 });

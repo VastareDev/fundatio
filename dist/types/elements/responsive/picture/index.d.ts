@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Picture element helpers.
+ * Fundatio Design Foundation: Picture element helpers.
  *
  * @remarks
  * The picture element (`<picture>`) is a container used for responsive images.
@@ -14,9 +14,9 @@
  *   breakpoint-specific sources.
  * - Prefer modern formats (e.g. AVIF/WebP) with a sensible fallback.
  *
- * Sol-specific conventions:
+ * Fundatio-specific conventions:
  * - `<picture>` has no element-specific attributes; this module applies global
- *   attributes via Sol's hardened DOM helpers (`dom.ts`), which block inline
+ *   attributes via Fundatio's hardened DOM helpers (`dom.ts`), which block inline
  *   event handler attributes (e.g. `onclick`) and the raw `style` attribute
  *   string.
  * - Supports a small structured ARIA input to reduce typo-based ARIA bugs.
@@ -29,7 +29,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset mapped into {@link GlobalAttrs.aria}.
@@ -70,7 +70,7 @@ export declare const PICTURE_SELECTOR = "picture";
  * image source selection in conjunction with child `<source>` and `<img>`.
  *
  *
- * Sol supports a structured ARIA input for common ARIA fields, mapped into
+ * Fundatio supports a structured ARIA input for common ARIA fields, mapped into
  * {@link GlobalAttrs.aria}.
  *
  * @category Attributes
@@ -89,7 +89,7 @@ export type PictureAttrs = Omit<GlobalAttrs, 'aria'> & {
  * `<source>` children. The alternative text (`alt`) is provided on the `<img>`.
  *
  *
- * Global attributes are applied via Sol's shared DOM helper, including security
+ * Global attributes are applied via Fundatio's shared DOM helper, including security
  * guards that block inline event handler attributes (e.g. `onclick`) and raw
  * `style` attribute strings.
  *
@@ -98,7 +98,7 @@ export type PictureAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createPicture } from "@lnpg/sol/elements/responsive/picture";
+ * import { createPicture } from "@Vastare/Fundatio/elements/responsive/picture";
  *
  * const p = createPicture({ className: "hero-media" });
  * ```

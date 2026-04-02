@@ -3,7 +3,7 @@ export type PluginApi = {
     theme: (path: string) => unknown;
 };
 /**
- * Returns the Sol Tailwind plugin.
+ * Returns the Fundatio Tailwind plugin.
  *
  * Note: this is async so Tailwind can remain an optional peer dependency.
  */

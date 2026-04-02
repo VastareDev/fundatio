@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Anchor (`a`) element helpers.
+ * Fundatio Design Foundation: Anchor (`a`) element helpers.
  *
  * @remarks
  * The anchor element (`<a>`) creates a hyperlink when the `href` attribute is
@@ -16,7 +16,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create anchors in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -32,7 +32,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -96,10 +96,10 @@ export declare const A_SELECTOR = "a";
  * attributes such as `href`, `target`, and `rel`.
  *
  * Security notes:
- * - Sol blocks unsafe attribute *names* (e.g. `onclick`, raw `style`).
- * - Sol does not sanitize attribute *values*. Callers must validate untrusted
+ * - Fundatio blocks unsafe attribute *names* (e.g. `onclick`, raw `style`).
+ * - Fundatio does not sanitize attribute *values*. Callers must validate untrusted
  *   URLs before passing them as `href`.
- * - When `target="_blank"` is used and `rel` is not provided, Sol applies a
+ * - When `target="_blank"` is used and `rel` is not provided, Fundatio applies a
  *   conservative default: `rel="noopener noreferrer"`.
  *
  * @category Attributes
@@ -120,7 +120,7 @@ export type AnchorAttrs = Omit<GlobalAttrs, 'aria'> & {
      * Relationship between the current document and the linked resource.
      *
      * @remarks
-     * If `target="_blank"` is used and `rel` is not provided, Sol applies
+     * If `target="_blank"` is used and `rel` is not provided, Fundatio applies
      * `noopener noreferrer` by default.
      */
     rel?: string;
@@ -161,7 +161,7 @@ export type AnchorAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -171,7 +171,7 @@ export type AnchorAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createA } from "@lnpg/sol/elements/inline/a";
+ * import { createA } from "@Vastare/Fundatio/elements/inline/a";
  *
  * document.body.appendChild(
  *   createA("Read more", { href: "/docs", className: "link" })

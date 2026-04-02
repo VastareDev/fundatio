@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Table Element
+ * Fundatio Design Foundation: Table Element
  *
  * Table (`table`)
  *
@@ -8,7 +8,7 @@
  * This module:
  * - Normalizes default UA table model differences (spacing + collapsing)
  * - Keeps layout predictable without imposing a "designed" table style
- * - Applies Sol base typography tokens so the element can ship standalone
+ * - Applies Fundatio base typography tokens so the element can ship standalone
  * - Uses low-specificity selectors (`:where()`)
  *
  * @module

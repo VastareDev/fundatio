@@ -4,7 +4,7 @@
  * Provides framework-agnostic factory functions for common HTML form elements.
  *
  * These factories:
- * - Create semantic form structures using Sol's hardened DOM helpers.
+ * - Create semantic form structures using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Preserve correct form semantics and associations (e.g. labels, fieldsets).

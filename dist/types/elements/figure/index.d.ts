@@ -5,7 +5,7 @@
  * `<figure>` and `<figcaption>` elements.
  *
  * These factories:
- * - Create semantic figure structures using Sol's hardened DOM helpers.
+ * - Create semantic figure structures using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Preserve correct semantic relationships between media and captions.

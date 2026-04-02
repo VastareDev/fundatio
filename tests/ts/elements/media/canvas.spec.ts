@@ -42,7 +42,7 @@ describe('canvas element', () => {
       createElement: (tag: string) => new FakeElement(tag) as unknown as HTMLElement,
       // Ensure no code path tries to use namespaced creation.
       createElementNS: () => {
-        throw new Error('createElementNS must not be used in Sol element factories.');
+        throw new Error('createElementNS must not be used in Fundatio element factories.');
       },
     };
 

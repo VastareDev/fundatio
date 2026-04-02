@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Textarea element helpers.
+ * Fundatio Design Foundation: Textarea element helpers.
  *
  * @remarks
  * The textarea element (`<textarea>`) is a multi-line plain-text form control.
@@ -23,7 +23,7 @@
  * - `wrap`
  *
  * Security:
- * - Global attribute escape hatches are guarded by Sol's `dom.ts` helpers which
+ * - Global attribute escape hatches are guarded by Fundatio's `dom.ts` helpers which
  *   block inline event handler attributes (e.g. `onclick`) and raw `style`
  *   attribute injection (use the `style` object field instead).
  *
@@ -34,7 +34,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -96,8 +96,8 @@ export type AutoCapitalize = 'off' | 'none' | 'on' | 'sentences' | 'words' | 'ch
  * Textareas accept standard HTML global attributes plus textarea-specific content
  * attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -185,10 +185,10 @@ export type TextareaAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * For `<textarea>`, the initial value is represented by its text content in HTML.
- * Sol assigns the provided `text` via `textContent` (never `innerHTML`).
+ * Fundatio assigns the provided `text` via `textContent` (never `innerHTML`).
  *
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes and escape-hatch attributes are applied via Sol's shared
+ * - Global attributes and escape-hatch attributes are applied via Fundatio's shared
  *   DOM helper, including security guards that block inline event handler
  *   attributes (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -198,7 +198,7 @@ export type TextareaAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createTextarea } from "@lnpg/sol/elements/form/textarea";
+ * import { createTextarea } from "@Vastare/Fundatio/elements/form/textarea";
  *
  * const t = createTextarea("Hello", { rows: 4, cols: 40, name: "message" });
  * ```

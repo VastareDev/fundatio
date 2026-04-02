@@ -106,8 +106,8 @@ describe("functions/options", () => {
       @if meta.type-of($path) != "string" { @error "Expected option('font-path') to be a string"; }
 
       // Exact lock to canonical token layer (via maps).
-      @if $prefix != option-tokens.$sol-prefix {
-        @error "Expected option('prefix') to match tokens.$sol-prefix";
+      @if $prefix != option-tokens.$vs-prefix {
+        @error "Expected option('prefix') to match tokens.$vs-prefix";
       }
 
       @if $dark != option-tokens.$dark-mode {
@@ -145,7 +145,7 @@ describe("functions/options", () => {
     expectSassAssertionsPass(`
       // Valid key returns value.
       $ok: fn.try-option("prefix", $fallback: "nope");
-      @if $ok != option-tokens.$sol-prefix {
+      @if $ok != option-tokens.$vs-prefix {
         @error "Expected try-option(valid) to return actual value";
       }
 

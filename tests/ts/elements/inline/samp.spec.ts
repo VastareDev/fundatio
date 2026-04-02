@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { SAMP_TAG, createSamp, enhanceSamps } from '../../../../src/elements/inline/samp';
 
 /**
- * Minimal fake element implementation sufficient for Sol DOM helpers.
+ * Minimal fake element implementation sufficient for Fundatio DOM helpers.
  *
  * @remarks
- * Sol tests intentionally avoid requiring a real DOM (jsdom/happy-dom).
+ * Fundatio tests intentionally avoid requiring a real DOM (jsdom/happy-dom).
  * We stub `document.createElement` and validate behavior deterministically.
  */
 class FakeElement {

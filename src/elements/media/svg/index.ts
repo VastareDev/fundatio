@@ -1,10 +1,10 @@
 /**
- * Sol Design Foundation: Svg element helpers.
+ * Fundatio Design Foundation: Svg element helpers.
  *
  * @remarks
  * The svg element (`<svg>`) defines scalable vector graphics.
  *
- * Sol enforces:
+ * Fundatio enforces:
  * - Default decorative behaviour:
  *   - aria-hidden="true"
  *   - tabIndex = -1

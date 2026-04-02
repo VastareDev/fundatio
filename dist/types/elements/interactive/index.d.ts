@@ -6,7 +6,7 @@
  * dialogs.
  *
  * These factories:
- * - Create semantic interactive structures using Sol's hardened DOM helpers.
+ * - Create semantic interactive structures using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Preserve correct accessibility semantics and relationships.

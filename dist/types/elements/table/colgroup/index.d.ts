@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Colgroup element helpers.
+ * Fundatio Design Foundation: Colgroup element helpers.
  *
  * @remarks
  * The colgroup element (`<colgroup>`) represents a group of one or more columns
@@ -17,7 +17,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<colgroup>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -27,7 +27,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -71,8 +71,8 @@ export declare const COLGROUP_SELECTOR = "colgroup";
  * - `span`: the number of consecutive columns in the group (when no `<col>`
  *   children are present). :contentReference[oaicite:4]{index=4}
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Security notes:
  * - Inline event handler attributes (e.g. `onclick`) are blocked by `dom.ts`.
@@ -90,12 +90,12 @@ export type ColgroupAttrs = Omit<GlobalAttrs, 'aria'> & {
      *
      * @remarks
      * This should be a positive integer. The HTML spec clamps values above 1000
-     * and treats invalid/zero values as `1` in the table model. Sol does not
+     * and treats invalid/zero values as `1` in the table model. Fundatio does not
      * attempt to emulate the full table model at runtime; it sets the attribute
      * when you provide a valid positive integer. :contentReference[oaicite:5]{index=5}
      *
      * Note: Not permitted when the `<colgroup>` contains one or more `<col>`
-     * elements. Sol does not enforce child-structure rules; consumers control
+     * elements. Fundatio does not enforce child-structure rules; consumers control
      * their DOM trees. :contentReference[oaicite:6]{index=6}
      */
     span?: number;
@@ -104,9 +104,9 @@ export type ColgroupAttrs = Omit<GlobalAttrs, 'aria'> & {
  * Create a colgroup element with global attributes.
  *
  * @remarks
- * - `<colgroup>` should not contain text content; Sol does not accept a `text`
+ * - `<colgroup>` should not contain text content; Fundatio does not accept a `text`
  *   argument for this factory.
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -116,7 +116,7 @@ export type ColgroupAttrs = Omit<GlobalAttrs, 'aria'> & {
  * @example
  * Create a colgroup that spans two columns:
  * ```ts
- * import { createColgroup } from "@lnpg/sol/elements/table/colgroup";
+ * import { createColgroup } from "@Vastare/Fundatio/elements/table/colgroup";
  *
  * const colgroup = createColgroup({ span: 2, className: "cols" });
  * table.appendChild(colgroup);

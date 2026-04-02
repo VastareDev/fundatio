@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Meter element helpers.
+ * Fundatio Design Foundation: Meter element helpers.
  *
  * @remarks
  * The meter element (`<meter>`) represents a scalar measurement within a known range,
@@ -12,9 +12,9 @@
  * - Define `min`/`max` if your `value` is not in the default 0..1 range.
  * - Use `low`/`high`/`optimum` only when you actually want "good/bad" semantics.
  *
- * Sol notes:
+ * Fundatio notes:
  * - This module is framework-agnostic and has no side effects.
- * - Global attributes are applied via Sol's shared DOM helper, which blocks:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which blocks:
  *   - inline event handler attributes (e.g. `onclick`)
  *   - raw `style` attribute injection (use the `style` object instead)
  * - Text passed to factories is assigned via `textContent` (never `innerHTML`).
@@ -30,7 +30,7 @@
 import { createElement, type AttrValue, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -84,7 +84,7 @@ export const METER_SELECTOR = 'meter';
  * - `max` defaults to `1` when omitted
  * - `value` defaults to `0` when omitted or malformed
  *
- * Sol applies these defaults as explicit attributes to keep output predictable
+ * Fundatio applies these defaults as explicit attributes to keep output predictable
  * and testable even in node-based DOM shims.
  *
  * @category Attributes
@@ -201,7 +201,7 @@ function toGlobalAttrs(attrs?: MeterAttrs): GlobalAttrs {
  *
  * @remarks
  * - Fallback text is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *

@@ -1,6 +1,6 @@
-# @lnpg/sol (v1.0.0)
+# @Vastare/Fundatio (v1.0.0)
 
-**Sol** is a framework-agnostic design foundation for UI kits and applications.
+**Fundatio** is a framework-agnostic design foundation for UI kits and applications.
 
 It ships:
 
@@ -9,7 +9,7 @@ It ships:
 - **Typed HTML element factories** (safe-ish DOM creation helpers with strong TypeScript typing)
 - **Tailwind v4 adapter** (preset + plugin wrapper)
 
-Repo: https://github.com/lnpgdev/sol  
+Repo: https://github.com/lnpgdev/Fundatio  
 Docs (VitePress site): `npm run docs`  
 API docs (TypeDoc markdown): generated into `docs/api/ts`
 
@@ -17,7 +17,7 @@ API docs (TypeDoc markdown): generated into `docs/api/ts`
 
 ## Table of contents
 
-- [What Sol is](#what-sol-is)
+- [What Fundatio is](#what-Fundatio-is)
 - [Install](#install)
 - [Entry points](#entry-points)
   - [JavaScript/TypeScript](#javascripttypescript)
@@ -39,14 +39,14 @@ API docs (TypeDoc markdown): generated into `docs/api/ts`
 
 ---
 
-## What Sol is
+## What Fundatio is
 
-Sol aims to be the **lowest-level** design foundation layer:
+Fundatio aims to be the **lowest-level** design foundation layer:
 
 - **Styles**: tokens + primitives + optional element styling
 - **DOM**: typed factories that wrap native elements (no framework assumptions)
 
-Sol intentionally does **not** attempt to be:
+Fundatio intentionally does **not** attempt to be:
 
 - a full component library
 - a design system website
@@ -59,5 +59,5 @@ Think of it as: _“a reliable base layer you can import into anything, without 
 ## Install
 
 ```bash
-npm i @lnpg/sol
+npm i @Vastare/Fundatio
 ```

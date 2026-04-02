@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Fieldset element helpers.
+ * Fundatio Design Foundation: Fieldset element helpers.
  *
  * @remarks
  * The fieldset element (`<fieldset>`) groups related form controls, typically
@@ -18,7 +18,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create fieldsets in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -33,7 +33,7 @@
 import { createElement, type AttrValue, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -81,8 +81,8 @@ export const FIELDSET_SELECTOR = 'fieldset';
  * Fieldset accepts standard HTML global attributes plus fieldset-specific
  * attributes (`disabled`, `form`, `name`).
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -162,7 +162,7 @@ function toGlobalAttrs(attrs?: FieldsetAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -172,7 +172,7 @@ function toGlobalAttrs(attrs?: FieldsetAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createFieldset } from "@lnpg/sol/elements/form/fieldset";
+ * import { createFieldset } from "@Vastare/Fundatio/elements/form/fieldset";
  *
  * const fs = createFieldset(undefined, { disabled: false });
  * // fs.appendChild(createLegend("Shipping address"));

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Embed element helpers.
+ * Fundatio Design Foundation: Embed element helpers.
  *
  * @remarks
  * The embed element (`<embed>`) embeds external content at a point in the
@@ -16,7 +16,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create embed nodes in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -26,7 +26,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -74,7 +74,7 @@ export declare const EMBED_SELECTOR = "embed";
  * Accessibility:
  * - Provide a `title` (global attribute) to label the embedded content.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, mapped into
+ * Fundatio also supports a structured ARIA input for common ARIA fields, mapped into
  * `aria-*` attributes.
  *
  * @category Attributes
@@ -105,7 +105,7 @@ export type EmbedAttrs = Omit<GlobalAttrs, 'aria'> & {
  * Create an embed element and apply attributes.
  *
  * @remarks
- * Global attributes are applied via Sol's shared DOM helper, including security
+ * Global attributes are applied via Fundatio's shared DOM helper, including security
  * guards that block inline event handler attributes (e.g. `onclick`) and raw
  * `style` attribute strings.
  *
@@ -114,7 +114,7 @@ export type EmbedAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createEmbed } from "@lnpg/sol/elements/media/embed";
+ * import { createEmbed } from "@Vastare/Fundatio/elements/media/embed";
  *
  * document.body.appendChild(
  *   createEmbed({ src: "/files/manual.pdf", type: "application/pdf", title: "User manual" })

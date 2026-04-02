@@ -5,7 +5,7 @@
  * line breaking and word breaking behaviour within text flow.
  *
  * These factories:
- * - Create semantic HTML break elements using Sol's hardened DOM helpers.
+ * - Create semantic HTML break elements using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured ARIA input where applicable.
  * - Prevent unsafe attribute injection.

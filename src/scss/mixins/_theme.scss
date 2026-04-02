@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Theme Mixins
+ * Fundatio Design Foundation: Theme Mixins
  *
  * CSS custom property (variable) emitters for the canonical theme registry.
  *
@@ -21,7 +21,7 @@
  * @group  mixins.theme
  * @access public
  * @since  1.0.0
- * @author LNPG Development Team
+ * @author Vastare Development Team
  */
 
 @use 'sass:list';
@@ -57,7 +57,7 @@
  * Builds a CSS custom property name for a theme token.
  *
  * Example output (default):
- *   --sol-theme-namespace-theme-prefix
+ *   --Fundatio-theme-namespace-theme-prefix
  *
  * @access private
  *
@@ -210,16 +210,16 @@
  *   [data-theme="dark"] { @include theme-group-vars("feature-flags"); }
  *
  * Output naming (default):
- *   --sol-theme-<group>-<key>: <value>;
+ *   --Fundatio-theme-<group>-<key>: <value>;
  *
  * @param  {string}     $group
  * @param  {list|null} $keys        Optional subset
- * @param  {string}    $var-prefix  Leading custom prop prefix (default: --sol-)
+ * @param  {string}    $var-prefix  Leading custom prop prefix (default: --Fundatio-)
  * @param  {string}    $namespace   Namespace segment (default: theme)
  *
  * @return {void}
  */
-@mixin theme-group-vars($group, $keys: null, $var-prefix: '--sol-', $namespace: 'theme') {
+@mixin theme-group-vars($group, $keys: null, $var-prefix: '--Fundatio-', $namespace: 'theme') {
   // Strict access with actionable errors.
   $m: fn.theme-group($group);
 
@@ -288,7 +288,7 @@
  *
  * @return {void}
  */
-@mixin theme-vars($groups: null, $var-prefix: '--sol-', $namespace: 'theme') {
+@mixin theme-vars($groups: null, $var-prefix: '--Fundatio-', $namespace: 'theme') {
   $use-groups: null;
 
   @if $groups == null {
@@ -326,6 +326,6 @@
  *
  * @return {void}
  */
-@mixin theme-root-vars($groups: null, $var-prefix: '--sol-', $namespace: 'theme') {
+@mixin theme-root-vars($groups: null, $var-prefix: '--Fundatio-', $namespace: 'theme') {
   @include theme-vars($groups: $groups, $var-prefix: $var-prefix, $namespace: $namespace);
 }

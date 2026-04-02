@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Aside element helpers.
+ * Fundatio Design Foundation: Aside element helpers.
  *
  * @remarks
  * The aside element (`<aside>`) represents content that is tangentially related
@@ -13,9 +13,9 @@
  *   semantic elements for meaning.
  * - Prefer native semantics. Only add ARIA roles when needed.
  *
- * Sol notes:
+ * Fundatio notes:
  * - This module is framework-agnostic and has no side effects.
- * - Global attributes are applied via Sol's shared DOM helper, which blocks:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which blocks:
  *   - inline event handler attributes (e.g. `onclick`)
  *   - raw `style` attribute injection (use the `style` object instead)
  * - Text passed to factories is assigned via `textContent` (never `innerHTML`).
@@ -30,7 +30,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -77,8 +77,8 @@ export const ASIDE_SELECTOR = 'aside';
  * @remarks
  * Aside elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -120,7 +120,7 @@ function toGlobalAttrs(attrs?: AsideAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -130,7 +130,7 @@ function toGlobalAttrs(attrs?: AsideAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createAside } from "@lnpg/sol/elements/layout/aside";
+ * import { createAside } from "@Vastare/Fundatio/elements/layout/aside";
  *
  * const a = createAside("Related links", { className: "sidebar" });
  * ```

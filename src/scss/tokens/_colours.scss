@@ -1,7 +1,7 @@
 /**
- * Sol Design Foundation: Colour Tokens
+ * Fundatio Design Foundation: Colour Tokens
  *
- * Primitive (brand-locked) colour tokens for Sol.
+ * Primitive (brand-locked) colour tokens for Fundatio.
  *
  * These values are the lowest-level palette primitives and ramps. They are
  * intentionally immutable to enforce consistent branding across consuming
@@ -18,7 +18,7 @@
  * @group  tokens.colours
  * @access public
  * @since  1.0.0
- * @author LNPG Development Team
+ * @author Vastare Development Team
  */
 
 /* --------------------------------------------------------------------------
@@ -39,669 +39,669 @@ $black: #000;
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$base-blue: #4d80b4;
+$base-blue: #233b4e;
 
 /** @type color */
-$base-indigo: #162e46;
+$base-indigo: #4b3869;
 
 /** @type color */
-$base-purple: #c15e89;
+$base-purple: #6a0572;
 
 /** @type color */
-$base-pink: #ec89b7;
+$base-pink: #d72638;
 
 /** @type color */
-$base-red: #dd0a54;
+$base-red: #ba1b1d;
 
 /** @type color */
-$base-orange: #da886b;
+$base-orange: #f39237;
 
 /** @type color */
-$base-yellow: #ffcf8b;
+$base-yellow: #ffcb05;
 
 /** @type color */
-$base-green: #137647;
+$base-green: #2e8540;
 
 /** @type color */
-$base-teal: #5ec095;
+$base-teal: #008080;
 
 /** @type color */
-$base-cyan: #6bbcda;
+$base-cyan: #00bcd4;
 
 /* --------------------------------------------------------------------------
  - Grey ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$grey-tint-90: #fbfcfc;
+$grey-tint-90: #fcfcfc;
 
 /** @type color */
 $grey-tint-80: #f8f9fa;
 
 /** @type color */
-$grey-tint-70: #f3f4f6;
+$grey-tint-70: #f0f2f4;
 
 /** @type color */
 $grey-tint-60: #e9ecef;
 
 /** @type color */
-$grey-tint-50: #e3e5e8;
+$grey-tint-50: #e4e7ea;
 
 /** @type color */
 $grey-tint-40: #dee2e6;
 
 /** @type color */
-$grey-tint-30: #d6dadd;
+$grey-tint-30: #d6dbe0;
 
 /** @type color */
 $grey-tint-20: #ced4da;
 
 /** @type color */
-$grey-tint-10: #c5cbd1;
+$grey-tint-10: #bec4cc;
 
 /** @type color */
-$grey-shade-10: #7f8890;
+$grey-shade-10: #8c959d;
 
 /** @type color */
 $grey-shade-20: #6c757d;
 
 /** @type color */
-$grey-shade-30: #60686f;
+$grey-shade-30: #5a626a;
 
 /** @type color */
 $grey-shade-40: #495057;
 
 /** @type color */
-$grey-shade-50: #3d4349;
+$grey-shade-50: #3e454c;
 
 /** @type color */
 $grey-shade-60: #343a40;
 
 /** @type color */
-$grey-shade-70: #2a2e33;
+$grey-shade-70: #2a3034;
 
 /** @type color */
 $grey-shade-80: #212529;
 
 /** @type color */
-$grey-shade-90: #181b1e;
+$grey-shade-90: #101214;
 
 /* --------------------------------------------------------------------------
  - Blue ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$blue-tint-90: #edf2f8;
+$blue-tint-90: #e4e8ec;
 
 /** @type color */
-$blue-tint-80: #dbe6f0;
+$blue-tint-80: #c9d1d8;
 
 /** @type color */
-$blue-tint-70: #cad9e8;
+$blue-tint-70: #b7c0ca;
 
 /** @type color */
-$blue-tint-60: #b8cce1;
+$blue-tint-60: #a5b0bd;
 
 /** @type color */
-$blue-tint-50: #a6c0da;
+$blue-tint-50: #909eac;
 
 /** @type color */
-$blue-tint-40: #94b3d2;
+$blue-tint-40: #7b8c9c;
 
 /** @type color */
-$blue-tint-30: #82a6ca;
+$blue-tint-30: #657786;
 
 /** @type color */
-$blue-tint-20: #7199c3;
+$blue-tint-20: #4f6271;
 
 /** @type color */
-$blue-tint-10: #5f8dbc;
+$blue-tint-10: #394e60;
 
 /** @type color */
-$blue-shade-10: #4573a2;
+$blue-shade-10: #21384a;
 
 /** @type color */
-$blue-shade-20: #3e6690;
+$blue-shade-20: #1f3646;
 
 /** @type color */
-$blue-shade-30: #365a7e;
+$blue-shade-30: #1e3344;
 
 /** @type color */
-$blue-shade-40: #2e4d6c;
+$blue-shade-40: #1c3041;
 
 /** @type color */
-$blue-shade-50: #26405a;
+$blue-shade-50: #192a38;
 
 /** @type color */
-$blue-shade-60: #1f3348;
+$blue-shade-60: #16252f;
 
 /** @type color */
-$blue-shade-70: #172636;
+$blue-shade-70: #121d26;
 
 /** @type color */
-$blue-shade-80: #0f1a24;
+$blue-shade-80: #0e151c;
 
 /** @type color */
-$blue-shade-90: #080d12;
+$blue-shade-90: #070a0e;
 
 /* --------------------------------------------------------------------------
  - Indigo ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$indigo-tint-90: #e7eaec;
+$indigo-tint-90: #edebf0;
 
 /** @type color */
-$indigo-tint-80: #d0d5da;
+$indigo-tint-80: #dbd7e1;
 
 /** @type color */
-$indigo-tint-70: #b9c0c7;
+$indigo-tint-70: #c9c3d2;
 
 /** @type color */
-$indigo-tint-60: #a1abb5;
+$indigo-tint-60: #b7afc3;
 
 /** @type color */
-$indigo-tint-50: #8a96a2;
+$indigo-tint-50: #a59cb4;
 
 /** @type color */
-$indigo-tint-40: #738190;
+$indigo-tint-40: #9388a5;
 
 /** @type color */
-$indigo-tint-30: #5b6c7d;
+$indigo-tint-30: #817496;
 
 /** @type color */
-$indigo-tint-20: #44576b;
+$indigo-tint-20: #6f6087;
 
 /** @type color */
-$indigo-tint-10: #2d4258;
+$indigo-tint-10: #5d4c78;
 
 /** @type color */
-$indigo-shade-10: #13293f;
+$indigo-shade-10: #483564;
 
 /** @type color */
-$indigo-shade-20: #112438;
+$indigo-shade-20: #44325e;
 
 /** @type color */
-$indigo-shade-30: #0f2031;
+$indigo-shade-30: #403059;
 
 /** @type color */
-$indigo-shade-40: #0d1b2a;
+$indigo-shade-40: #3c2d54;
 
 /** @type color */
-$indigo-shade-50: #0b1723;
+$indigo-shade-50: #34284a;
 
 /** @type color */
-$indigo-shade-60: #08121c;
+$indigo-shade-60: #2d223f;
 
 /** @type color */
-$indigo-shade-70: #060d15;
+$indigo-shade-70: #261c34;
 
 /** @type color */
-$indigo-shade-80: #04090d;
+$indigo-shade-80: #1e162a;
 
 /** @type color */
-$indigo-shade-90: #020406;
+$indigo-shade-90: #0f0b15;
 
 /* --------------------------------------------------------------------------
  - Purple ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$purple-tint-90: #f8eef3;
+$purple-tint-90: #f0e6f1;
 
 /** @type color */
-$purple-tint-80: #f2dee7;
+$purple-tint-80: #e1cde3;
 
 /** @type color */
-$purple-tint-70: #eccedb;
+$purple-tint-70: #d2b4d5;
 
 /** @type color */
-$purple-tint-60: #e6becf;
+$purple-tint-60: #c39bc7;
 
 /** @type color */
-$purple-tint-50: #e0aec4;
+$purple-tint-50: #b482b8;
 
 /** @type color */
-$purple-tint-40: #d99eb8;
+$purple-tint-40: #a669aa;
 
 /** @type color */
-$purple-tint-30: #d38eac;
+$purple-tint-30: #97509c;
 
 /** @type color */
-$purple-tint-20: #cd7ea0;
+$purple-tint-20: #88378e;
 
 /** @type color */
-$purple-tint-10: #c76e94;
+$purple-tint-10: #791e80;
 
 /** @type color */
-$purple-shade-10: #ad547b;
+$purple-shade-10: #64046c;
 
 /** @type color */
-$purple-shade-20: #9a4b6d;
+$purple-shade-20: #5f0467;
 
 /** @type color */
-$purple-shade-30: #87415f;
+$purple-shade-30: #5a0461;
 
 /** @type color */
-$purple-shade-40: #733852;
+$purple-shade-40: #55045b;
 
 /** @type color */
-$purple-shade-50: #602f44;
+$purple-shade-50: #4a0450;
 
 /** @type color */
-$purple-shade-60: #4d2536;
+$purple-shade-60: #400344;
 
 /** @type color */
-$purple-shade-70: #391c29;
+$purple-shade-70: #350239;
 
 /** @type color */
-$purple-shade-80: #26121b;
+$purple-shade-80: #2a022e;
 
 /** @type color */
-$purple-shade-90: #13090d;
+$purple-shade-90: #150117;
 
 /* --------------------------------------------------------------------------
  - Pink ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$pink-tint-90: #fdf3f7;
+$pink-tint-90: #fbeaeb;
 
 /** @type color */
-$pink-tint-80: #fbe7f0;
+$pink-tint-80: #f7d4d7;
 
 /** @type color */
-$pink-tint-70: #f9dbe9;
+$pink-tint-70: #f3bec3;
 
 /** @type color */
-$pink-tint-60: #f7cfe2;
+$pink-tint-60: #efa8af;
 
 /** @type color */
-$pink-tint-50: #f5c4db;
+$pink-tint-50: #eb929c;
 
 /** @type color */
-$pink-tint-40: #f3b8d3;
+$pink-tint-40: #e77d88;
 
 /** @type color */
-$pink-tint-30: #f1accc;
+$pink-tint-30: #e36774;
 
 /** @type color */
-$pink-tint-20: #efa0c5;
+$pink-tint-20: #df5160;
 
 /** @type color */
-$pink-tint-10: #ed94be;
+$pink-tint-10: #db3c4c;
 
 /** @type color */
-$pink-shade-10: #d47ba4;
+$pink-shade-10: #cc2435;
 
 /** @type color */
-$pink-shade-20: #bc6d92;
+$pink-shade-20: #c22232;
 
 /** @type color */
-$pink-shade-30: #a55f80;
+$pink-shade-30: #b72030;
 
 /** @type color */
-$pink-shade-40: #8d526d;
+$pink-shade-40: #ac1e2d;
 
 /** @type color */
-$pink-shade-50: #76445b;
+$pink-shade-50: #961a28;
 
 /** @type color */
-$pink-shade-60: #5e3649;
+$pink-shade-60: #811722;
 
 /** @type color */
-$pink-shade-70: #462936;
+$pink-shade-70: #6c131c;
 
 /** @type color */
-$pink-shade-80: #2f1b24;
+$pink-shade-80: #560f16;
 
 /** @type color */
-$pink-shade-90: #170d12;
+$pink-shade-90: #2b080b;
 
 /* --------------------------------------------------------------------------
  - Red ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$red-tint-90: #fbe6ed;
+$red-tint-90: #f8e8e8;
 
 /** @type color */
-$red-tint-80: #f8cedc;
+$red-tint-80: #f1d1d2;
 
 /** @type color */
-$red-tint-70: #f4b5cb;
+$red-tint-70: #eababc;
 
 /** @type color */
-$red-tint-60: #f19dba;
+$red-tint-60: #e3a4a5;
 
 /** @type color */
-$red-tint-50: #ee84a9;
+$red-tint-50: #dc8d8e;
 
 /** @type color */
-$red-tint-40: #ea6c98;
+$red-tint-40: #d67677;
 
 /** @type color */
-$red-tint-30: #e75387;
+$red-tint-30: #cf6060;
 
 /** @type color */
-$red-tint-20: #e33b76;
+$red-tint-20: #c8494a;
 
 /** @type color */
-$red-tint-10: #e02265;
+$red-tint-10: #c13234;
 
 /** @type color */
-$red-shade-10: #c6094b;
+$red-shade-10: #b01a1c;
 
 /** @type color */
-$red-shade-20: #b00843;
+$red-shade-20: #a7181a;
 
 /** @type color */
-$red-shade-30: #9a073a;
+$red-shade-30: #9e1718;
 
 /** @type color */
-$red-shade-40: #840632;
+$red-shade-40: #951617;
 
 /** @type color */
-$red-shade-50: #6e052a;
+$red-shade-50: #821314;
 
 /** @type color */
-$red-shade-60: #580421;
+$red-shade-60: #701011;
 
 /** @type color */
-$red-shade-70: #420319;
+$red-shade-70: #5d0e0e;
 
 /** @type color */
-$red-shade-80: #2c0110;
+$red-shade-80: #4a0b0c;
 
 /** @type color */
-$red-shade-90: #160008;
+$red-shade-90: #250606;
 
 /* --------------------------------------------------------------------------
  - Orange ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$orange-tint-90: #f8ece8;
+$orange-tint-90: #fef4eb;
 
 /** @type color */
-$orange-tint-80: #f3ded6;
+$orange-tint-80: #fde9d7;
 
 /** @type color */
-$orange-tint-70: #eed0c5;
+$orange-tint-70: #fcdec3;
 
 /** @type color */
-$orange-tint-60: #e9c2b3;
+$orange-tint-60: #fad3af;
 
 /** @type color */
-$orange-tint-50: #e5b4a1;
+$orange-tint-50: #f9c89b;
 
 /** @type color */
-$orange-tint-40: #e0a68f;
+$orange-tint-40: #f8be87;
 
 /** @type color */
-$orange-tint-30: #db987e;
+$orange-tint-30: #f6b373;
 
 /** @type color */
-$orange-tint-20: #e09272;
+$orange-tint-20: #f5a85f;
 
 /** @type color */
-$orange-tint-10: #d68a6c;
+$orange-tint-10: #f49d4b;
 
 /** @type color */
-$orange-shade-10: #c37a60;
+$orange-shade-10: #e78a34;
 
 /** @type color */
-$orange-shade-20: #ac6c56;
+$orange-shade-20: #db8332;
 
 /** @type color */
-$orange-shade-30: #955e4b;
+$orange-shade-30: #ce7c2f;
 
 /** @type color */
-$orange-shade-40: #7e5040;
+$orange-shade-40: #c2752c;
 
 /** @type color */
-$orange-shade-50: #684336;
+$orange-shade-50: #aa6626;
 
 /** @type color */
-$orange-shade-60: #51352b;
+$orange-shade-60: #925821;
 
 /** @type color */
-$orange-shade-70: #3a2720;
+$orange-shade-70: #7a491c;
 
 /** @type color */
-$orange-shade-80: #231915;
+$orange-shade-80: #613a16;
 
 /** @type color */
-$orange-shade-90: #0d0c0b;
+$orange-shade-90: #301d0b;
 
 /* --------------------------------------------------------------------------
  - Yellow ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$yellow-tint-90: #fffaf3;
+$yellow-tint-90: #fffae6;
 
 /** @type color */
-$yellow-tint-80: #fff5e7;
+$yellow-tint-80: #fff4cc;
 
 /** @type color */
-$yellow-tint-70: #fff0dc;
+$yellow-tint-70: #ffeeb2;
 
 /** @type color */
-$yellow-tint-60: #ffebd0;
+$yellow-tint-60: #ffe999;
 
 /** @type color */
-$yellow-tint-50: #ffe7c5;
+$yellow-tint-50: #ffe380;
 
 /** @type color */
-$yellow-tint-40: #ffe2b9;
+$yellow-tint-40: #fd6;
 
 /** @type color */
-$yellow-tint-30: #ffddad;
+$yellow-tint-30: #ffd84c;
 
 /** @type color */
-$yellow-tint-20: #ffd8a2;
+$yellow-tint-20: #ffd233;
 
 /** @type color */
-$yellow-tint-10: #ffd396;
+$yellow-tint-10: #ffce1c;
 
 /** @type color */
-$yellow-shade-10: #e5ba7d;
+$yellow-shade-10: #f2c005;
 
 /** @type color */
-$yellow-shade-20: #cca56f;
+$yellow-shade-20: #e6b505;
 
 /** @type color */
-$yellow-shade-30: #b29061;
+$yellow-shade-30: #d9aa04;
 
 /** @type color */
-$yellow-shade-40: #997c53;
+$yellow-shade-40: #cc9f04;
 
 /** @type color */
-$yellow-shade-50: #7f6745;
+$yellow-shade-50: #b28a04;
 
 /** @type color */
-$yellow-shade-60: #665237;
+$yellow-shade-60: #997503;
 
 /** @type color */
-$yellow-shade-70: #4c3e29;
+$yellow-shade-70: #806002;
 
 /** @type color */
-$yellow-shade-80: #32291b;
+$yellow-shade-80: #664c02;
 
 /** @type color */
-$yellow-shade-90: #19140d;
+$yellow-shade-90: #332601;
 
 /* --------------------------------------------------------------------------
  - Green ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$green-tint-90: #e7f1ec;
+$green-tint-90: #e6f1e8;
 
 /** @type color */
-$green-tint-80: #cfe3da;
+$green-tint-80: #cde3d1;
 
 /** @type color */
-$green-tint-70: #b8d5c7;
+$green-tint-70: #b4d5ba;
 
 /** @type color */
-$green-tint-60: #a0c8b5;
+$green-tint-60: #9bc7a3;
 
 /** @type color */
-$green-tint-50: #89baa3;
+$green-tint-50: #82b88c;
 
 /** @type color */
-$green-tint-40: #71ac90;
+$green-tint-40: #69aa75;
 
 /** @type color */
-$green-tint-30: #599f7e;
+$green-tint-30: #509c5e;
 
 /** @type color */
-$green-tint-20: #42916b;
+$green-tint-20: #378e47;
 
 /** @type color */
-$green-tint-10: #2a8359;
+$green-tint-10: #328a44;
 
 /** @type color */
-$green-shade-10: #116a3f;
+$green-shade-10: #2c7e3c;
 
 /** @type color */
-$green-shade-20: #0f5e38;
+$green-shade-20: #297839;
 
 /** @type color */
-$green-shade-30: #0d5231;
+$green-shade-30: #277136;
 
 /** @type color */
-$green-shade-40: #0b462a;
+$green-shade-40: #256a33;
 
 /** @type color */
-$green-shade-50: #093b23;
+$green-shade-50: #205c2c;
 
 /** @type color */
-$green-shade-60: #072f1c;
+$green-shade-60: #1c4f26;
 
 /** @type color */
-$green-shade-70: #052315;
+$green-shade-70: #184220;
 
 /** @type color */
-$green-shade-80: #03170e;
+$green-shade-80: #13341a;
 
 /** @type color */
-$green-shade-90: #010b07;
+$green-shade-90: #0a1a0d;
 
 /* --------------------------------------------------------------------------
  - Teal ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$teal-tint-90: #eef8f4;
+$teal-tint-90: #e6f6f6;
 
 /** @type color */
-$teal-tint-80: #def2e9;
+$teal-tint-80: #cceded;
 
 /** @type color */
-$teal-tint-70: #ceecdf;
+$teal-tint-70: #b2e4e4;
 
 /** @type color */
-$teal-tint-60: #bee5d4;
+$teal-tint-60: #99dbdb;
 
 /** @type color */
-$teal-tint-50: #aedfca;
+$teal-tint-50: #80d2d2;
 
 /** @type color */
-$teal-tint-40: #9ed9bf;
+$teal-tint-40: #66c9c9;
 
 /** @type color */
-$teal-tint-30: #8ed2b4;
+$teal-tint-30: #4cc0c0;
 
 /** @type color */
-$teal-tint-20: #7eccaa;
+$teal-tint-20: #33b7b7;
 
 /** @type color */
-$teal-tint-10: #6ec69f;
+$teal-tint-10: #1a9c9c;
 
 /** @type color */
-$teal-shade-10: #54ac86;
+$teal-shade-10: #007a7a;
 
 /** @type color */
-$teal-shade-20: #4b9977;
+$teal-shade-20: #007373;
 
 /** @type color */
-$teal-shade-30: #418668;
+$teal-shade-30: #006c6c;
 
 /** @type color */
-$teal-shade-40: #387359;
+$teal-shade-40: #066;
 
 /** @type color */
-$teal-shade-50: #2f604a;
+$teal-shade-50: #005959;
 
 /** @type color */
-$teal-shade-60: #254c3b;
+$teal-shade-60: #004c4c;
 
 /** @type color */
-$teal-shade-70: #1c392c;
+$teal-shade-70: #004040;
 
 /** @type color */
-$teal-shade-80: #12261d;
+$teal-shade-80: #033;
 
 /** @type color */
-$teal-shade-90: #09130e;
+$teal-shade-90: #001a1a;
 
 /* --------------------------------------------------------------------------
  - Cyan ramp
  ------------------------------------------------------------------------- */
 
 /** @type color */
-$cyan-tint-90: #f0f8fb;
+$cyan-tint-90: #e6f8fb;
 
 /** @type color */
-$cyan-tint-80: #e1f1f7;
+$cyan-tint-80: #ccf2f7;
 
 /** @type color */
-$cyan-tint-70: #d2eaf3;
+$cyan-tint-70: #b2ecf3;
 
 /** @type color */
-$cyan-tint-60: #c3e4f0;
+$cyan-tint-60: #99e6ef;
 
 /** @type color */
-$cyan-tint-50: #b5ddec;
+$cyan-tint-50: #80e0eb;
 
 /** @type color */
-$cyan-tint-40: #a6d6e8;
+$cyan-tint-40: #66d9e7;
 
 /** @type color */
-$cyan-tint-30: #97d0e5;
+$cyan-tint-30: #4cd3e3;
 
 /** @type color */
-$cyan-tint-20: #88c9e1;
+$cyan-tint-20: #33cddf;
 
 /** @type color */
-$cyan-tint-10: #79c2dd;
+$cyan-tint-10: #1ac4da;
 
 /** @type color */
-$cyan-shade-10: #60a9c4;
+$cyan-shade-10: #00b2ca;
 
 /** @type color */
-$cyan-shade-20: #5596ae;
+$cyan-shade-20: #00a8bf;
 
 /** @type color */
-$cyan-shade-30: #4a8398;
+$cyan-shade-30: #009eb4;
 
 /** @type color */
-$cyan-shade-40: #407082;
+$cyan-shade-40: #0093aa;
 
 /** @type color */
-$cyan-shade-50: #355e6d;
+$cyan-shade-50: #007e94;
 
 /** @type color */
-$cyan-shade-60: #2a4b57;
+$cyan-shade-60: #006a7f;
 
 /** @type color */
-$cyan-shade-70: #203841;
+$cyan-shade-70: #00556a;
 
 /** @type color */
-$cyan-shade-80: #15252b;
+$cyan-shade-80: #004054;
 
 /** @type color */
-$cyan-shade-90: #0a1215;
+$cyan-shade-90: #00202a;

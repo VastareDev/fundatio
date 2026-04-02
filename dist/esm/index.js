@@ -3,7 +3,7 @@ function t(n) {
   return `rgb(var(${n}) / <alpha-value>)`;
 }
 function e(n) {
-  return `--sol-colour-${n}-rgb`;
+  return `--Fundatio-colour-${n}-rgb`;
 }
 function r(n) {
   return {
@@ -18,7 +18,7 @@ function r(n) {
     900: t(e(`${n}-shade-40`))
   };
 }
-function l() {
+function a() {
   const n = [
     "grey",
     "blue",
@@ -32,54 +32,54 @@ function l() {
     "teal"
   ], o = {
     // Convenience accessors.
-    sol: {
-      0: t("--sol-colour-black-rgb"),
-      1e3: t("--sol-colour-white-rgb")
+    Fundatio: {
+      0: t("--Fundatio-colour-black-rgb"),
+      1e3: t("--Fundatio-colour-white-rgb")
     }
   };
   for (const i of n)
     o[i] = r(i);
   return o;
 }
-const s = {
+const l = {
   theme: {
     extend: {
-      colors: l()
+      colors: a()
     }
   }
 };
-function a(n) {
+function s(n) {
   return typeof n == "object" && n !== null;
 }
 async function u() {
   let n;
   try {
-    n = await import("./chunks/sol.js");
+    n = await import("./chunks/fundatio.js");
   } catch {
     throw new Error('Tailwind is not installed. Install "tailwindcss" to use solTailwindPlugin.');
   }
-  const o = a(n) && "default" in n ? n.default : n;
+  const o = s(n) && "default" in n ? n.default : n;
   if (typeof o != "function")
     throw new Error('"tailwindcss/plugin" did not export a plugin factory function as expected.');
   return o;
 }
-async function c() {
+async function d() {
   return (await u())(({ addUtilities: o }) => {
     o({
-      ".sol-example": {
+      ".Fundatio-example": {
         fontSize: "1rem"
       }
     });
   });
 }
-const d = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const c = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  solTailwindPlugin: c,
-  solTailwindPreset: s
+  solTailwindPlugin: d,
+  solTailwindPreset: l
 }, Symbol.toStringTag, { value: "Module" })), f = "1.0.0";
 export {
   w as elements,
   f as solVersion,
-  d as tailwind
+  c as tailwind
 };
 //# sourceMappingURL=index.js.map

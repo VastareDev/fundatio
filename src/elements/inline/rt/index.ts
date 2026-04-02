@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Rt element helpers.
+ * Fundatio Design Foundation: Rt element helpers.
  *
  * @remarks
  * The rt element (`<rt>`) provides the ruby text component of a ruby annotation.
@@ -10,13 +10,13 @@
  * - `<rt>` must be used within a `<ruby>` element.
  * - Use ruby for semantic annotation (pronunciation/reading aids), not for
  *   purely presentational styling.
- * - Prefer plain text via `textContent` for annotation content (Sol enforces
+ * - Prefer plain text via `textContent` for annotation content (Fundatio enforces
  *   this by using `textContent`, never `innerHTML`).
  *
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<rt>` nodes in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/rt
  *
@@ -27,7 +27,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -74,8 +74,8 @@ export const RT_SELECTOR = 'rt';
  * @remarks
  * Rt elements include only standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -118,7 +118,7 @@ function toGlobalAttrs(attrs?: RtAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -128,7 +128,7 @@ function toGlobalAttrs(attrs?: RtAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createRt } from "@lnpg/sol/elements/inline/rt";
+ * import { createRt } from "@Vastare/Fundatio/elements/inline/rt";
  *
  * // Intended usage: inside <ruby>
  * const rt = createRt("kan");

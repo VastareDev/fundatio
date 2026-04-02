@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Area element helpers.
+ * Fundatio Design Foundation: Area element helpers.
  *
  * @remarks
  * The area element (`<area>`) defines a hyperlink or dead region within an image map.
@@ -10,12 +10,12 @@
  * - Prefer meaningful alternative text for clickable regions (screen readers rely on it).
  * - Keep shapes and coordinates accurate; imprecise maps are a usability disaster.
  *
- * Spec-aware Sol behavior:
- * - If `href` is provided: `alt` is required, and Sol will ensure an `alt` attribute
+ * Spec-aware Fundatio behavior:
+ * - If `href` is provided: `alt` is required, and Fundatio will ensure an `alt` attribute
  *   exists (defaults to empty string if not provided).
- * - If `href` is not provided: `alt` must be omitted, and Sol will omit it.
+ * - If `href` is not provided: `alt` must be omitted, and Fundatio will omit it.
  *
- * Global attributes are applied via Sol's hardened DOM helpers (`dom.ts`), which block:
+ * Global attributes are applied via Fundatio's hardened DOM helpers (`dom.ts`), which block:
  * - inline event handler attributes (e.g. `onclick`)
  * - the raw `style` attribute string (use `style` object instead)
  *
@@ -28,7 +28,7 @@
 import { createVoidElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @category Attributes
  */
@@ -68,7 +68,7 @@ export const AREA_SELECTOR = 'area';
  *
  * @remarks
  * The default (when omitted) is effectively `rect` in HTML's image map processing model,
- * but Sol does not force a default; it passes through what you provide.
+ * but Fundatio does not force a default; it passes through what you provide.
  *
  * @category Types
  */
@@ -79,9 +79,9 @@ export type AreaShape = 'rect' | 'circle' | 'poly' | 'default';
  *
  * @remarks
  * `<area>` largely mirrors hyperlink-related attributes when `href` is present.
- * Sol enforces the spec rule around `alt`:
- * - `href` present => `alt` must be present (Sol ensures it exists)
- * - `href` absent  => `alt` must be omitted (Sol omits it)
+ * Fundatio enforces the spec rule around `alt`:
+ * - `href` present => `alt` must be present (Fundatio ensures it exists)
+ * - `href` absent  => `alt` must be omitted (Fundatio omits it)
  *
  * @category Attributes
  */
@@ -91,7 +91,7 @@ export type AreaAttrs = Omit<GlobalAttrs, 'aria'> & {
    *
    * @remarks
    * Only applied when `href` is present. If `href` is present and `alt` is not
-   * provided, Sol defaults it to `""`. If `href` is absent, Sol omits `alt`
+   * provided, Fundatio defaults it to `""`. If `href` is absent, Fundatio omits `alt`
    * entirely.
    */
   alt?: string;
@@ -222,8 +222,8 @@ function toGlobalAttrs(attrs?: AreaAttrs): GlobalAttrs {
  *
  * @remarks
  * - `<area>` is a void element (no text content).
- * - If `href` is present, Sol ensures `alt` is present (defaults to `""`).
- * - If `href` is absent, Sol omits `alt`.
+ * - If `href` is present, Fundatio ensures `alt` is present (defaults to `""`).
+ * - If `href` is absent, Fundatio omits `alt`.
  *
  * @category DOM
  */

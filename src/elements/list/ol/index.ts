@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Ordered list element helpers.
+ * Fundatio Design Foundation: Ordered list element helpers.
  *
  * @remarks
  * The ordered list element (`<ol>`) represents an ordered list of items.
@@ -13,7 +13,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create ordered lists in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -25,7 +25,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -93,8 +93,8 @@ export type OlType = '1' | 'a' | 'A' | 'i' | 'I';
  * - `start` to set the initial counter value
  * - `type` to choose the marker style (often better via CSS)
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -151,7 +151,7 @@ function toGlobalAttrs(attrs?: OlAttrs): GlobalAttrs | undefined {
  * This helper intentionally does not accept raw HTML. Consumers should append
  * `<li>` children using DOM APIs.
  *
- * Global attributes are applied via Sol's shared DOM helper, including security
+ * Global attributes are applied via Fundatio's shared DOM helper, including security
  * guards that block inline event handler attributes (e.g. `onclick`) and raw
  * `style` attribute strings.
  *
@@ -160,7 +160,7 @@ function toGlobalAttrs(attrs?: OlAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createOl } from "@lnpg/sol/elements/list/ol";
+ * import { createOl } from "@Vastare/Fundatio/elements/list/ol";
  *
  * const ol = createOl({ start: 3, reversed: true, className: "steps" });
  * document.body.appendChild(ol);

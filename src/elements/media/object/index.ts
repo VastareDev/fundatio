@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Object element helpers.
+ * Fundatio Design Foundation: Object element helpers.
  *
  * @remarks
  * The object element (`<object>`) embeds external resources (HTML, images, PDFs,
@@ -16,13 +16,13 @@
  *
  * Attribute guidance:
  * - At least one of `data` or `type` should be provided.
- * - If neither is provided, Sol falls back to `data="about:blank"` to avoid an
+ * - If neither is provided, Fundatio falls back to `data="about:blank"` to avoid an
  *   "empty" embed configuration while staying inert.
  *
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create object elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -34,7 +34,7 @@
 import { createElement, type AttrValue, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -230,7 +230,7 @@ function toGlobalAttrs(attrs?: ObjectAttrs): GlobalAttrs | undefined {
  * @remarks
  * - Fallback text is assigned via `textContent` (never `innerHTML`).
  * - For richer fallback, append children after creation.
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -240,7 +240,7 @@ function toGlobalAttrs(attrs?: ObjectAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createObject } from "@lnpg/sol/elements/media/object";
+ * import { createObject } from "@Vastare/Fundatio/elements/media/object";
  *
  * const obj = createObject("Your browser can't display this content.", {
  *   data: "/docs/guide.pdf",

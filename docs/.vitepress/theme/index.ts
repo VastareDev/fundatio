@@ -1,8 +1,8 @@
 import DefaultTheme from "vitepress/theme";
 import type { Theme } from "vitepress";
 
-import "./sol.vitepress.css";
-import "../../styles/sol.scss";
+import "./fundatio.vitepress.css";
+import "../../styles/fundatio.scss";
 
 export default {
   extends: DefaultTheme,

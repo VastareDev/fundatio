@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Track element helpers.
+ * Fundatio Design Foundation: Track element helpers.
  *
  * @remarks
  * The track element (`<track>`) provides external timed text tracks for media
@@ -21,8 +21,8 @@
  * - `default` is a boolean attribute. When present, it indicates this track
  *   should be enabled if user preferences do not indicate a better choice.
  *
- * Sol keeps the API small and framework-agnostic:
- * - Attributes are routed through Sol's hardened DOM helpers.
+ * Fundatio keeps the API small and framework-agnostic:
+ * - Attributes are routed through Fundatio's hardened DOM helpers.
  * - Unsafe attributes (inline event handlers, raw style) are blocked centrally.
  * - This module has no side effects and does not mutate the DOM unless you call
  *   its functions.
@@ -35,7 +35,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -93,8 +93,8 @@ export declare const TRACK_SELECTOR = "track";
  * - `label`
  * - `default` (boolean attribute)
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -138,7 +138,7 @@ export type TrackAttrs = Omit<GlobalAttrs, 'aria'> & {
  * - It must not have text content.
  * - It must not have child nodes.
  *
- * Global attributes are applied via Sol's shared DOM helper, including security
+ * Global attributes are applied via Fundatio's shared DOM helper, including security
  * guards that block inline event handler attributes (e.g. `onclick`) and raw
  * `style` attribute strings.
  *
@@ -147,7 +147,7 @@ export type TrackAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createTrack } from "@lnpg/sol/elements/responsive/track";
+ * import { createTrack } from "@Vastare/Fundatio/elements/responsive/track";
  *
  * const t = createTrack({
  *   kind: "subtitles",

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Legend element helpers.
+ * Fundatio Design Foundation: Legend element helpers.
  *
  * @remarks
  * The legend element (`<legend>`) represents a caption for the content of its
@@ -15,7 +15,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<legend>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -30,7 +30,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -77,8 +77,8 @@ export const LEGEND_SELECTOR = 'legend';
  * @remarks
  * Legend elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -121,7 +121,7 @@ function toGlobalAttrs(attrs?: LegendAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -131,7 +131,7 @@ function toGlobalAttrs(attrs?: LegendAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createLegend } from "@lnpg/sol/elements/form/legend";
+ * import { createLegend } from "@Vastare/Fundatio/elements/form/legend";
  *
  * const legend = createLegend("Delivery address");
  * ```

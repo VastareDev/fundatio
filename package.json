@@ -1,17 +1,17 @@
 {
-  "name": "@lnpg/sol",
-  "version": "1.0.1",
-  "description": "Framework agnostic design foundation for UI kits and applications.",
-  "homepage": "https://github.com/lnpgdev/sol#readme",
+  "name": "@vastare/fundatio",
+  "version": "0.1.0",
+  "description": "Framework agnostic design foundation for Vastare UI kits and applications.",
+  "homepage": "https://github.com/vastaredev/fundatio#readme",
   "bugs": {
-    "url": "https://github.com/lnpgdev/sol/issues"
+    "url": "https://github.com/vastaredev/fundatio/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lnpgdev/sol.git"
+    "url": "git+https://github.com/vastaredev/fundatio.git"
   },
   "license": "ISC",
-  "author": "LNPG Development Team",
+  "author": "Vastare Development Team",
   "type": "module",
   "style": "./dist/css/main.css",
   "files": [
@@ -61,9 +61,9 @@
     "docs:copy:assets": "rimraf docs/public/assets/fonts && mkdir -p docs/public/assets/fonts && cp -R src/assets/fonts/* docs/public/assets/fonts",
     "build:css": "npm run build:css:main && npm run build:css:core && npm run build:css:elements",
     "build:js": "vite build --mode esm && vite build --mode cjs",
-    "build:css:core": "sass --style=compressed src/scss/core.scss dist/css/core.css",
-    "build:css:main": "sass --style=compressed src/scss/main.scss dist/css/main.css",
-    "build:css:elements": "sass --style=compressed src/elements:dist/css/elements",
+    "build:css:core": "sass --silence-deprecation=color-4-api --style=compressed src/scss/core.scss dist/css/core.css",
+    "build:css:main": "sass --silence-deprecation=color-4-api --style=compressed src/scss/main.scss dist/css/main.css",
+    "build:css:elements": "sass --silence-deprecation=color-4-api --style=compressed src/elements:dist/css/elements",
     "copy:assets": "npm run copy:assets:fonts",
     "copy:assets:fonts": "rimraf dist/assets/fonts && mkdir -p dist/assets/fonts && cp -R src/assets/fonts/* dist/assets/fonts",
     "prepublishOnly": "npm run pre:build && npm run clean && npm run check && npm run test:coverage && npm run build:all && npm run copy:assets && npm run docs"
@@ -88,10 +88,11 @@
     "vitepress": "^1.6.4",
     "typedoc": "^0.28.16",
     "typedoc-plugin-markdown": "^4.10.0",
-    "@lnpg/unicode-scrub": "^1.0.0",
+    "@Vastare/unicode-scrub": "^1.0.0",
     "rimraf": "^6.1.2",
     "postcss-scss": "^4.0.9",
-    "globals": "^17.3.0"
+    "globals": "^17.3.0",
+    "bootstrap": "^5.3.8"
   },
   "overrides": {
     "esbuild": "^0.25.0"

@@ -40,269 +40,269 @@ describe("tokens/colours", () => {
 
   it("matches base hues exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$base-blue != #4d80b4 { @error "Expected $base-blue to be #4d80b4"; }
-      @if colours.$base-indigo != #162e46 { @error "Expected $base-indigo to be #162e46"; }
-      @if colours.$base-purple != #c15e89 { @error "Expected $base-purple to be #c15e89"; }
-      @if colours.$base-pink != #ec89b7 { @error "Expected $base-pink to be #ec89b7"; }
-      @if colours.$base-red != #dd0a54 { @error "Expected $base-red to be #dd0a54"; }
-      @if colours.$base-orange != #da886b { @error "Expected $base-orange to be #da886b"; }
-      @if colours.$base-yellow != #ffcf8b { @error "Expected $base-yellow to be #ffcf8b"; }
-      @if colours.$base-green != #137647 { @error "Expected $base-green to be #137647"; }
-      @if colours.$base-teal != #5ec095 { @error "Expected $base-teal to be #5ec095"; }
-      @if colours.$base-cyan != #6bbcda { @error "Expected $base-cyan to be #6bbcda"; }
+      @if colours.$base-blue != #233b4e { @error "Expected $base-blue to be #233b4e"; }
+      @if colours.$base-indigo != #4b3869 { @error "Expected $base-indigo to be #4b3869"; }
+      @if colours.$base-purple != #6a0572 { @error "Expected $base-purple to be #6a0572"; }
+      @if colours.$base-pink != #d72638 { @error "Expected $base-pink to be #d72638"; }
+      @if colours.$base-red != #ba1b1d { @error "Expected $base-red to be #ba1b1d"; }
+      @if colours.$base-orange != #f39237 { @error "Expected $base-orange to be #f39237"; }
+      @if colours.$base-yellow != #ffcb05 { @error "Expected $base-yellow to be #ffcb05"; }
+      @if colours.$base-green != #2e8540 { @error "Expected $base-green to be #2e8540"; }
+      @if colours.$base-teal != #008080 { @error "Expected $base-teal to be #008080"; }
+      @if colours.$base-cyan != #00bcd4 { @error "Expected $base-cyan to be #00bcd4"; }
     `);
   });
 
   it("matches grey ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$grey-tint-90 != #fbfcfc { @error "Expected $grey-tint-90 to be #fbfcfc"; }
+      @if colours.$grey-tint-90 != #fcfcfc { @error "Expected $grey-tint-90 to be #fcfcfc"; }
       @if colours.$grey-tint-80 != #f8f9fa { @error "Expected $grey-tint-80 to be #f8f9fa"; }
-      @if colours.$grey-tint-70 != #f3f4f6 { @error "Expected $grey-tint-70 to be #f3f4f6"; }
+      @if colours.$grey-tint-70 != #f0f2f4 { @error "Expected $grey-tint-70 to be #f0f2f4"; }
       @if colours.$grey-tint-60 != #e9ecef { @error "Expected $grey-tint-60 to be #e9ecef"; }
-      @if colours.$grey-tint-50 != #e3e5e8 { @error "Expected $grey-tint-50 to be #e3e5e8"; }
+      @if colours.$grey-tint-50 != #e4e7ea { @error "Expected $grey-tint-50 to be #e4e7ea"; }
       @if colours.$grey-tint-40 != #dee2e6 { @error "Expected $grey-tint-40 to be #dee2e6"; }
-      @if colours.$grey-tint-30 != #d6dadd { @error "Expected $grey-tint-30 to be #d6dadd"; }
+      @if colours.$grey-tint-30 != #d6dbe0 { @error "Expected $grey-tint-30 to be #d6dbe0"; }
       @if colours.$grey-tint-20 != #ced4da { @error "Expected $grey-tint-20 to be #ced4da"; }
-      @if colours.$grey-tint-10 != #c5cbd1 { @error "Expected $grey-tint-10 to be #c5cbd1"; }
-      @if colours.$grey-shade-10 != #7f8890 { @error "Expected $grey-shade-10 to be #7f8890"; }
+      @if colours.$grey-tint-10 != #bec4cc { @error "Expected $grey-tint-10 to be #bec4cc"; }
+      @if colours.$grey-shade-10 != #8c959d { @error "Expected $grey-shade-10 to be #8c959d"; }
       @if colours.$grey-shade-20 != #6c757d { @error "Expected $grey-shade-20 to be #6c757d"; }
-      @if colours.$grey-shade-30 != #60686f { @error "Expected $grey-shade-30 to be #60686f"; }
+      @if colours.$grey-shade-30 != #5a626a { @error "Expected $grey-shade-30 to be #5a626a"; }
       @if colours.$grey-shade-40 != #495057 { @error "Expected $grey-shade-40 to be #495057"; }
-      @if colours.$grey-shade-50 != #3d4349 { @error "Expected $grey-shade-50 to be #3d4349"; }
+      @if colours.$grey-shade-50 != #3e454c { @error "Expected $grey-shade-50 to be #3e454c"; }
       @if colours.$grey-shade-60 != #343a40 { @error "Expected $grey-shade-60 to be #343a40"; }
-      @if colours.$grey-shade-70 != #2a2e33 { @error "Expected $grey-shade-70 to be #2a2e33"; }
+      @if colours.$grey-shade-70 != #2a3034 { @error "Expected $grey-shade-70 to be #2a3034"; }
       @if colours.$grey-shade-80 != #212529 { @error "Expected $grey-shade-80 to be #212529"; }
-      @if colours.$grey-shade-90 != #181b1e { @error "Expected $grey-shade-90 to be #181b1e"; }
+      @if colours.$grey-shade-90 != #101214 { @error "Expected $grey-shade-90 to be #101214"; }
     `);
   });
 
   it("matches blue ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$blue-tint-90 != #edf2f8 { @error "Expected $blue-tint-90 to be #edf2f8"; }
-      @if colours.$blue-tint-80 != #dbe6f0 { @error "Expected $blue-tint-80 to be #dbe6f0"; }
-      @if colours.$blue-tint-70 != #cad9e8 { @error "Expected $blue-tint-70 to be #cad9e8"; }
-      @if colours.$blue-tint-60 != #b8cce1 { @error "Expected $blue-tint-60 to be #b8cce1"; }
-      @if colours.$blue-tint-50 != #a6c0da { @error "Expected $blue-tint-50 to be #a6c0da"; }
-      @if colours.$blue-tint-40 != #94b3d2 { @error "Expected $blue-tint-40 to be #94b3d2"; }
-      @if colours.$blue-tint-30 != #82a6ca { @error "Expected $blue-tint-30 to be #82a6ca"; }
-      @if colours.$blue-tint-20 != #7199c3 { @error "Expected $blue-tint-20 to be #7199c3"; }
-      @if colours.$blue-tint-10 != #5f8dbc { @error "Expected $blue-tint-10 to be #5f8dbc"; }
-      @if colours.$blue-shade-10 != #4573a2 { @error "Expected $blue-shade-10 to be #4573a2"; }
-      @if colours.$blue-shade-20 != #3e6690 { @error "Expected $blue-shade-20 to be #3e6690"; }
-      @if colours.$blue-shade-30 != #365a7e { @error "Expected $blue-shade-30 to be #365a7e"; }
-      @if colours.$blue-shade-40 != #2e4d6c { @error "Expected $blue-shade-40 to be #2e4d6c"; }
-      @if colours.$blue-shade-50 != #26405a { @error "Expected $blue-shade-50 to be #26405a"; }
-      @if colours.$blue-shade-60 != #1f3348 { @error "Expected $blue-shade-60 to be #1f3348"; }
-      @if colours.$blue-shade-70 != #172636 { @error "Expected $blue-shade-70 to be #172636"; }
-      @if colours.$blue-shade-80 != #0f1a24 { @error "Expected $blue-shade-80 to be #0f1a24"; }
-      @if colours.$blue-shade-90 != #080d12 { @error "Expected $blue-shade-90 to be #080d12"; }
+      @if colours.$blue-tint-90 != #e4e8ec { @error "Expected $blue-tint-90 to be #e4e8ec"; }
+      @if colours.$blue-tint-80 != #c9d1d8 { @error "Expected $blue-tint-80 to be #c9d1d8"; }
+      @if colours.$blue-tint-70 != #b7c0ca { @error "Expected $blue-tint-70 to be #b7c0ca"; }
+      @if colours.$blue-tint-60 != #a5b0bd { @error "Expected $blue-tint-60 to be #a5b0bd"; }
+      @if colours.$blue-tint-50 != #909eac { @error "Expected $blue-tint-50 to be #909eac"; }
+      @if colours.$blue-tint-40 != #7b8c9c { @error "Expected $blue-tint-40 to be #7b8c9c"; }
+      @if colours.$blue-tint-30 != #657786 { @error "Expected $blue-tint-30 to be #657786"; }
+      @if colours.$blue-tint-20 != #4f6271 { @error "Expected $blue-tint-20 to be #4f6271"; }
+      @if colours.$blue-tint-10 != #394e60 { @error "Expected $blue-tint-10 to be #394e60"; }
+      @if colours.$blue-shade-10 != #21384a { @error "Expected $blue-shade-10 to be #21384a"; }
+      @if colours.$blue-shade-20 != #1f3646 { @error "Expected $blue-shade-20 to be #1f3646"; }
+      @if colours.$blue-shade-30 != #1e3344 { @error "Expected $blue-shade-30 to be #1e3344"; }
+      @if colours.$blue-shade-40 != #1c3041 { @error "Expected $blue-shade-40 to be #1c3041"; }
+      @if colours.$blue-shade-50 != #192a38 { @error "Expected $blue-shade-50 to be #192a38"; }
+      @if colours.$blue-shade-60 != #16252f { @error "Expected $blue-shade-60 to be #16252f"; }
+      @if colours.$blue-shade-70 != #121d26 { @error "Expected $blue-shade-70 to be #121d26"; }
+      @if colours.$blue-shade-80 != #0e151c { @error "Expected $blue-shade-80 to be #0e151c"; }
+      @if colours.$blue-shade-90 != #070a0e { @error "Expected $blue-shade-90 to be #070a0e"; }
     `);
   });
 
   it("matches indigo ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$indigo-tint-90 != #e7eaec { @error "Expected $indigo-tint-90 to be #e7eaec"; }
-      @if colours.$indigo-tint-80 != #d0d5da { @error "Expected $indigo-tint-80 to be #d0d5da"; }
-      @if colours.$indigo-tint-70 != #b9c0c7 { @error "Expected $indigo-tint-70 to be #b9c0c7"; }
-      @if colours.$indigo-tint-60 != #a1abb5 { @error "Expected $indigo-tint-60 to be #a1abb5"; }
-      @if colours.$indigo-tint-50 != #8a96a2 { @error "Expected $indigo-tint-50 to be #8a96a2"; }
-      @if colours.$indigo-tint-40 != #738190 { @error "Expected $indigo-tint-40 to be #738190"; }
-      @if colours.$indigo-tint-30 != #5b6c7d { @error "Expected $indigo-tint-30 to be #5b6c7d"; }
-      @if colours.$indigo-tint-20 != #44576b { @error "Expected $indigo-tint-20 to be #44576b"; }
-      @if colours.$indigo-tint-10 != #2d4258 { @error "Expected $indigo-tint-10 to be #2d4258"; }
-      @if colours.$indigo-shade-10 != #13293f { @error "Expected $indigo-shade-10 to be #13293f"; }
-      @if colours.$indigo-shade-20 != #112438 { @error "Expected $indigo-shade-20 to be #112438"; }
-      @if colours.$indigo-shade-30 != #0f2031 { @error "Expected $indigo-shade-30 to be #0f2031"; }
-      @if colours.$indigo-shade-40 != #0d1b2a { @error "Expected $indigo-shade-40 to be #0d1b2a"; }
-      @if colours.$indigo-shade-50 != #0b1723 { @error "Expected $indigo-shade-50 to be #0b1723"; }
-      @if colours.$indigo-shade-60 != #08121c { @error "Expected $indigo-shade-60 to be #08121c"; }
-      @if colours.$indigo-shade-70 != #060d15 { @error "Expected $indigo-shade-70 to be #060d15"; }
-      @if colours.$indigo-shade-80 != #04090d { @error "Expected $indigo-shade-80 to be #04090d"; }
-      @if colours.$indigo-shade-90 != #020406 { @error "Expected $indigo-shade-90 to be #020406"; }
+      @if colours.$indigo-tint-90 != #edebf0 { @error "Expected $indigo-tint-90 to be #edebf0"; }
+      @if colours.$indigo-tint-80 != #dbd7e1 { @error "Expected $indigo-tint-80 to be #dbd7e1"; }
+      @if colours.$indigo-tint-70 != #c9c3d2 { @error "Expected $indigo-tint-70 to be #c9c3d2"; }
+      @if colours.$indigo-tint-60 != #b7afc3 { @error "Expected $indigo-tint-60 to be #b7afc3"; }
+      @if colours.$indigo-tint-50 != #a59cb4 { @error "Expected $indigo-tint-50 to be #a59cb4"; }
+      @if colours.$indigo-tint-40 != #9388a5 { @error "Expected $indigo-tint-40 to be #9388a5"; }
+      @if colours.$indigo-tint-30 != #817496 { @error "Expected $indigo-tint-30 to be #817496"; }
+      @if colours.$indigo-tint-20 != #6f6087 { @error "Expected $indigo-tint-20 to be #6f6087"; }
+      @if colours.$indigo-tint-10 != #5d4c78 { @error "Expected $indigo-tint-10 to be #5d4c78"; }
+      @if colours.$indigo-shade-10 != #483564 { @error "Expected $indigo-shade-10 to be #483564"; }
+      @if colours.$indigo-shade-20 != #44325e { @error "Expected $indigo-shade-20 to be #44325e"; }
+      @if colours.$indigo-shade-30 != #403059 { @error "Expected $indigo-shade-30 to be #403059"; }
+      @if colours.$indigo-shade-40 != #3c2d54 { @error "Expected $indigo-shade-40 to be #3c2d54"; }
+      @if colours.$indigo-shade-50 != #34284a { @error "Expected $indigo-shade-50 to be #34284a"; }
+      @if colours.$indigo-shade-60 != #2d223f { @error "Expected $indigo-shade-60 to be #2d223f"; }
+      @if colours.$indigo-shade-70 != #261c34 { @error "Expected $indigo-shade-70 to be #261c34"; }
+      @if colours.$indigo-shade-80 != #1e162a { @error "Expected $indigo-shade-80 to be #1e162a"; }
+      @if colours.$indigo-shade-90 != #0f0b15 { @error "Expected $indigo-shade-90 to be #0f0b15"; }
     `);
   });
 
   it("matches purple ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$purple-tint-90 != #f8eef3 { @error "Expected $purple-tint-90 to be #f8eef3"; }
-      @if colours.$purple-tint-80 != #f2dee7 { @error "Expected $purple-tint-80 to be #f2dee7"; }
-      @if colours.$purple-tint-70 != #eccedb { @error "Expected $purple-tint-70 to be #eccedb"; }
-      @if colours.$purple-tint-60 != #e6becf { @error "Expected $purple-tint-60 to be #e6becf"; }
-      @if colours.$purple-tint-50 != #e0aec4 { @error "Expected $purple-tint-50 to be #e0aec4"; }
-      @if colours.$purple-tint-40 != #d99eb8 { @error "Expected $purple-tint-40 to be #d99eb8"; }
-      @if colours.$purple-tint-30 != #d38eac { @error "Expected $purple-tint-30 to be #d38eac"; }
-      @if colours.$purple-tint-20 != #cd7ea0 { @error "Expected $purple-tint-20 to be #cd7ea0"; }
-      @if colours.$purple-tint-10 != #c76e94 { @error "Expected $purple-tint-10 to be #c76e94"; }
-      @if colours.$purple-shade-10 != #ad547b { @error "Expected $purple-shade-10 to be #ad547b"; }
-      @if colours.$purple-shade-20 != #9a4b6d { @error "Expected $purple-shade-20 to be #9a4b6d"; }
-      @if colours.$purple-shade-30 != #87415f { @error "Expected $purple-shade-30 to be #87415f"; }
-      @if colours.$purple-shade-40 != #733852 { @error "Expected $purple-shade-40 to be #733852"; }
-      @if colours.$purple-shade-50 != #602f44 { @error "Expected $purple-shade-50 to be #602f44"; }
-      @if colours.$purple-shade-60 != #4d2536 { @error "Expected $purple-shade-60 to be #4d2536"; }
-      @if colours.$purple-shade-70 != #391c29 { @error "Expected $purple-shade-70 to be #391c29"; }
-      @if colours.$purple-shade-80 != #26121b { @error "Expected $purple-shade-80 to be #26121b"; }
-      @if colours.$purple-shade-90 != #13090d { @error "Expected $purple-shade-90 to be #13090d"; }
+      @if colours.$purple-tint-90 != #f0e6f1 { @error "Expected $purple-tint-90 to be #f0e6f1"; }
+      @if colours.$purple-tint-80 != #e1cde3 { @error "Expected $purple-tint-80 to be #e1cde3"; }
+      @if colours.$purple-tint-70 != #d2b4d5 { @error "Expected $purple-tint-70 to be #d2b4d5"; }
+      @if colours.$purple-tint-60 != #c39bc7 { @error "Expected $purple-tint-60 to be #c39bc7"; }
+      @if colours.$purple-tint-50 != #b482b8 { @error "Expected $purple-tint-50 to be #b482b8"; }
+      @if colours.$purple-tint-40 != #a669aa { @error "Expected $purple-tint-40 to be #a669aa"; }
+      @if colours.$purple-tint-30 != #97509c { @error "Expected $purple-tint-30 to be #97509c"; }
+      @if colours.$purple-tint-20 != #88378e { @error "Expected $purple-tint-20 to be #88378e"; }
+      @if colours.$purple-tint-10 != #791e80 { @error "Expected $purple-tint-10 to be #791e80"; }
+      @if colours.$purple-shade-10 != #64046c { @error "Expected $purple-shade-10 to be #64046c"; }
+      @if colours.$purple-shade-20 != #5f0467 { @error "Expected $purple-shade-20 to be #5f0467"; }
+      @if colours.$purple-shade-30 != #5a0461 { @error "Expected $purple-shade-30 to be #5a0461"; }
+      @if colours.$purple-shade-40 != #55045b { @error "Expected $purple-shade-40 to be #55045b"; }
+      @if colours.$purple-shade-50 != #4a0450 { @error "Expected $purple-shade-50 to be #4a0450"; }
+      @if colours.$purple-shade-60 != #400344 { @error "Expected $purple-shade-60 to be #400344"; }
+      @if colours.$purple-shade-70 != #350239 { @error "Expected $purple-shade-70 to be #350239"; }
+      @if colours.$purple-shade-80 != #2a022e { @error "Expected $purple-shade-80 to be #2a022e"; }
+      @if colours.$purple-shade-90 != #150117 { @error "Expected $purple-shade-90 to be #150117"; }
     `);
   });
 
   it("matches pink ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$pink-tint-90 != #fdf3f7 { @error "Expected $pink-tint-90 to be #fdf3f7"; }
-      @if colours.$pink-tint-80 != #fbe7f0 { @error "Expected $pink-tint-80 to be #fbe7f0"; }
-      @if colours.$pink-tint-70 != #f9dbe9 { @error "Expected $pink-tint-70 to be #f9dbe9"; }
-      @if colours.$pink-tint-60 != #f7cfe2 { @error "Expected $pink-tint-60 to be #f7cfe2"; }
-      @if colours.$pink-tint-50 != #f5c4db { @error "Expected $pink-tint-50 to be #f5c4db"; }
-      @if colours.$pink-tint-40 != #f3b8d3 { @error "Expected $pink-tint-40 to be #f3b8d3"; }
-      @if colours.$pink-tint-30 != #f1accc { @error "Expected $pink-tint-30 to be #f1accc"; }
-      @if colours.$pink-tint-20 != #efa0c5 { @error "Expected $pink-tint-20 to be #efa0c5"; }
-      @if colours.$pink-tint-10 != #ed94be { @error "Expected $pink-tint-10 to be #ed94be"; }
-      @if colours.$pink-shade-10 != #d47ba4 { @error "Expected $pink-shade-10 to be #d47ba4"; }
-      @if colours.$pink-shade-20 != #bc6d92 { @error "Expected $pink-shade-20 to be #bc6d92"; }
-      @if colours.$pink-shade-30 != #a55f80 { @error "Expected $pink-shade-30 to be #a55f80"; }
-      @if colours.$pink-shade-40 != #8d526d { @error "Expected $pink-shade-40 to be #8d526d"; }
-      @if colours.$pink-shade-50 != #76445b { @error "Expected $pink-shade-50 to be #76445b"; }
-      @if colours.$pink-shade-60 != #5e3649 { @error "Expected $pink-shade-60 to be #5e3649"; }
-      @if colours.$pink-shade-70 != #462936 { @error "Expected $pink-shade-70 to be #462936"; }
-      @if colours.$pink-shade-80 != #2f1b24 { @error "Expected $pink-shade-80 to be #2f1b24"; }
-      @if colours.$pink-shade-90 != #170d12 { @error "Expected $pink-shade-90 to be #170d12"; }
+      @if colours.$pink-tint-90 != #fbeaeb { @error "Expected $pink-tint-90 to be #fbeaeb"; }
+      @if colours.$pink-tint-80 != #f7d4d7 { @error "Expected $pink-tint-80 to be #f7d4d7"; }
+      @if colours.$pink-tint-70 != #f3bec3 { @error "Expected $pink-tint-70 to be #f3bec3"; }
+      @if colours.$pink-tint-60 != #efa8af { @error "Expected $pink-tint-60 to be #efa8af"; }
+      @if colours.$pink-tint-50 != #eb929c { @error "Expected $pink-tint-50 to be #eb929c"; }
+      @if colours.$pink-tint-40 != #e77d88 { @error "Expected $pink-tint-40 to be #e77d88"; }
+      @if colours.$pink-tint-30 != #e36774 { @error "Expected $pink-tint-30 to be #e36774"; }
+      @if colours.$pink-tint-20 != #df5160 { @error "Expected $pink-tint-20 to be #df5160"; }
+      @if colours.$pink-tint-10 != #db3c4c { @error "Expected $pink-tint-10 to be #db3c4c"; }
+      @if colours.$pink-shade-10 != #cc2435 { @error "Expected $pink-shade-10 to be #cc2435"; }
+      @if colours.$pink-shade-20 != #c22232 { @error "Expected $pink-shade-20 to be #c22232"; }
+      @if colours.$pink-shade-30 != #b72030 { @error "Expected $pink-shade-30 to be #b72030"; }
+      @if colours.$pink-shade-40 != #ac1e2d { @error "Expected $pink-shade-40 to be #ac1e2d"; }
+      @if colours.$pink-shade-50 != #961a28 { @error "Expected $pink-shade-50 to be #961a28"; }
+      @if colours.$pink-shade-60 != #811722 { @error "Expected $pink-shade-60 to be #811722"; }
+      @if colours.$pink-shade-70 != #6c131c { @error "Expected $pink-shade-70 to be #6c131c"; }
+      @if colours.$pink-shade-80 != #560f16 { @error "Expected $pink-shade-80 to be #560f16"; }
+      @if colours.$pink-shade-90 != #2b080b { @error "Expected $pink-shade-90 to be #2b080b"; }
     `);
   });
 
   it("matches red ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$red-tint-90 != #fbe6ed { @error "Expected $red-tint-90 to be #fbe6ed"; }
-      @if colours.$red-tint-80 != #f8cedc { @error "Expected $red-tint-80 to be #f8cedc"; }
-      @if colours.$red-tint-70 != #f4b5cb { @error "Expected $red-tint-70 to be #f4b5cb"; }
-      @if colours.$red-tint-60 != #f19dba { @error "Expected $red-tint-60 to be #f19dba"; }
-      @if colours.$red-tint-50 != #ee84a9 { @error "Expected $red-tint-50 to be #ee84a9"; }
-      @if colours.$red-tint-40 != #ea6c98 { @error "Expected $red-tint-40 to be #ea6c98"; }
-      @if colours.$red-tint-30 != #e75387 { @error "Expected $red-tint-30 to be #e75387"; }
-      @if colours.$red-tint-20 != #e33b76 { @error "Expected $red-tint-20 to be #e33b76"; }
-      @if colours.$red-tint-10 != #e02265 { @error "Expected $red-tint-10 to be #e02265"; }
-      @if colours.$red-shade-10 != #c6094b { @error "Expected $red-shade-10 to be #c6094b"; }
-      @if colours.$red-shade-20 != #b00843 { @error "Expected $red-shade-20 to be #b00843"; }
-      @if colours.$red-shade-30 != #9a073a { @error "Expected $red-shade-30 to be #9a073a"; }
-      @if colours.$red-shade-40 != #840632 { @error "Expected $red-shade-40 to be #840632"; }
-      @if colours.$red-shade-50 != #6e052a { @error "Expected $red-shade-50 to be #6e052a"; }
-      @if colours.$red-shade-60 != #580421 { @error "Expected $red-shade-60 to be #580421"; }
-      @if colours.$red-shade-70 != #420319 { @error "Expected $red-shade-70 to be #420319"; }
-      @if colours.$red-shade-80 != #2c0110 { @error "Expected $red-shade-80 to be #2c0110"; }
-      @if colours.$red-shade-90 != #160008 { @error "Expected $red-shade-90 to be #160008"; }
+      @if colours.$red-tint-90 != #f8e8e8 { @error "Expected $red-tint-90 to be #f8e8e8"; }
+      @if colours.$red-tint-80 != #f1d1d2 { @error "Expected $red-tint-80 to be #f1d1d2"; }
+      @if colours.$red-tint-70 != #eababc { @error "Expected $red-tint-70 to be #eababc"; }
+      @if colours.$red-tint-60 != #e3a4a5 { @error "Expected $red-tint-60 to be #e3a4a5"; }
+      @if colours.$red-tint-50 != #dc8d8e { @error "Expected $red-tint-50 to be #dc8d8e"; }
+      @if colours.$red-tint-40 != #d67677 { @error "Expected $red-tint-40 to be #d67677"; }
+      @if colours.$red-tint-30 != #cf6060 { @error "Expected $red-tint-30 to be #cf6060"; }
+      @if colours.$red-tint-20 != #c8494a { @error "Expected $red-tint-20 to be #c8494a"; }
+      @if colours.$red-tint-10 != #c13234 { @error "Expected $red-tint-10 to be #c13234"; }
+      @if colours.$red-shade-10 != #b01a1c { @error "Expected $red-shade-10 to be #b01a1c"; }
+      @if colours.$red-shade-20 != #a7181a { @error "Expected $red-shade-20 to be #a7181a"; }
+      @if colours.$red-shade-30 != #9e1718 { @error "Expected $red-shade-30 to be #9e1718"; }
+      @if colours.$red-shade-40 != #951617 { @error "Expected $red-shade-40 to be #951617"; }
+      @if colours.$red-shade-50 != #821314 { @error "Expected $red-shade-50 to be #821314"; }
+      @if colours.$red-shade-60 != #701011 { @error "Expected $red-shade-60 to be #701011"; }
+      @if colours.$red-shade-70 != #5d0e0e { @error "Expected $red-shade-70 to be #5d0e0e"; }
+      @if colours.$red-shade-80 != #4a0b0c { @error "Expected $red-shade-80 to be #4a0b0c"; }
+      @if colours.$red-shade-90 != #250606 { @error "Expected $red-shade-90 to be #250606"; }
     `);
   });
 
   it("matches orange ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$orange-tint-90 != #f8ece8 { @error "Expected $orange-tint-90 to be #f8ece8"; }
-      @if colours.$orange-tint-80 != #f3ded6 { @error "Expected $orange-tint-80 to be #f3ded6"; }
-      @if colours.$orange-tint-70 != #eed0c5 { @error "Expected $orange-tint-70 to be #eed0c5"; }
-      @if colours.$orange-tint-60 != #e9c2b3 { @error "Expected $orange-tint-60 to be #e9c2b3"; }
-      @if colours.$orange-tint-50 != #e5b4a1 { @error "Expected $orange-tint-50 to be #e5b4a1"; }
-      @if colours.$orange-tint-40 != #e0a68f { @error "Expected $orange-tint-40 to be #e0a68f"; }
-      @if colours.$orange-tint-30 != #db987e { @error "Expected $orange-tint-30 to be #db987e"; }
-      @if colours.$orange-tint-20 != #e09272 { @error "Expected $orange-tint-20 to be #e09272"; }
-      @if colours.$orange-tint-10 != #d68a6c { @error "Expected $orange-tint-10 to be #d68a6c"; }
-      @if colours.$orange-shade-10 != #c37a60 { @error "Expected $orange-shade-10 to be #c37a60"; }
-      @if colours.$orange-shade-20 != #ac6c56 { @error "Expected $orange-shade-20 to be #ac6c56"; }
-      @if colours.$orange-shade-30 != #955e4b { @error "Expected $orange-shade-30 to be #955e4b"; }
-      @if colours.$orange-shade-40 != #7e5040 { @error "Expected $orange-shade-40 to be #7e5040"; }
-      @if colours.$orange-shade-50 != #684336 { @error "Expected $orange-shade-50 to be #684336"; }
-      @if colours.$orange-shade-60 != #51352b { @error "Expected $orange-shade-60 to be #51352b"; }
-      @if colours.$orange-shade-70 != #3a2720 { @error "Expected $orange-shade-70 to be #3a2720"; }
-      @if colours.$orange-shade-80 != #231915 { @error "Expected $orange-shade-80 to be #231915"; }
-      @if colours.$orange-shade-90 != #0d0c0b { @error "Expected $orange-shade-90 to be #0d0c0b"; }
+      @if colours.$orange-tint-90 != #fef4eb { @error "Expected $orange-tint-90 to be #fef4eb"; }
+      @if colours.$orange-tint-80 != #fde9d7 { @error "Expected $orange-tint-80 to be #fde9d7"; }
+      @if colours.$orange-tint-70 != #fcdec3 { @error "Expected $orange-tint-70 to be #fcdec3"; }
+      @if colours.$orange-tint-60 != #fad3af { @error "Expected $orange-tint-60 to be #fad3af"; }
+      @if colours.$orange-tint-50 != #f9c89b { @error "Expected $orange-tint-50 to be #f9c89b"; }
+      @if colours.$orange-tint-40 != #f8be87 { @error "Expected $orange-tint-40 to be #f8be87"; }
+      @if colours.$orange-tint-30 != #f6b373 { @error "Expected $orange-tint-30 to be #f6b373"; }
+      @if colours.$orange-tint-20 != #f5a85f { @error "Expected $orange-tint-20 to be #f5a85f"; }
+      @if colours.$orange-tint-10 != #f49d4b { @error "Expected $orange-tint-10 to be #f49d4b"; }
+      @if colours.$orange-shade-10 != #e78a34 { @error "Expected $orange-shade-10 to be #e78a34"; }
+      @if colours.$orange-shade-20 != #db8332 { @error "Expected $orange-shade-20 to be #db8332"; }
+      @if colours.$orange-shade-30 != #ce7c2f { @error "Expected $orange-shade-30 to be #ce7c2f"; }
+      @if colours.$orange-shade-40 != #c2752c { @error "Expected $orange-shade-40 to be #c2752c"; }
+      @if colours.$orange-shade-50 != #aa6626 { @error "Expected $orange-shade-50 to be #aa6626"; }
+      @if colours.$orange-shade-60 != #925821 { @error "Expected $orange-shade-60 to be #925821"; }
+      @if colours.$orange-shade-70 != #7a491c { @error "Expected $orange-shade-70 to be #7a491c"; }
+      @if colours.$orange-shade-80 != #613a16 { @error "Expected $orange-shade-80 to be #613a16"; }
+      @if colours.$orange-shade-90 != #301d0b { @error "Expected $orange-shade-90 to be #301d0b"; }
     `);
   });
 
   it("matches yellow ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$yellow-tint-90 != #fffaf3 { @error "Expected $yellow-tint-90 to be #fffaf3"; }
-      @if colours.$yellow-tint-80 != #fff5e7 { @error "Expected $yellow-tint-80 to be #fff5e7"; }
-      @if colours.$yellow-tint-70 != #fff0dc { @error "Expected $yellow-tint-70 to be #fff0dc"; }
-      @if colours.$yellow-tint-60 != #ffebd0 { @error "Expected $yellow-tint-60 to be #ffebd0"; }
-      @if colours.$yellow-tint-50 != #ffe7c5 { @error "Expected $yellow-tint-50 to be #ffe7c5"; }
-      @if colours.$yellow-tint-40 != #ffe2b9 { @error "Expected $yellow-tint-40 to be #ffe2b9"; }
-      @if colours.$yellow-tint-30 != #ffddad { @error "Expected $yellow-tint-30 to be #ffddad"; }
-      @if colours.$yellow-tint-20 != #ffd8a2 { @error "Expected $yellow-tint-20 to be #ffd8a2"; }
-      @if colours.$yellow-tint-10 != #ffd396 { @error "Expected $yellow-tint-10 to be #ffd396"; }
-      @if colours.$yellow-shade-10 != #e5ba7d { @error "Expected $yellow-shade-10 to be #e5ba7d"; }
-      @if colours.$yellow-shade-20 != #cca56f { @error "Expected $yellow-shade-20 to be #cca56f"; }
-      @if colours.$yellow-shade-30 != #b29061 { @error "Expected $yellow-shade-30 to be #b29061"; }
-      @if colours.$yellow-shade-40 != #997c53 { @error "Expected $yellow-shade-40 to be #997c53"; }
-      @if colours.$yellow-shade-50 != #7f6745 { @error "Expected $yellow-shade-50 to be #7f6745"; }
-      @if colours.$yellow-shade-60 != #665237 { @error "Expected $yellow-shade-60 to be #665237"; }
-      @if colours.$yellow-shade-70 != #4c3e29 { @error "Expected $yellow-shade-70 to be #4c3e29"; }
-      @if colours.$yellow-shade-80 != #32291b { @error "Expected $yellow-shade-80 to be #32291b"; }
-      @if colours.$yellow-shade-90 != #19140d { @error "Expected $yellow-shade-90 to be #19140d"; }
+      @if colours.$yellow-tint-90 != #fffae6 { @error "Expected $yellow-tint-90 to be #fffae6"; }
+      @if colours.$yellow-tint-80 != #fff4cc { @error "Expected $yellow-tint-80 to be #fff4cc"; }
+      @if colours.$yellow-tint-70 != #ffeeb2 { @error "Expected $yellow-tint-70 to be #ffeeb2"; }
+      @if colours.$yellow-tint-60 != #ffe999 { @error "Expected $yellow-tint-60 to be #ffe999"; }
+      @if colours.$yellow-tint-50 != #ffe380 { @error "Expected $yellow-tint-50 to be #ffe380"; }
+      @if colours.$yellow-tint-40 != #ffdd66 { @error "Expected $yellow-tint-40 to be #ffdd66"; }
+      @if colours.$yellow-tint-30 != #ffd84c { @error "Expected $yellow-tint-30 to be #ffd84c"; }
+      @if colours.$yellow-tint-20 != #ffd233 { @error "Expected $yellow-tint-20 to be #ffd233"; }
+      @if colours.$yellow-tint-10 != #ffce1c { @error "Expected $yellow-tint-10 to be #ffce1c"; }
+      @if colours.$yellow-shade-10 != #f2c005 { @error "Expected $yellow-shade-10 to be #f2c005"; }
+      @if colours.$yellow-shade-20 != #e6b505 { @error "Expected $yellow-shade-20 to be #e6b505"; }
+      @if colours.$yellow-shade-30 != #d9aa04 { @error "Expected $yellow-shade-30 to be #d9aa04"; }
+      @if colours.$yellow-shade-40 != #cc9f04 { @error "Expected $yellow-shade-40 to be #cc9f04"; }
+      @if colours.$yellow-shade-50 != #b28a04 { @error "Expected $yellow-shade-50 to be #b28a04"; }
+      @if colours.$yellow-shade-60 != #997503 { @error "Expected $yellow-shade-60 to be #997503"; }
+      @if colours.$yellow-shade-70 != #806002 { @error "Expected $yellow-shade-70 to be #806002"; }
+      @if colours.$yellow-shade-80 != #664c02 { @error "Expected $yellow-shade-80 to be #664c02"; }
+      @if colours.$yellow-shade-90 != #332601 { @error "Expected $yellow-shade-90 to be #332601"; }
     `);
   });
 
   it("matches green ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$green-tint-90 != #e7f1ec { @error "Expected $green-tint-90 to be #e7f1ec"; }
-      @if colours.$green-tint-80 != #cfe3da { @error "Expected $green-tint-80 to be #cfe3da"; }
-      @if colours.$green-tint-70 != #b8d5c7 { @error "Expected $green-tint-70 to be #b8d5c7"; }
-      @if colours.$green-tint-60 != #a0c8b5 { @error "Expected $green-tint-60 to be #a0c8b5"; }
-      @if colours.$green-tint-50 != #89baa3 { @error "Expected $green-tint-50 to be #89baa3"; }
-      @if colours.$green-tint-40 != #71ac90 { @error "Expected $green-tint-40 to be #71ac90"; }
-      @if colours.$green-tint-30 != #599f7e { @error "Expected $green-tint-30 to be #599f7e"; }
-      @if colours.$green-tint-20 != #42916b { @error "Expected $green-tint-20 to be #42916b"; }
-      @if colours.$green-tint-10 != #2a8359 { @error "Expected $green-tint-10 to be #2a8359"; }
-      @if colours.$green-shade-10 != #116a3f { @error "Expected $green-shade-10 to be #116a3f"; }
-      @if colours.$green-shade-20 != #0f5e38 { @error "Expected $green-shade-20 to be #0f5e38"; }
-      @if colours.$green-shade-30 != #0d5231 { @error "Expected $green-shade-30 to be #0d5231"; }
-      @if colours.$green-shade-40 != #0b462a { @error "Expected $green-shade-40 to be #0b462a"; }
-      @if colours.$green-shade-50 != #093b23 { @error "Expected $green-shade-50 to be #093b23"; }
-      @if colours.$green-shade-60 != #072f1c { @error "Expected $green-shade-60 to be #072f1c"; }
-      @if colours.$green-shade-70 != #052315 { @error "Expected $green-shade-70 to be #052315"; }
-      @if colours.$green-shade-80 != #03170e { @error "Expected $green-shade-80 to be #03170e"; }
-      @if colours.$green-shade-90 != #010b07 { @error "Expected $green-shade-90 to be #010b07"; }
+      @if colours.$green-tint-90 != #e6f1e8 { @error "Expected $green-tint-90 to be #e6f1e8"; }
+      @if colours.$green-tint-80 != #cde3d1 { @error "Expected $green-tint-80 to be #cde3d1"; }
+      @if colours.$green-tint-70 != #b4d5ba { @error "Expected $green-tint-70 to be #b4d5ba"; }
+      @if colours.$green-tint-60 != #9bc7a3 { @error "Expected $green-tint-60 to be #9bc7a3"; }
+      @if colours.$green-tint-50 != #82b88c { @error "Expected $green-tint-50 to be #82b88c"; }
+      @if colours.$green-tint-40 != #69aa75 { @error "Expected $green-tint-40 to be #69aa75"; }
+      @if colours.$green-tint-30 != #509c5e { @error "Expected $green-tint-30 to be #509c5e"; }
+      @if colours.$green-tint-20 != #378e47 { @error "Expected $green-tint-20 to be #378e47"; }
+      @if colours.$green-tint-10 != #328a44 { @error "Expected $green-tint-10 to be #328a44"; }
+      @if colours.$green-shade-10 != #2c7e3c { @error "Expected $green-shade-10 to be #2c7e3c"; }
+      @if colours.$green-shade-20 != #297839 { @error "Expected $green-shade-20 to be #297839"; }
+      @if colours.$green-shade-30 != #277136 { @error "Expected $green-shade-30 to be #277136"; }
+      @if colours.$green-shade-40 != #256a33 { @error "Expected $green-shade-40 to be #256a33"; }
+      @if colours.$green-shade-50 != #205c2c { @error "Expected $green-shade-50 to be #205c2c"; }
+      @if colours.$green-shade-60 != #1c4f26 { @error "Expected $green-shade-60 to be #1c4f26"; }
+      @if colours.$green-shade-70 != #184220 { @error "Expected $green-shade-70 to be #184220"; }
+      @if colours.$green-shade-80 != #13341a { @error "Expected $green-shade-80 to be #13341a"; }
+      @if colours.$green-shade-90 != #0a1a0d { @error "Expected $green-shade-90 to be #0a1a0d"; }
     `);
   });
 
   it("matches teal ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$teal-tint-90 != #eef8f4 { @error "Expected $teal-tint-90 to be #eef8f4"; }
-      @if colours.$teal-tint-80 != #def2e9 { @error "Expected $teal-tint-80 to be #def2e9"; }
-      @if colours.$teal-tint-70 != #ceecdf { @error "Expected $teal-tint-70 to be #ceecdf"; }
-      @if colours.$teal-tint-60 != #bee5d4 { @error "Expected $teal-tint-60 to be #bee5d4"; }
-      @if colours.$teal-tint-50 != #aedfca { @error "Expected $teal-tint-50 to be #aedfca"; }
-      @if colours.$teal-tint-40 != #9ed9bf { @error "Expected $teal-tint-40 to be #9ed9bf"; }
-      @if colours.$teal-tint-30 != #8ed2b4 { @error "Expected $teal-tint-30 to be #8ed2b4"; }
-      @if colours.$teal-tint-20 != #7eccaa { @error "Expected $teal-tint-20 to be #7eccaa"; }
-      @if colours.$teal-tint-10 != #6ec69f { @error "Expected $teal-tint-10 to be #6ec69f"; }
-      @if colours.$teal-shade-10 != #54ac86 { @error "Expected $teal-shade-10 to be #54ac86"; }
-      @if colours.$teal-shade-20 != #4b9977 { @error "Expected $teal-shade-20 to be #4b9977"; }
-      @if colours.$teal-shade-30 != #418668 { @error "Expected $teal-shade-30 to be #418668"; }
-      @if colours.$teal-shade-40 != #387359 { @error "Expected $teal-shade-40 to be #387359"; }
-      @if colours.$teal-shade-50 != #2f604a { @error "Expected $teal-shade-50 to be #2f604a"; }
-      @if colours.$teal-shade-60 != #254c3b { @error "Expected $teal-shade-60 to be #254c3b"; }
-      @if colours.$teal-shade-70 != #1c392c { @error "Expected $teal-shade-70 to be #1c392c"; }
-      @if colours.$teal-shade-80 != #12261d { @error "Expected $teal-shade-80 to be #12261d"; }
-      @if colours.$teal-shade-90 != #09130e { @error "Expected $teal-shade-90 to be #09130e"; }
+      @if colours.$teal-tint-90 != #e6f6f6 { @error "Expected $teal-tint-90 to be #e6f6f6"; }
+      @if colours.$teal-tint-80 != #cceded { @error "Expected $teal-tint-80 to be #cceded"; }
+      @if colours.$teal-tint-70 != #b2e4e4 { @error "Expected $teal-tint-70 to be #b2e4e4"; }
+      @if colours.$teal-tint-60 != #99dbdb { @error "Expected $teal-tint-60 to be #99dbdb"; }
+      @if colours.$teal-tint-50 != #80d2d2 { @error "Expected $teal-tint-50 to be #80d2d2"; }
+      @if colours.$teal-tint-40 != #66c9c9 { @error "Expected $teal-tint-40 to be #66c9c9"; }
+      @if colours.$teal-tint-30 != #4cc0c0 { @error "Expected $teal-tint-30 to be #4cc0c0"; }
+      @if colours.$teal-tint-20 != #33b7b7 { @error "Expected $teal-tint-20 to be #33b7b7"; }
+      @if colours.$teal-tint-10 != #1a9c9c { @error "Expected $teal-tint-10 to be #1a9c9c"; }
+      @if colours.$teal-shade-10 != #007a7a { @error "Expected $teal-shade-10 to be #007a7a"; }
+      @if colours.$teal-shade-20 != #007373 { @error "Expected $teal-shade-20 to be #007373"; }
+      @if colours.$teal-shade-30 != #006c6c { @error "Expected $teal-shade-30 to be #006c6c"; }
+      @if colours.$teal-shade-40 != #006666 { @error "Expected $teal-shade-40 to be #006666"; }
+      @if colours.$teal-shade-50 != #005959 { @error "Expected $teal-shade-50 to be #005959"; }
+      @if colours.$teal-shade-60 != #004c4c { @error "Expected $teal-shade-60 to be #004c4c"; }
+      @if colours.$teal-shade-70 != #004040 { @error "Expected $teal-shade-70 to be #004040"; }
+      @if colours.$teal-shade-80 != #003333 { @error "Expected $teal-shade-80 to be #003333"; }
+      @if colours.$teal-shade-90 != #001a1a { @error "Expected $teal-shade-90 to be #001a1a"; }
     `);
   });
 
   it("matches cyan ramp exactly", () => {
     expectSassAssertionsPass(`
-      @if colours.$cyan-tint-90 != #f0f8fb { @error "Expected $cyan-tint-90 to be #f0f8fb"; }
-      @if colours.$cyan-tint-80 != #e1f1f7 { @error "Expected $cyan-tint-80 to be #e1f1f7"; }
-      @if colours.$cyan-tint-70 != #d2eaf3 { @error "Expected $cyan-tint-70 to be #d2eaf3"; }
-      @if colours.$cyan-tint-60 != #c3e4f0 { @error "Expected $cyan-tint-60 to be #c3e4f0"; }
-      @if colours.$cyan-tint-50 != #b5ddec { @error "Expected $cyan-tint-50 to be #b5ddec"; }
-      @if colours.$cyan-tint-40 != #a6d6e8 { @error "Expected $cyan-tint-40 to be #a6d6e8"; }
-      @if colours.$cyan-tint-30 != #97d0e5 { @error "Expected $cyan-tint-30 to be #97d0e5"; }
-      @if colours.$cyan-tint-20 != #88c9e1 { @error "Expected $cyan-tint-20 to be #88c9e1"; }
-      @if colours.$cyan-tint-10 != #79c2dd { @error "Expected $cyan-tint-10 to be #79c2dd"; }
-      @if colours.$cyan-shade-10 != #60a9c4 { @error "Expected $cyan-shade-10 to be #60a9c4"; }
-      @if colours.$cyan-shade-20 != #5596ae { @error "Expected $cyan-shade-20 to be #5596ae"; }
-      @if colours.$cyan-shade-30 != #4a8398 { @error "Expected $cyan-shade-30 to be #4a8398"; }
-      @if colours.$cyan-shade-40 != #407082 { @error "Expected $cyan-shade-40 to be #407082"; }
-      @if colours.$cyan-shade-50 != #355e6d { @error "Expected $cyan-shade-50 to be #355e6d"; }
-      @if colours.$cyan-shade-60 != #2a4b57 { @error "Expected $cyan-shade-60 to be #2a4b57"; }
-      @if colours.$cyan-shade-70 != #203841 { @error "Expected $cyan-shade-70 to be #203841"; }
-      @if colours.$cyan-shade-80 != #15252b { @error "Expected $cyan-shade-80 to be #15252b"; }
-      @if colours.$cyan-shade-90 != #0a1215 { @error "Expected $cyan-shade-90 to be #0a1215"; }
+      @if colours.$cyan-tint-90 != #e6f8fb { @error "Expected $cyan-tint-90 to be #e6f8fb"; }
+      @if colours.$cyan-tint-80 != #ccf2f7 { @error "Expected $cyan-tint-80 to be #ccf2f7"; }
+      @if colours.$cyan-tint-70 != #b2ecf3 { @error "Expected $cyan-tint-70 to be #b2ecf3"; }
+      @if colours.$cyan-tint-60 != #99e6ef { @error "Expected $cyan-tint-60 to be #99e6ef"; }
+      @if colours.$cyan-tint-50 != #80e0eb { @error "Expected $cyan-tint-50 to be #80e0eb"; }
+      @if colours.$cyan-tint-40 != #66d9e7 { @error "Expected $cyan-tint-40 to be #66d9e7"; }
+      @if colours.$cyan-tint-30 != #4cd3e3 { @error "Expected $cyan-tint-30 to be #4cd3e3"; }
+      @if colours.$cyan-tint-20 != #33cddf { @error "Expected $cyan-tint-20 to be #33cddf"; }
+      @if colours.$cyan-tint-10 != #1ac4da { @error "Expected $cyan-tint-10 to be #1ac4da"; }
+      @if colours.$cyan-shade-10 != #00b2ca { @error "Expected $cyan-shade-10 to be #00b2ca"; }
+      @if colours.$cyan-shade-20 != #00a8bf { @error "Expected $cyan-shade-20 to be #00a8bf"; }
+      @if colours.$cyan-shade-30 != #009eb4 { @error "Expected $cyan-shade-30 to be #009eb4"; }
+      @if colours.$cyan-shade-40 != #0093aa { @error "Expected $cyan-shade-40 to be #0093aa"; }
+      @if colours.$cyan-shade-50 != #007e94 { @error "Expected $cyan-shade-50 to be #007e94"; }
+      @if colours.$cyan-shade-60 != #006a7f { @error "Expected $cyan-shade-60 to be #006a7f"; }
+      @if colours.$cyan-shade-70 != #00556a { @error "Expected $cyan-shade-70 to be #00556a"; }
+      @if colours.$cyan-shade-80 != #004054 { @error "Expected $cyan-shade-80 to be #004054"; }
+      @if colours.$cyan-shade-90 != #00202a { @error "Expected $cyan-shade-90 to be #00202a"; }
     `);
   });
 

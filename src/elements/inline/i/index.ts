@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: i element helpers.
+ * Fundatio Design Foundation: i element helpers.
  *
  * @remarks
  * The i element (`<i>`) represents a range of text set off from the normal prose
@@ -23,7 +23,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<i>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -38,7 +38,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -85,8 +85,8 @@ export const I_SELECTOR = 'i';
  * @remarks
  * `<i>` accepts standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Security note:
  * - Inline event handler attributes (e.g. `onclick`) are blocked by `dom.ts`.
@@ -132,7 +132,7 @@ function toGlobalAttrs(attrs?: IAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -146,7 +146,7 @@ function toGlobalAttrs(attrs?: IAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createI } from "@lnpg/sol/elements/inline/i";
+ * import { createI } from "@Vastare/Fundatio/elements/inline/i";
  *
  * const term = createI("Homo sapiens", { className: "taxonomy" });
  * document.body.appendChild(term);

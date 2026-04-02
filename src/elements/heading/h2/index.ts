@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: H2 element helpers.
+ * Fundatio Design Foundation: H2 element helpers.
  *
  * @remarks
  * The h2 element (`<h2>`) represents a second-level heading. Headings define the
@@ -15,7 +15,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<h2>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -27,7 +27,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -74,8 +74,8 @@ export const H2_SELECTOR = 'h2';
  * @remarks
  * H2 elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Security notes:
  * - Inline event handler attributes (e.g. `onclick`) are blocked by `dom.ts`.
@@ -122,7 +122,7 @@ function toGlobalAttrs(attrs?: H2Attrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -133,7 +133,7 @@ function toGlobalAttrs(attrs?: H2Attrs): GlobalAttrs | undefined {
  * @example
  * Create and append a heading:
  * ```ts
- * import { createH2 } from "@lnpg/sol/elements/heading/h2";
+ * import { createH2 } from "@Vastare/Fundatio/elements/heading/h2";
  *
  * document.body.appendChild(createH2("Section title", { className: "section-title" }));
  * ```

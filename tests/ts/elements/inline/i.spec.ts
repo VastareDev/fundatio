@@ -46,7 +46,7 @@ function installFakeDocument() {
   const createElement = vi.fn((tag: string) => new FakeElement(tag));
   const createElementNS = vi.fn(() => new FakeElement('ns'));
 
-  // Minimal document stub used by Sol's dom helpers.
+  // Minimal document stub used by Fundatio's dom helpers.
   // @ts-expect-error - test environment intentionally stubs document.
   globalThis.document = {
     createElement,

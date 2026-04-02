@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Q element helpers.
+ * Fundatio Design Foundation: Q element helpers.
  *
  * @remarks
  * The q element (`<q>`) indicates that the enclosed text is a short inline
@@ -16,13 +16,13 @@
  *   is often treated as metadata. :contentReference[oaicite:5]{index=5}
  *
  * Security note:
- * - Sol does not attempt to validate or sanitize URLs. If `cite` is derived from
+ * - Fundatio does not attempt to validate or sanitize URLs. If `cite` is derived from
  *   untrusted input, validate it at the application boundary.
  *
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create inline quotations in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -32,7 +32,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -75,7 +75,7 @@ export declare const Q_SELECTOR = "q";
  * The `<q>` element uses standard HTML global attributes and supports an
  * optional `cite` attribute, which provides a URL for the quotation source. :contentReference[oaicite:6]{index=6}
  *
- * Sol supports structured ARIA for common ARIA fields, mapped into
+ * Fundatio supports structured ARIA for common ARIA fields, mapped into
  * {@link GlobalAttrs.aria}.
  *
  * @category Attributes
@@ -99,7 +99,7 @@ export type QAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  * - The optional `cite` attribute is applied via the `attrs` escape hatch. :contentReference[oaicite:8]{index=8}
@@ -111,7 +111,7 @@ export type QAttrs = Omit<GlobalAttrs, 'aria'> & {
  * @example
  * Inline quotation with source metadata:
  * ```ts
- * import { createQ } from "@lnpg/sol/elements/inline/q";
+ * import { createQ } from "@Vastare/Fundatio/elements/inline/q";
  *
  * const q = createQ("We choose to go to the Moon.", {
  *   cite: "https://example.com/speech",

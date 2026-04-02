@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Wbr element helpers.
+ * Fundatio Design Foundation: Wbr element helpers.
  *
  * @remarks
  * The wbr element (`<wbr>`) represents a word break opportunity.
@@ -12,7 +12,7 @@
  *
  * This module provides a small, framework-agnostic helper so consumers can:
  * - create word break opportunities safely in vanilla JS/TS
- * - apply consistent global attributes via Sol's hardened DOM helpers
+ * - apply consistent global attributes via Fundatio's hardened DOM helpers
  * - rely on a stable enhancement hook for future evolution
  *
  * This module has no side effects and does not mutate the DOM unless you call
@@ -23,7 +23,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -79,7 +79,7 @@ export type WbrAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - `<wbr>` is a void element and does not accept text content.
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -88,7 +88,7 @@ export type WbrAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createWbr } from "@lnpg/sol/elements/break/wbr";
+ * import { createWbr } from "@Vastare/Fundatio/elements/break/wbr";
  *
  * paragraph.appendChild(createWbr());
  * ```

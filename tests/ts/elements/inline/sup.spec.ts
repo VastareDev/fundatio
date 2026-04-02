@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createSup, enhanceSups, SUP_TAG } from '../../../../src/elements/inline/sup';
 
 /**
- * Minimal fake element used to test Sol DOM helpers without a real DOM.
+ * Minimal fake element used to test Fundatio DOM helpers without a real DOM.
  */
 class FakeElement {
   public tagName: string;

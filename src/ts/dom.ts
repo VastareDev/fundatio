@@ -1,8 +1,8 @@
 /**
- * DOM helpers for Sol element modules.
+ * DOM helpers for Fundatio element modules.
  *
  * @remarks
- * Sol is a design foundation, not a component framework. These helpers exist to
+ * Fundatio is a design foundation, not a component framework. These helpers exist to
  * keep element entrypoints small, consistent, and safe across:
  * - Vanilla JS
  * - TypeScript direct consumption
@@ -177,7 +177,7 @@ export type GlobalAttrs = {
    * Escape hatch for additional attributes not modeled above.
    *
    * @remarks
-   * This exists to keep the API practical without turning Sol into a full DOM
+   * This exists to keep the API practical without turning Fundatio into a full DOM
    * abstraction layer.
    *
    * Security rules:

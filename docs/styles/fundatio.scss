@@ -1,0 +1,5 @@
+@use "@vastare/fundatio/scss/tokens/theme" with (
+  $base-font-path: "/assets/fonts"
+);
+
+@use "@vastare/fundatio/scss/main";

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Blockquote Element
+ * Fundatio Design Foundation: Blockquote Element
  *
  * Block quotation (`blockquote`)
  *
@@ -9,7 +9,7 @@
  * - Normalizes UA indentation/margins for consistent layout across browsers
  * - Preserves blockquote semantics (no decorative quote injection)
  * - Uses low-specificity selectors (`:where()`)
- * - Applies Sol spacing tokens so the element can be shipped standalone
+ * - Applies Fundatio spacing tokens so the element can be shipped standalone
  *
  * @module
  * @group  elements.text.blockquote

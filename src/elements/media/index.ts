@@ -5,7 +5,7 @@
  * and time-based media elements.
  *
  * These factories:
- * - Create semantic HTML media elements using Sol's hardened DOM helpers.
+ * - Create semantic HTML media elements using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Apply sensible fallbacks where required by the HTML specification.

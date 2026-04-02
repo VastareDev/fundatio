@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Source element helpers.
+ * Fundatio Design Foundation: Source element helpers.
  *
  * @remarks
  * The source element (`<source>`) provides one or more media resources for:
@@ -24,7 +24,7 @@
  * - `<source>` is a void element (no text content).
  *
  * Security:
- * - Global attribute escape hatches are guarded by Sol's `dom.ts` helpers which
+ * - Global attribute escape hatches are guarded by Fundatio's `dom.ts` helpers which
  *   block inline event handler attributes (e.g. `onclick`) and raw `style`
  *   attribute injection (use the `style` object field instead).
  *
@@ -37,7 +37,7 @@
 import { createVoidElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -85,7 +85,7 @@ export const SOURCE_SELECTOR = 'source';
  * Source elements accept standard HTML global attributes plus source-specific
  * content attributes used by `<picture>`, `<audio>`, and `<video>`.
  *
- * Sol supports structured ARIA input for common ARIA fields, mapped into
+ * Fundatio supports structured ARIA input for common ARIA fields, mapped into
  * {@link GlobalAttrs.aria}.
  *
  * Validation rules enforced by this module:
@@ -198,7 +198,7 @@ function toGlobalAttrs(attrs?: SourceAttrs): GlobalAttrs | undefined {
  * @remarks
  * `<source>` is a void element: it never carries text content.
  *
- * Global attributes and escape-hatch attributes are applied via Sol's shared DOM helper,
+ * Global attributes and escape-hatch attributes are applied via Fundatio's shared DOM helper,
  * including security guards that block inline event handler attributes (e.g. `onclick`)
  * and raw `style` attribute strings.
  *
@@ -208,7 +208,7 @@ function toGlobalAttrs(attrs?: SourceAttrs): GlobalAttrs | undefined {
  * @example
  * Responsive image source (picture):
  * ```ts
- * import { createSource } from "@lnpg/sol/elements/responsive/source";
+ * import { createSource } from "@Vastare/Fundatio/elements/responsive/source";
  *
  * const s = createSource({
  *   srcSet: "/img/hero-800.jpg 800w, /img/hero-1600.jpg 1600w",

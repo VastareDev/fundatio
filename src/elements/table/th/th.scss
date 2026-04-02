@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: TH Element
+ * Fundatio Design Foundation: TH Element
  *
  * Table header cell (`th`)
  *
@@ -8,7 +8,7 @@
  * This module:
  * - Normalizes UA defaults (notably alignment + weight variance)
  * - Keeps table semantics intact (no borders/padding assumptions beyond baseline)
- * - Applies Sol typography tokens so the element can ship standalone
+ * - Applies Fundatio typography tokens so the element can ship standalone
  * - Uses low-specificity selectors (`:where()`)
  *
  * @module

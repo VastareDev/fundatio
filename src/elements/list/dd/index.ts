@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Description Details (`<dd>`) element helpers.
+ * Fundatio Design Foundation: Description Details (`<dd>`) element helpers.
  *
  * @remarks
  * The `<dd>` element provides the description, definition, or value for the
@@ -28,7 +28,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -75,8 +75,8 @@ export const DD_SELECTOR = 'dd';
  * @remarks
  * `<dd>` only supports global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -118,7 +118,7 @@ function toGlobalAttrs(attrs?: DdAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -128,7 +128,7 @@ function toGlobalAttrs(attrs?: DdAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createDd } from "@lnpg/sol/elements/list/dd";
+ * import { createDd } from "@Vastare/Fundatio/elements/list/dd";
  *
  * const dd = createDd("A sea serpent.", { className: "desc" });
  * ```

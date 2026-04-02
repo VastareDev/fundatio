@@ -86,7 +86,7 @@ describe("mixins/typography", () => {
       .__probe__ {
         group: $g;
         key: $k;
-        expected: "--sol-typography-#{$g}-#{$k}";
+        expected: "--Fundatio-typography-#{$g}-#{$k}";
       }
     `);
 
@@ -101,7 +101,7 @@ describe("mixins/typography", () => {
     expect(css).toContain(`${expected}:`);
 
     // Sanity: expected name should be consistent with probe group/key.
-    expect(expected).toBe(`--sol-typography-${g}-${k}`);
+    expect(expected).toBe(`--Fundatio-typography-${g}-${k}`);
   });
 
   it("emits variables for all registered groups by default (typography-vars)", () => {
@@ -117,7 +117,7 @@ describe("mixins/typography", () => {
         @for $i from 1 through list.length($groups) {
           $g: list.nth($groups, $i);
           $k: list.nth(fn.typography-keys($g), 1);
-          p#{$i}: "--sol-typography-#{$g}-#{$k}";
+          p#{$i}: "--Fundatio-typography-#{$g}-#{$k}";
         }
       }
     `);
@@ -169,14 +169,14 @@ describe("mixins/typography", () => {
 
     const g1 = unquote(readProp(css, "g1"));
     const g1k = unquote(readProp(css, "g1k"));
-    const expectedG1 = `--sol-typography-${g1}-${g1k}`;
+    const expectedG1 = `--Fundatio-typography-${g1}-${g1k}`;
     expect(css).toContain(`${expectedG1}:`);
 
     const g2 = unquote(readProp(css, "g2"));
     const g2k = unquote(readProp(css, "g2k"));
 
     if (g2 !== "" && g2k !== "") {
-      const expectedG2 = `--sol-typography-${g2}-${g2k}`;
+      const expectedG2 = `--Fundatio-typography-${g2}-${g2k}`;
       expect(css).not.toContain(`${expectedG2}:`);
     }
   });
@@ -209,7 +209,7 @@ describe("mixins/typography", () => {
 
       $g: list.nth(fn.typography-groups(), 1);
       $k: list.nth(fn.typography-keys($g), 1);
-      .__probe__ { expected: "--sol-typography-#{$g}-#{$k}"; }
+      .__probe__ { expected: "--Fundatio-typography-#{$g}-#{$k}"; }
     `);
 
     const expected = unquote(readProp(css, "expected"));
@@ -233,11 +233,11 @@ describe("mixins/typography", () => {
       }
 
       .__probe__ {
-        v1: "--sol-typography-font-families-#{$ffk}";
-        v2: "--sol-typography-font-weights-#{$fwk}";
-        v3: "--sol-typography-font-sizes-#{$fsk}";
-        v4: "--sol-typography-formatting-#{$fmtk}";
-        v5: "--sol-typography-spacing-#{$spk}";
+        v1: "--Fundatio-typography-font-families-#{$ffk}";
+        v2: "--Fundatio-typography-font-weights-#{$fwk}";
+        v3: "--Fundatio-typography-font-sizes-#{$fsk}";
+        v4: "--Fundatio-typography-formatting-#{$fmtk}";
+        v5: "--Fundatio-typography-spacing-#{$spk}";
       }
     `);
 

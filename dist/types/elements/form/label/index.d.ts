@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Label element helpers.
+ * Fundatio Design Foundation: Label element helpers.
  *
  * @remarks
  * The label element (`<label>`) represents a caption in a user interface and is
@@ -7,7 +7,7 @@
  *
  * Best-practice guidance:
  * - Always associate labels with their control:
- *   - Prefer an explicit association using `for` (Sol: {@link LabelAttrs.htmlFor})
+ *   - Prefer an explicit association using `for` (Fundatio: {@link LabelAttrs.htmlFor})
  *     that matches the control's `id`.
  *   - Alternatively, wrap the control inside the `<label>` element.
  * - Do not rely on placeholder text as a replacement for a visible label.
@@ -20,7 +20,7 @@
  *   attribute; it has a `form` *IDL attribute* derived from the associated control.)
  *
  * Security:
- * - Global attribute escape hatches are guarded by Sol's `dom.ts` helpers which
+ * - Global attribute escape hatches are guarded by Fundatio's `dom.ts` helpers which
  *   block inline event handler attributes (e.g. `onclick`) and raw `style`
  *   attribute injection (use the `style` object field instead).
  *
@@ -32,7 +32,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -78,8 +78,8 @@ export declare const LABEL_SELECTOR = "label";
  * - {@link LabelAttrs.htmlFor} maps to the `for` attribute, associating the label
  *   with the control whose `id` matches.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -104,7 +104,7 @@ export type LabelAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -114,7 +114,7 @@ export type LabelAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createLabel } from "@lnpg/sol/elements/form/label";
+ * import { createLabel } from "@Vastare/Fundatio/elements/form/label";
  *
  * const label = createLabel("Email address", { htmlFor: "email" });
  * ```

@@ -5,7 +5,7 @@
  * elements used to group flow or inline content.
  *
  * These factories:
- * - Create semantic HTML elements using Sol's hardened DOM helpers.
+ * - Create semantic HTML elements using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured ARIA input.
  * - Prevent unsafe attribute injection.

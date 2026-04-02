@@ -64,7 +64,7 @@ describe("maps/options", () => {
         @return $a;
       }
 
-      $_: _assert-eq(map.get(maps.$options, "prefix"), tokens.$sol-prefix, "options.prefix");
+      $_: _assert-eq(map.get(maps.$options, "prefix"), tokens.$vs-prefix, "options.prefix");
       $_: _assert-eq(map.get(maps.$options, "dark-mode"), tokens.$dark-mode, "options.dark-mode");
       $_: _assert-eq(map.get(maps.$options, "font-path"), tokens.$font-path, "options.font-path");
     `);

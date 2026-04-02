@@ -72,7 +72,7 @@ describe("mixins/options", () => {
   it("supports overriding the emitted var prefix for option-var (does not throw)", () => {
     expectSassAssertionsPass(`
       :root {
-        @include mx.option-var("prefix", $prefix: "sol");
+        @include mx.option-var("prefix", $prefix: "Fundatio");
         @include mx.option-var("prefix", $prefix: null);
         @include mx.option-var("prefix", $prefix: "");
       }
@@ -113,7 +113,7 @@ describe("mixins/options", () => {
     expectSassAssertionsPass(`
       @include mx.options-root();
       @include mx.options-root($keys: "prefix");
-      @include mx.options-root($keys: ("prefix",), $prefix: "sol");
+      @include mx.options-root($keys: ("prefix",), $prefix: "Fundatio");
     `);
   });
 

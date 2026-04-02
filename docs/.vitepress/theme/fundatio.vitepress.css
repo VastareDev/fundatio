@@ -1,0 +1,71 @@
+/**
+ * VitePress theme variable bridge.
+ * Maps VitePress CSS vars to Fundatio design tokens (CSS variables).
+ *
+ * This keeps docs “Fundatio-styled”, while letting VitePress components
+ * (nav, buttons, links, code blocks, etc.) use Fundatio colours.
+ */
+
+:root {
+  /* Brand */
+  --vp-c-brand-1: rgb(var(--Fundatio-colour-blue-base-rgb));
+  --vp-c-brand-2: rgb(var(--Fundatio-colour-blue-tint-20-rgb));
+  --vp-c-brand-3: rgb(var(--Fundatio-colour-blue-tint-40-rgb));
+  --vp-c-brand-soft: rgba(var(--Fundatio-colour-blue-base-rgb), 0.14);
+
+  /* Text */
+  --vp-c-text-1: rgb(var(--Fundatio-colour-grey-shade-40-rgb));
+  --vp-c-text-2: rgb(var(--Fundatio-colour-grey-shade-30-rgb));
+  --vp-c-text-3: rgb(var(--Fundatio-colour-grey-shade-20-rgb));
+
+  /* Backgrounds */
+  --vp-c-bg: rgb(var(--Fundatio-colour-grey-tint-95-rgb));
+  --vp-c-bg-alt: rgb(var(--Fundatio-colour-grey-tint-90-rgb));
+  --vp-c-bg-soft: rgb(var(--Fundatio-colour-grey-tint-90-rgb));
+  --vp-c-bg-mute: rgb(var(--Fundatio-colour-grey-tint-80-rgb));
+
+  /* Borders */
+  --vp-c-border: rgb(var(--Fundatio-colour-grey-tint-70-rgb));
+  --vp-c-divider: rgb(var(--Fundatio-colour-grey-tint-70-rgb));
+  --vp-c-gutter: rgb(var(--Fundatio-colour-grey-tint-80-rgb));
+
+  /* Code */
+  --vp-code-bg: rgb(var(--Fundatio-colour-grey-tint-90-rgb));
+  --vp-code-color: rgb(var(--Fundatio-colour-grey-shade-40-rgb));
+
+  /* Status */
+  --vp-c-danger-1: rgb(var(--Fundatio-colour-red-base-rgb));
+  --vp-c-danger-2: rgb(var(--Fundatio-colour-red-tint-20-rgb));
+  --vp-c-danger-3: rgb(var(--Fundatio-colour-red-tint-40-rgb));
+
+  /* Optional: make link colour match brand */
+  --vp-c-link: var(--vp-c-brand-1);
+}
+
+/* Dark theme */
+.dark {
+  --vp-c-brand-1: rgb(var(--Fundatio-colour-blue-tint-40-rgb));
+  --vp-c-brand-2: rgb(var(--Fundatio-colour-blue-tint-20-rgb));
+  --vp-c-brand-3: rgb(var(--Fundatio-colour-blue-base-rgb));
+  --vp-c-brand-soft: rgba(var(--Fundatio-colour-blue-tint-40-rgb), 0.16);
+
+  --vp-c-text-1: rgb(var(--Fundatio-colour-grey-tint-95-rgb));
+  --vp-c-text-2: rgb(var(--Fundatio-colour-grey-tint-80-rgb));
+  --vp-c-text-3: rgb(var(--Fundatio-colour-grey-tint-70-rgb));
+
+  --vp-c-bg: rgb(var(--Fundatio-colour-grey-shade-60-rgb));
+  --vp-c-bg-alt: rgb(var(--Fundatio-colour-grey-shade-50-rgb));
+  --vp-c-bg-soft: rgb(var(--Fundatio-colour-grey-shade-50-rgb));
+  --vp-c-bg-mute: rgb(var(--Fundatio-colour-grey-shade-40-rgb));
+
+  --vp-c-border: rgb(var(--Fundatio-colour-grey-shade-30-rgb));
+  --vp-c-divider: rgb(var(--Fundatio-colour-grey-shade-30-rgb));
+  --vp-c-gutter: rgb(var(--Fundatio-colour-grey-shade-40-rgb));
+
+  --vp-code-bg: rgb(var(--Fundatio-colour-grey-shade-50-rgb));
+  --vp-code-color: rgb(var(--Fundatio-colour-grey-tint-95-rgb));
+
+  --vp-c-danger-1: rgb(var(--Fundatio-colour-red-tint-40-rgb));
+  --vp-c-danger-2: rgb(var(--Fundatio-colour-red-tint-20-rgb));
+  --vp-c-danger-3: rgb(var(--Fundatio-colour-red-base-rgb));
+}

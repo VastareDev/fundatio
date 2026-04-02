@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Button element helpers.
+ * Fundatio Design Foundation: Button element helpers.
  *
  * @remarks
  * The button element (`<button>`) is an interactive control that users can
@@ -12,10 +12,10 @@
  * - In forms, explicitly set a button `type` to avoid accidental submissions.
  *   In HTML, the default `type` is effectively `"submit"` in many form contexts. :contentReference[oaicite:6]{index=6}
  *
- * Sol-specific conventions:
+ * Fundatio-specific conventions:
  * - Defaults `type` to `"button"` unless the caller explicitly sets `type`
  *   (via the typed `type` field or via the raw `attrs` escape hatch).
- * - Applies global attributes via Sol's hardened DOM helpers (`dom.ts`),
+ * - Applies global attributes via Fundatio's hardened DOM helpers (`dom.ts`),
  *   which block inline event handler attributes (e.g. `onclick`) and the raw
  *   `style` attribute string.
  * - Supports a small structured ARIA input to reduce typo-based ARIA bugs.
@@ -30,7 +30,7 @@
 import { createElement, type AttrValue, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset mapped into {@link GlobalAttrs.aria}.
@@ -117,7 +117,7 @@ export const BUTTON_SELECTOR = 'button';
  * providing {@link GlobalAttrs.attrs} as an escape hatch (validated by `dom.ts`).
  *
  * Notes:
- * - `type` defaults to `"button"` in Sol to avoid accidental form submission.
+ * - `type` defaults to `"button"` in Fundatio to avoid accidental form submission.
  * - Boolean attributes are applied by presence (empty string) when `true`.
  * - `command` and `commandfor` are part of the HTML Invoker Commands model. :contentReference[oaicite:10]{index=10}
  *
@@ -130,7 +130,7 @@ export type ButtonAttrs = Omit<GlobalAttrs, 'aria'> & {
   aria?: StructuredAria;
 
   /**
-   * The button type. Sol defaults to `"button"` when not provided.
+   * The button type. Fundatio defaults to `"button"` when not provided.
    */
   type?: ButtonType;
 
@@ -250,7 +250,7 @@ function toGlobalAttrs(attrs?: ButtonAttrs): GlobalAttrs {
     mergedAttrs[key] = v;
   };
 
-  // Sol safety: default to type="button" unless caller explicitly overrides it.
+  // Fundatio safety: default to type="button" unless caller explicitly overrides it.
   setIfUnset('type', type ?? 'button');
 
   setIfUnset('name', name);
@@ -297,8 +297,8 @@ function toGlobalAttrs(attrs?: ButtonAttrs): GlobalAttrs {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Sol defaults `type` to `"button"` to reduce accidental form submissions. :contentReference[oaicite:11]{index=11}
- * - Global attributes are applied via Sol's shared DOM helper, including security
+ * - Fundatio defaults `type` to `"button"` to reduce accidental form submissions. :contentReference[oaicite:11]{index=11}
+ * - Global attributes are applied via Fundatio's shared DOM helper, including security
  *   guards that block inline event handler attributes (e.g. `onclick`) and raw
  *   `style` attribute strings.
  *
@@ -308,7 +308,7 @@ function toGlobalAttrs(attrs?: ButtonAttrs): GlobalAttrs {
  *
  * @example
  * ```ts
- * import { createButton } from "@lnpg/sol/elements/form/button";
+ * import { createButton } from "@Vastare/Fundatio/elements/form/button";
  *
  * document.body.appendChild(createButton("Save", { className: "btn" }));
  * ```

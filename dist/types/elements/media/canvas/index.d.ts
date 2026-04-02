@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Canvas element helpers.
+ * Fundatio Design Foundation: Canvas element helpers.
  *
  * @remarks
  * The canvas element (`<canvas>`) provides a scriptable drawing surface.
@@ -17,7 +17,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create canvas elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -27,7 +27,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -101,7 +101,7 @@ export type CanvasAttrs = Omit<GlobalAttrs, 'aria'> & {
  * - Text content is assigned via `textContent` (never `innerHTML`).
  * - `width` and `height` (if provided) are applied as attributes via the safe
  *   attribute path in `dom.ts`.
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -112,7 +112,7 @@ export type CanvasAttrs = Omit<GlobalAttrs, 'aria'> & {
  * @example
  * Create a 300x150 canvas with a label:
  * ```ts
- * import { createCanvas } from "@lnpg/sol/elements/media/canvas";
+ * import { createCanvas } from "@Vastare/Fundatio/elements/media/canvas";
  *
  * const el = createCanvas(undefined, {
  *   width: 300,

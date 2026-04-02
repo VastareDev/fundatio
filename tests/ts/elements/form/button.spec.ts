@@ -108,7 +108,7 @@ describe('elements/form/button', () => {
     expect(el.textContent).toBe('Save');
   });
 
-  it('defaults type to "button" (Sol safety)', () => {
+  it('defaults type to "button" (Fundatio safety)', () => {
     const el = createButton('Safe');
 
     expect(el.hasAttribute('type')).toBe(true);

@@ -80,7 +80,7 @@ describe('elements/table/colgroup', () => {
 
     const el = createColgroup({ id: 'cg', className: 'cols', title: 'columns' });
 
-    // This is slightly redundant with dom.ts tests, but matches Sol element suite patterns:
+    // This is slightly redundant with dom.ts tests, but matches Fundatio element suite patterns:
     expect(doc.createElement).toHaveBeenCalledWith('colgroup');
     expect((el as unknown as FakeElement).id).toBe('cg');
     expect((el as unknown as FakeElement).className).toBe('cols');

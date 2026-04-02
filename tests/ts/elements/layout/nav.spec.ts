@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { createNav, enhanceNavs, NAV_TAG } from '../../../../src/elements/layout/nav';
 
-// Minimal DOM shim for unit tests (Sol is framework-agnostic and DOM-first).
+// Minimal DOM shim for unit tests (Fundatio is framework-agnostic and DOM-first).
 type FakeEl = {
   tagName: string;
   id: string;

@@ -30,7 +30,7 @@ async function loadTailwindPluginFactory(): Promise<TailwindPluginFactory> {
 }
 
 /**
- * Returns the Sol Tailwind plugin.
+ * Returns the Fundatio Tailwind plugin.
  *
  * Note: this is async so Tailwind can remain an optional peer dependency.
  */
@@ -39,7 +39,7 @@ export async function solTailwindPlugin(): Promise<unknown> {
 
   return plugin(({ addUtilities }: PluginApi) => {
     addUtilities({
-      '.sol-example': {
+      '.Fundatio-example': {
         fontSize: '1rem',
       },
     });

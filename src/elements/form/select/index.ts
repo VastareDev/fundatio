@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Select element helpers.
+ * Fundatio Design Foundation: Select element helpers.
  *
  * @remarks
  * The select element (`<select>`) is a form control for choosing one or more
@@ -14,8 +14,8 @@
  *   interaction patterns. ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select?utm_source=chatgpt.com))
  * - Use `autocomplete` as a hint to user agents, not a security control. (HTML Standard)
  *
- * Sol-specific conventions:
- * - Applies global attributes via Sol's hardened DOM helpers (`dom.ts`), which
+ * Fundatio-specific conventions:
+ * - Applies global attributes via Fundatio's hardened DOM helpers (`dom.ts`), which
  *   block inline event handler attributes (e.g. `onclick`) and the raw `style`
  *   attribute string.
  * - Supports a small structured ARIA input to reduce typo-based ARIA bugs.
@@ -30,7 +30,7 @@
 import { createElement, type AttrValue, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset mapped into {@link GlobalAttrs.aria}.
@@ -75,7 +75,7 @@ export const SELECT_SELECTOR = 'select';
  * `<select>` accepts global attributes plus a small set of form-control and
  * select-specific attributes such as `multiple` and `size`. ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select?utm_source=chatgpt.com))
  *
- * Sol models the most common attributes explicitly and leaves an escape hatch via
+ * Fundatio models the most common attributes explicitly and leaves an escape hatch via
  * {@link GlobalAttrs.attrs} for less common cases (validated by `dom.ts`).
  *
  * @category Attributes
@@ -214,7 +214,7 @@ function toGlobalAttrs(attrs?: SelectAttrs): GlobalAttrs | undefined {
  * @remarks
  * - `<select>` content is provided via child `<option>`/`<optgroup>` elements,
  *   not text content. ([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select?utm_source=chatgpt.com))
- * - Global attributes are applied via Sol's shared DOM helper, including security
+ * - Global attributes are applied via Fundatio's shared DOM helper, including security
  *   guards that block inline event handler attributes (e.g. `onclick`) and raw
  *   `style` attribute strings.
  *
@@ -223,7 +223,7 @@ function toGlobalAttrs(attrs?: SelectAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createSelect } from "@lnpg/sol/elements/form/select";
+ * import { createSelect } from "@Vastare/Fundatio/elements/form/select";
  *
  * const s = createSelect({ name: "country", required: true });
  * ```

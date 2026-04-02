@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const t={};exports.default=t;
+//# sourceMappingURL=fundatio.cjs.map

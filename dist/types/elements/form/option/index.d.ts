@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Option element helpers.
+ * Fundatio Design Foundation: Option element helpers.
  *
  * @remarks
  * The option element (`<option>`) defines an item within a `<select>`, `<optgroup>`,
@@ -22,7 +22,7 @@
  * - `selected` (boolean): whether the option is selected by default.
  *
  * Security:
- * - Global attribute escape hatches are guarded by Sol's `dom.ts` helpers which
+ * - Global attribute escape hatches are guarded by Fundatio's `dom.ts` helpers which
  *   block inline event handler attributes (e.g. `onclick`) and raw `style`
  *   attribute injection (use the `style` object field instead).
  *
@@ -33,7 +33,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -76,8 +76,8 @@ export declare const OPTION_SELECTOR = "option";
  * Options accept standard HTML global attributes plus a small set of option-specific
  * content attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -120,7 +120,7 @@ export type OptionAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes and escape-hatch attributes are applied via Sol's shared
+ * - Global attributes and escape-hatch attributes are applied via Fundatio's shared
  *   DOM helper, including security guards that block inline event handler
  *   attributes (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -130,7 +130,7 @@ export type OptionAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createOption } from "@lnpg/sol/elements/form/option";
+ * import { createOption } from "@Vastare/Fundatio/elements/form/option";
  *
  * const opt = createOption("United Kingdom", { value: "UK" });
  * ```

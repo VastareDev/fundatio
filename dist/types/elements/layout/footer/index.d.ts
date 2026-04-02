@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Footer element helpers.
+ * Fundatio Design Foundation: Footer element helpers.
  *
  * @remarks
  * The footer element (`<footer>`) represents a footer for its nearest ancestor
@@ -13,9 +13,9 @@
  *   is HTML.
  * - Prefer native semantics. Only add ARIA roles when needed.
  *
- * Sol notes:
+ * Fundatio notes:
  * - This module is framework-agnostic and has no side effects.
- * - Global attributes are applied via Sol's shared DOM helper, which blocks:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which blocks:
  *   - inline event handler attributes (e.g. `onclick`)
  *   - raw `style` attribute injection (use the `style` object instead)
  * - Text passed to factories is assigned via `textContent` (never `innerHTML`).
@@ -28,7 +28,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -70,8 +70,8 @@ export declare const FOOTER_SELECTOR = "footer";
  * @remarks
  * Footer elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -86,7 +86,7 @@ export type FooterAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -96,7 +96,7 @@ export type FooterAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createFooter } from "@lnpg/sol/elements/layout/footer";
+ * import { createFooter } from "@Vastare/Fundatio/elements/layout/footer";
  *
  * const f = createFooter("© 2026", { className: "site-footer" });
  * ```

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Nav element helpers.
+ * Fundatio Design Foundation: Nav element helpers.
  *
  * @remarks
  * The nav element (`<nav>`) represents a section of a page whose purpose is to
@@ -12,10 +12,10 @@
  * - Avoid nesting `<nav>` elements.
  * - Prefer semantic grouping of links (e.g. lists) inside the nav.
  *
- * Sol provides small, framework-agnostic helpers so consumers can:
+ * Fundatio provides small, framework-agnostic helpers so consumers can:
  * - create navigation regions without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -30,12 +30,12 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * `<nav>` is a landmark with an implicit `navigation` role.
  *
- * Sol intentionally encourages naming navigation regions when multiple navs
+ * Fundatio intentionally encourages naming navigation regions when multiple navs
  * exist on the same page (e.g. primary vs footer vs breadcrumb navigation).
  *
  * It is mapped into {@link GlobalAttrs.aria} for application by `dom.ts`.
@@ -82,11 +82,11 @@ export const NAV_SELECTOR = 'nav';
  * Accessibility note:
  * - `<nav>` has an implicit landmark role.
  * - The ARIA-in-HTML mapping indicates no explicit `role` is permitted for
- *   `<nav>` in normal usage. Sol therefore omits `role` from {@link NavAttrs}.
+ *   `<nav>` in normal usage. Fundatio therefore omits `role` from {@link NavAttrs}.
  *   Name navs via `aria-label` / `aria-labelledby` instead.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -129,7 +129,7 @@ function toGlobalAttrs(attrs?: NavAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -140,7 +140,7 @@ function toGlobalAttrs(attrs?: NavAttrs): GlobalAttrs | undefined {
  * @example
  * Create a labelled primary navigation region:
  * ```ts
- * import { createNav } from "@lnpg/sol/elements/layout/nav";
+ * import { createNav } from "@Vastare/Fundatio/elements/layout/nav";
  *
  * const nav = createNav(undefined, { aria: { label: "Primary" }, className: "site-nav" });
  * document.body.appendChild(nav);

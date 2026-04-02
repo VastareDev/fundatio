@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createObject, enhanceObjects } from '../../../../src/elements/media/object';
 
 /**
- * Minimal fake element used by Sol tests.
+ * Minimal fake element used by Fundatio tests.
  *
  * @remarks
  * The real test suite in this repo uses a small fake DOM element that supports

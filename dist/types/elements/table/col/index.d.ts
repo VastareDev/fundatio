@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Col element helpers.
+ * Fundatio Design Foundation: Col element helpers.
  *
  * @remarks
  * The col element (`<col>`) represents one or more columns in a table, and is
@@ -15,7 +15,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<col>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -29,7 +29,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -75,7 +75,7 @@ export declare const COL_SELECTOR = "col";
  * `span` specifies how many consecutive columns this `<col>` applies to.
  * If omitted, browsers treat it as `1`.
  *
- * Sol supports a structured ARIA input for common ARIA fields, mapped into
+ * Fundatio supports a structured ARIA input for common ARIA fields, mapped into
  * {@link GlobalAttrs.aria}.
  *
  * @category Attributes
@@ -100,7 +100,7 @@ export type ColAttrs = Omit<GlobalAttrs, 'aria'> & {
  * @remarks
  * `<col>` is a void element. It does not accept text content or children.
  *
- * Global attributes are applied via Sol's shared DOM helper, including security
+ * Global attributes are applied via Fundatio's shared DOM helper, including security
  * guards that block inline event handler attributes (e.g. `onclick`) and raw
  * `style` attribute strings.
  *
@@ -110,7 +110,7 @@ export type ColAttrs = Omit<GlobalAttrs, 'aria'> & {
  * @example
  * Create a `<col>` that spans 2 columns:
  * ```ts
- * import { createCol } from "@lnpg/sol/elements/table/col";
+ * import { createCol } from "@Vastare/Fundatio/elements/table/col";
  *
  * const col = createCol({ span: 2, className: "numeric" });
  * ```

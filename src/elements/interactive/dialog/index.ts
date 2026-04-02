@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Dialog element helpers.
+ * Fundatio Design Foundation: Dialog element helpers.
  *
  * @remarks
  * The dialog element (`<dialog>`) represents a modal or non-modal dialog box
@@ -21,7 +21,7 @@
  * - `closedBy` (enumerated): maps to the `closedby` content attribute (spec-defined).
  *
  * Security:
- * - Global attribute escape hatches are guarded by Sol's `dom.ts` helpers which
+ * - Global attribute escape hatches are guarded by Fundatio's `dom.ts` helpers which
  *   block inline event handler attributes (e.g. `onclick`) and raw `style`
  *   attribute injection (use the `style` object field instead).
  *
@@ -34,7 +34,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -97,8 +97,8 @@ export type DialogClosedBy = 'any' | 'closerequest' | 'none';
  * Dialog elements accept standard HTML global attributes plus a small set of
  * dialog-specific content attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -174,7 +174,7 @@ function toGlobalAttrs(attrs?: DialogAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -184,7 +184,7 @@ function toGlobalAttrs(attrs?: DialogAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createDialog } from "@lnpg/sol/elements/interactive/dialog";
+ * import { createDialog } from "@Vastare/Fundatio/elements/interactive/dialog";
  *
  * const d = createDialog("Hello", { open: true });
  * ```

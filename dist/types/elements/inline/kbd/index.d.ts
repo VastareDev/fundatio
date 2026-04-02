@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Kbd (`kbd`) element helpers.
+ * Fundatio Design Foundation: Kbd (`kbd`) element helpers.
  *
  * @remarks
  * The kbd element (`<kbd>`) represents user input, typically keyboard input,
@@ -12,8 +12,8 @@
  * - Do not rely on default styling; apply CSS for consistent presentation.
  *
  * Security notes:
- * - Sol blocks unsafe attribute *names* (e.g. `onclick`, raw `style`) via `dom.ts`.
- * - Sol does not sanitize attribute *values*. Treat untrusted inputs accordingly.
+ * - Fundatio blocks unsafe attribute *names* (e.g. `onclick`, raw `style`) via `dom.ts`.
+ * - Fundatio does not sanitize attribute *values*. Treat untrusted inputs accordingly.
  *
  * References:
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
@@ -24,7 +24,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -66,8 +66,8 @@ export declare const KBD_SELECTOR = "kbd";
  * @remarks
  * Kbd elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -82,7 +82,7 @@ export type KbdAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -92,7 +92,7 @@ export type KbdAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createKbd } from "@lnpg/sol/elements/inline/kbd";
+ * import { createKbd } from "@Vastare/Fundatio/elements/inline/kbd";
  *
  * const shortcut = createKbd(undefined, { className: "keys" });
  * shortcut.append(createKbd("Ctrl"), document.createTextNode("+"), createKbd("S"));

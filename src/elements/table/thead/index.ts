@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Thead element helpers.
+ * Fundatio Design Foundation: Thead element helpers.
  *
  * @remarks
  * The thead element (`<thead>`) represents the block of rows that form the
@@ -16,7 +16,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<thead>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -28,7 +28,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -75,8 +75,8 @@ export const THEAD_SELECTOR = 'thead';
  * @remarks
  * Thead elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Security notes:
  * - Inline event handler attributes (e.g. `onclick`) are blocked by `dom.ts`.
@@ -122,9 +122,9 @@ function toGlobalAttrs(attrs?: TheadAttrs): GlobalAttrs | undefined {
  * Create a thead element with global attributes.
  *
  * @remarks
- * - `<thead>` is a structural table element. Sol does not accept a text argument
+ * - `<thead>` is a structural table element. Fundatio does not accept a text argument
  *   for this factory. Populate it with `<tr>` and header cells (`<th>`) as needed.
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -134,7 +134,7 @@ function toGlobalAttrs(attrs?: TheadAttrs): GlobalAttrs | undefined {
  * @example
  * Create and append a thead:
  * ```ts
- * import { createThead } from "@lnpg/sol/elements/table/thead";
+ * import { createThead } from "@Vastare/Fundatio/elements/table/thead";
  *
  * const thead = createThead({ className: "table-head" });
  * table.appendChild(thead);

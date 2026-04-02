@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Map element helpers.
+ * Fundatio Design Foundation: Map element helpers.
  *
  * @remarks
  * The map element (`<map>`) defines an image map: a set of clickable regions
@@ -12,9 +12,9 @@
  * - Keep `name` free of whitespace and ensure it is unique within the document/tree.
  * - If you also set `id`, it should match `name` (spec requirement).
  *
- * Sol notes:
+ * Fundatio notes:
  * - This module is framework-agnostic and has no side effects.
- * - Global attributes are applied via Sol's shared DOM helper, which blocks:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which blocks:
  *   - inline event handler attributes (e.g. `onclick`)
  *   - raw `style` attribute injection (use the `style` object instead)
  * - Text passed to factories is assigned via `textContent` (never `innerHTML`).
@@ -28,7 +28,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -75,8 +75,8 @@ export declare const MAP_SELECTOR = "map";
  * - `name` must be present, non-empty, and contain no ASCII whitespace.
  * - If `id` is also specified, it must match `name`.
  *
- * Sol behavior:
- * - If `name` is omitted, Sol provides a deterministic fallback:
+ * Fundatio behavior:
+ * - If `name` is omitted, Fundatio provides a deterministic fallback:
  *   - uses `id` if provided
  *   - otherwise defaults to `"map"`
  *   Callers should set a unique name in real documents.
@@ -100,13 +100,13 @@ export type MapAttrs = Omit<GlobalAttrs, 'aria'> & {
  * Create a map element with optional text content and attributes.
  *
  * @remarks
- * While `<map>` typically contains `<area>` elements (not text), Sol still
+ * While `<map>` typically contains `<area>` elements (not text), Fundatio still
  * supports optional `text` for:
  * - fallback content
  * - simple labelling in environments that inspect textContent
  *
  * - Text is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -116,7 +116,7 @@ export type MapAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createMap } from "@lnpg/sol/elements/responsive/map";
+ * import { createMap } from "@Vastare/Fundatio/elements/responsive/map";
  *
  * const m = createMap(undefined, { name: "product-map" });
  * ```

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Colour Mixins
+ * Fundatio Design Foundation: Colour Mixins
  *
  * CSS custom property (variable) emitters for the canonical colour registries.
  *
@@ -25,7 +25,7 @@
  * @group  mixins.colours
  * @access public
  * @since  1.0.0
- * @author LNPG Development Team
+ * @author Vastare Development Team
  */
 
 @use 'sass:map';
@@ -42,12 +42,12 @@
  * Builds a CSS custom property name.
  *
  * Example output (default):
- *   --sol-colour-grey-tint-80
+ *   --Fundatio-colour-grey-tint-80
  *
  * @access private
  *
  * @param  {string} $key
- * @param  {string} $var-prefix   Must include the leading `--` (default: --sol-)
+ * @param  {string} $var-prefix   Must include the leading `--` (default: --Fundatio-)
  * @param  {string} $group        Group namespace appended after prefix
  *
  * @return {string}
@@ -111,15 +111,15 @@
  * Emits CSS variables for a single colour scale.
  *
  * By default, emits:
- * - `--sol-colour-<token-key>` for each entry in the scale map
- * - Optional: `--sol-colour-<token-key>-rgb` companions (r,g,b triplets)
+ * - `--Fundatio-colour-<token-key>` for each entry in the scale map
+ * - Optional: `--Fundatio-colour-<token-key>-rgb` companions (r,g,b triplets)
  *
  * Typical usage:
  *   :root { @include colour-scale-vars("grey"); }
  *   [data-theme="dark"] { @include colour-scale-vars("grey"); }
  *
  * @param  {string} $scale
- * @param  {string} $var-prefix   Leading custom prop prefix (default: --sol-)
+ * @param  {string} $var-prefix   Leading custom prop prefix (default: --Fundatio-)
  * @param  {string} $group        Namespace segment (default: colour)
  * @param  {bool}   $with-rgb     Emit `*-rgb` vars (default: true)
  * @param  {string} $rgb-suffix   Suffix for rgb vars (default: -rgb)
@@ -128,7 +128,7 @@
  */
 @mixin colour-scale-vars(
   $scale,
-  $var-prefix: '--sol-',
+  $var-prefix: '--Fundatio-',
   $group: 'colour',
   $with-rgb: true,
   $rgb-suffix: '-rgb'
@@ -156,7 +156,7 @@
  * Emits CSS variables for *all* registered colour scales.
  *
  * @param  {list|null} $scales     Optional subset (e.g. ("grey","blue"))
- * @param  {string}    $var-prefix Leading custom prop prefix (default: --sol-)
+ * @param  {string}    $var-prefix Leading custom prop prefix (default: --Fundatio-)
  * @param  {string}    $group      Namespace segment (default: colour)
  * @param  {bool}      $with-rgb   Emit `*-rgb` vars (default: true)
  * @param  {string}    $rgb-suffix Suffix for rgb vars (default: -rgb)
@@ -165,7 +165,7 @@
  */
 @mixin colour-scales-vars(
   $scales: null,
-  $var-prefix: '--sol-',
+  $var-prefix: '--Fundatio-',
   $group: 'colour',
   $with-rgb: true,
   $rgb-suffix: '-rgb'
@@ -224,7 +224,7 @@
  */
 @mixin base-colour-vars(
   $base-map,
-  $var-prefix: '--sol-',
+  $var-prefix: '--Fundatio-',
   $group: 'colour',
   $with-rgb: true,
   $rgb-suffix: '-rgb'
@@ -279,7 +279,7 @@
 @mixin colour-root-vars(
   $scales: null,
   $base-map: null,
-  $var-prefix: '--sol-',
+  $var-prefix: '--Fundatio-',
   $group: 'colour',
   $with-rgb: true,
   $rgb-suffix: '-rgb'

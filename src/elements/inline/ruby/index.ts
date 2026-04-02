@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: ruby element helpers.
+ * Fundatio Design Foundation: ruby element helpers.
  *
  * @remarks
  * The ruby element (`<ruby>`) represents ruby annotations: small annotation text
@@ -13,7 +13,7 @@
  *   but it improves graceful degradation.
  * - For complex ruby (multiple base segments / multiple annotations), consider
  *   using `<rb>` to delimit base segments and `<rtc>` for semantic annotation groupings.
- * - Avoid using `innerHTML` for untrusted content. Sol assigns text via `textContent`.
+ * - Avoid using `innerHTML` for untrusted content. Fundatio assigns text via `textContent`.
  *
  * Attributes:
  * - `<ruby>` has no element-specific attributes in HTML. It accepts global
@@ -22,7 +22,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<ruby>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -38,7 +38,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -85,8 +85,8 @@ export const RUBY_SELECTOR = 'ruby';
  * @remarks
  * `<ruby>` accepts standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Security note:
  * - Inline event handler attributes (e.g. `onclick`) are blocked by `dom.ts`.
@@ -132,7 +132,7 @@ function toGlobalAttrs(attrs?: RubyAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -147,7 +147,7 @@ function toGlobalAttrs(attrs?: RubyAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createRuby } from "@lnpg/sol/elements/inline/ruby";
+ * import { createRuby } from "@Vastare/Fundatio/elements/inline/ruby";
  *
  * const ruby = createRuby();
  * ruby.append(

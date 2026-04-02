@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress';
  
 export default defineConfig({
-  title: 'Sol',
-  description: "LNPG's Design Foundation",
+  title: 'Fundatio',
+  description: "Vastare's Design Foundation",
   base: '/',
   outDir: '../public',
   themeConfig: {
@@ -20,8 +20,8 @@ export default defineConfig({
         {
           text: 'Introduction',
           items: [
-            { text: 'What is Sol?', link: '/what-is-sol' },
-            { text: 'Why Sol Exists', link: '/why-sol-exists' },
+            { text: 'What is Fundatio?', link: '/what-is-Fundatio' },
+            { text: 'Why Fundatio Exists', link: '/why-Fundatio-exists' },
             { text: 'Design Principles', link: '/design-principles' },
           ],
         },

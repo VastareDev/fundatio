@@ -1,12 +1,12 @@
 /**
- * Sol element factory namespaces.
+ * Fundatio element factory namespaces.
  *
- * Provides grouped access to all HTML element factory modules included in Sol.
+ * Provides grouped access to all HTML element factory modules included in Fundatio.
  *
  * These namespaces:
  * - Expose framework-agnostic DOM factory helpers.
  * - Maintain strong TypeScript typing for attributes.
- * - Forward Sol's curated global attributes safely.
+ * - Forward Fundatio's curated global attributes safely.
  * - Prevent unsafe attribute injection.
  * - Keep the public API stable and predictable.
  *

@@ -1,9 +1,9 @@
 /**
- * Sol Tailwind preset.
+ * Fundatio Tailwind preset.
  *
  * This intentionally:
  * - does NOT import Tailwind at runtime (so it can be used as a plain object)
- * - maps Sol CSS variables to Tailwind theme tokens
+ * - maps Fundatio CSS variables to Tailwind theme tokens
  */
 
 export type SolTailwindPreset = {
@@ -18,11 +18,11 @@ function rgbaVar(varName: string): string {
 }
 
 function solColourVarRgb(token: string): string {
-  return `--sol-colour-${token}-rgb`;
+  return `--Fundatio-colour-${token}-rgb`;
 }
 
 function makeSolColourScale(colourName: string): Record<string, string> {
-  // Sol defines: tint-90/80/70/60 + base + shade-10/20/30/40.
+  // Fundatio defines: tint-90/80/70/60 + base + shade-10/20/30/40.
   // Map to Tailwind's 50..900 scale.
   return {
     '50': rgbaVar(solColourVarRgb(`${colourName}-tint-90`)),
@@ -53,9 +53,9 @@ function makeSolColours(): TailwindColours {
 
   const colours: TailwindColours = {
     // Convenience accessors.
-    sol: {
-      '0': rgbaVar('--sol-colour-black-rgb'),
-      '1000': rgbaVar('--sol-colour-white-rgb'),
+    Fundatio: {
+      '0': rgbaVar('--Fundatio-colour-black-rgb'),
+      '1000': rgbaVar('--Fundatio-colour-white-rgb'),
     },
   };
 

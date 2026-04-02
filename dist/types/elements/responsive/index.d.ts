@@ -5,7 +5,7 @@
  * to deliver responsive, adaptive, and accessible media experiences.
  *
  * These factories:
- * - Create semantic responsive/media structures using Sol's hardened DOM helpers.
+ * - Create semantic responsive/media structures using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Preserve correct relationships between media resources and their metadata

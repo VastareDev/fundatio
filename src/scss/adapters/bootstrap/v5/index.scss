@@ -1,13 +1,13 @@
 /**
- * Sol Design Foundation: Bootstrap v5 Adapter Entry Point
+ * Fundatio Design Foundation: Bootstrap v5 Adapter Entry Point
  *
  * Provides a single SCSS entry for consuming Bootstrap v5, optionally composed
- * with a Sol baseline.
+ * with a Fundatio baseline.
  *
  * Baseline options:
  * - none: Bootstrap only
- * - core: Sol core + Bootstrap
- * - main: Sol main (includes core) + Bootstrap
+ * - core: Fundatio core + Bootstrap
+ * - main: Fundatio main (includes core) + Bootstrap
  *
  * @module
  * @group  adapters
@@ -22,15 +22,15 @@
  - Configuration
  --------------------------------------------------------------------------- */
 
-$sol-bootstrap-baseline: core !default;
+$vs-bootstrap-baseline: core !default;
 $_allowed-baselines: (none, core, main);
 
-@if list.index($_allowed-baselines, $sol-bootstrap-baseline) == null {
-  @error 'Invalid $sol-bootstrap-baseline: #{$sol-bootstrap-baseline}. Allowed values: none, core, main.';
+@if list.index($_allowed-baselines, $vs-bootstrap-baseline) == null {
+  @error 'Invalid $vs-bootstrap-baseline: #{$vs-bootstrap-baseline}. Allowed values: none, core, main.';
 }
 
 /* ----------------------------------------------------------------------------
- - Bootstrap (with Sol-driven variables)
+ - Bootstrap (with Fundatio-driven variables)
  --------------------------------------------------------------------------- */
 
 /**
@@ -48,11 +48,11 @@ $_allowed-baselines: (none, core, main);
 /* stylelint-enable no-invalid-position-at-import-rule */
 
 /* ----------------------------------------------------------------------------
- - Optional Sol baseline
+ - Optional Fundatio baseline
  --------------------------------------------------------------------------- */
 
-@if $sol-bootstrap-baseline == core {
+@if $vs-bootstrap-baseline == core {
   @include meta.load-css('../../../core');
-} @else if $sol-bootstrap-baseline == main {
+} @else if $vs-bootstrap-baseline == main {
   @include meta.load-css('../../../main');
 }

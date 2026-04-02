@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Typography Mixins
+ * Fundatio Design Foundation: Typography Mixins
  *
  * CSS custom property (variable) emitters for the canonical typography registry.
  *
@@ -20,7 +20,7 @@
  * @group  mixins.typography
  * @access public
  * @since  1.0.0
- * @author LNPG Development Team
+ * @author Vastare Development Team
  */
 
 @use 'sass:list';
@@ -56,13 +56,13 @@
  * Builds a CSS custom property name for a typography token.
  *
  * Example output (default):
- *   --sol-typography-font-sizes-font-size-h1
+ *   --Fundatio-typography-font-sizes-font-size-h1
  *
  * @access private
  *
  * @param  {string} $group-key     Typography group key (e.g. "font-sizes")
  * @param  {string} $token-key     Token key within the group (e.g. "font-size-h1")
- * @param  {string} $var-prefix    Must include the leading `--` (default: --sol-)
+ * @param  {string} $var-prefix    Must include the leading `--` (default: --Fundatio-)
  * @param  {string} $namespace     Namespace segment after prefix (default: typography)
  *
  * @return {string}
@@ -117,16 +117,21 @@
  *   [data-theme="compact"] { @include typography-group-vars("spacing"); }
  *
  * Output naming (default):
- *   --sol-typography-<group>-<key>: <value>;
+ *   --Fundatio-typography-<group>-<key>: <value>;
  *
  * @param  {string} $group
  * @param  {list|null} $keys        Optional subset (e.g. ("base-font-size","font-size-h1"))
- * @param  {string} $var-prefix     Leading custom prop prefix (default: --sol-)
+ * @param  {string} $var-prefix     Leading custom prop prefix (default: --Fundatio-)
  * @param  {string} $namespace      Namespace segment (default: typography)
  *
  * @return {void}
  */
-@mixin typography-group-vars($group, $keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin typography-group-vars(
+  $group,
+  $keys: null,
+  $var-prefix: '--Fundatio-',
+  $namespace: 'typography'
+) {
   // Strict group access with actionable errors.
   $m: fn.typography-group($group);
 
@@ -174,12 +179,12 @@
  * Emits CSS variables for *all* registered typography groups.
  *
  * @param  {list|null} $groups      Optional subset (e.g. ("font-sizes","formatting"))
- * @param  {string}    $var-prefix  Leading custom prop prefix (default: --sol-)
+ * @param  {string}    $var-prefix  Leading custom prop prefix (default: --Fundatio-)
  * @param  {string}    $namespace   Namespace segment (default: typography)
  *
  * @return {void}
  */
-@mixin typography-vars($groups: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin typography-vars($groups: null, $var-prefix: '--Fundatio-', $namespace: 'typography') {
   $use-groups: null;
 
   @if $groups == null {
@@ -218,7 +223,7 @@
  *
  * @return {void}
  */
-@mixin typography-root-vars($groups: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin typography-root-vars($groups: null, $var-prefix: '--Fundatio-', $namespace: 'typography') {
   @include typography-vars($groups: $groups, $var-prefix: $var-prefix, $namespace: $namespace);
 }
 
@@ -226,7 +231,7 @@
  - Convenience wrappers
  --------------------------------------------------------------------------- */
 
-@mixin font-family-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin font-family-vars($keys: null, $var-prefix: '--Fundatio-', $namespace: 'typography') {
   @include typography-group-vars(
     'font-families',
     $keys: $keys,
@@ -235,7 +240,7 @@
   );
 }
 
-@mixin font-weight-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin font-weight-vars($keys: null, $var-prefix: '--Fundatio-', $namespace: 'typography') {
   @include typography-group-vars(
     'font-weights',
     $keys: $keys,
@@ -244,7 +249,7 @@
   );
 }
 
-@mixin font-size-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin font-size-vars($keys: null, $var-prefix: '--Fundatio-', $namespace: 'typography') {
   @include typography-group-vars(
     'font-sizes',
     $keys: $keys,
@@ -253,7 +258,7 @@
   );
 }
 
-@mixin typography-format-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin typography-format-vars($keys: null, $var-prefix: '--Fundatio-', $namespace: 'typography') {
   @include typography-group-vars(
     'formatting',
     $keys: $keys,
@@ -262,7 +267,7 @@
   );
 }
 
-@mixin typography-spacing-vars($keys: null, $var-prefix: '--sol-', $namespace: 'typography') {
+@mixin typography-spacing-vars($keys: null, $var-prefix: '--Fundatio-', $namespace: 'typography') {
   @include typography-group-vars(
     'spacing',
     $keys: $keys,

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Time element helpers.
+ * Fundatio Design Foundation: Time element helpers.
  *
  * @remarks
  * The time element (`<time>`) represents a specific period in time.
@@ -22,7 +22,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -65,7 +65,7 @@ export declare const TIME_SELECTOR = "time";
  * In addition to global attributes, `<time>` commonly uses the `datetime`
  * attribute to provide a machine-readable value.
  *
- * Sol supports:
+ * Fundatio supports:
  * - `datetime` (preferred, aligns with the HTML attribute name)
  * - `dateTime` (alias for ergonomic camelCase usage)
  *
@@ -100,7 +100,7 @@ export type TimeAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
      * Additional attributes not modeled above.
      *
      * @remarks
-     * This exists as an escape hatch while still allowing Sol to apply its
+     * This exists as an escape hatch while still allowing Fundatio to apply its
      * attribute safety rules via `dom.ts`.
      */
     attrs?: GlobalAttrs['attrs'];
@@ -110,7 +110,7 @@ export type TimeAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -120,7 +120,7 @@ export type TimeAttrs = Omit<GlobalAttrs, 'aria' | 'attrs'> & {
  *
  * @example
  * ```ts
- * import { createTime } from "@lnpg/sol/elements/inline/time";
+ * import { createTime } from "@Vastare/Fundatio/elements/inline/time";
  *
  * const t = createTime("25 Feb 2026", { datetime: "2026-02-25" });
  * document.body.appendChild(t);

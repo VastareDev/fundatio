@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Img element helpers.
+ * Fundatio Design Foundation: Img element helpers.
  *
  * @remarks
  * The img element (`<img>`) embeds an image into the document.
@@ -14,7 +14,7 @@
  * - `alt` always exists (defaults to empty string if not provided)
  * - If neither `src` nor `srcset` is provided, a safe fallback
  *   `src="data:,"` is applied to avoid broken network requests
- * - All global attributes are applied via Sol's hardened DOM helpers
+ * - All global attributes are applied via Fundatio's hardened DOM helpers
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -26,7 +26,7 @@
 import { createVoidElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @category Attributes
  */

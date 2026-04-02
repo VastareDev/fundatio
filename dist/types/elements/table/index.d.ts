@@ -5,13 +5,13 @@
  * structures and related elements.
  *
  * These factories:
- * - Create semantic table elements using Sol's hardened DOM helpers.
+ * - Create semantic table elements using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Preserve native table semantics and accessibility.
  * - Prevent unsafe attribute injection.
  *
- * Tables in Sol are intentionally low-level primitives. They do not attempt
+ * Tables in Fundatio are intentionally low-level primitives. They do not attempt
  * to manage layout, styling, or data structures. Consumers remain responsible
  * for building meaningful table structures.
  *

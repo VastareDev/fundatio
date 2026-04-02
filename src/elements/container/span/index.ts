@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Span element helpers.
+ * Fundatio Design Foundation: Span element helpers.
  *
  * @remarks
  * The `<span>` element is a generic inline container for phrasing content.
@@ -7,7 +7,7 @@
  * semantic element exists.
  *
  * This module:
- * - Creates `<span>` elements via Sol's DOM helpers (no direct DOM calls).
+ * - Creates `<span>` elements via Fundatio's DOM helpers (no direct DOM calls).
  * - Applies a curated subset of global attributes safely.
  * - Exposes an enhancement hook (currently a no-op) for consistency and
  *   potential future progressive enhancements.
@@ -19,7 +19,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is a small, typed subset intended to prevent typo-driven ARIA bugs and
@@ -64,7 +64,7 @@ export const SPAN_SELECTOR = 'span';
  * @remarks
  * `<span>` supports HTML global attributes only.
  *
- * Sol additionally supports a typed, structured ARIA input that is mapped into
+ * Fundatio additionally supports a typed, structured ARIA input that is mapped into
  * {@link GlobalAttrs.aria} without modifying the shared DOM helpers.
  *
  * @category Attributes
@@ -105,7 +105,7 @@ function toGlobalAttrs(attrs?: SpanAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper, which enforces:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which enforces:
  *   - No inline event handler attributes (e.g. `onclick`)
  *   - No raw `style` attribute injection (use the `style` object field)
  *   - No empty attribute names

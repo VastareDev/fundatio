@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: H4 element helpers.
+ * Fundatio Design Foundation: H4 element helpers.
  *
  * @remarks
  * The `<h4>` element represents a level 4 section heading.
@@ -11,7 +11,7 @@
  * - Prefer CSS for appearance; headings are about semantics.
  *
  * This module:
- * - Creates `<h4>` elements via Sol's hardened DOM helpers (no direct DOM calls).
+ * - Creates `<h4>` elements via Fundatio's hardened DOM helpers (no direct DOM calls).
  * - Applies a curated subset of global attributes safely.
  * - Supports a small, typed structured ARIA input mapped into `aria-*`.
  * - Exposes a stable enhancement hook (currently a no-op) for API consistency.
@@ -25,7 +25,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is a small, typed subset intended to prevent typo-driven ARIA bugs and
@@ -70,7 +70,7 @@ export const H4_SELECTOR = 'h4';
  * @remarks
  * `<h4>` supports HTML global attributes only.
  *
- * Sol additionally supports a typed, structured ARIA input that is mapped into
+ * Fundatio additionally supports a typed, structured ARIA input that is mapped into
  * {@link GlobalAttrs.aria} without modifying the shared DOM helpers.
  *
  * @category Attributes
@@ -111,7 +111,7 @@ function toGlobalAttrs(attrs?: H4Attrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Text is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper, which enforces:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which enforces:
  *   - No inline event handler attributes (e.g. `onclick`)
  *   - No raw `style` attribute injection (use the `style` object field)
  *   - No empty attribute names
@@ -122,7 +122,7 @@ function toGlobalAttrs(attrs?: H4Attrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createH4 } from "@lnpg/sol/elements/heading/h4";
+ * import { createH4 } from "@Vastare/Fundatio/elements/heading/h4";
  *
  * const h = createH4("Details", { id: "details-heading" });
  * ```

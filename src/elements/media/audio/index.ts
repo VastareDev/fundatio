@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Audio element helpers.
+ * Fundatio Design Foundation: Audio element helpers.
  *
  * @remarks
  * The audio element (`<audio>`) embeds sound content in documents.
@@ -16,7 +16,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create audio elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -28,7 +28,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -103,7 +103,7 @@ export const AUDIO_SELECTOR = 'audio';
  *
  * @remarks
  * Audio elements accept HTML global attributes plus a media-specific subset.
- * Sol also supports structured ARIA input for common ARIA fields.
+ * Fundatio also supports structured ARIA input for common ARIA fields.
  *
  * @category Attributes
  */
@@ -131,7 +131,7 @@ export type AudioAttrs = Omit<GlobalAttrs, 'aria'> & {
    *
    * @remarks
    * Autoplaying audio is often blocked unless user-initiated. If `autoplay`
-   * is enabled and `muted` is not specified, Sol defaults `muted` to `true`
+   * is enabled and `muted` is not specified, Fundatio defaults `muted` to `true`
    * as a pragmatic alignment with autoplay policies.
    */
   autoplay?: boolean;
@@ -200,7 +200,7 @@ function toGlobalAttrs(attrs?: AudioAttrs): GlobalAttrs | undefined {
  * Create an audio element with optional attributes.
  *
  * @remarks
- * Global attributes are applied via Sol's shared DOM helper, including security
+ * Global attributes are applied via Fundatio's shared DOM helper, including security
  * guards that block inline event handler attributes (e.g. `onclick`) and raw
  * `style` attribute strings through escape hatches.
  *
@@ -211,7 +211,7 @@ function toGlobalAttrs(attrs?: AudioAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createAudio } from "@lnpg/sol/elements/media/audio";
+ * import { createAudio } from "@Vastare/Fundatio/elements/media/audio";
  *
  * document.body.appendChild(
  *   createAudio({ controls: true, src: "/audio/intro.mp3", preload: "metadata" })

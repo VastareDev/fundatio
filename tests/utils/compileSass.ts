@@ -23,7 +23,8 @@ export function compileSass(source: string, options: CompileSassOptions = {}) {
   const result = sass.compileString(source, {
     loadPaths,
     style: "expanded",
-    quietDeps: true
+    quietDeps: true,
+    silenceDeprecations: ["color-4-api"]
   });
 
   return {

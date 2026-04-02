@@ -36,7 +36,7 @@ describe("tokens/options", () => {
     expectSassAssertionsPass(`
       // Existence checks: referencing the variables is enough to fail compilation
       // if they are missing, but we also type-check them below.
-      $_a: options.$sol-prefix;
+      $_a: options.$vs-prefix;
       $_b: options.$dark-mode;
       $_c: options.$font-path;
     `);
@@ -44,8 +44,8 @@ describe("tokens/options", () => {
 
   it("re-exports values directly from theme (no transformation)", () => {
     expectSassAssertionsPass(`
-      @if options.$sol-prefix != theme.$theme-prefix {
-        @error "Expected $sol-prefix to re-export theme.$theme-prefix exactly";
+      @if options.$vs-prefix != theme.$theme-prefix {
+        @error "Expected $vs-prefix to re-export theme.$theme-prefix exactly";
       }
 
       @if options.$dark-mode != theme.$theme-dark-mode {
@@ -60,8 +60,8 @@ describe("tokens/options", () => {
 
   it("enforces token types", () => {
     expectSassAssertionsPass(`
-      @if meta.type-of(options.$sol-prefix) != "string" {
-        @error "Expected $sol-prefix to be type 'string', got '#{meta.type-of(options.$sol-prefix)}'";
+      @if meta.type-of(options.$vs-prefix) != "string" {
+        @error "Expected $vs-prefix to be type 'string', got '#{meta.type-of(options.$vs-prefix)}'";
       }
 
       @if meta.type-of(options.$dark-mode) != "bool" {
@@ -78,15 +78,15 @@ describe("tokens/options", () => {
     expectSassAssertionsPass(`
       // This is intentionally conservative: we don't over-validate formatting,
       // but we do ensure it's not empty and not whitespace.
-      $p: options.$sol-prefix;
+      $p: options.$vs-prefix;
 
       @if string.length($p) == 0 {
-        @error "Expected $sol-prefix to be non-empty";
+        @error "Expected $vs-prefix to be non-empty";
       }
 
       // Guard against accidental spaces (a classic 'why are my CSS vars broken' scenario).
       @if string.index($p, " ") != null {
-        @error "Expected $sol-prefix to not contain spaces";
+        @error "Expected $vs-prefix to not contain spaces";
       }
     `);
   });

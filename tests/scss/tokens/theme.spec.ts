@@ -35,7 +35,7 @@ describe("tokens/theme", () => {
     expectSassAssertionsPass(`
       // Flags & prefix
       @if theme.$theme-dark-mode != false { @error "Expected $theme-dark-mode default to be false"; }
-      @if theme.$theme-prefix != "lg-" { @error "Expected $theme-prefix default to be \\"lg-\\""; }
+      @if theme.$theme-prefix != "vs-" { @error "Expected $theme-prefix default to be \\"vs-\\""; }
 
       // Font family roles
       @if theme.$base-font != "Montserrat" { @error "Expected $base-font default to be \\"Montserrat\\""; }
@@ -75,8 +75,8 @@ describe("tokens/theme", () => {
 
       // Brand
       @if theme.$primary-colour != colours.$base-blue { @error "Expected $primary-colour to equal colours.$base-blue"; }
-      @if theme.$secondary-colour != colours.$base-indigo { @error "Expected $secondary-colour to equal colours.$base-indigo"; }
-      @if theme.$tertiary-colour != colours.$base-purple { @error "Expected $tertiary-colour to equal colours.$base-purple"; }
+      @if theme.$secondary-colour != colours.$base-cyan { @error "Expected $secondary-colour to equal colours.$base-cyan"; }
+      @if theme.$tertiary-colour != colours.$base-indigo { @error "Expected $tertiary-colour to equal colours.$base-indigo"; }
 
       // State
       @if theme.$success-colour != colours.$base-green { @error "Expected $success-colour to equal colours.$base-green"; }
@@ -170,7 +170,7 @@ describe("tokens/theme", () => {
       // This is the entire point of this file: consumers can override defaults.
       @use "tokens/theme" as theme with (
         $theme-dark-mode: true,
-        $theme-prefix: "sol-",
+        $theme-prefix: "Fundatio-",
         $base-font: "Merriweather",
         $base-font-path: "/public/fonts",
         $primary-colour: colours.$base-red
@@ -181,7 +181,7 @@ describe("tokens/theme", () => {
       `
       // Overridden values must reflect the consumer config.
       @if theme.$theme-dark-mode != true { @error "Expected override: $theme-dark-mode to be true"; }
-      @if theme.$theme-prefix != "sol-" { @error "Expected override: $theme-prefix to be \\"sol-\\""; }
+      @if theme.$theme-prefix != "Fundatio-" { @error "Expected override: $theme-prefix to be \\"Fundatio-\\""; }
       @if theme.$base-font != "Merriweather" { @error "Expected override: $base-font to be \\"Merriweather\\""; }
       @if theme.$base-font-path != "/public/fonts" { @error "Expected override: $base-font-path to be \\"/public/fonts\\""; }
       @if theme.$primary-colour != colours.$base-red { @error "Expected override: $primary-colour to equal colours.$base-red"; }
@@ -190,8 +190,8 @@ describe("tokens/theme", () => {
       @if theme.$heading-font != "Montserrat" { @error "Expected $heading-font to remain default \\"Montserrat\\""; }
       @if theme.$code-font != "ui-monospace" { @error "Expected $code-font to remain default \\"ui-monospace\\""; }
 
-      @if theme.$secondary-colour != colours.$base-indigo { @error "Expected $secondary-colour to remain default (base-indigo)"; }
-      @if theme.$tertiary-colour != colours.$base-purple { @error "Expected $tertiary-colour to remain default (base-purple)"; }
+      @if theme.$secondary-colour != colours.$base-cyan { @error "Expected $secondary-colour to remain default (base-cyan)"; }
+      @if theme.$tertiary-colour != colours.$base-indigo { @error "Expected $tertiary-colour to remain default (base-indigo)"; }
 
       @if theme.$success-colour != colours.$base-green { @error "Expected $success-colour to remain default (base-green)"; }
       @if theme.$info-colour != colours.$base-cyan { @error "Expected $info-colour to remain default (base-cyan)"; }

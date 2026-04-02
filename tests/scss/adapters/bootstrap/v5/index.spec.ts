@@ -15,35 +15,35 @@ describe('adapters/bootstrap/v5/index', () => {
 
   it('supports baseline: none (Bootstrap only)', () => {
     const css = compile(
-      '@use "src/scss/adapters/bootstrap/v5/index" with ($sol-bootstrap-baseline: none);',
+      '@use "src/scss/adapters/bootstrap/v5/index" with ($vs-bootstrap-baseline: none);',
     );
 
     expect(css).toContain('.btn');
-    expect(css).not.toContain('--sol-');
+    expect(css).not.toContain('--vs-');
   });
 
   it('supports baseline: core', () => {
     const css = compile(
-      '@use "src/scss/adapters/bootstrap/v5/index" with ($sol-bootstrap-baseline: core);',
+      '@use "src/scss/adapters/bootstrap/v5/index" with ($vs-bootstrap-baseline: core);',
     );
 
     expect(css).toContain('.btn');
-    expect(css).toContain('--sol-');
+    expect(css).toContain('--vs-');
   });
 
   it('supports baseline: main', () => {
     const css = compile(
-      '@use "src/scss/adapters/bootstrap/v5/index" with ($sol-bootstrap-baseline: main);',
+      '@use "src/scss/adapters/bootstrap/v5/index" with ($vs-bootstrap-baseline: main);',
     );
 
     expect(css).toContain('.btn');
-    expect(css).toContain('--sol-');
+    expect(css).toContain('--vs-');
   });
 
   it('throws on invalid baseline value', () => {
     expect(() => {
       compile(
-        '@use "src/scss/adapters/bootstrap/v5/index" with ($sol-bootstrap-baseline: banana);',
+        '@use "src/scss/adapters/bootstrap/v5/index" with ($vs-bootstrap-baseline: banana);',
       );
     }).toThrow();
   });

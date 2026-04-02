@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Mark element helpers.
+ * Fundatio Design Foundation: Mark element helpers.
  *
  * @remarks
  * The mark element (`<mark>`) represents text that is marked or highlighted for
@@ -17,7 +17,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create marked text spans in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark
  *
@@ -26,7 +26,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -68,8 +68,8 @@ export declare const MARK_SELECTOR = "mark";
  * @remarks
  * Mark elements accept standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -84,7 +84,7 @@ export type MarkAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -94,7 +94,7 @@ export type MarkAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createMark } from "@lnpg/sol/elements/inline/mark";
+ * import { createMark } from "@Vastare/Fundatio/elements/inline/mark";
  *
  * // Highlight a search match:
  * document.body.appendChild(createMark("kitchen", { className: "match" }));

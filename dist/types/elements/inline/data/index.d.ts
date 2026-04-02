@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Data (`data`) element helpers.
+ * Fundatio Design Foundation: Data (`data`) element helpers.
  *
  * @remarks
  * The data element (`<data>`) links human-readable content to a machine-readable
@@ -10,12 +10,12 @@
  * - Keep visible text human-friendly.
  * - Prefer explicit `value` when the machine value differs from the displayed text.
  *
- * Sol applies a sensible fallback:
- * - If `attrs.value` is omitted and `text` is provided, Sol sets `value` to `text`.
+ * Fundatio applies a sensible fallback:
+ * - If `attrs.value` is omitted and `text` is provided, Fundatio sets `value` to `text`.
  *
  * Security notes:
- * - Sol blocks unsafe attribute *names* (e.g. `onclick`, raw `style`).
- * - Sol does not sanitize attribute *values*. Treat untrusted inputs accordingly.
+ * - Fundatio blocks unsafe attribute *names* (e.g. `onclick`, raw `style`).
+ * - Fundatio does not sanitize attribute *values*. Treat untrusted inputs accordingly.
  *
  * References:
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/data
@@ -26,7 +26,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -54,7 +54,7 @@ export type StructuredAria = {
  * Allowed value types for the `value` attribute on `<data>`.
  *
  * @remarks
- * HTML treats attributes as strings. Sol allows string/number and coerces to string.
+ * HTML treats attributes as strings. Fundatio allows string/number and coerces to string.
  *
  * @category Attributes
  */
@@ -78,8 +78,8 @@ export declare const DATA_SELECTOR = "data";
  * Data elements accept standard HTML global attributes, plus:
  * - `value`: machine-readable translation of the element's content.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -88,7 +88,7 @@ export type DataAttrs = Omit<GlobalAttrs, 'aria'> & {
      * Machine-readable value for the data.
      *
      * @remarks
-     * If omitted and `text` is provided, Sol falls back to using `text` as `value`.
+     * If omitted and `text` is provided, Fundatio falls back to using `text` as `value`.
      */
     value?: DataValue;
     /**
@@ -101,10 +101,10 @@ export type DataAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
- * - If `attrs.value` is omitted and `text` is provided, Sol sets `value` to `text`.
+ * - If `attrs.value` is omitted and `text` is provided, Fundatio sets `value` to `text`.
  *
  * @param text - Optional human-readable content for the data element.
  * @param attrs - Optional attributes to apply.
@@ -112,7 +112,7 @@ export type DataAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createData } from "@lnpg/sol/elements/inline/data";
+ * import { createData } from "@Vastare/Fundatio/elements/inline/data";
  *
  * document.body.appendChild(
  *   createData("Mini Ketchup", { value: 398 })

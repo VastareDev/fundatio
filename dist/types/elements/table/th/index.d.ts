@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Th element helpers.
+ * Fundatio Design Foundation: Th element helpers.
  *
  * @remarks
  * The th element (`<th>`) represents a header cell in a table row (`<tr>`).
@@ -17,7 +17,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<th>` cells in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -27,7 +27,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -68,9 +68,9 @@ export declare const TH_SELECTOR = "th";
  *
  * @remarks
  * The HTML spec defines explicit keywords plus an automatic/default state.
- * Sol exposes the common keyword values and allows an explicit `"auto"` value
+ * Fundatio exposes the common keyword values and allows an explicit `"auto"` value
  * to match the spec's conceptual default state. Consumers control structure;
- * Sol does not attempt to enforce table-model anchoring constraints.
+ * Fundatio does not attempt to enforce table-model anchoring constraints.
  *
  * @category Attributes
  */
@@ -86,8 +86,8 @@ export type ThScope = 'row' | 'col' | 'rowgroup' | 'colgroup' | 'auto';
  * - `headers`: space-separated IDs of `<th>` elements that apply to this cell
  * - `scope`: indicates the set of cells this header applies to (`row`, `col`, etc.)
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Security notes:
  * - Inline event handler attributes (e.g. `onclick`) are blocked by `dom.ts`.
@@ -112,7 +112,7 @@ export type ThAttrs = Omit<GlobalAttrs, 'aria'> & {
      * Number of columns the cell spans.
      *
      * @remarks
-     * Must be a positive integer to be meaningful. Sol sets the attribute only
+     * Must be a positive integer to be meaningful. Fundatio sets the attribute only
      * when you provide a finite value greater than 0.
      */
     colspan?: number;
@@ -120,7 +120,7 @@ export type ThAttrs = Omit<GlobalAttrs, 'aria'> & {
      * Number of rows the cell spans.
      *
      * @remarks
-     * Must be a positive integer to be meaningful. Sol sets the attribute only
+     * Must be a positive integer to be meaningful. Fundatio sets the attribute only
      * when you provide a finite value greater than 0.
      */
     rowspan?: number;
@@ -129,7 +129,7 @@ export type ThAttrs = Omit<GlobalAttrs, 'aria'> & {
      *
      * @remarks
      * This is primarily used for complex tables where `scope` is insufficient.
-     * Sol does not validate ID existence; consumers control their DOM trees.
+     * Fundatio does not validate ID existence; consumers control their DOM trees.
      */
     headers?: string;
     /**
@@ -145,7 +145,7 @@ export type ThAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -156,7 +156,7 @@ export type ThAttrs = Omit<GlobalAttrs, 'aria'> & {
  * @example
  * Create a column header cell:
  * ```ts
- * import { createTh } from "@lnpg/sol/elements/table/th";
+ * import { createTh } from "@Vastare/Fundatio/elements/table/th";
  *
  * const th = createTh("Price", { scope: "col" });
  * row.appendChild(th);

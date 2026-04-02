@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Progress element helpers.
+ * Fundatio Design Foundation: Progress element helpers.
  *
  * @remarks
  * The progress element (`<progress>`) represents the completion progress of a task.
@@ -10,9 +10,9 @@
  * - Provide fallback text content for user agents that don't render `<progress>`.
  * - When using a determinate progress bar, set `value` and (usually) `max`.
  *
- * Sol notes:
+ * Fundatio notes:
  * - This module is framework-agnostic and has no side effects.
- * - Global attributes are applied via Sol's shared DOM helper, which blocks:
+ * - Global attributes are applied via Fundatio's shared DOM helper, which blocks:
  *   - inline event handler attributes (e.g. `onclick`)
  *   - raw `style` attribute injection (use the `style` object instead)
  * - Text passed to factories is assigned via `textContent` (never `innerHTML`).
@@ -29,7 +29,7 @@
 import { createElement, type AttrValue, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -78,9 +78,9 @@ export const PROGRESS_SELECTOR = 'progress';
  * - `value` (optional): when omitted, the progress bar is indeterminate
  * - `max` (optional): defaults to 1.0 when omitted (platform default)
  *
- * Sol behavior:
- * - If `value` is omitted, Sol does NOT set it, preserving indeterminate semantics.
- * - If `value` is provided and `max` is omitted, Sol applies `max=1` explicitly
+ * Fundatio behavior:
+ * - If `value` is omitted, Fundatio does NOT set it, preserving indeterminate semantics.
+ * - If `value` is provided and `max` is omitted, Fundatio applies `max=1` explicitly
  *   for predictable, testable output in node-based environments.
  *
  * @category Attributes
@@ -170,7 +170,7 @@ function toGlobalAttrs(attrs?: ProgressAttrs): GlobalAttrs | undefined {
  *
  * @remarks
  * - Fallback text is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *

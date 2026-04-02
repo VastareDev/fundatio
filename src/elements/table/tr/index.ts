@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Tr element helpers.
+ * Fundatio Design Foundation: Tr element helpers.
  *
  * @remarks
  * The tr element (`<tr>`) represents a row of cells within a table section.
@@ -16,7 +16,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<tr>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -32,7 +32,7 @@
 import { createElement, type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -79,12 +79,12 @@ export const TR_SELECTOR = 'tr';
  * @remarks
  * `<tr>` accepts standard HTML global attributes.
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * Note: legacy presentational attributes historically existed for table rows,
  * but are obsolete. Consumers can still use {@link GlobalAttrs.attrs} as an
- * escape hatch where necessary, subject to Sol's security rules in `dom.ts`
+ * escape hatch where necessary, subject to Fundatio's security rules in `dom.ts`
  * (blocks inline event handlers and raw `style` attribute strings).
  *
  * @category Attributes
@@ -129,7 +129,7 @@ function toGlobalAttrs(attrs?: TrAttrs): GlobalAttrs | undefined {
  * @remarks
  * - In real usage, `<tr>` should contain `<td>` and/or `<th>` cells (not text).
  * - Optional text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -139,7 +139,7 @@ function toGlobalAttrs(attrs?: TrAttrs): GlobalAttrs | undefined {
  *
  * @example
  * ```ts
- * import { createTr } from "@lnpg/sol/elements/table/tr";
+ * import { createTr } from "@Vastare/Fundatio/elements/table/tr";
  *
  * const row = createTr(undefined, { className: "row" });
  * ```

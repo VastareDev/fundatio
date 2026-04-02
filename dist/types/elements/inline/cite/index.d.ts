@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Cite element helpers.
+ * Fundatio Design Foundation: Cite element helpers.
  *
  * @remarks
  * The cite element (`<cite>`) represents the title of a creative work (e.g. a book,
@@ -9,13 +9,13 @@
  * - Use `<cite>` for the title of the work being referenced, not the author's name
  *   and not purely for styling. :contentReference[oaicite:3]{index=3}
  * - If you want a visible link to a source, use an `<a>` element (and/or surrounding
- *   citation patterns) rather than relying on hidden metadata. (Sol intentionally
+ *   citation patterns) rather than relying on hidden metadata. (Fundatio intentionally
  *   does not invent citation-specific behaviors here.)
  *
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create cite inline nodes in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -25,7 +25,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -67,8 +67,8 @@ export declare const CITE_SELECTOR = "cite";
  * @remarks
  * The `<cite>` element uses standard HTML global attributes. :contentReference[oaicite:4]{index=4}
  *
- * Sol also supports a structured ARIA input for common ARIA fields, which is
- * mapped into {@link GlobalAttrs.aria} without changing Sol's core DOM helpers.
+ * Fundatio also supports a structured ARIA input for common ARIA fields, which is
+ * mapped into {@link GlobalAttrs.aria} without changing Fundatio's core DOM helpers.
  *
  * @category Attributes
  */
@@ -83,7 +83,7 @@ export type CiteAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @remarks
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -94,7 +94,7 @@ export type CiteAttrs = Omit<GlobalAttrs, 'aria'> & {
  * @example
  * Cite a work title:
  * ```ts
- * import { createCite } from "@lnpg/sol/elements/inline/cite";
+ * import { createCite } from "@Vastare/Fundatio/elements/inline/cite";
  *
  * const c = createCite("The Scream", { className: "work-title" });
  * document.body.appendChild(c);

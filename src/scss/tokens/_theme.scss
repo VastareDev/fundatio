@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Theme Tokens
+ * Fundatio Design Foundation: Theme Tokens
  *
  * Consumer-overridable theme primitives.
  *
@@ -26,7 +26,7 @@
  * @group  tokens.theme
  * @access public
  * @since  1.0.0
- * @author LNPG Development Team
+ * @author Vastare Development Team
  */
 
 @use './colours' as colours;
@@ -58,7 +58,7 @@ $theme-dark-mode: false !default;
  *
  * @type string
  */
-$theme-prefix: 'lg-' !default;
+$theme-prefix: 'vs-' !default;
 
 /* ----------------------------------------------------------------------------
  - Font families (semantic roles)
@@ -141,14 +141,14 @@ $primary-colour: colours.$base-blue !default;
  *
  * @type color
  */
-$secondary-colour: colours.$base-indigo !default;
+$secondary-colour: colours.$base-cyan !default;
 
 /**
  * Tertiary brand colour.
  *
  * @type color
  */
-$tertiary-colour: colours.$base-purple !default;
+$tertiary-colour: colours.$base-indigo !default;
 
 /* ----------------------------------------------------------------------------
  - Semantic state colours

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: Td element helpers.
+ * Fundatio Design Foundation: Td element helpers.
  *
  * @remarks
  * The td element (`<td>`) represents a data cell in a table row (`<tr>`).
@@ -15,7 +15,7 @@
  * This module provides small, framework-agnostic helpers so consumers can:
  * - create `<td>` elements in vanilla JS/TS without templates
  * - apply consistent global attributes safely
- * - use a stable "enhancement" hook if Sol ever needs runtime behavior
+ * - use a stable "enhancement" hook if Fundatio ever needs runtime behavior
  *
  * This module has no side effects and does not mutate the DOM unless you call
  * its functions.
@@ -30,7 +30,7 @@
  */
 import { type ElementOf, type GlobalAttrs } from '../../../ts/dom';
 /**
- * Structured ARIA input supported by Sol element factories.
+ * Structured ARIA input supported by Fundatio element factories.
  *
  * @remarks
  * This is intentionally a small, typed subset that covers common cases and
@@ -75,7 +75,7 @@ export declare const TD_SELECTOR = "td";
  * - `rowspan`: number of rows spanned (positive integer)
  * - `headers`: space-separated list of `<th id="...">` references for complex tables
  *
- * Sol supports a structured ARIA input for common ARIA fields, mapped into
+ * Fundatio supports a structured ARIA input for common ARIA fields, mapped into
  * {@link GlobalAttrs.aria}.
  *
  * @category Attributes
@@ -114,7 +114,7 @@ export type TdAttrs = Omit<GlobalAttrs, 'aria'> & {
  * - In real usage, `<td>` contains text and/or phrasing content, but should never
  *   be built via `innerHTML` from untrusted data.
  * - Text content is assigned via `textContent` (never `innerHTML`).
- * - Global attributes are applied via Sol's shared DOM helper,
+ * - Global attributes are applied via Fundatio's shared DOM helper,
  *   including security guards that block inline event handler attributes
  *   (e.g. `onclick`) and raw `style` attribute strings.
  *
@@ -124,7 +124,7 @@ export type TdAttrs = Omit<GlobalAttrs, 'aria'> & {
  *
  * @example
  * ```ts
- * import { createTd } from "@lnpg/sol/elements/table/td";
+ * import { createTd } from "@Vastare/Fundatio/elements/table/td";
  *
  * const cell = createTd("42", { colspan: 2 });
  * ```

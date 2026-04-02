@@ -5,7 +5,7 @@
  * structure the major sections of a document or application.
  *
  * These factories:
- * - Create semantic layout structures using Sol's hardened DOM helpers.
+ * - Create semantic layout structures using Fundatio's hardened DOM helpers.
  * - Forward curated global attributes.
  * - Enforce structured, typed attribute bags.
  * - Preserve correct document outline and accessibility semantics.

@@ -1,5 +1,5 @@
 /**
- * Sol Design Foundation: TD Element
+ * Fundatio Design Foundation: TD Element
  *
  * Table data cell (`td`)
  *
@@ -8,7 +8,7 @@
  * This module:
  * - Normalizes UA defaults (notably alignment variance and incidental padding)
  * - Preserves the table formatting context (no forced display)
- * - Applies Sol typography tokens so the element can ship standalone
+ * - Applies Fundatio typography tokens so the element can ship standalone
  * - Uses low-specificity selectors (`:where()`)
  *
  * @module

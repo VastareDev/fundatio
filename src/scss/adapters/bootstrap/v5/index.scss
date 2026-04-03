@@ -4,6 +4,10 @@
  * Provides a single SCSS entry for consuming Bootstrap v5, optionally composed
  * with a Fundatio baseline.
  *
+ * Bootstrap 5 still exposes its Sass customisation surface through legacy import-era
+ * globals. Fundatio therefore keeps the adapter bridge intentionally small and
+ * isolated here so the rest of the package can remain module-first.
+ *
  * Baseline options:
  * - none: Bootstrap only
  * - core: Fundatio core + Bootstrap
@@ -35,6 +39,8 @@ $_allowed-baselines: (none, core, main);
 
 /**
  * Bootstrap still relies on legacy global variable configuration via @import.
+ * Fundatio limits that legacy flow to this adapter because Bootstrap variable
+ * overrides are not yet exposed through a fully modern @use-based API upstream.
  * Dart Sass requires @use to appear before other rules, so these @imports must
  * come after @use.
  *

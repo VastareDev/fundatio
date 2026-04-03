@@ -141,6 +141,18 @@ $dark-colour: colours.$grey-shade-80 !default;
  - Asset paths
  --------------------------------------------------------------------------- */
 
+/**
+ * Base runtime path used when emitting packaged font URLs.
+ *
+ * Consumers should override this to the final public path used by their own
+ * deployment target when copying Fundatio fonts into application-owned assets.
+ *
+ * Examples:
+ * - '../assets/fonts' for a theme/app-local dist structure
+ * - '/wp-content/themes/vastsite/dist/assets/fonts' for a WordPress deployment
+ *
+ * @type string
+ */
 $base-font-path: '../assets/fonts' !default;
 
 /* ----------------------------------------------------------------------------

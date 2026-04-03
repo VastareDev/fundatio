@@ -1,7 +1,7 @@
 {
   "name": "@vastare/fundatio",
-  "version": "0.1.0",
-  "description": "Framework agnostic design foundation for Vastare UI kits and applications.",
+  "version": "1.0.1",
+  "description": "Production-grade design foundation for Vastare themes, applications, and shared UI infrastructure.",
   "homepage": "https://github.com/vastaredev/fundatio#readme",
   "bugs": {
     "url": "https://github.com/vastaredev/fundatio/issues"
@@ -702,5 +702,18 @@
     "tailwindcss": {
       "optional": true
     }
-  }
+  },
+  "keywords": [
+    "vastare",
+    "design-system",
+    "design-tokens",
+    "sass",
+    "scss",
+    "bootstrap",
+    "vite",
+    "wordpress",
+    "typescript",
+    "foundation"
+  ],
+  "sass": "./src/scss/main.scss"
 }

@@ -30,16 +30,16 @@ function a() {
     "yellow",
     "green",
     "teal"
-  ], o = {
+  ], i = {
     // Convenience accessors.
     Fundatio: {
       0: t("--Fundatio-colour-black-rgb"),
       1e3: t("--Fundatio-colour-white-rgb")
     }
   };
-  for (const i of n)
-    o[i] = r(i);
-  return o;
+  for (const o of n)
+    i[o] = r(o);
+  return i;
 }
 const l = {
   theme: {
@@ -58,14 +58,14 @@ async function u() {
   } catch {
     throw new Error('Tailwind is not installed. Install "tailwindcss" to use solTailwindPlugin.');
   }
-  const o = s(n) && "default" in n ? n.default : n;
-  if (typeof o != "function")
+  const i = s(n) && "default" in n ? n.default : n;
+  if (typeof i != "function")
     throw new Error('"tailwindcss/plugin" did not export a plugin factory function as expected.');
-  return o;
+  return i;
 }
 async function d() {
-  return (await u())(({ addUtilities: o }) => {
-    o({
+  return (await u())(({ addUtilities: i }) => {
+    i({
       ".Fundatio-example": {
         fontSize: "1rem"
       }
@@ -76,10 +76,10 @@ const c = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   solTailwindPlugin: d,
   solTailwindPreset: l
-}, Symbol.toStringTag, { value: "Module" })), f = "1.0.0";
+}, Symbol.toStringTag, { value: "Module" })), f = "1.0.1";
 export {
   w as elements,
-  f as solVersion,
+  f as fundatioVersion,
   c as tailwind
 };
 //# sourceMappingURL=index.js.map

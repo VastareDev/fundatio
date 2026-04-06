@@ -24,11 +24,11 @@
    -------------------------------------------------------------------------- */
 
   // Buttons are styled per-platform by default; keep that, but normalize typography.
-  font-family: var(--lg-typography-font-families-base-font-family, inherit);
-  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
-  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
-  line-height: var(--lg-typography-formatting-base-line-height, inherit);
-  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  font-family: var(--vs-typography-font-families-base-font-family, inherit);
+  font-size: var(--vs-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--vs-typography-formatting-base-font-weight, inherit);
+  line-height: var(--vs-typography-formatting-base-line-height, inherit);
+  color: var(--vs-theme-base-colours-base-font-color, inherit);
   box-sizing: border-box;
   margin: 0;
 

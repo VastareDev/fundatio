@@ -27,7 +27,7 @@
   display: inline;
 
   // Explicit weight to avoid UA-relative "bolder" differences.
-  font-weight: var(--lg-typography-font-weights-bold-font-weight);
+  font-weight: var(--vs-typography-font-weights-bold-font-weight);
 
   // Preserve inherited typography context otherwise.
   font-family: inherit;

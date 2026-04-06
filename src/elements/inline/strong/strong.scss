@@ -25,7 +25,7 @@
   display: inline;
 
   // Normalize to explicit token rather than UA relative "bolder"
-  font-weight: var(--lg-typography-font-weights-bold-font-weight);
+  font-weight: var(--vs-typography-font-weights-bold-font-weight);
 
   // Preserve inherited typography otherwise
   font-family: inherit;

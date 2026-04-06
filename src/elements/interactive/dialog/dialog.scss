@@ -39,17 +39,17 @@
    - Brand-aligned baseline typography (standalone-safe)
    -------------------------------------------------------------------------- */
 
-  font-family: var(--lg-typography-font-families-base-font-family, inherit);
-  font-size: var(--lg-typography-font-sizes-base-font-size, inherit);
-  font-weight: var(--lg-typography-formatting-base-font-weight, inherit);
-  line-height: var(--lg-typography-formatting-base-line-height, inherit);
-  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  font-family: var(--vs-typography-font-families-base-font-family, inherit);
+  font-size: var(--vs-typography-font-sizes-base-font-size, inherit);
+  font-weight: var(--vs-typography-formatting-base-font-weight, inherit);
+  line-height: var(--vs-typography-formatting-base-line-height, inherit);
+  color: var(--vs-theme-base-colours-base-font-color, inherit);
 
   // Provide a sensible default surface without forcing "designed" styling.
-  background-color: var(--lg-theme-surface-colours-light-colour, transparent);
+  background-color: var(--vs-theme-surface-colours-light-colour, transparent);
 }
 
 /* Backdrop for modal dialogs opened via showModal() */
 :where(dialog)::backdrop {
-  background-color: rgb(var(--lg-colour-grey-shade-80-rgb), 0.6);
+  background-color: rgb(var(--vs-colour-grey-shade-80-rgb), 0.6);
 }

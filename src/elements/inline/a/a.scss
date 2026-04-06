@@ -38,7 +38,7 @@
    -------------------------------------------------------------------------- */
 
   // Provide a branded default without breaking inheritance-based composition.
-  color: var(--lg-theme-brand-colours-primary-colour, inherit);
+  color: var(--vs-theme-brand-colours-primary-colour, inherit);
 
   // Keep links identifiable without relying on UA color choices.
   text-decoration-line: underline;
@@ -46,10 +46,10 @@
 
 :where(a:visited) {
   // Visited link styling is privacy-restricted; color is allowed.
-  color: var(--lg-theme-brand-colours-secondary-colour, inherit);
+  color: var(--vs-theme-brand-colours-secondary-colour, inherit);
 }
 
 :where(a:hover) {
   // Subtle affordance without changing semantics or accessibility.
-  color: var(--lg-theme-brand-colours-tertiary-colour, inherit);
+  color: var(--vs-theme-brand-colours-tertiary-colour, inherit);
 }

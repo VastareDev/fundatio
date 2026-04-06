@@ -62,7 +62,7 @@ html {
   height: 100%;
 
   /* Baseline line-height for typographic inheritance */
-  line-height: var(--lg-typography-formatting-base-line-height, 1.5);
+  line-height: var(--vs-typography-formatting-base-line-height, 1.5);
 
   /* Prevent automatic font scaling */
   text-size-adjust: 100%;
@@ -93,7 +93,7 @@ body {
 
   /* Base font stack (temporary, tokenised later) */
   font-family: var(
-    --lg-typography-font-families-base-font-family,
+    --vs-typography-font-families-base-font-family,
     'Merriweather',
     Georgia,
     'Times New Roman',
@@ -102,12 +102,12 @@ body {
   );
 
   /* Explicit baseline typography */
-  font-weight: var(--lg-typography-formatting-base-font-weight, normal);
-  font-size: var(--lg-typography-font-sizes-base-font-size, 1rem);
+  font-weight: var(--vs-typography-formatting-base-font-weight, normal);
+  font-size: var(--vs-typography-font-sizes-base-font-size, 1rem);
 
   /* Base text and background colours */
-  color: var(--lg-theme-base-colours-base-font-color, #212529);
-  background-color: var(--lg-theme-base-colours-body-bg-color, #f8f9fa);
+  color: var(--vs-theme-base-colours-base-font-color, #212529);
+  background-color: var(--vs-theme-base-colours-body-bg-color, #f8f9fa);
 
   /* Logical text alignment (RTL-safe) */
   text-align: start;

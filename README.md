@@ -1,6 +1,6 @@
 # @vastare/fundatio
 
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Distribution:** npm  
 **Purpose:** Shared design foundation for Vastare projects
 
@@ -14,7 +14,7 @@
 - a shared baseline for WordPress themes, Vite applications, and other web builds
 
 This package is intended to be consumed as a real upstream dependency. The examples below use the
-**actual published package name** and the **1.0.1 release surface**.
+**actual published package name** and the **1.0.2 release surface**.
 
 ---
 
@@ -331,7 +331,7 @@ relied upon for new integrations.
 Fundatio follows semantic versioning.
 
 - `1.x` is the stable public package line
-- `1.0.1` is the current release represented by this repository snapshot
+- `1.0.2` is the current release represented by this repository snapshot
 
 For releases, keep these aligned every single time:
 
@@ -347,5 +347,5 @@ Because breaking your consumers with version drift is a spectacularly boring way
 ## Release metadata
 
 - **Package:** `@vastare/fundatio`
-- **Release:** `1.0.1`
+- **Release:** `1.0.2`
 - **README target:** production consumer usage

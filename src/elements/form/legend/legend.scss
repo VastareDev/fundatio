@@ -30,11 +30,11 @@
   overflow-wrap: break-word;
 
   // Typography: keep consistent with system and slightly emphasized.
-  font-family: var(--lg-typography-font-families-base-font-family, inherit);
+  font-family: var(--vs-typography-font-families-base-font-family, inherit);
   font-size: inherit;
   font-style: inherit;
-  font-weight: var(--lg-typography-font-weights-semibold-font-weight, inherit);
+  font-weight: var(--vs-typography-font-weights-semibold-font-weight, inherit);
   line-height: inherit;
-  color: var(--lg-theme-base-colours-base-font-color, inherit);
+  color: var(--vs-theme-base-colours-base-font-color, inherit);
   background-color: transparent;
 }

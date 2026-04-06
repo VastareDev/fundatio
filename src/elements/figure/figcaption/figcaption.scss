@@ -36,11 +36,11 @@
    - Brand-aligned typography
    -------------------------------------------------------------------------- */
 
-  font-family: var(--lg-typography-font-families-base-font-family);
+  font-family: var(--vs-typography-font-families-base-font-family);
   font-size: 0.875em;
-  font-weight: var(--lg-typography-formatting-base-font-weight);
-  line-height: var(--lg-typography-formatting-base-line-height);
-  color: var(--lg-theme-base-colours-base-font-color);
+  font-weight: var(--vs-typography-formatting-base-font-weight);
+  line-height: var(--vs-typography-formatting-base-line-height);
+  color: var(--vs-theme-base-colours-base-font-color);
 
   // Keep caption visually subordinate without imposing italics.
   opacity: 0.85;
@@ -49,5 +49,5 @@
    - Spacing
    -------------------------------------------------------------------------- */
 
-  margin-block-start: var(--lg-typography-spacing-heading-margin-bottom);
+  margin-block-start: var(--vs-typography-spacing-heading-margin-bottom);
 }

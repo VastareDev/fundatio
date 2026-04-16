@@ -1,0 +1,48 @@
+/**
+ * Fundatio Design Foundation: Bootstrap v5 Bridge Adapter Entry Point
+ *
+ * Provides a single SCSS entry for consuming Bootstrap v5 bridge, optionally composed
+ * with a Fundatio baseline.
+ *
+ * Baseline options:
+ * - none: Bootstrap only
+ * - core: Fundatio core
+ * - main: Fundatio main (includes core)
+ *
+ * @module
+ * @group  adapters
+ * @access public
+ * @since  1.0.0
+ */
+
+@use 'sass:list';
+@use 'sass:meta';
+
+/* ----------------------------------------------------------------------------
+ - Configuration
+ --------------------------------------------------------------------------- */
+
+$vs-bootstrap-baseline: core !default;
+$_allowed-baselines: (none, core, main);
+
+@if list.index($_allowed-baselines, $vs-bootstrap-baseline) == null {
+  @error 'Invalid $vs-bootstrap-baseline: #{$vs-bootstrap-baseline}. Allowed values: none, core, main.';
+}
+
+/* ----------------------------------------------------------------------------
+ - Fundatio Variables
+ --------------------------------------------------------------------------- */
+
+/* stylelint-disable no-invalid-position-at-import-rule */
+@use './variables';
+/* stylelint-enable no-invalid-position-at-import-rule */
+
+/* ----------------------------------------------------------------------------
+ - Optional Fundatio baseline
+ --------------------------------------------------------------------------- */
+
+@if $vs-bootstrap-baseline == core {
+  @include meta.load-css('../../../core');
+} @else if $vs-bootstrap-baseline == main {
+  @include meta.load-css('../../../main');
+}

@@ -1,6 +1,6 @@
 {
   "name": "@vastare/fundatio",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Production-grade design foundation for Vastare themes, applications, and shared UI infrastructure.",
   "homepage": "https://github.com/vastaredev/fundatio#readme",
   "bugs": {
@@ -110,6 +110,7 @@
     },
     "./package.json": "./package.json",
     "./scss/adapters/bootstrap/v5": "./src/scss/adapters/bootstrap/v5/index.scss",
+    "./scss/adapters/bootstrap/v5/bridge": "./src/scss/adapters/bootstrap/v5/bridge.scss",
     "./css": {
       "default": "./dist/css/main.css"
     },

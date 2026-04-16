@@ -1,6 +1,6 @@
 # @vastare/fundatio
 
-**Version:** 1.0.2  
+**Version:** 1.0.3  
 **Distribution:** npm  
 **Purpose:** Shared design foundation for Vastare projects
 
@@ -14,7 +14,7 @@
 - a shared baseline for WordPress themes, Vite applications, and other web builds
 
 This package is intended to be consumed as a real upstream dependency. The examples below use the
-**actual published package name** and the **1.0.2 release surface**.
+**actual published package name** and the **1.0.3 release surface**.
 
 ---
 

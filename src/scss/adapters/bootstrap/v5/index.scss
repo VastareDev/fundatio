@@ -4,10 +4,6 @@
  * Provides a single SCSS entry for consuming Bootstrap v5, optionally composed
  * with a Fundatio baseline.
  *
- * Bootstrap 5 still exposes its Sass customisation surface through legacy import-era
- * globals. Fundatio therefore keeps the adapter bridge intentionally small and
- * isolated here so the rest of the package can remain module-first.
- *
  * Baseline options:
  * - none: Bootstrap only
  * - core: Fundatio core + Bootstrap
@@ -23,6 +19,15 @@
 @use 'sass:meta';
 
 /* ----------------------------------------------------------------------------
+ - Bootstrap (with Fundatio-driven variables)
+ --------------------------------------------------------------------------- */
+
+/* stylelint-disable no-invalid-position-at-import-rule */
+@use './variables';
+@use 'bootstrap/scss/bootstrap';
+/* stylelint-enable no-invalid-position-at-import-rule */
+
+/* ----------------------------------------------------------------------------
  - Configuration
  --------------------------------------------------------------------------- */
 
@@ -32,26 +37,6 @@ $_allowed-baselines: (none, core, main);
 @if list.index($_allowed-baselines, $vs-bootstrap-baseline) == null {
   @error 'Invalid $vs-bootstrap-baseline: #{$vs-bootstrap-baseline}. Allowed values: none, core, main.';
 }
-
-/* ----------------------------------------------------------------------------
- - Bootstrap (with Fundatio-driven variables)
- --------------------------------------------------------------------------- */
-
-/**
- * Bootstrap still relies on legacy global variable configuration via @import.
- * Fundatio limits that legacy flow to this adapter because Bootstrap variable
- * overrides are not yet exposed through a fully modern @use-based API upstream.
- * Dart Sass requires @use to appear before other rules, so these @imports must
- * come after @use.
- *
- * Stylelint rule `no-invalid-position-at-import-rule` incorrectly flags this,
- * so we disable it locally just for these imports.
- */
-
-/* stylelint-disable no-invalid-position-at-import-rule */
-@import './variables';
-@import 'bootstrap/scss/bootstrap';
-/* stylelint-enable no-invalid-position-at-import-rule */
 
 /* ----------------------------------------------------------------------------
  - Optional Fundatio baseline

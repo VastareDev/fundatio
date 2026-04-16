@@ -1,6 +1,6 @@
 {
   "name": "@vastare/fundatio",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Production-grade design foundation for Vastare themes, applications, and shared UI infrastructure.",
   "homepage": "https://github.com/vastaredev/fundatio#readme",
   "bugs": {

@@ -19,6 +19,14 @@
 @use 'sass:meta';
 
 /* ----------------------------------------------------------------------------
+ - Fundatio Variables
+ --------------------------------------------------------------------------- */
+
+/* stylelint-disable no-invalid-position-at-import-rule */
+@use './variables';
+/* stylelint-enable no-invalid-position-at-import-rule */
+
+/* ----------------------------------------------------------------------------
  - Configuration
  --------------------------------------------------------------------------- */
 
@@ -28,14 +36,6 @@ $_allowed-baselines: (none, core, main);
 @if list.index($_allowed-baselines, $vs-bootstrap-baseline) == null {
   @error 'Invalid $vs-bootstrap-baseline: #{$vs-bootstrap-baseline}. Allowed values: none, core, main.';
 }
-
-/* ----------------------------------------------------------------------------
- - Fundatio Variables
- --------------------------------------------------------------------------- */
-
-/* stylelint-disable no-invalid-position-at-import-rule */
-@use './variables';
-/* stylelint-enable no-invalid-position-at-import-rule */
 
 /* ----------------------------------------------------------------------------
  - Optional Fundatio baseline
